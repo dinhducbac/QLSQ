@@ -5,8 +5,8 @@ D:\Project\QL_SQ\QLSQ\QLSQ.Data\obj\Debug\netcoreapp3.1\QLSQ.Data.AssemblyInfo.c
 D:\Project\QL_SQ\QLSQ\QLSQ.Data\bin\Debug\netcoreapp3.1\QLSQ.Data.runtimeconfig.json
 D:\Project\QL_SQ\QLSQ\QLSQ.Data\bin\Debug\netcoreapp3.1\QLSQ.Data.runtimeconfig.dev.json
 D:\Project\QL_SQ\QLSQ\QLSQ.Data\obj\Debug\netcoreapp3.1\QLSQ.Data.genruntimeconfig.cache
-D:\Project\QL_SQ\QLSQ\QLSQ.Data\obj\Debug\netcoreapp3.1\QLSQ.Data.csproj.CoreCompileInputs.cache
 D:\Project\QL_SQ\QLSQ\QLSQ.Data\bin\Debug\netcoreapp3.1\QLSQ.Data.pdb
 D:\Project\QL_SQ\QLSQ\QLSQ.Data\obj\Debug\netcoreapp3.1\QLSQ.Data.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.Data\obj\Debug\netcoreapp3.1\QLSQ.Data.pdb
 D:\Project\QL_SQ\QLSQ\QLSQ.Data\obj\Debug\netcoreapp3.1\QLSQ.Data.csprojAssemblyReference.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.Data\obj\Debug\netcoreapp3.1\QLSQ.Data.csproj.CoreCompileInputs.cache
