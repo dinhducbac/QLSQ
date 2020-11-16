@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Project\\QLSQ\\QLSQ\\QLSQ.csproj",
-      "projectName": "QLSQ",
-      "projectPath": "D:\\Project\\QLSQ\\QLSQ\\QLSQ.csproj",
+      "projectUniqueName": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ\\QLSQ.WebApp.csproj",
+      "projectName": "QLSQ.WebApp",
+      "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ\\QLSQ.WebApp.csproj",
       "packagesPath": "C:\\Users\\dinhducbac\\.nuget\\packages\\",
-      "outputPath": "D:\\Project\\QLSQ\\QLSQ\\obj\\",
+      "outputPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dinhducbac\\AppData\\Roaming\\NuGet\\NuGet.Config",
