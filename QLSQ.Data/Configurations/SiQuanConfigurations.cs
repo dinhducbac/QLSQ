@@ -20,6 +20,7 @@ namespace QL_SiQuan.Data.Configuarations
             builder.HasKey(x => x.IDSQ);
             builder.Property(x => x.IDSQ).ValueGeneratedOnAdd();
             builder.Property(x => x.UserId).IsRequired(true).IsUnicode(false);
+            builder.HasOne(x => x.AppUser).WithOne(a => a.SiQuan).HasForeignKey<SiQuan>(a => a.UserId);
             builder.Property(x => x.HoTen).IsRequired(true).IsUnicode(true).HasMaxLength(50);
             builder.Property(x => x.NgaySinh).IsRequired(true);
             builder.Property(x => x.GioiTinh).IsRequired(true).HasMaxLength(1).HasDefaultValue<string>("M").IsUnicode(false);

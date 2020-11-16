@@ -1,15 +1,19 @@
 ﻿
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using QL_SiQuan.Data.Configuarations;
 using QL_SiQuan.Data.Entities;
 using QL_SiQuan.Data.Extensions;
+using QLSQ.Data.Configurations;
+using QLSQ.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace QL_SiQuan.Data.EF
 {
-    public class QL_SiQuanDBContext : DbContext
+    public class QL_SiQuanDBContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,11 +27,13 @@ namespace QL_SiQuan.Data.EF
             modelBuilder.ApplyConfiguration(new QLDangVienConfigurations());
             modelBuilder.ApplyConfiguration(new QLLuongConfigurations());
             modelBuilder.ApplyConfiguration(new QLNghiPhepConfigurations());
-            //modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
-            //modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole").HasKey(x=> new {x.UserId,x.RoleId });
-            //modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin").HasKey(x=>x.UserId);
-            //modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaim");
-            //modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("UserToken").HasKey(x=>x.UserId);
+            modelBuilder.ApplyConfiguration(new AppUserConfigurations());
+            modelBuilder.ApplyConfiguration(new AppRoleConfigurations());
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin").HasKey(x => x.UserId);
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("RoleClaim");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("UserToken").HasKey(x => x.UserId);
             modelBuilder.Seed();
             //base.OnModelCreating(modelBuilder);
         }
@@ -43,7 +49,8 @@ namespace QL_SiQuan.Data.EF
         public DbSet<QuanHam> QuanHams { get; set; }
         public DbSet<BoPhan> BoPhans { get; set; }
         public DbSet<ChucVu> ChucVus { get; set; }
-        public DbSet<QLChucVu> QLChucVus {get;set;}
-        
+        public DbSet<QLChucVu> QLChucVus { get; set; }
+        //public DbSet<AppUser> AppUsers { get; set; }
+        //public DbSet<AppRole> AppRoles { get; set; }
     }
 }

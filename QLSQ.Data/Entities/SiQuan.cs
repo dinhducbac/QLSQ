@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLSQ.Data.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,8 +15,9 @@ namespace QL_SiQuan.Data.Entities
         public DateTime NgaySinh { get; set; }
         public string GioiTinh { get; set; }
         public string QueQuan { get; set; }
-        public string SDT { get; set; } 
+        public string SDT { get; set; }
 
+        public AppUser AppUser { set; get; }
         public List<QLLuong> QLLuongs { set; get; }
         public List<QLDangVien> QLDangViens { set; get; }
         public List<QLChucVu> QLChucVus { set; get; }

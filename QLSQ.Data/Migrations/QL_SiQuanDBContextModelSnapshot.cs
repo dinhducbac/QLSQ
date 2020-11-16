@@ -19,6 +19,326 @@ namespace QLSQ.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoleClaim");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserClaim");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("UserLogin");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.ToTable("UserRole");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"),
+                            RoleId = new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2")
+                        },
+                        new
+                        {
+                            UserId = new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"),
+                            RoleId = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9")
+                        },
+                        new
+                        {
+                            UserId = new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"),
+                            RoleId = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9")
+                        },
+                        new
+                        {
+                            UserId = new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"),
+                            RoleId = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9")
+                        },
+                        new
+                        {
+                            UserId = new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"),
+                            RoleId = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9")
+                        },
+                        new
+                        {
+                            UserId = new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"),
+                            RoleId = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9")
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("UserToken");
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.AppRole", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mota")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"),
+                            ConcurrencyStamp = "9214e5a0-e405-467e-a529-fc733f5a4f27",
+                            Mota = "Administrator Role",
+                            Name = "admin",
+                            NormalizedName = "admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"),
+                            ConcurrencyStamp = "fd2b3bed-fc2c-467e-9d4d-c1520b5acff5",
+                            Mota = "Si Quan Role",
+                            Name = "Si Quan",
+                            NormalizedName = "Si Quan"
+                        });
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.AppUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppUser");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "22509324-1b6f-4c74-a992-80198e20a96d",
+                            Email = "dinhducbac1998@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "dinhducbac1998@gmail.com",
+                            NormalizedUserName = "admin",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKIds6KWyvwjvH3D5FsEG7V08UjjdXXNdiannundbYApjdwaKIWJ7f7obUWQzCZI7w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        },
+                        new
+                        {
+                            Id = new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "cadce2d4-d7f3-42b3-a65c-775326b0489e",
+                            Email = "lethihien@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "lethihien@gmail.com",
+                            NormalizedUserName = "lethihien",
+                            PasswordHash = "AQAAAAEAACcQAAAAELvY/qcnNF6uTyfJIQb3sPKBQYIMno+W8YPByuHh2gPWuOpSBspB5ZoEAgqDqEA/VQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "lethihien"
+                        },
+                        new
+                        {
+                            Id = new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1047e55b-3449-4de4-bc00-3e451588f186",
+                            Email = "dovantuan@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "dovantuan@gmail.com",
+                            NormalizedUserName = "dovantuan",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGj6JYzf0YkXgmtgnReGloN1b9y0AD/4nXct0U82RGU76HWwHY8evD9whg1YPRE0PQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "dovantuan"
+                        },
+                        new
+                        {
+                            Id = new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "859c423f-e49d-431b-9f74-244f82e72ced",
+                            Email = "lethigiang@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "lethigiang@gmail.com",
+                            NormalizedUserName = "lethigiang",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOZmgAKMjxa4LUXnxDVRuXtVZ4jLNPZBugQXJZ+gbDKUZVLKYhf4ScLAIWXO/DeObw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "lethigiang"
+                        },
+                        new
+                        {
+                            Id = new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d15995ad-8052-47c6-90a3-7ec20c45f848",
+                            Email = "nguyenvanhoan@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "nguyenvanhoan@gmail.com",
+                            NormalizedUserName = "nguyenvanhoan",
+                            PasswordHash = "AQAAAAEAACcQAAAAEChTvPLfAlV90nL2qi9D8AkhO+LXIeA8VOKEZxymAnFV9JcgMHnYUkUly3D1tujCHg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "nguyenvanhoan"
+                        },
+                        new
+                        {
+                            Id = new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8a223c20-8ab1-4a5a-8ea5-578204e2cfa4",
+                            Email = "vuvancanh@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "vuvancanh@gmail.com",
+                            NormalizedUserName = "vuvancanh",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBlGIbeJs+6upU/Joy4+JVFVRBBH4OLiWVkU/QWL+PgkXaFIB3IRKdiAQSq2U++aZg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "vuvancanh"
+                        });
+                });
+
             modelBuilder.Entity("QL_SiQuan.Data.Entities.BoPhan", b =>
                 {
                     b.Property<int>("IDBP")
@@ -628,6 +948,9 @@ namespace QLSQ.Data.Migrations
 
                     b.HasKey("IDSQ");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("SiQuan");
 
                     b.HasData(
@@ -762,6 +1085,22 @@ namespace QLSQ.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("SiQuan");
+                });
+
+            modelBuilder.Entity("QL_SiQuan.Data.Entities.SiQuan", b =>
+                {
+                    b.HasOne("QLSQ.Data.Entities.AppUser", "AppUser")
+                        .WithOne("SiQuan")
+                        .HasForeignKey("QL_SiQuan.Data.Entities.SiQuan", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.AppUser", b =>
+                {
                     b.Navigation("SiQuan");
                 });
 

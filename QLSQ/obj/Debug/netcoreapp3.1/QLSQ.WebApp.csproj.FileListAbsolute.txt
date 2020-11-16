@@ -34,3 +34,4 @@ D:\Project\QL_SQ\QLSQ\QLSQ\obj\Debug\netcoreapp3.1\QLSQ.WebApp.dll
 D:\Project\QL_SQ\QLSQ\QLSQ\obj\Debug\netcoreapp3.1\QLSQ.WebApp.pdb
 D:\Project\QL_SQ\QLSQ\QLSQ\obj\Debug\netcoreapp3.1\QLSQ.WebApp.genruntimeconfig.cache
 D:\Project\QL_SQ\QLSQ\QLSQ\obj\Debug\netcoreapp3.1\QLSQ.WebApp.csproj.CopyComplete
+D:\Project\QL_SQ\QLSQ\QLSQ\obj\Debug\netcoreapp3.1\QLSQ.WebApp.csprojAssemblyReference.cache
