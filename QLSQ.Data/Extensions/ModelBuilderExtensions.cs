@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using QL_SiQuan.Data.Entities;
+using QLSQ.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +12,127 @@ namespace QL_SiQuan.Data.Extensions
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            var RoleAdminId = new Guid("37FE170E-027E-4E7F-ABA5-15743063AEB2");
+            var RoleSQId = new Guid("42FF6F47-9EDD-451F-BF03-DB895DFCFFF9");
+            modelBuilder.Entity<AppRole>().HasData(
+                new AppRole
+                {
+                    Id = RoleAdminId,
+                    Name = "admin",
+                    NormalizedName = "admin",
+                    Mota = "Administrator Role"
+                },
+                 new AppRole
+                 {
+                     Id = RoleSQId,
+                     Name = "Si Quan",
+                     NormalizedName = "Si Quan",
+                     Mota = "Si Quan Role"
+                 }
+            );
+
+            var hasher = new PasswordHasher<AppUser>();
+            modelBuilder.Entity<AppUser>().HasData(
+                new AppUser
+                {
+                    Id = new Guid("EF234B11-CCC7-45D3-BA16-5EBF721EE6C8"),
+                    UserName = "admin",
+                    NormalizedUserName = "admin",
+                    Email = "dinhducbac1998@gmail.com",
+                    NormalizedEmail = "dinhducbac1998@gmail.com",
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "02011998ducbac"),
+                    SecurityStamp = string.Empty
+                },
+                new AppUser
+                {
+                    Id = new Guid("9ECE85C8-A453-4FFC-B5AB-BF7D4C3365F9"),
+                    UserName = "lethihien",
+                    NormalizedUserName = "lethihien",
+                    Email = "lethihien@gmail.com",
+                    NormalizedEmail = "lethihien@gmail.com",
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "hien123"),
+                    SecurityStamp = string.Empty
+                },
+                new AppUser
+                {
+                    Id = new Guid("78B61FF5-714B-4C2E-9566-6DF4396B1208"),
+                    UserName = "dovantuan",
+                    NormalizedUserName = "dovantuan",
+                    Email = "dovantuan@gmail.com",
+                    NormalizedEmail = "dovantuan@gmail.com",
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "tuan123"),
+                    SecurityStamp = string.Empty
+                },
+                new AppUser
+                {
+                    Id = new Guid("4C39EE3B-0277-4B32-8173-261988CCE2EE"),
+                    UserName = "lethigiang",
+                    NormalizedUserName = "lethigiang",
+                    Email = "lethigiang@gmail.com",
+                    NormalizedEmail = "lethigiang@gmail.com",
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "giang123"),
+                    SecurityStamp = string.Empty
+                },
+                new AppUser
+                {
+                    Id = new Guid("2C31D31E-1520-48EE-9E62-2311829CF7BA"),
+                    UserName = "nguyenvanhoan",
+                    NormalizedUserName = "nguyenvanhoan",
+                    Email = "nguyenvanhoan@gmail.com",
+                    NormalizedEmail = "nguyenvanhoan@gmail.com",
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "hoan123"),
+                    SecurityStamp = string.Empty
+                },
+                new AppUser
+                {
+                    Id = new Guid("41A8E023-7C08-46BB-858C-5A3B219818CB"),
+                    UserName = "vuvancanh",
+                    NormalizedUserName = "vuvancanh",
+                    Email = "vuvancanh@gmail.com",
+                    NormalizedEmail = "vuvancanh@gmail.com",
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "canh123"),
+                    SecurityStamp = string.Empty
+                }
+            );
+
+            modelBuilder.Entity<IdentityUserRole<Guid>>().HasData(
+                new IdentityUserRole<Guid>
+                {
+                    RoleId = RoleAdminId,
+                    UserId = new Guid("EF234B11-CCC7-45D3-BA16-5EBF721EE6C8")
+                },
+                new IdentityUserRole<Guid>
+                {
+                    RoleId = RoleSQId,
+                    UserId = new Guid("9ECE85C8-A453-4FFC-B5AB-BF7D4C3365F9")
+                },
+                new IdentityUserRole<Guid>
+                {
+                    RoleId = RoleSQId,
+                    UserId = new Guid("78B61FF5-714B-4C2E-9566-6DF4396B1208")
+                },
+                 new IdentityUserRole<Guid>
+                 {
+                     RoleId = RoleSQId,
+                     UserId = new Guid("4C39EE3B-0277-4B32-8173-261988CCE2EE")
+                 },
+                 new IdentityUserRole<Guid>
+                 {
+                     RoleId = RoleSQId,
+                     UserId = new Guid("2C31D31E-1520-48EE-9E62-2311829CF7BA")
+                 },
+                 new IdentityUserRole<Guid>
+                 {
+                     RoleId = RoleSQId,
+                     UserId = new Guid("41A8E023-7C08-46BB-858C-5A3B219818CB")
+                 }
+            );
             modelBuilder.Entity<SiQuan>().HasData(
                 new SiQuan {
                     IDSQ = 1,
@@ -64,7 +187,7 @@ namespace QL_SiQuan.Data.Extensions
                     QueQuan = "Nghệ An",
                     SDT = "0374123456"
                 }
-                );
+            );
             modelBuilder.Entity<QuanHam>().HasData(
                 new QuanHam { IDQH = 1, TenQH = "Thiếu Úy" },
                 new QuanHam { IDQH = 2, TenQH = "Trung Úy" },
@@ -78,7 +201,7 @@ namespace QL_SiQuan.Data.Extensions
                 new QuanHam { IDQH = 10, TenQH = "Trung Tướng" },
                 new QuanHam { IDQH = 11, TenQH = "Thượng Tướng" },
                 new QuanHam { IDQH = 12, TenQH = "Đại Tướng" }
-                );
+            );
             modelBuilder.Entity<QLDangVien>().HasData(
                 new QLDangVien {
                     IDQLDV = 1,
@@ -114,14 +237,14 @@ namespace QL_SiQuan.Data.Extensions
                     NgayVaoDang = DateTime.Parse("2005-09-25"),
                     NoiVaoDang = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa"
                 }
-                );
+            );
             modelBuilder.Entity<BoPhan>().HasData(
                 new BoPhan { IDBP = 1, TenBP= "Ban giám hiệu"},
                 new BoPhan { IDBP = 2, TenBP = "Phòng" },
                 new BoPhan { IDBP = 3, TenBP = "Trợ lý"},
                 new BoPhan { IDBP = 4, TenBP = "Khoa" },
                 new BoPhan { IDBP = 5, TenBP = "Đơn vị"}
-                );
+            );
             modelBuilder.Entity<ChucVu>().HasData(
                 new ChucVu { IDCV = 1, TenCV = "Hiệu trưởng", IDBP= 1 },
                 new ChucVu { IDCV = 2, TenCV = "Hiệu phó đào tạo", IDBP = 1 },
@@ -151,14 +274,14 @@ namespace QL_SiQuan.Data.Extensions
                 new QLChucVu { IDQLCV = 3, IDSQ = 3, IDQH = 5, IDCV = 15 },
                 new QLChucVu { IDQLCV = 4, IDSQ = 4, IDQH = 6, IDCV = 15 },
                 new QLChucVu { IDQLCV = 5, IDSQ = 5, IDQH = 8, IDCV = 15 }
-                );
+            );
             modelBuilder.Entity<QLLuong>().HasData(
                 new QLLuong { IDLuong = 1, IDSQ = 1, HeSoLuong = 8.0F, LuongCoBan = 1429000, HeSoPhuCap = 0F },
                 new QLLuong { IDLuong = 2, IDSQ = 2, HeSoLuong = 8.0F, LuongCoBan = 1429000, HeSoPhuCap = 0F },
                 new QLLuong { IDLuong = 3, IDSQ = 3, HeSoLuong = 6.0F, LuongCoBan = 1429000, HeSoPhuCap = 0F },
                 new QLLuong { IDLuong = 4, IDSQ = 4, HeSoLuong = 6.6F, LuongCoBan = 1429000, HeSoPhuCap = 0F },
                 new QLLuong { IDLuong = 5, IDSQ = 5, HeSoLuong = 8.0F, LuongCoBan = 1429000, HeSoPhuCap = 0F }
-                );
+            );
             modelBuilder.Entity<QLCongTac>().HasData(
                 new QLCongTac { 
                     IDCT = 1,
@@ -197,7 +320,7 @@ namespace QL_SiQuan.Data.Extensions
                     ThoiGianBatDauCT = DateTime.Parse("2005-9-13"),
                     ThoiGianCT = 17
                 }
-                );
+            );
         }
     }
 }
