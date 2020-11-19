@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using QL_SiQuan.Data.Entities;
+using QLSQ.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QL_SiQuan.Data.Configuarations
+namespace QLSQ.Data.Configurations
 {
     class QLLuongConfigurations : IEntityTypeConfiguration<QLLuong>
     {
@@ -18,7 +18,7 @@ namespace QL_SiQuan.Data.Configuarations
             builder.HasOne(x => x.SiQuan).WithMany(x => x.QLLuongs).HasForeignKey(x => x.IDSQ);
             builder.Property(x => x.HeSoLuong).IsRequired();
             builder.Property(x => x.LuongCoBan).IsRequired();
-            builder.Property(x => x.HeSoPhuCap).IsRequired().HasDefaultValue<float>(0);
+            builder.Property(x => x.HeSoPhuCap).IsRequired().HasDefaultValue(0);
         }
     }
 }

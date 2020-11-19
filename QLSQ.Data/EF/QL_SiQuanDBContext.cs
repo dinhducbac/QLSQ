@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using QL_SiQuan.Data.Configuarations;
-using QL_SiQuan.Data.Entities;
 using QL_SiQuan.Data.Extensions;
 using QLSQ.Data.Configurations;
 using QLSQ.Data.Entities;
@@ -11,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QL_SiQuan.Data.EF
+namespace QLSQ.Data.EF
 {
     public class QL_SiQuanDBContext : IdentityDbContext<AppUser, AppRole, Guid>
     {

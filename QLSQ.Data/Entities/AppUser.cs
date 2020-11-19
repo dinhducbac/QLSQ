@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using QL_SiQuan.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;

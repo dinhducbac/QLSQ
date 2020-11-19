@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace QL_SiQuan.Data.Entities
+namespace QLSQ.Data.Entities
 {
     public class QLDangVien
     {

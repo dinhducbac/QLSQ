@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using QL_SiQuan.Data.Entities;
 using QLSQ.Data.Entities;
 using System;
 using System.Collections.Generic;

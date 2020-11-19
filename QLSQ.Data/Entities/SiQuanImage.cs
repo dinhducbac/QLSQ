@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace QLSQ.Data.Entities
+{
+    public class SiQuanImage
+    {
+        public int IDImage { get; set; }
+        public int IDSQ { get; set; }
+        public string ImagePath { get; set; }
+        public string Caption { get; set; }
+        public bool IsDefault { get; set; }
+        public DateTime DateCreated { get; set; }
+        public int FileSize { get; set; }
+
+        public  SiQuan SiQuan { get; set; }
+    }
+}

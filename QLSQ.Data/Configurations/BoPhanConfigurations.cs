@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using QL_SiQuan.Data.Entities;
+using QLSQ.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QL_SiQuan.Data.Configuarations
+namespace QLSQ.Data.Configurations
 {
     class BoPhanConfigurations : IEntityTypeConfiguration<BoPhan>
     {
