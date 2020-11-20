@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QLSQ.Application.Catalog.SiQuans.Dtos.Manage
+namespace QLSQ.ViewModel.Catalogs.SiQuan.Manage
 {
     public class SiQuanCreateRequest
     {
@@ -12,5 +14,6 @@ namespace QLSQ.Application.Catalog.SiQuans.Dtos.Manage
         public string GioiTinh { get; set; }
         public string QueQuan { get; set; }
         public string SDT { get; set; }
+        public IFormFile ThumbnailImage { get; set; }
     }
 }

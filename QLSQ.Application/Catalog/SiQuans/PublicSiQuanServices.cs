@@ -1,6 +1,4 @@
-﻿using QLSQ.Application.Catalog.SiQuans.Dtos;
-using QLSQ.Application.Catalog.SiQuans.Dtos.Public;
-using QLSQ.Application.Dtos;
+﻿
 using QLSQ.Data.EF;
 using System;
 using System.Collections.Generic;
@@ -8,6 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using QLSQ.Application.Catalog.SiQuans;
+using QLSQ.ViewModel.Catalogs.SiQuan.Manage;
+using QLSQ.ViewModel.Common;
+using QLSQ.ViewModel.Catalogs.SiQuan;
 
 namespace QLSQ.Application.Catalog.SiQuan
 {
@@ -19,8 +21,9 @@ namespace QLSQ.Application.Catalog.SiQuan
         {
             _context = context;
         }
-        public async Task<PageResult<SiQuanViewModel>> GetAllBySiQuanId(GetSiQuanPagingRequest request)
+        public async Task<PageResult<SiQuanViewModel>> GetAllBySiQuanId(ViewModel.Catalogs.SiQuan.Public.GetSiQuanPagingRequest request)
         {
+
             var query = from p in _context.SiQuans select p;
             if (request.IDSQ.HasValue && request.IDSQ.Value > 0)
             {

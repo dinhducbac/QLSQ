@@ -1,0 +1,9 @@
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\bin\Debug\netcoreapp3.1\QLSQ.ViewModel.deps.json
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\bin\Debug\netcoreapp3.1\QLSQ.ViewModel.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.csprojAssemblyReference.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.AssemblyInfoInputs.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.AssemblyInfo.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\bin\Debug\netcoreapp3.1\QLSQ.ViewModel.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.csproj.CoreCompileInputs.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.pdb

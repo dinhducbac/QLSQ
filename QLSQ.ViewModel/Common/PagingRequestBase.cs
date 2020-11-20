@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace QLSQ.Application.Dtos
+namespace QLSQ.ViewModel.Common
 {
     public class PagingRequestBase
     {

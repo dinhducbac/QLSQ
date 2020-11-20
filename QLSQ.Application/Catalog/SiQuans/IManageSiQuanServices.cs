@@ -1,6 +1,8 @@
-﻿using QLSQ.Application.Catalog.SiQuans.Dtos;
-using QLSQ.Application.Catalog.SiQuans.Dtos.Manage;
-using QLSQ.Application.Dtos;
+﻿using Microsoft.AspNetCore.Http;
+using QLSQ.ViewModel.Catalogs.SiQuan;
+using QLSQ.ViewModel.Catalogs.SiQuan.Manage;
+using QLSQ.ViewModel.Catalogs.SiQuanImage.Manage;
+using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,7 +17,10 @@ namespace QLSQ.Application.Catalog.SiQuans
         Task<int> Update(SiQuanUpdateRequest request);
         Task<int> Detele(int SiQuanID);
 
-        Task<List<SiQuanViewModel>> GetAll();
         Task<PageResult<SiQuanViewModel>> GetAllPaging(GetSiQuanPagingRequest request);
+        Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request);
+        Task<int> RemoveImages(int ImageID);
+        Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request);
+        Task<List<SiQuanImageViewModel>> GetListImage(int SiQuanID);
     }
 }

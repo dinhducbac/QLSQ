@@ -2,8 +2,15 @@ D:\Project\QL_SQ\QLSQ\QLSQ.Application\bin\Debug\netcoreapp3.1\QLSQ.Application.
 D:\Project\QL_SQ\QLSQ\QLSQ.Application\bin\Debug\netcoreapp3.1\QLSQ.Application.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.Application\bin\Debug\netcoreapp3.1\QLSQ.Application.pdb
 D:\Project\QL_SQ\QLSQ\QLSQ.Application\obj\Debug\netcoreapp3.1\QLSQ.Application.csprojAssemblyReference.cache
-D:\Project\QL_SQ\QLSQ\QLSQ.Application\obj\Debug\netcoreapp3.1\QLSQ.Application.csproj.CoreCompileInputs.cache
 D:\Project\QL_SQ\QLSQ\QLSQ.Application\obj\Debug\netcoreapp3.1\QLSQ.Application.AssemblyInfoInputs.cache
 D:\Project\QL_SQ\QLSQ\QLSQ.Application\obj\Debug\netcoreapp3.1\QLSQ.Application.AssemblyInfo.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.Application\obj\Debug\netcoreapp3.1\QLSQ.Application.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.Application\obj\Debug\netcoreapp3.1\QLSQ.Application.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.Application\bin\Debug\netcoreapp3.1\QLSQ.Data.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.Application\bin\Debug\netcoreapp3.1\QLSQ.Utilities.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.Application\bin\Debug\netcoreapp3.1\QLSQ.Data.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.Application\bin\Debug\netcoreapp3.1\QLSQ.Utilities.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.Application\obj\Debug\netcoreapp3.1\QLSQ.Application.csproj.CopyComplete
+D:\Project\QL_SQ\QLSQ\QLSQ.Application\bin\Debug\netcoreapp3.1\QLSQ.ViewModel.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.Application\bin\Debug\netcoreapp3.1\QLSQ.ViewModel.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.Application\obj\Debug\netcoreapp3.1\QLSQ.Application.csproj.CoreCompileInputs.cache

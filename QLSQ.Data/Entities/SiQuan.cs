@@ -22,5 +22,6 @@ namespace QLSQ.Data.Entities
         public List<QLChucVu> QLChucVus { set; get; }
         public List<QLCongTac> QLCongTacs { set; get; }
         public List<QLNghiPhep> QLNghiPheps { set; get; }
+        public List<SiQuanImage> SiQuanImages { set; get; }
     }
 }

@@ -1,9 +1,9 @@
-﻿using QLSQ.Application.Dtos;
+﻿using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QLSQ.Application.Catalog.SiQuans.Dtos.Public
+namespace QLSQ.ViewModel.Catalogs.SiQuan.Public
 {
     public class GetSiQuanPagingRequest : PagingRequestBase
     {

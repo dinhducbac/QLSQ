@@ -1,7 +1,8 @@
 ﻿
-using QLSQ.Application.Catalog.SiQuans.Dtos;
-using QLSQ.Application.Catalog.SiQuans.Dtos.Public;
-using QLSQ.Application.Dtos;
+using QLSQ.Application.Catalog.SiQuans;
+using QLSQ.ViewModel.Catalogs.SiQuan;
+using QLSQ.ViewModel.Catalogs.SiQuan.Public;
+using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;

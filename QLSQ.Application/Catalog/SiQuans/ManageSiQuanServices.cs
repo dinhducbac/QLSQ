@@ -1,13 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
-using QLSQ.Application.Catalog.SiQuans.Dtos;
-using QLSQ.Application.Catalog.SiQuans.Dtos.Manage;
-using QLSQ.Application.Dtos;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using QLSQ.Application.Common;
 using QLSQ.Data.EF;
 using QLSQ.Data.Entities;
 using QLSQ.Utilities.Exceptions;
+using QLSQ.ViewModel.Catalogs.SiQuan;
+using QLSQ.ViewModel.Catalogs.SiQuan.Manage;
+using QLSQ.ViewModel.Catalogs.SiQuanImage.Manage;
+using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,12 +20,77 @@ namespace QLSQ.Application.Catalog.SiQuans
 {
     public class ManageSiQuanServices : IManageSiQuanServices
     {
-
+        private readonly IStorageServices _storageServices;
         private readonly QL_SiQuanDBContext _context;
-        public ManageSiQuanServices(QL_SiQuanDBContext context)
+        public ManageSiQuanServices(QL_SiQuanDBContext context, IStorageServices storageServices)
         {
             _context = context;
+            _storageServices = storageServices;
         }
+        //------------------------------------------------------------------------------------------------
+        //Part of SiQuanImage
+        public async Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request)
+        {
+            var siquanimage = new SiQuanImage()
+            {
+                IDSQ = request.IDSQ,
+                Caption = request.Caption,
+                DateCreated = DateTime.Now,
+                IsDefault = request.IsDefault
+            };
+            if (request.ImageFile != null)
+            {
+                siquanimage.ImagePath = await this.SaveFile(request.ImageFile);
+                siquanimage.FileSize = request.ImageFile.Length;
+            }
+            _context.SiQuanImages.Add(siquanimage);
+            return await _context.SaveChangesAsync();
+        }
+        public async Task<List<SiQuanImageViewModel>> GetListImage(int SiQuanID)
+        {
+            return await _context.SiQuanImages.Where(x => x.IDSQ == SiQuanID)
+            .Select(
+                    i => new SiQuanImageViewModel()
+                    {
+                        IDImage = i.IDImage,
+                        ImagePath = i.ImagePath,
+                        Caption = i.Caption,
+                        DateCreated = i.DateCreated,
+                        IsDefault = i.IsDefault,
+                        FileSize = i.FileSize
+                    }
+                ).ToListAsync();
+        }
+        public async Task<int> RemoveImages(int ImageID)
+        {
+            var siquanimage = await _context.SiQuanImages.FindAsync(ImageID);
+            if (siquanimage == null)
+                throw new QLSQException($"Không thể tìm thấy ảnh có ID: {ImageID}");
+            _context.SiQuanImages.Remove(siquanimage);
+            return await _context.SaveChangesAsync();
+        }
+        public async Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request)
+        {
+            var siquanimage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IDImage == request.IDImage);
+            if (siquanimage == null)
+                throw new QLSQException($"Không thể tìm thấy ảnh có id: {request.IDImage}");
+            siquanimage.IDSQ = request.IDSQ;
+            siquanimage.ImagePath = await this.SaveFile(request.ImageFile);
+            siquanimage.FileSize = request.ImageFile.Length;
+            siquanimage.Caption = request.Caption;
+            siquanimage.IsDefault = request.IsDefault;
+            _context.SiQuanImages.Update(siquanimage);
+            return await _context.SaveChangesAsync();
+        }
+        private async Task<string> SaveFile(IFormFile file)
+        {
+            var orignalfilename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('*');
+            var filename = $"{Guid.NewGuid()}{Path.GetExtension(orignalfilename)}";
+            await _storageServices.SaveFileAsync(file.OpenReadStream(), filename);
+            return filename;
+        }
+        //------------------------------------------------------------------------------------------------
+        // Part of SiQuan
         public async Task<int> Create(SiQuanCreateRequest request)
         {
             var siquan = new QLSQ.Data.Entities.SiQuan()
@@ -32,6 +102,21 @@ namespace QLSQ.Application.Catalog.SiQuans
                 QueQuan = request.QueQuan,
                 SDT = request.SDT
             };
+            if(request.ThumbnailImage != null)
+            {
+                siquan.SiQuanImages = new List<SiQuanImage>()
+                {
+                    new SiQuanImage()
+                    {
+                        IDSQ = siquan.IDSQ,
+                        Caption = request.HoTen,
+                        DateCreated = DateTime.Now,
+                        FileSize = request.ThumbnailImage.Length,
+                        ImagePath = await this.SaveFile(request.ThumbnailImage),
+                        IsDefault = true,
+                    }
+                };
+            }
             _context.SiQuans.Add(siquan);
             return await _context.SaveChangesAsync();
         }
@@ -42,6 +127,11 @@ namespace QLSQ.Application.Catalog.SiQuans
             if (siquan == null)
             {
                 throw new QLSQException($"Không thể tìm thấy sĩ quan có Id: {SiQuanID}");
+            }
+            var thumbnailImage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IDSQ == SiQuanID);
+            if (thumbnailImage != null)
+            {
+                await _storageServices.DeleteFileAsync(thumbnailImage.ImagePath);
             }
             _context.SiQuans.Remove(siquan);
             return await _context.SaveChangesAsync();
@@ -88,6 +178,17 @@ namespace QLSQ.Application.Catalog.SiQuans
             siquan.GioiTinh = request.GioiTinh;
             siquan.QueQuan = request.QueQuan;
             siquan.SDT = request.SDT;
+           // _context.SiQuans.Update(siquan);
+            if(request.ThumbnailImage != null)
+            {
+                var thumbnailImage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IsDefault == true && x.IDSQ == request.IDSQ);
+                if (thumbnailImage != null)
+                {
+                       thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
+                       thumbnailImage.FileSize = request.ThumbnailImage.Length;
+                       _context.SiQuanImages.Update(thumbnailImage);
+                }
+            }
             return await _context.SaveChangesAsync();
         }
     }

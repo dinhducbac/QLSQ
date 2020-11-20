@@ -27,6 +27,7 @@ namespace QLSQ.Data.EF
             modelBuilder.ApplyConfiguration(new QLNghiPhepConfigurations());
             modelBuilder.ApplyConfiguration(new AppUserConfigurations());
             modelBuilder.ApplyConfiguration(new AppRoleConfigurations());
+            modelBuilder.ApplyConfiguration(new SiQuanImageConfigurations());
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole").HasKey(x => new { x.UserId, x.RoleId });
             modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin").HasKey(x => x.UserId);
@@ -48,6 +49,7 @@ namespace QLSQ.Data.EF
         public DbSet<BoPhan> BoPhans { get; set; }
         public DbSet<ChucVu> ChucVus { get; set; }
         public DbSet<QLChucVu> QLChucVus { get; set; }
+        public DbSet<SiQuanImage> SiQuanImages { get; set; }
         //public DbSet<AppUser> AppUsers { get; set; }
         //public DbSet<AppRole> AppRoles { get; set; }
     }

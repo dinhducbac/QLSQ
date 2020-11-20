@@ -1,0 +1,9 @@
+D:\Project\QL_SQ\QLSQ\QLSQ.Utilities\bin\Debug\netcoreapp3.1\QLSQ.Utilities.deps.json
+D:\Project\QL_SQ\QLSQ\QLSQ.Utilities\bin\Debug\netcoreapp3.1\QLSQ.Utilities.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.Utilities\bin\Debug\netcoreapp3.1\QLSQ.Utilities.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.Utilities\obj\Debug\netcoreapp3.1\QLSQ.Utilities.csprojAssemblyReference.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.Utilities\obj\Debug\netcoreapp3.1\QLSQ.Utilities.csproj.CoreCompileInputs.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.Utilities\obj\Debug\netcoreapp3.1\QLSQ.Utilities.AssemblyInfoInputs.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.Utilities\obj\Debug\netcoreapp3.1\QLSQ.Utilities.AssemblyInfo.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.Utilities\obj\Debug\netcoreapp3.1\QLSQ.Utilities.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.Utilities\obj\Debug\netcoreapp3.1\QLSQ.Utilities.pdb

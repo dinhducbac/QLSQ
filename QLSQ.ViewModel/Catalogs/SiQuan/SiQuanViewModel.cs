@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace QLSQ.Application.Catalog.SiQuans.Dtos.Manage
+namespace QLSQ.ViewModel.Catalogs.SiQuan
 {
-    public class SiQuanUpdateRequest
+    public class SiQuanViewModel
     {
         public int IDSQ { get; set; }
         public Guid UserId { get; set; }

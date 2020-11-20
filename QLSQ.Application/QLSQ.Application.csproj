@@ -1,11 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+	 <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\QLSQ.Data\QLSQ.Data.csproj" />
+    <ProjectReference Include="..\QLSQ.Utilities\QLSQ.Utilities.csproj" />
+    <ProjectReference Include="..\QLSQ.ViewModel\QLSQ.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>
