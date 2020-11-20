@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace QL_SiQuan.Data.EF
+namespace QLSQ.Data.EF
 {
     class QLSiQuanDBContextFactory : IDesignTimeDbContextFactory<QL_SiQuanDBContext>
     {

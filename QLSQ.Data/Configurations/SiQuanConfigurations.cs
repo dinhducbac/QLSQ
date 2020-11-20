@@ -3,14 +3,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using QL_SiQuan.Data.Configuarations;
-using QL_SiQuan.Data.Entities;
 using System.Security.Cryptography.X509Certificates;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Schema;
 using System.Globalization;
+using QLSQ.Data.Entities;
 
-namespace QL_SiQuan.Data.Configuarations
+namespace QLSQ.Data.Configurations
 {
     internal class SiQuanConfigurations : IEntityTypeConfiguration<SiQuan>
     {
@@ -23,7 +22,7 @@ namespace QL_SiQuan.Data.Configuarations
             builder.HasOne(x => x.AppUser).WithOne(a => a.SiQuan).HasForeignKey<SiQuan>(a => a.UserId);
             builder.Property(x => x.HoTen).IsRequired(true).IsUnicode(true).HasMaxLength(50);
             builder.Property(x => x.NgaySinh).IsRequired(true);
-            builder.Property(x => x.GioiTinh).IsRequired(true).HasMaxLength(1).HasDefaultValue<string>("M").IsUnicode(false);
+            builder.Property(x => x.GioiTinh).IsRequired(true).HasMaxLength(1).HasDefaultValue("M").IsUnicode(false);
             builder.Property(x => x.QueQuan).IsRequired(true).IsUnicode(true).HasMaxLength(300);
             builder.Property(x => x.SDT).IsRequired(true).HasMaxLength(11).IsUnicode(false);
         }

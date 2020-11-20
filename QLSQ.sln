@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLSQ.WebApp", "QLSQ\QLSQ.WebApp.csproj", "{A2C7EF12-3618-403E-AA41-F0ED4EA7C9F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSQ.Data", "QLSQ.Data\QLSQ.Data.csproj", "{49FA68DF-E9B4-4BD5-B9BC-8C3FA3BCEA3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLSQ.Data", "QLSQ.Data\QLSQ.Data.csproj", "{49FA68DF-E9B4-4BD5-B9BC-8C3FA3BCEA3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSQ.Application", "QLSQ.Application\QLSQ.Application.csproj", "{ECC818A0-2AA2-4069-A62B-6DAFE657C076}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLSQ.Application", "QLSQ.Application\QLSQ.Application.csproj", "{ECC818A0-2AA2-4069-A62B-6DAFE657C076}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSQ.Utilities", "QLSQ.Utilities\QLSQ.Utilities.csproj", "{CC5E43EA-B8E5-4A71-83EA-CACF025B4E56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSQ.ViewModel", "QLSQ.ViewModel\QLSQ.ViewModel.csproj", "{9D7126BA-743E-4806-BCE1-DEEC23597E92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{ECC818A0-2AA2-4069-A62B-6DAFE657C076}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECC818A0-2AA2-4069-A62B-6DAFE657C076}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECC818A0-2AA2-4069-A62B-6DAFE657C076}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC5E43EA-B8E5-4A71-83EA-CACF025B4E56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC5E43EA-B8E5-4A71-83EA-CACF025B4E56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC5E43EA-B8E5-4A71-83EA-CACF025B4E56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC5E43EA-B8E5-4A71-83EA-CACF025B4E56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D7126BA-743E-4806-BCE1-DEEC23597E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D7126BA-743E-4806-BCE1-DEEC23597E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D7126BA-743E-4806-BCE1-DEEC23597E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D7126BA-743E-4806-BCE1-DEEC23597E92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

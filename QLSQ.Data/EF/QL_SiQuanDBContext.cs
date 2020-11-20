@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using QL_SiQuan.Data.Configuarations;
-using QL_SiQuan.Data.Entities;
 using QL_SiQuan.Data.Extensions;
 using QLSQ.Data.Configurations;
 using QLSQ.Data.Entities;
@@ -11,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace QL_SiQuan.Data.EF
+namespace QLSQ.Data.EF
 {
     public class QL_SiQuanDBContext : IdentityDbContext<AppUser, AppRole, Guid>
     {
@@ -29,6 +27,7 @@ namespace QL_SiQuan.Data.EF
             modelBuilder.ApplyConfiguration(new QLNghiPhepConfigurations());
             modelBuilder.ApplyConfiguration(new AppUserConfigurations());
             modelBuilder.ApplyConfiguration(new AppRoleConfigurations());
+            modelBuilder.ApplyConfiguration(new SiQuanImageConfigurations());
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole").HasKey(x => new { x.UserId, x.RoleId });
             modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin").HasKey(x => x.UserId);
@@ -50,6 +49,7 @@ namespace QL_SiQuan.Data.EF
         public DbSet<BoPhan> BoPhans { get; set; }
         public DbSet<ChucVu> ChucVus { get; set; }
         public DbSet<QLChucVu> QLChucVus { get; set; }
+        public DbSet<SiQuanImage> SiQuanImages { get; set; }
         //public DbSet<AppUser> AppUsers { get; set; }
         //public DbSet<AppRole> AppRoles { get; set; }
     }
