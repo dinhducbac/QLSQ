@@ -1,0 +1,353 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.BackEndAPI\\QLSQ.BackEndAPI.csproj": {}
+  },
+  "projects": {
+    "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Application\\QLSQ.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Application\\QLSQ.Application.csproj",
+        "projectName": "QLSQ.Application",
+        "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Application\\QLSQ.Application.csproj",
+        "packagesPath": "C:\\Users\\dinhducbac\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dinhducbac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Data\\QLSQ.Data.csproj": {
+                "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Data\\QLSQ.Data.csproj"
+              },
+              "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Utilities\\QLSQ.Utilities.csproj": {
+                "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Utilities\\QLSQ.Utilities.csproj"
+              },
+              "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj": {
+                "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Hosting": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.BackEndAPI\\QLSQ.BackEndAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.BackEndAPI\\QLSQ.BackEndAPI.csproj",
+        "projectName": "QLSQ.BackEndAPI",
+        "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.BackEndAPI\\QLSQ.BackEndAPI.csproj",
+        "packagesPath": "C:\\Users\\dinhducbac\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.BackEndAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dinhducbac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Application\\QLSQ.Application.csproj": {
+                "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Application\\QLSQ.Application.csproj"
+              },
+              "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Data\\QLSQ.Data.csproj": {
+                "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Data\\QLSQ.Data.csproj"
+              },
+              "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Utilities\\QLSQ.Utilities.csproj": {
+                "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Utilities\\QLSQ.Utilities.csproj"
+              },
+              "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj": {
+                "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Data\\QLSQ.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Data\\QLSQ.Data.csproj",
+        "projectName": "QLSQ.Data",
+        "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Data\\QLSQ.Data.csproj",
+        "packagesPath": "C:\\Users\\dinhducbac\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dinhducbac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.FileExtensions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Utilities\\QLSQ.Utilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Utilities\\QLSQ.Utilities.csproj",
+        "projectName": "QLSQ.Utilities",
+        "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Utilities\\QLSQ.Utilities.csproj",
+        "packagesPath": "C:\\Users\\dinhducbac\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Utilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dinhducbac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj",
+        "projectName": "QLSQ.ViewModel",
+        "projectPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj",
+        "packagesPath": "C:\\Users\\dinhducbac\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\dinhducbac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
