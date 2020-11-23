@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLSQ.Data", "QLSQ.Data\QLSQ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLSQ.Application", "QLSQ.Application\QLSQ.Application.csproj", "{ECC818A0-2AA2-4069-A62B-6DAFE657C076}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSQ.Utilities", "QLSQ.Utilities\QLSQ.Utilities.csproj", "{CC5E43EA-B8E5-4A71-83EA-CACF025B4E56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLSQ.Utilities", "QLSQ.Utilities\QLSQ.Utilities.csproj", "{CC5E43EA-B8E5-4A71-83EA-CACF025B4E56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSQ.ViewModel", "QLSQ.ViewModel\QLSQ.ViewModel.csproj", "{9D7126BA-743E-4806-BCE1-DEEC23597E92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QLSQ.ViewModel", "QLSQ.ViewModel\QLSQ.ViewModel.csproj", "{9D7126BA-743E-4806-BCE1-DEEC23597E92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLSQ.BackEndAPI", "QLSQ.BackEndAPI\QLSQ.BackEndAPI.csproj", "{ACA8DABB-293D-438B-8900-46C4C3B68FDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{9D7126BA-743E-4806-BCE1-DEEC23597E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D7126BA-743E-4806-BCE1-DEEC23597E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D7126BA-743E-4806-BCE1-DEEC23597E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACA8DABB-293D-438B-8900-46C4C3B68FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACA8DABB-293D-438B-8900-46C4C3B68FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACA8DABB-293D-438B-8900-46C4C3B68FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACA8DABB-293D-438B-8900-46C4C3B68FDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

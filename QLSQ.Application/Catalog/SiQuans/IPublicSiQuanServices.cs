@@ -1,7 +1,6 @@
 ﻿
 using QLSQ.Application.Catalog.SiQuans;
 using QLSQ.ViewModel.Catalogs.SiQuan;
-using QLSQ.ViewModel.Catalogs.SiQuan.Public;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,8 @@ namespace QLSQ.Application.Catalog.SiQuan
 {
     public interface IPublicSiQuanServices
     {
-        public Task<PageResult<SiQuanViewModel>> GetAllBySiQuanId(GetSiQuanPagingRequest request);
+        public Task<PageResult<SiQuanViewModel>> GetAllBySiQuanId(GetPublicSiQuanPagingRequest request);
+        public Task<List<SiQuanViewModel>> GetAll();
     }
 }
 

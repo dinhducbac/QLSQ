@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QLSQ.Application\QLSQ.Application.csproj" />
+    <ProjectReference Include="..\QLSQ.Data\QLSQ.Data.csproj" />
+    <ProjectReference Include="..\QLSQ.Utilities\QLSQ.Utilities.csproj" />
+    <ProjectReference Include="..\QLSQ.ViewModel\QLSQ.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

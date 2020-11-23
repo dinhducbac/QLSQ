@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using QLSQ.Application.Catalog.SiQuans;
-using QLSQ.ViewModel.Catalogs.SiQuan.Manage;
 using QLSQ.ViewModel.Common;
 using QLSQ.ViewModel.Catalogs.SiQuan;
 
@@ -15,13 +13,29 @@ namespace QLSQ.Application.Catalog.SiQuan
 {
     public class PublicSiQuanServices : IPublicSiQuanServices
     {
-
         private readonly QL_SiQuanDBContext _context;
         public PublicSiQuanServices(QL_SiQuanDBContext context)
         {
             _context = context;
         }
-        public async Task<PageResult<SiQuanViewModel>> GetAllBySiQuanId(ViewModel.Catalogs.SiQuan.Public.GetSiQuanPagingRequest request)
+
+        public async Task<List<SiQuanViewModel>> GetAll()
+        {
+            var query = from p in _context.SiQuans select p;
+            var data = await query.Select(x => new SiQuanViewModel()
+                {
+                    IDSQ = x.IDSQ,
+                    UserId = x.UserId,
+                    HoTen = x.HoTen,
+                    NgaySinh = x.NgaySinh,
+                    GioiTinh = x.GioiTinh,
+                    QueQuan = x.QueQuan,
+                    SDT = x.SDT
+                }).ToListAsync();
+            return data;
+        }
+
+        public async Task<PageResult<SiQuanViewModel>> GetAllBySiQuanId(GetPublicSiQuanPagingRequest request)
         {
 
             var query = from p in _context.SiQuans select p;

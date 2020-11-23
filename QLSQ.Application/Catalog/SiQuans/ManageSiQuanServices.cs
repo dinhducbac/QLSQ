@@ -5,15 +5,13 @@ using QLSQ.Data.EF;
 using QLSQ.Data.Entities;
 using QLSQ.Utilities.Exceptions;
 using QLSQ.ViewModel.Catalogs.SiQuan;
-using QLSQ.ViewModel.Catalogs.SiQuan.Manage;
-using QLSQ.ViewModel.Catalogs.SiQuanImage.Manage;
+using QLSQ.ViewModel.Catalogs.SiQuanImage;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QLSQ.Application.Catalog.SiQuans
@@ -29,6 +27,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         }
         //------------------------------------------------------------------------------------------------
         //Part of SiQuanImage
+
         public async Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request)
         {
             var siquanimage = new SiQuanImage()
@@ -44,6 +43,20 @@ namespace QLSQ.Application.Catalog.SiQuans
                 siquanimage.FileSize = request.ImageFile.Length;
             }
             _context.SiQuanImages.Add(siquanimage);
+            return await _context.SaveChangesAsync();
+        }
+
+        public async Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request)
+        {
+            var siquanimage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IDImage == request.IDImage);
+            if (siquanimage == null)
+                throw new QLSQException($"Không thể tìm thấy ảnh có id: {request.IDImage}");
+            siquanimage.IDSQ = request.IDSQ;
+            siquanimage.ImagePath = await this.SaveFile(request.ImageFile);
+            siquanimage.FileSize = request.ImageFile.Length;
+            siquanimage.Caption = request.Caption;
+            siquanimage.IsDefault = request.IsDefault;
+            _context.SiQuanImages.Update(siquanimage);
             return await _context.SaveChangesAsync();
         }
         public async Task<List<SiQuanImageViewModel>> GetListImage(int SiQuanID)
@@ -69,19 +82,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             _context.SiQuanImages.Remove(siquanimage);
             return await _context.SaveChangesAsync();
         }
-        public async Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request)
-        {
-            var siquanimage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IDImage == request.IDImage);
-            if (siquanimage == null)
-                throw new QLSQException($"Không thể tìm thấy ảnh có id: {request.IDImage}");
-            siquanimage.IDSQ = request.IDSQ;
-            siquanimage.ImagePath = await this.SaveFile(request.ImageFile);
-            siquanimage.FileSize = request.ImageFile.Length;
-            siquanimage.Caption = request.Caption;
-            siquanimage.IsDefault = request.IsDefault;
-            _context.SiQuanImages.Update(siquanimage);
-            return await _context.SaveChangesAsync();
-        }
+       
         private async Task<string> SaveFile(IFormFile file)
         {
             var orignalfilename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('*');
@@ -139,7 +140,7 @@ namespace QLSQ.Application.Catalog.SiQuans
 
 
 
-        public async Task<PageResult<SiQuanViewModel>> GetAllPaging(GetSiQuanPagingRequest request)
+        public async Task<PageResult<SiQuanViewModel>> GetAllPaging(GetManageSiQuanPagingRequest request)
         {
             var query = from p in _context.SiQuans select p;
             if (!string.IsNullOrEmpty(request.keyword))
@@ -191,5 +192,6 @@ namespace QLSQ.Application.Catalog.SiQuans
             }
             return await _context.SaveChangesAsync();
         }
+
     }
 }
