@@ -7,12 +7,8 @@ namespace QLSQ.ViewModel.Catalogs.SiQuanImage
 {
     public class SiQuanImageCreateRequest
     {
-        public int IDSQ { get; set; }
-        public string ImagePath { get; set; }
         public string Caption { get; set; }
         public bool IsDefault { get; set; }
-        public DateTime DateCreated { get; set; }
-        public long FileSize { get; set; }
 
         public IFormFile ImageFile { get; set; }
 

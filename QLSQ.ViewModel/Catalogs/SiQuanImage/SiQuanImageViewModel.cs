@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace QLSQ.ViewModel.Catalogs.SiQuan
+namespace QLSQ.ViewModel.Catalogs.SiQuanImage
 {
     public class SiQuanImageViewModel
     {

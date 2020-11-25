@@ -16,4 +16,8 @@
     <ProjectReference Include="..\QLSQ.ViewModel\QLSQ.ViewModel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\user-content\" />
+  </ItemGroup>
+
 </Project>

@@ -32,7 +32,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         {
             var siquanimage = new SiQuanImage()
             {
-                IDSQ = request.IDSQ,
+                IDSQ = SiQuanID,
                 Caption = request.Caption,
                 DateCreated = DateTime.Now,
                 IsDefault = request.IsDefault
@@ -43,7 +43,8 @@ namespace QLSQ.Application.Catalog.SiQuans
                 siquanimage.FileSize = request.ImageFile.Length;
             }
             _context.SiQuanImages.Add(siquanimage);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
+            return siquanimage.IDImage;
         }
 
         public async Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request)
@@ -82,12 +83,30 @@ namespace QLSQ.Application.Catalog.SiQuans
             _context.SiQuanImages.Remove(siquanimage);
             return await _context.SaveChangesAsync();
         }
-       
+
+        public async Task<SiQuanImageViewModel> GetImageByID(int SiQuanImageID)
+        {
+            var siquanImage = await _context.SiQuanImages.FindAsync(SiQuanImageID);
+            if (siquanImage == null)
+                throw new QLSQException($"Không thể tìm thấy ảnh có id là: {SiQuanImageID}");
+            var siquanImageMd = new SiQuanImageViewModel();
+            siquanImageMd.IDImage = siquanImage.IDImage;
+            siquanImageMd.IDSQ = siquanImage.IDSQ;
+            siquanImageMd.ImagePath = siquanImage.ImagePath;
+            siquanImageMd.Caption = siquanImage.Caption;
+            siquanImageMd.IsDefault = siquanImage.IsDefault;
+            siquanImageMd.DateCreated = siquanImage.DateCreated;
+            siquanImageMd.FileSize = siquanImage.FileSize;
+            return siquanImageMd;
+        }
+
         private async Task<string> SaveFile(IFormFile file)
         {
             var orignalfilename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('*');
-            var filename = $"{Guid.NewGuid()}{Path.GetExtension(orignalfilename)}";
+            //var filename = $"{Guid.NewGuid()}{Path.GetExtension(orignalfilename)}";
+            var filename = orignalfilename.Substring(1, orignalfilename.Length - 2);
             await _storageServices.SaveFileAsync(file.OpenReadStream(), filename);
+            //return filename;
             return filename;
         }
         //------------------------------------------------------------------------------------------------
@@ -210,5 +229,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             siquanmd.SDT = siquan.SDT;
             return siquanmd;
         }
+
+       
     }
 }
