@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using QLSQ.Application.Catalog.SiQuan;
+using QLSQ.Application.Catalog.SiQuans;
+using QLSQ.Application.Common;
 using QLSQ.Data.EF;
 using QLSQ.Utilities.Contants;
 
@@ -34,6 +36,8 @@ namespace QLSQ.BackEndAPI
                 options.UseSqlServer(Configuration.GetConnectionString(SystemContants.MainConnectionString)));
 
             services.AddTransient<IPublicSiQuanServices, PublicSiQuanServices>();
+            services.AddTransient<IManageSiQuanServices, ManageSiQuanServices>();
+            services.AddTransient<IStorageServices, FileStorageServices>();
             services.AddControllersWithViews();
             //services.AddControllersWithViews()
             //.AddNewtonsoftJson(options =>
