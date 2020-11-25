@@ -119,7 +119,8 @@ namespace QLSQ.Application.Catalog.SiQuans
                 };
             }
             _context.SiQuans.Add(siquan);
-            return await _context.SaveChangesAsync();
+           await _context.SaveChangesAsync();
+            return siquan.IDSQ;
         }
 
         public async Task<int> Detele(int SiQuanID)
@@ -190,8 +191,24 @@ namespace QLSQ.Application.Catalog.SiQuans
                        _context.SiQuanImages.Update(thumbnailImage);
                 }
             }
-            return await _context.SaveChangesAsync();
+          await _context.SaveChangesAsync();
+          return siquan.IDSQ;
         }
 
+        public async Task<SiQuanViewModel> GetById(int SiQuanID)
+        {
+            var siquan = await _context.SiQuans.FindAsync(SiQuanID );
+            if (siquan == null)
+                throw new QLSQException($"Không tìm thấy sĩ quan nào có ID = {SiQuanID} ");
+            var siquanmd = new SiQuanViewModel();
+            siquanmd.IDSQ = siquan.IDSQ;
+            siquanmd.UserId = siquan.UserId;
+            siquanmd.HoTen = siquan.HoTen;
+            siquanmd.NgaySinh = siquan.NgaySinh;
+            siquanmd.GioiTinh = siquan.GioiTinh;
+            siquanmd.QueQuan = siquan.QueQuan;
+            siquanmd.SDT = siquan.SDT;
+            return siquanmd;
+        }
     }
 }
