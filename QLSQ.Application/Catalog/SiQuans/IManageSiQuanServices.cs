@@ -22,6 +22,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request);
         Task<int> RemoveImages(int ImageID);
         Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request);
+        Task<SiQuanImageViewModel> GetImageByID(int SiQuanImageID);
         Task<List<SiQuanImageViewModel>> GetListImage(int SiQuanID);
     }
 }
