@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "6JuI/NAY2HPGR8RukiWFuL1IsqFMPZFTiXadPL8BxJilhuKJtKfzyx7wcqoDTOjGbPwfgjzbGbviO6ZWi/LSAg==",
+  "dgSpecHash": "w7S04IzN0N/JvvOkBlASmQ8AEtuGd2jxbedxW0dzvFIM2xzVlgTK9bW3O+t27wpFaZlWw5dtvtTtOaktWiU8JQ==",
   "success": true,
   "projectFilePath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation\\9.3.0\\fluentvalidation.9.3.0.nupkg.sha512",
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.3.0\\fluentvalidation.aspnetcore.9.3.0.nupkg.sha512",
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.3.0\\fluentvalidation.dependencyinjectionextensions.9.3.0.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.0\\microsoft.aspnetcore.http.features.5.0.0.nupkg.sha512",
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\2.1.0\\microsoft.extensions.dependencyinjection.abstractions.2.1.0.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\system.io.pipelines\\5.0.0\\system.io.pipelines.5.0.0.nupkg.sha512"
   ],
