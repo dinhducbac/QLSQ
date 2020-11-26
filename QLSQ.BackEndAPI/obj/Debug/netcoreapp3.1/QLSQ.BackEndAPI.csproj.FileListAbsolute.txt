@@ -155,6 +155,3 @@ D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
-D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\obj\Debug\netcoreapp3.1\QLSQ.BackEndAPI.csproj.CoreCompileInputs.cache
-D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\obj\Debug\netcoreapp3.1\QLSQ.BackEndAPI.MvcApplicationPartsAssemblyInfo.cs
-D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\obj\Debug\netcoreapp3.1\QLSQ.BackEndAPI.MvcApplicationPartsAssemblyInfo.cache
