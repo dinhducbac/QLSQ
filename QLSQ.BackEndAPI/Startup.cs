@@ -2,18 +2,23 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.OpenApi.Models;
 using QLSQ.Application.Catalog.SiQuan;
 using QLSQ.Application.Catalog.SiQuans;
 using QLSQ.Application.Common;
+using QLSQ.Application.System.Users;
 using QLSQ.Data.EF;
+using QLSQ.Data.Entities;
 using QLSQ.Utilities.Contants;
 
 namespace QLSQ.BackEndAPI
@@ -35,10 +40,18 @@ namespace QLSQ.BackEndAPI
             services.AddDbContext<QL_SiQuanDBContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(SystemContants.MainConnectionString)));
 
+            services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<QL_SiQuanDBContext>()
+                .AddDefaultTokenProviders();
+
+
             services.AddTransient<IPublicSiQuanServices, PublicSiQuanServices>();
             services.AddTransient<IManageSiQuanServices, ManageSiQuanServices>();
             services.AddTransient<IStorageServices, FileStorageServices>();
-            services.AddControllersWithViews();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
+            services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
+            services.AddControllers();
             //services.AddControllersWithViews()
             //.AddNewtonsoftJson(options =>
             //options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -46,6 +59,39 @@ namespace QLSQ.BackEndAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger QLSQ", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Enter Bearer [space] and your token",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                c.AddSecurityRequirement( new OpenApiSecurityRequirement() 
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header
+                        },
+                        new List<string>()
+                    }
+                });
+            });
+            string issuer = Configuration.GetValue<string>("Token:Issuer");
+            string signingKey = Configuration.GetValue<string>("Token:Key");
+            byte[] signingKeyBytes = System.Text.Encoding.UTF8.GetBytes(signingKey);
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             });
             //declare DI
         }
@@ -66,6 +112,7 @@ namespace QLSQ.BackEndAPI
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();

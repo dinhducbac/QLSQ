@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QLSQ.Application.Catalog.SiQuan;
@@ -14,6 +15,7 @@ namespace QLSQ.BackEndAPI.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SiQuansController : ControllerBase
     {
         private readonly IPublicSiQuanServices _publicSiQuanServices;

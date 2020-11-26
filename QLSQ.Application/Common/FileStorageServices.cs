@@ -39,7 +39,7 @@ namespace QLSQ.Application.Common
             //{
             //    await mediaBinaryStream.CopyToAsync(output);
             //}
-            using (FileStream fs = System.IO.File.Create(filePath))
+            using (FileStream fs = File.Create(filePath))
             {
                 await mediaBinaryStream.CopyToAsync(fs);
                 fs.Flush();
