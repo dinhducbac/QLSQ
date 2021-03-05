@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "cVN+GiFxsVfXsThJkzIB1YUqJCbTDJOCVOGo16yJEZEtzWXts7Oc1YAFri7JvDlz8U71eToOMG+1agNIoqTcRw==",
+  "dgSpecHash": "COCiwiMX56wAD0tTtnw9PR+ZkvcGSmdmW/ck1Hwg8m56g1VpTCm++WSDRxHH6jhONnbj+pJ5OKPIGjThJOuCEQ==",
   "success": true,
   "projectFilePath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.0\\microsoft.aspnetcore.http.features.5.0.0.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\system.io.pipelines\\5.0.0\\system.io.pipelines.5.0.0.nupkg.sha512"

@@ -155,4 +155,5 @@ D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\FluentValidation.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
