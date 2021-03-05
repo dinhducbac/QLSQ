@@ -6,3 +6,4 @@ D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.Asse
 D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\bin\Debug\netcoreapp3.1\QLSQ.ViewModel.pdb
 D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.ViewModel\obj\Debug\netcoreapp3.1\QLSQ.ViewModel.csproj.CoreCompileInputs.cache
