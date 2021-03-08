@@ -21,7 +21,7 @@ namespace QLSQ.BackEndAPI.Controllers
         }
         [HttpPost("authenticate")]
         [AllowAnonymous]
-        public async Task<IActionResult> Authencate([FromForm] LoginRequest request)
+        public async Task<IActionResult> Authencate([FromBody] LoginRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -30,5 +30,6 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest("Username hoặc Password không đúng");
             return Ok(new { token = resulttoken });
         }
+      
     }
 }

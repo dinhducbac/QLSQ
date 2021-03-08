@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "LAwiSJIo7OScqJJwUzd+icCJE/s21j3tQSqjwckRBWnV9S40dxZsWFmg/7CFHFZw0Sv8mVSUgEK1v9osZaIPUA==",
+  "dgSpecHash": "JEYgMWdvmdz5NQFIFcBpgKi4z/Edbkd+WtQXNRlw1R+rKYBEjR9SIe3SdNwTwxW0D+bqnqqtToZyKtk17PlQ5w==",
   "success": true,
   "projectFilePath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.BackEndAPI\\QLSQ.BackEndAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
-    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.aspnetcore\\8.6.3\\fluentvalidation.aspnetcore.8.6.3.nupkg.sha512",
-    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\8.6.3\\fluentvalidation.dependencyinjectionextensions.8.6.3.nupkg.sha512",
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.5.1\\fluentvalidation.aspnetcore.9.5.1.nupkg.sha512",
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.5.1\\fluentvalidation.dependencyinjectionextensions.9.5.1.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.12\\microsoft.aspnetcore.authentication.jwtbearer.3.1.12.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.0\\microsoft.aspnetcore.cryptography.internal.5.0.0.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.0\\microsoft.aspnetcore.cryptography.keyderivation.5.0.0.nupkg.sha512",

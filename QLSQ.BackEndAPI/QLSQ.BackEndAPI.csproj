@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.3" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.12" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
@@ -16,6 +16,7 @@
     <ProjectReference Include="..\QLSQ.Data\QLSQ.Data.csproj" />
     <ProjectReference Include="..\QLSQ.Utilities\QLSQ.Utilities.csproj" />
     <ProjectReference Include="..\QLSQ.ViewModel\QLSQ.ViewModel.csproj" />
+    <ProjectReference Include="..\QLSQ\QLSQ.WebApp.csproj" />
   </ItemGroup>
 
   <ItemGroup>

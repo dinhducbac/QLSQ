@@ -157,6 +157,12 @@ D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNet
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\FluentValidation.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\QLSQ.WebApp.Views.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\QLSQ.WebApp.Views.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\QLSQ.WebApp.exe
+D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\QLSQ.BackEndAPI.StaticWebAssets.xml
+D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\QLSQ.WebApp.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\QLSQ.WebApp.pdb
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.BackEndAPI\obj\Debug\netcoreapp3.1\QLSQ.BackEndAPI.csproj.CoreCompileInputs.cache
