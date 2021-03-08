@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using QLSQ.AdminApp.Services;
 using QLSQ.ViewModel.System.Users;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace QLSQ.AdminApp
 {
@@ -29,6 +30,11 @@ namespace QLSQ.AdminApp
             services.AddControllersWithViews()
                     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
             services.AddHttpClient();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "/User/Login";
+                options.AccessDeniedPath = "/User/Forbidden";
+            });
             services.AddTransient<IUserApiClient, UserApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
             var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT");
@@ -56,9 +62,12 @@ namespace QLSQ.AdminApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+
             app.UseRouting();
 
             app.UseAuthorization();
+          
 
             app.UseEndpoints(endpoints =>
             {

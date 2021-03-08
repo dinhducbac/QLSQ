@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,8 +30,7 @@ namespace QLSQ.BackEndAPI.Controllers
             var resulttoken = await _userService.Authenticate(request);
             if (string.IsNullOrEmpty(resulttoken))
                 return BadRequest("Username hoặc Password không đúng");
-            return Ok(new { token = resulttoken });
+            return Ok(resulttoken);
         }
-      
     }
 }

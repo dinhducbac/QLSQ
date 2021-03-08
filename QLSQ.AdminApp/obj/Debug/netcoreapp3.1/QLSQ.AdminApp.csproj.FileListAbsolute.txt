@@ -397,6 +397,10 @@ D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\Microsoft.Extensions
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\QLSQ.AdminApp.csproj.CoreCompileInputs.cache
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\QLSQ.AdminApp.MvcApplicationPartsAssemblyInfo.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\QLSQ.AdminApp.MvcApplicationPartsAssemblyInfo.cache
