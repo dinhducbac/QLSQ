@@ -1,13 +1,16 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using QLSQ.Data.Entities;
 using QLSQ.Utilities.Exceptions;
+using QLSQ.ViewModel.Common;
 using QLSQ.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +58,33 @@ namespace QLSQ.Application.System.Users
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: creds);
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        public async Task<PageResult<UserViewModel>> GetUserPaging(GetUserPagingRequest request)
+        {
+            var query = _userManager.Users;
+            if (!string.IsNullOrEmpty(request.keyword))
+            {
+                query = query.Where(x => x.UserName.Contains(request.keyword) || 
+                                x.Email.Contains(request.keyword));
+
+            }
+            int totalRow = await query.CountAsync();
+            var data = await query.Skip((request.pageIndex - 1) * request.pageSize)
+                        .Take(request.pageSize)
+                        .Select(x => new UserViewModel()
+                        {
+                            ID = x.Id,
+                            Username = x.UserName,
+                            Password = x.PasswordHash,
+                            Email = x.Email
+                        }).ToListAsync();
+            var pageResult = new PageResult<UserViewModel>()
+            {
+                TotalRecord = totalRow,
+                Items = data
+            };
+            return pageResult;
         }
     }
 }

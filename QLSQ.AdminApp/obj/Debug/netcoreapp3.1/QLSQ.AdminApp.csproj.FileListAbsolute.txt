@@ -404,3 +404,4 @@ D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\System.IdentityModel
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\QLSQ.AdminApp.csproj.CoreCompileInputs.cache
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\QLSQ.AdminApp.MvcApplicationPartsAssemblyInfo.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\QLSQ.AdminApp.MvcApplicationPartsAssemblyInfo.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Index.cshtml.g.cs

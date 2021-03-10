@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
+
 using QLSQ.AdminApp.Services;
 using QLSQ.ViewModel.System.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -34,6 +34,10 @@ namespace QLSQ.AdminApp
             {
                 options.LoginPath = "/User/Login";
                 options.AccessDeniedPath = "/User/Forbidden";
+            });
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
             services.AddTransient<IUserApiClient, UserApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
@@ -67,7 +71,8 @@ namespace QLSQ.AdminApp
             app.UseRouting();
 
             app.UseAuthorization();
-          
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

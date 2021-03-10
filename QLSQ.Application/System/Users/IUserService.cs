@@ -1,4 +1,6 @@
-﻿using QLSQ.ViewModel.System.Users;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using QLSQ.ViewModel.Common;
+using QLSQ.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,5 +11,6 @@ namespace QLSQ.Application.System.Users
     public interface IUserService
     {
         Task<string> Authenticate(LoginRequest request);
+        Task<PageResult<UserViewModel>> GetUserPaging(GetUserPagingRequest request);
     }
 }

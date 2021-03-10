@@ -28,9 +28,18 @@ namespace QLSQ.BackEndAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var resulttoken = await _userService.Authenticate(request);
+
             if (string.IsNullOrEmpty(resulttoken))
                 return BadRequest("Username hoặc Password không đúng");
             return Ok(resulttoken);
+        }
+
+        //http://localhost/api/user/paging?pageindex=1&pagesize=10&keyword=
+        [HttpGet("paging")]
+        public async Task<IActionResult> GetAllPaging([FromQuery]GetUserPagingRequest request)
+        {
+            var user = await _userService.GetUserPaging(request);
+            return Ok(user);
         }
     }
 }
