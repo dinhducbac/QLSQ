@@ -33,7 +33,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest("Username hoặc Password không đúng");
             return Ok(resulttoken);
         }
-
+        [HttpPost("createuser")]
+        [AllowAnonymous]
+        public async Task<IActionResult> CreateUser([FromForm] CreateUserRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _userService.CreateUser(request);
+            return Ok(result);
+        }
         //http://localhost/api/user/paging?pageindex=1&pagesize=10&keyword=
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllPaging([FromQuery]GetUserPagingRequest request)

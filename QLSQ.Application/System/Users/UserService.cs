@@ -60,6 +60,34 @@ namespace QLSQ.Application.System.Users
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        public async Task<string> CreateUser(CreateUserRequest request)
+        {
+            var username = await _userManager.FindByNameAsync(request.Username);
+            if (username != null)
+            {
+                return "Username đã tồn tại";
+            }
+            else
+            {
+                var user = new AppUser()
+                {
+                    Email = request.Email,
+                    PhoneNumber = request.PhoneNumber,
+                    UserName = request.Username
+                };
+                var result = await _userManager.CreateAsync(user, request.Password);
+                if (result.Succeeded)
+                {
+                    return "Tạo tài khoản thành công!";
+                }
+                else
+                {
+                    return "Tạo tài khoản thất bại!";
+                }
+            }
+
+        }
+
         public async Task<PageResult<UserViewModel>> GetUserPaging(GetUserPagingRequest request)
         {
             var query = _userManager.Users;
