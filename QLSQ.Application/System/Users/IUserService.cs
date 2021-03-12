@@ -11,6 +11,7 @@ namespace QLSQ.Application.System.Users
     public interface IUserService
     {
         Task<string> Authenticate(LoginRequest request);
+        
         Task<PageResult<UserViewModel>> GetUserPaging(GetUserPagingRequest request);
     }
 }
