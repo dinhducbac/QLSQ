@@ -30,16 +30,15 @@ namespace QLSQ.AdminApp.Controllers
         }
         public async Task<IActionResult> IndexAsync(string keyword, int pageIndex = 1, int pageSize = 10)
         {
-            var session = HttpContext.Session.GetString("Token");
             var request = new GetUserPagingRequest()
             {
-                BearerToken = session,
                 keyword = keyword,
                 pageIndex = pageIndex,
                 pageSize  = pageSize    
             };
             var data = await _userApiClient.GetUserPaging(request);
-            return View(data);
+            var test = data.ResultObj;
+            return View(data.ResultObj);
         }
         [HttpGet]
         public async Task<IActionResult> LoginAsync()
@@ -53,13 +52,13 @@ namespace QLSQ.AdminApp.Controllers
             if (!ModelState.IsValid)
                 return View(ModelState);
             var token = await _userApiClient.Authentication(request);
-            var userPricipal = this.ValidateToken(token);
+            var userPricipal = this.ValidateToken(token.ResultObj);
             var authProperties = new AuthenticationProperties
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10),
                 IsPersistent = false
             };
-            HttpContext.Session.SetString("Token", token);
+            HttpContext.Session.SetString("Token", token.ResultObj);
             await HttpContext.SignInAsync(
                     CookieAuthenticationDefaults.AuthenticationScheme,
                    userPricipal,
@@ -73,6 +72,54 @@ namespace QLSQ.AdminApp.Controllers
             return RedirectToAction("Login", "User");
         }
 
+        public async Task<IActionResult> CreateUser()
+        {
+            return View();
+        }
+       
+        [HttpGet]
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var result = await _userApiClient.GetUserByID(id);
+            if (result.IsSuccessed)
+            {
+                var user = result.ResultObj;
+                var updaterequest = new UpdateUserRequest
+                {
+                    ID = id,
+                    Email = user.Email,
+                    Password = user.Password,
+                    PhoneNumber = user.PhoneNumber
+                };
+                return View(updaterequest);
+            }
+            return RedirectToAction("Error", "Home");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(UpdateUserRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _userApiClient.UpdateUser(request.ID, request);
+            if (result.IsSuccessed)
+            {
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", result.Message);
+            return View(result);
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateUser(CreateUserRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _userApiClient.CreateUser(request);
+            if (result.ResultObj.Equals("Tạo tài khoản thành công!"))
+                return RedirectToAction("Index");
+            ModelState.AddModelError("",result.Message);
+            return View(result);
+        }
         private ClaimsPrincipal ValidateToken(string jwtToken)
         {
             IdentityModelEventSource.ShowPII = true;
@@ -86,6 +133,33 @@ namespace QLSQ.AdminApp.Controllers
             ClaimsPrincipal principal = new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
             return principal;
         }
-
+        [HttpGet]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            var result = await _userApiClient.GetUserByID(id);
+            if (result.IsSuccessed)
+            {
+                var user = result.ResultObj;
+                var deleterequest = new DeleteUserRequest
+                {
+                    ID = id
+                };
+                return View(deleterequest);
+            }
+            return RedirectToAction("Error", "Home");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(DeleteUserRequest request) 
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _userApiClient.DeleteUser(request.ID);
+            if (result.IsSuccessed)
+            {
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", result.Message);
+            return View(result);
+        }
     }
 }

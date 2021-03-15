@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using QLSQ.AdminApp.Services;
 using QLSQ.ViewModel.System.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace QLSQ.AdminApp
 {
@@ -39,6 +40,7 @@ namespace QLSQ.AdminApp
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
+            services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
             services.AddTransient<IUserApiClient, UserApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
             var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT");

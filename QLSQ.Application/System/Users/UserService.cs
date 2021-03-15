@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,15 +32,15 @@ namespace QLSQ.Application.System.Users
             _roleManager = roleManager;
             _config = configuration;
         }
-        public async Task<string> Authenticate(LoginRequest request)
+        public async Task<APIResult<string>> Authenticate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
             if (user == null)
-                throw new QLSQException($"Không tìm thấy username");
+                return  new APIErrorResult<string>("Bạn nhập sai tên username");
             var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
             if(!result.Succeeded)
             {
-                return null;
+                 return new APIErrorResult<string>("Bạn nhập sai mật khẩu! Đăng nhập thất bại");
             }
             var role = _userManager.GetRolesAsync(user);
             var claims = new[]
@@ -57,15 +58,17 @@ namespace QLSQ.Application.System.Users
                 claims,
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: creds);
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            var test = tokenString;
+            return new APISuccessedResult<string>(tokenString);
         }
 
-        public async Task<string> CreateUser(CreateUserRequest request)
+        public async Task<APIResult<string>> CreateUser(CreateUserRequest request)
         {
             var username = await _userManager.FindByNameAsync(request.Username);
             if (username != null)
             {
-                return "Username đã tồn tại";
+                return new APIErrorResult<string>("Username đã tồn tại!");
             }
             else
             {
@@ -75,20 +78,30 @@ namespace QLSQ.Application.System.Users
                     PhoneNumber = request.PhoneNumber,
                     UserName = request.Username
                 };
+                string test = user.UserName;
                 var result = await _userManager.CreateAsync(user, request.Password);
                 if (result.Succeeded)
                 {
-                    return "Tạo tài khoản thành công!";
+                    return new APISuccessedResult<string>("Tạo tài khoản thành công!");
                 }
                 else
                 {
-                    return "Tạo tài khoản thất bại!";
+                    return new APIErrorResult<string>("Tạo tài khoản thất bại!");
                 }
             }
 
         }
+        public async Task<APIResult<string>> UpdateUser(Guid id,UpdateUserRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            user.Email = request.Email;
+            user.PasswordHash = request.Password;
+            user.PhoneNumber = request.PhoneNumber;
+            var result = await _userManager.UpdateAsync(user);
+            return new APISuccessedResult<string>("Cập nhật thành công!");
+        }
 
-        public async Task<PageResult<UserViewModel>> GetUserPaging(GetUserPagingRequest request)
+        public async Task<APIResult<PageResult<UserViewModel>>> GetUserPaging(GetUserPagingRequest request)
         {
             var query = _userManager.Users;
             if (!string.IsNullOrEmpty(request.keyword))
@@ -105,6 +118,7 @@ namespace QLSQ.Application.System.Users
                             ID = x.Id,
                             Username = x.UserName,
                             Password = x.PasswordHash,
+                            PhoneNumber = x.PhoneNumber,
                             Email = x.Email
                         }).ToListAsync();
             var pageResult = new PageResult<UserViewModel>()
@@ -112,7 +126,31 @@ namespace QLSQ.Application.System.Users
                 TotalRecord = totalRow,
                 Items = data
             };
-            return pageResult;
+            return new  APISuccessedResult<PageResult<UserViewModel>>(pageResult);
+        }
+
+        public async Task<APIResult<UserViewModel>> GetUserByID(Guid ID)
+        {
+            var user = await _userManager.FindByIdAsync(ID.ToString());
+            var uservm = new UserViewModel
+            {
+                ID = user.Id,
+                Email = user.Email,
+                Username = user.UserName,
+                Password = user.PasswordHash,
+                PhoneNumber = user.PhoneNumber
+               
+            };
+            return new APISuccessedResult<UserViewModel>(uservm);
+        }
+
+        public async Task<APIResult<string>> DeleteUser(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            var result = await _userManager.DeleteAsync(user);
+            if(result.Succeeded)
+                return new APISuccessedResult<string>("Xóa tài khoản thành công!");
+            return new APIErrorResult<string>("Xóa tài khoản khong thành công!");
         }
     }
 }

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "JEYgMWdvmdz5NQFIFcBpgKi4z/Edbkd+WtQXNRlw1R+rKYBEjR9SIe3SdNwTwxW0D+bqnqqtToZyKtk17PlQ5w==",
+  "dgSpecHash": "kYBgPGEuxeirbFy2/KFH51TD4IzE7geUAx5ixMOCtmAxdjx56FBe1Lz2B2KWDo/X6kX59xTK3uocU8Ht01eO/w==",
   "success": true,
   "projectFilePath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.BackEndAPI\\QLSQ.BackEndAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.5.1\\fluentvalidation.aspnetcore.9.5.1.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.5.1\\fluentvalidation.dependencyinjectionextensions.9.5.1.nupkg.sha512",
