@@ -5,30 +5,89 @@
     ViewData["Title"] = "Danh sách người dùng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    #search {
+        float: right;
+        margin-top: 9px;
+        width: 250px;
+    }
+
+    .search {
+        padding: 5px 0;
+        width: 230px;
+        height: 30px;
+        position: relative;
+        left: 10px;
+        float: left;
+        line-height: 22px;
+    }
+
+        .search input {
+            position: absolute;
+            width: 0px;
+            float: Left;
+            margin-left: 210px;
+            -webkit-transition: all 0.7s ease-in-out;
+            -moz-transition: all 0.7s ease-in-out;
+            -o-transition: all 0.7s ease-in-out;
+            transition: all 0.7s ease-in-out;
+            height: 30px;
+            line-height: 18px;
+            padding: 0 2px 0 2px;
+            border-radius: 1px;
+        }
+
+            .search:hover input, .search input:focus {
+                width: 200px;
+                margin-left: 0px;
+            }
+
+    #btnsearch {
+        height: 30px;
+        position: absolute;
+        right: 0;
+        top: 5px;
+        border-radius: 1px;
+    }
+</style>
 
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-12">
                 <h1 class="m-0 text-dark">Danh sách người dùng</h1>
+
             </div><!-- /.col -->
+
         </div><!-- /.row -->
-        <div class="col-sm-12">
-            <p>
-                <a class="btn btn-primary" asp-action="CreateUser" asp-controller="User">Create New</a>
-            </p>
-        </div><!-- /.col -->
     </div><!-- /.container-fluid -->
 </div>
-
-
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                        <div class="row">
+                            <div class="col-md-6 col-xl-12">
+                                <p>
+                                    <a class="btn btn-primary" asp-action="CreateUser" asp-controller="User">Create New</a>
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-xl-12">
+                                <form asp-action="Index" method="get">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="submit" class="btn btn-primary">Tìm</button>
+                                            <button type="reset" onclick="window.location.href='/User/Index'" class="btn btn-dark">Resest</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">

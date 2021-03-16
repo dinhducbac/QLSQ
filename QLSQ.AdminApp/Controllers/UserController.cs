@@ -28,7 +28,7 @@ namespace QLSQ.AdminApp.Controllers
             _userApiClient = userApiClient;
             _configuration = configuration;
         }
-        public async Task<IActionResult> IndexAsync(string keyword, int pageIndex = 1, int pageSize = 5)
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 5)
         {
             var request = new GetUserPagingRequest()
             {
@@ -37,6 +37,7 @@ namespace QLSQ.AdminApp.Controllers
                 pageSize  = pageSize    
             };
             var data = await _userApiClient.GetUserPaging(request);
+            ViewBag.Keyword = keyword;
             var test = data.ResultObj;
             return View(data.ResultObj);
         }
