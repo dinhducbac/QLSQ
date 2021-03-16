@@ -59,6 +59,8 @@ namespace QLSQ.Application.Catalog.SiQuan
             var pageResult = new PageResult<SiQuanViewModel>()
             {
                 TotalRecord = totalRow,
+                PageIndex = request.pageIndex,
+                PageSize = request.pageSize,
                 Items = data
             };
             return pageResult;

@@ -24,12 +24,14 @@
     ".NETCoreApp,Version=v3.1": {
       "QLSQ.BackEndAPI/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.2",
+          "FluentValidation.AspNetCore": "9.5.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
           "QLSQ.Application": "1.0.0",
           "QLSQ.Data": "1.0.0",
           "QLSQ.Utilities": "1.0.0",
           "QLSQ.ViewModel": "1.0.0",
+          "QLSQ.WebApp": "1.0.0",
           "Swashbuckle.AspNetCore": "5.6.3",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
@@ -296,14 +298,66 @@
           "QLSQ.BackEndAPI.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.2": {
+      "BCrypt.Net-Next/4.0.2": {
+        "runtime": {
+          "lib/netcoreapp3.1/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.0.2.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/BCrypt.Net-Next.dll": {}
+        }
+      },
+      "FluentValidation/9.5.1": {
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.5.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.dll": {}
+        }
+      },
+      "FluentValidation.AspNetCore/9.5.1": {
+        "dependencies": {
+          "FluentValidation": "9.5.1",
+          "FluentValidation.DependencyInjectionExtensions": "9.5.1"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/FluentValidation.AspNetCore.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.5.1.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/FluentValidation.AspNetCore.dll": {}
+        }
+      },
+      "FluentValidation.DependencyInjectionExtensions/9.5.1": {
+        "dependencies": {
+          "FluentValidation": "9.5.1",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.5.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.12": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.6.0"
         },
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
-            "assemblyVersion": "3.1.2.0",
-            "fileVersion": "3.100.220.6801"
+            "assemblyVersion": "3.1.12.0",
+            "fileVersion": "3.100.1221.7012"
           }
         },
         "compile": {
@@ -2504,6 +2558,7 @@
       },
       "QLSQ.Application/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.2",
           "Microsoft.AspNetCore.Hosting": "2.2.7",
           "Microsoft.AspNetCore.Http.Features": "5.0.0",
           "QLSQ.Data": "1.0.0",
@@ -2541,6 +2596,7 @@
       },
       "QLSQ.ViewModel/1.0.0": {
         "dependencies": {
+          "FluentValidation": "9.5.1",
           "Microsoft.AspNetCore.Http.Features": "5.0.0"
         },
         "runtime": {
@@ -2548,6 +2604,14 @@
         },
         "compile": {
           "QLSQ.ViewModel.dll": {}
+        }
+      },
+      "QLSQ.WebApp/1.0.0": {
+        "runtime": {
+          "QLSQ.WebApp.dll": {}
+        },
+        "compile": {
+          "QLSQ.WebApp.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/3.1.0.0": {
@@ -4100,12 +4164,40 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.2": {
+    "BCrypt.Net-Next/4.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-hBgNbsvTgk8svtlCWkKXb1z8c0M29vjDKNJFAifoyZiIUYuv/Rn/hqb7gg8QuLW15NeG9r1PlLmoArdSjTHHZA==",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.2",
-      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.3.1.2.nupkg.sha512"
+      "sha512": "sha512-LyNKpIpr4GraRD9+xlTviyxxbZpF6J4xJf7DvraC1mR8PSN/KonGc4rt8C/fjkD3vaEvgA7BcvsbHFCOjgczyQ==",
+      "path": "bcrypt.net-next/4.0.2",
+      "hashPath": "bcrypt.net-next.4.0.2.nupkg.sha512"
+    },
+    "FluentValidation/9.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-By09e2m4N3giD7Giq8NCFgkgN5Hkm8Lv/bk8AadD9Xc6jjj2WDGrD6l9keZbWbkO9aygiHQREIt47iS2sVSU7w==",
+      "path": "fluentvalidation/9.5.1",
+      "hashPath": "fluentvalidation.9.5.1.nupkg.sha512"
+    },
+    "FluentValidation.AspNetCore/9.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m4V/ovMBzr5kot9th5GUDMnXMI3SsnOnZB5xXR0dYdQAJPHjWlyjuCJrLeK+q83WCAet9cay0JraEnrLG4Ruew==",
+      "path": "fluentvalidation.aspnetcore/9.5.1",
+      "hashPath": "fluentvalidation.aspnetcore.9.5.1.nupkg.sha512"
+    },
+    "FluentValidation.DependencyInjectionExtensions/9.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-r0ckWF7AuMt3gx9HmY8UL7l/jdFvk4zarSc+pa5GzwkeDkOl7IKXSpY68bszDLT1d31Br9fv0+ap70UME13S9w==",
+      "path": "fluentvalidation.dependencyinjectionextensions/9.5.1",
+      "hashPath": "fluentvalidation.dependencyinjectionextensions.9.5.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.12": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Kl6VnydiO9kh4xGo5PugXYViy6kVNxV3UrAvF1sDmMTpkSKtcLsdHWVflzGTD8HUnm8VpvzF1z9/1cmNBeYXOg==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.12",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.3.1.12.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/5.0.0": {
       "type": "package",
@@ -5418,6 +5510,11 @@
       "sha512": ""
     },
     "QLSQ.ViewModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "QLSQ.WebApp/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

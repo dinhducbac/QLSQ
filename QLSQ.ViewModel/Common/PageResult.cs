@@ -4,9 +4,9 @@ using System.Text;
 
 namespace QLSQ.ViewModel.Common
 {
-    public class PageResult<T>
+    public class PageResult<T> : PagedResultBase
     {
         public List<T> Items { set; get; }
-        public int TotalRecord { set; get; }
+
     }
 }

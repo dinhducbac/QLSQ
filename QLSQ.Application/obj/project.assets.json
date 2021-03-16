@@ -2,42 +2,22 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "FluentValidation/9.3.0": {
+      "BCrypt.Net-Next/4.0.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/FluentValidation.dll": {}
+          "lib/netcoreapp3.1/BCrypt.Net-Next.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.0/FluentValidation.dll": {}
+          "lib/netcoreapp3.1/BCrypt.Net-Next.dll": {}
         }
       },
-      "FluentValidation.AspNetCore/9.3.0": {
+      "FluentValidation/9.5.1": {
         "type": "package",
-        "dependencies": {
-          "FluentValidation": "9.3.0",
-          "FluentValidation.DependencyInjectionExtensions": "9.3.0"
-        },
         "compile": {
-          "lib/netcoreapp3.1/FluentValidation.AspNetCore.dll": {}
+          "lib/netstandard2.0/FluentValidation.dll": {}
         },
         "runtime": {
-          "lib/netcoreapp3.1/FluentValidation.AspNetCore.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
-      },
-      "FluentValidation.DependencyInjectionExtensions/9.3.0": {
-        "type": "package",
-        "dependencies": {
-          "FluentValidation": "9.3.0",
-          "Microsoft.Extensions.Dependencyinjection.Abstractions": "2.1.0"
-        },
-        "compile": {
-          "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll": {}
+          "lib/netstandard2.0/FluentValidation.dll": {}
         }
       },
       "Microsoft.AspNetCore.Cryptography.Internal/5.0.0": {
@@ -1909,7 +1889,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
-          "FluentValidation.AspNetCore": "9.3.0",
+          "FluentValidation": "9.5.1",
           "Microsoft.AspNetCore.Http.Features": "5.0.0"
         },
         "compile": {
@@ -1917,23 +1897,53 @@
         },
         "runtime": {
           "bin/placeholder/QLSQ.ViewModel.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       }
     }
   },
   "libraries": {
-    "FluentValidation/9.3.0": {
-      "sha512": "C44l6Ih+YwpED/TsXfl6LIq6Z4wLXahstnr6T70uUg1Hs7/bLBKKAo9Nl0sLhVjDE8TA+fF+O3IM4nDrwabcSQ==",
+    "BCrypt.Net-Next/4.0.2": {
+      "sha512": "LyNKpIpr4GraRD9+xlTviyxxbZpF6J4xJf7DvraC1mR8PSN/KonGc4rt8C/fjkD3vaEvgA7BcvsbHFCOjgczyQ==",
       "type": "package",
-      "path": "fluentvalidation/9.3.0",
+      "path": "bcrypt.net-next/4.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-next.4.0.2.nupkg.sha512",
+        "bcrypt.net-next.nuspec",
+        "lib/net20/BCrypt.Net-Next.dll",
+        "lib/net20/BCrypt.Net-Next.xml",
+        "lib/net35/BCrypt.Net-Next.dll",
+        "lib/net35/BCrypt.Net-Next.xml",
+        "lib/net40/BCrypt.Net-Next.dll",
+        "lib/net40/BCrypt.Net-Next.xml",
+        "lib/net452/BCrypt.Net-Next.dll",
+        "lib/net452/BCrypt.Net-Next.xml",
+        "lib/net462/BCrypt.Net-Next.dll",
+        "lib/net462/BCrypt.Net-Next.xml",
+        "lib/net472/BCrypt.Net-Next.dll",
+        "lib/net472/BCrypt.Net-Next.xml",
+        "lib/net48/BCrypt.Net-Next.dll",
+        "lib/net48/BCrypt.Net-Next.xml",
+        "lib/net5.0/BCrypt.Net-Next.dll",
+        "lib/net5.0/BCrypt.Net-Next.xml",
+        "lib/netcoreapp3.1/BCrypt.Net-Next.dll",
+        "lib/netcoreapp3.1/BCrypt.Net-Next.xml",
+        "lib/netstandard2.0/BCrypt.Net-Next.dll",
+        "lib/netstandard2.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.1/BCrypt.Net-Next.dll",
+        "lib/netstandard2.1/BCrypt.Net-Next.xml"
+      ]
+    },
+    "FluentValidation/9.5.1": {
+      "sha512": "By09e2m4N3giD7Giq8NCFgkgN5Hkm8Lv/bk8AadD9Xc6jjj2WDGrD6l9keZbWbkO9aygiHQREIt47iS2sVSU7w==",
+      "type": "package",
+      "path": "fluentvalidation/9.5.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "fluent-validation-icon.png",
-        "fluentvalidation.9.3.0.nupkg.sha512",
+        "fluentvalidation.9.5.1.nupkg.sha512",
         "fluentvalidation.nuspec",
         "lib/net461/FluentValidation.dll",
         "lib/net461/FluentValidation.xml",
@@ -1941,38 +1951,6 @@
         "lib/net5.0/FluentValidation.xml",
         "lib/netstandard2.0/FluentValidation.dll",
         "lib/netstandard2.0/FluentValidation.xml"
-      ]
-    },
-    "FluentValidation.AspNetCore/9.3.0": {
-      "sha512": "0ZKHVvNIVgZEGgCe8z4NyVoPaCmM0kTRM0EySC23Enuc4jzBdhI+LtGhcvkF7lAulNlxR2S9IDnLibOM6RDaHg==",
-      "type": "package",
-      "path": "fluentvalidation.aspnetcore/9.3.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "fluent-validation-icon.png",
-        "fluentvalidation.aspnetcore.9.3.0.nupkg.sha512",
-        "fluentvalidation.aspnetcore.nuspec",
-        "lib/net5.0/FluentValidation.AspNetCore.dll",
-        "lib/net5.0/FluentValidation.AspNetCore.xml",
-        "lib/netcoreapp2.1/FluentValidation.AspNetCore.dll",
-        "lib/netcoreapp2.1/FluentValidation.AspNetCore.xml",
-        "lib/netcoreapp3.1/FluentValidation.AspNetCore.dll",
-        "lib/netcoreapp3.1/FluentValidation.AspNetCore.xml"
-      ]
-    },
-    "FluentValidation.DependencyInjectionExtensions/9.3.0": {
-      "sha512": "5PnAIlsApzWPp9rjxfu3xVWSj2qMDeFnEE3P4yx/oIQO1aLhPEEn4yW7JiydP9kpQKAtZ53qwNaOoQ1xSxajuA==",
-      "type": "package",
-      "path": "fluentvalidation.dependencyinjectionextensions/9.3.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "fluent-validation-icon.png",
-        "fluentvalidation.dependencyinjectionextensions.9.3.0.nupkg.sha512",
-        "fluentvalidation.dependencyinjectionextensions.nuspec",
-        "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.dll",
-        "lib/netstandard2.0/FluentValidation.DependencyInjectionExtensions.xml"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/5.0.0": {
@@ -6696,6 +6674,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "BCrypt.Net-Next >= 4.0.2",
       "Microsoft.AspNetCore.Hosting >= 2.2.7",
       "Microsoft.AspNetCore.Http.Features >= 5.0.0",
       "QLSQ.Data >= 1.0.0",
@@ -6717,6 +6696,7 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\dinhducbac\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6724,6 +6704,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Users\\dinhducbac\\Desktop\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6750,6 +6731,10 @@
     "frameworks": {
       "netcoreapp3.1": {
         "dependencies": {
+          "BCrypt.Net-Next": {
+            "target": "Package",
+            "version": "[4.0.2, )"
+          },
           "Microsoft.AspNetCore.Hosting": {
             "target": "Package",
             "version": "[2.2.7, )"
