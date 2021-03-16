@@ -10,8 +10,13 @@ namespace QLSQ.Application.System.Users
 {
     public interface IUserService
     {
-        Task<string> Authenticate(LoginRequest request);
-        
-        Task<PageResult<UserViewModel>> GetUserPaging(GetUserPagingRequest request);
+        Task<APIResult<string>> Authenticate(LoginRequest request);
+        Task<APIResult<string>> CreateUser(CreateUserRequest request);
+        Task<APIResult<PageResult<UserViewModel>>> GetUserPaging(GetUserPagingRequest request);
+        Task<APIResult<string>> UpdateUser(Guid Id,UpdateUserRequest request);
+        Task<APIResult<UserViewModel>> GetUserByID(Guid ID);
+        Task<APIResult<string>> DeleteUser(Guid id);
+        Task<APIResult<UserViewModel>> DetailUser(Guid ID);
+
     }
 }

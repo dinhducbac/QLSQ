@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "kRGQ/SuVAtg3y9ORsmKfLxsNFKhV2/As9NX4smKt7ArDwG/yXKA7V8dt7PxDNJdttsBLh6rHRt6XfeRwodLkoQ==",
+  "dgSpecHash": "2bgQ4pX8LcqhOIuVyzVuSkAA9coEeroxjGkcmJAZrwSX1/w1SLSWTseWPVONgQA5OhObfTW6Ip7dxEbLepkOpw==",
   "success": true,
   "projectFilePath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.Application\\QLSQ.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.0\\microsoft.aspnetcore.cryptography.internal.5.0.0.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.0\\microsoft.aspnetcore.cryptography.keyderivation.5.0.0.nupkg.sha512",
