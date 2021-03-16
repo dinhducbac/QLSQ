@@ -77,5 +77,11 @@ namespace QLSQ.BackEndAPI.Controllers
      
             return Ok(user);
         }
+        [HttpGet("{id}/detail")]
+        public async Task<IActionResult> DetailUser(Guid id)
+        {
+            var user = await _userService.DetailUser(id);
+            return Ok(user);
+        }
     }
 }

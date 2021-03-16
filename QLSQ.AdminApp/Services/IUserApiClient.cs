@@ -16,5 +16,6 @@ namespace QLSQ.AdminApp.Services
         Task<APIResult<string>> DeleteUser(Guid ID);
         Task<APIResult<PageResult<UserViewModel>>> GetUserPaging(GetUserPagingRequest request);
         Task<APIResult<UserViewModel>> GetUserByID(Guid Id);
+        Task<APIResult<UserViewModel>> DetailUser(Guid Id);
     }
 }

@@ -28,7 +28,7 @@ namespace QLSQ.AdminApp.Controllers
             _userApiClient = userApiClient;
             _configuration = configuration;
         }
-        public async Task<IActionResult> IndexAsync(string keyword, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> IndexAsync(string keyword, int pageIndex = 1, int pageSize = 5)
         {
             var request = new GetUserPagingRequest()
             {
@@ -77,6 +77,16 @@ namespace QLSQ.AdminApp.Controllers
             return View();
         }
        
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var result = await _userApiClient.DetailUser(id);
+            if (result.IsSuccessed)
+            {
+                return View(result.ResultObj);
+            }
+            return BadRequest(result);
+        }
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {

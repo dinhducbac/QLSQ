@@ -16,5 +16,7 @@ namespace QLSQ.Application.System.Users
         Task<APIResult<string>> UpdateUser(Guid Id,UpdateUserRequest request);
         Task<APIResult<UserViewModel>> GetUserByID(Guid ID);
         Task<APIResult<string>> DeleteUser(Guid id);
+        Task<APIResult<UserViewModel>> DetailUser(Guid ID);
+
     }
 }

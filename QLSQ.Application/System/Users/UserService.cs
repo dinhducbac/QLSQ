@@ -124,6 +124,8 @@ namespace QLSQ.Application.System.Users
             var pageResult = new PageResult<UserViewModel>()
             {
                 TotalRecord = totalRow,
+                PageIndex = request.pageIndex,
+                PageSize = request.pageSize,
                 Items = data
             };
             return new  APISuccessedResult<PageResult<UserViewModel>>(pageResult);
@@ -151,6 +153,21 @@ namespace QLSQ.Application.System.Users
             if(result.Succeeded)
                 return new APISuccessedResult<string>("Xóa tài khoản thành công!");
             return new APIErrorResult<string>("Xóa tài khoản khong thành công!");
+        }
+
+        public async Task<APIResult<UserViewModel>> DetailUser(Guid ID)
+        {
+            var user = await _userManager.FindByIdAsync(ID.ToString());
+            var uservm = new UserViewModel
+            {
+                ID = user.Id,
+                Email = user.Email,
+                Username = user.UserName,
+                Password = user.PasswordHash,
+                PhoneNumber = user.PhoneNumber
+
+            };
+            return new APISuccessedResult<UserViewModel>(uservm);
         }
     }
 }
