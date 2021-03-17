@@ -28,7 +28,7 @@ namespace QLSQ.AdminApp.Controllers
             _userApiClient = userApiClient;
             _configuration = configuration;
         }
-        public async Task<IActionResult> IndexAsync(string keyword, int pageIndex = 1, int pageSize = 5)
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 5)
         {
             var request = new GetUserPagingRequest()
             {
@@ -37,7 +37,12 @@ namespace QLSQ.AdminApp.Controllers
                 pageSize  = pageSize    
             };
             var data = await _userApiClient.GetUserPaging(request);
-            var test = data.ResultObj;
+            ViewBag.Keyword = keyword;
+            var test = TempData["result"];
+            if(TempData["result"] != null)
+            {
+                ViewBag.Success = true;
+                ViewBag.SuccessMessage = TempData["result"];           }
             return View(data.ResultObj);
         }
         [HttpGet]
@@ -113,6 +118,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _userApiClient.UpdateUser(request.ID, request);
             if (result.IsSuccessed)
             {
+                TempData["result"] = "Sửa tài khoản thành công!";
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", result.Message);
@@ -126,7 +132,11 @@ namespace QLSQ.AdminApp.Controllers
                 return View(ModelState);
             var result = await _userApiClient.CreateUser(request);
             if (result.ResultObj.Equals("Tạo tài khoản thành công!"))
+            {
+                TempData["result"] = "Tạo tài khoản thành công!";
                 return RedirectToAction("Index");
+            }    
+               
             ModelState.AddModelError("",result.Message);
             return View(result);
         }
@@ -166,6 +176,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _userApiClient.DeleteUser(request.ID);
             if (result.IsSuccessed)
             {
+                TempData["result"] = "Xóa tài khoản thành công!";
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", result.Message);

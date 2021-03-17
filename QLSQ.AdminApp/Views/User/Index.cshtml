@@ -6,32 +6,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section Scripts{ 
+<script>
+    setTimeout(function () {
+        $('#msgAlert').fadeOut('slow');
+    },2000);
+</script>
+}
+
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-12">
                 <h1 class="m-0 text-dark">Danh sách người dùng</h1>
+
             </div><!-- /.col -->
+
         </div><!-- /.row -->
-        <div class="col-sm-12">
-            <p>
-                <a class="btn btn-primary" asp-action="CreateUser" asp-controller="User">Create New</a>
-            </p>
-        </div><!-- /.col -->
     </div><!-- /.container-fluid -->
 </div>
-
-
 <section class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                        <div class="row">
+                            <div class="col-md-6 col-xl-12">
+                                <p>
+                                    <a class="btn btn-primary" asp-action="CreateUser" asp-controller="User">Create New</a>
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-xl-12">
+                                <form asp-action="Index" method="get">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="submit" class="btn btn-primary">Tìm</button>
+                                            <button type="reset" onclick="window.location.href='/User/Index'" class="btn btn-dark">Resest</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        @if (ViewBag.Success == true)
+                        {
+                            <div id="msgAlert" class="alert alert-success" role="alert">
+                                @ViewBag.SuccessMessage;
+                            </div>
+                        }
                         <table class="table">
                             <thead>
                                 <tr>
