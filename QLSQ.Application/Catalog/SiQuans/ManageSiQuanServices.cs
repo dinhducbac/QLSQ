@@ -160,7 +160,7 @@ namespace QLSQ.Application.Catalog.SiQuans
 
 
 
-        public async Task<PageResult<SiQuanViewModel>> GetAllPaging(GetManageSiQuanPagingRequest request)
+        public async Task<APIResult<PageResult<SiQuanViewModel>>> GetAllPaging(GetManageSiQuanPagingRequest request)
         {
             var query = from p in _context.SiQuans select p;
             if (!string.IsNullOrEmpty(request.keyword))
@@ -187,7 +187,7 @@ namespace QLSQ.Application.Catalog.SiQuans
                 PageSize = request.pageSize,
                 Items = data
             };
-            return pageResult;
+            return new APISuccessedResult<PageResult<SiQuanViewModel>>(pageResult);
         }
 
         public async Task<int> Update(SiQuanUpdateRequest request)
