@@ -17,5 +17,6 @@ namespace QLSQ.AdminApp.Services
         Task<APIResult<PageResult<UserViewModel>>> GetUserPaging(GetUserPagingRequest request);
         Task<APIResult<UserViewModel>> GetUserByID(Guid Id);
         Task<APIResult<UserViewModel>> DetailUser(Guid Id);
+        Task<APIResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
     }
 }
