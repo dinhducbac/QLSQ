@@ -179,17 +179,24 @@ namespace QLSQ.Application.System.Users
             {
                 return new APIErrorResult<bool>("Tài khoản không tồn tại"); 
             }
-            var removeRoles = request.Roles.Where(x=>x.Selected == false).Select(x=> x.Name).ToList();
-            await _userManager.RemoveFromRolesAsync(user, removeRoles);  
+            var removeRoles = request.Roles.Where(x => x.Selected == false).Select(x => x.Name).ToList();
+            foreach (var roleName in removeRoles)
+            {
+                if (await _userManager.IsInRoleAsync(user, roleName)==true)
+                {
+                    await _userManager.RemoveFromRoleAsync(user, roleName);
+                }
+            }
+            await _userManager.RemoveFromRolesAsync(user, removeRoles);
             var addRoles = request.Roles.Where(x => x.Selected == true).Select(x => x.Name).ToList();
             foreach (var roleName in addRoles)
             {
-                if (await _userManager.IsInRoleAsync(user, roleName)==false)
+                if (await _userManager.IsInRoleAsync(user, roleName) == false)
                 {
                     await _userManager.AddToRolesAsync(user, addRoles);
                 }
             }
-        
+
             return new APISuccessedResult<bool>(); 
         }
     }

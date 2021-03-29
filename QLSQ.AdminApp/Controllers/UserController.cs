@@ -20,7 +20,6 @@ using QLSQ.ViewModel.System.Users;
 
 namespace QLSQ.AdminApp.Controllers
 {
-    [Authorize]
     public class UserController : Controller
     {
    
