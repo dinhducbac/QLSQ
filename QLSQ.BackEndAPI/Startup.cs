@@ -19,6 +19,7 @@ using Microsoft.OpenApi.Models;
 using QLSQ.Application.Catalog.SiQuan;
 using QLSQ.Application.Catalog.SiQuans;
 using QLSQ.Application.Common;
+using QLSQ.Application.System.Roles;
 using QLSQ.Application.System.Users;
 using QLSQ.Data.EF;
 using QLSQ.Data.Entities;
@@ -52,6 +53,7 @@ namespace QLSQ.BackEndAPI
             services.AddTransient<IManageSiQuanServices, ManageSiQuanServices>();
             services.AddTransient<IStorageServices, FileStorageServices>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRolesService, RolesService>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();

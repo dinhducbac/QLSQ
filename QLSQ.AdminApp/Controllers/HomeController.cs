@@ -10,7 +10,6 @@ using QLSQ.AdminApp.Models;
 
 namespace QLSQ.AdminApp.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -14,18 +15,22 @@ using Microsoft.Extensions.Configuration.Ini;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using QLSQ.AdminApp.Services;
+using QLSQ.ViewModel.Common;
 using QLSQ.ViewModel.System.Users;
 
 namespace QLSQ.AdminApp.Controllers
 {
     public class UserController : Controller
     {
+   
         public readonly IUserApiClient _userApiClient;
         public readonly IConfiguration _configuration;
+        public readonly IRolesApiClient _rolesApiClient;
 
-        public UserController(IUserApiClient userApiClient, IConfiguration configuration)
+        public UserController(IUserApiClient userApiClient, IRolesApiClient rolesApiClient ,IConfiguration configuration)
         {
             _userApiClient = userApiClient;
+            _rolesApiClient = rolesApiClient;
             _configuration = configuration;
         }
         public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 5)
@@ -99,7 +104,7 @@ namespace QLSQ.AdminApp.Controllers
             if (result.IsSuccessed)
             {
                 var user = result.ResultObj;
-                var updaterequest = new UpdateUserRequest
+                var updaterequest = new UpdateUserRequest()
                 {
                     ID = id,
                     Email = user.Email,
@@ -160,7 +165,7 @@ namespace QLSQ.AdminApp.Controllers
             if (result.IsSuccessed)
             {
                 var user = result.ResultObj;
-                var deleterequest = new DeleteUserRequest
+                var deleterequest = new DeleteUserRequest()
                 {
                     ID = id
                 };
@@ -181,6 +186,45 @@ namespace QLSQ.AdminApp.Controllers
             }
             ModelState.AddModelError("", result.Message);
             return View(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> RoleAssign(Guid id)
+        {
+            var roleAssignRequest = await GetRoleAssignRequest(id);
+            return View(roleAssignRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> RoleAssign(RoleAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _userApiClient.RoleAssign(request.ID, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Gán quyền thành công!";
+                return RedirectToAction("Index");
+            }
+            ModelState.AddModelError("", result.Message);
+            var roleAssignRequest = await GetRoleAssignRequest(request.ID);
+
+            return View(roleAssignRequest);
+
+        }
+        private async Task<RoleAssignRequest> GetRoleAssignRequest(Guid id)
+        {
+            var userObj = await _userApiClient.GetUserByID(id);
+            var roles = await _rolesApiClient.GetAll();
+            var roleAssignRequest = new RoleAssignRequest();
+            foreach (var role in roles.ResultObj)
+            {
+                roleAssignRequest.Roles.Add(new SelectItem()
+                {
+                    Id = role.ID.ToString(),
+                    Name = role.Name,
+                    Selected = userObj.ResultObj.Roles.Contains(role.Name)
+                });
+            }
+            return roleAssignRequest;
         }
     }
 }
