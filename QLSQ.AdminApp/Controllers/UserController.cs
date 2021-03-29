@@ -47,7 +47,8 @@ namespace QLSQ.AdminApp.Controllers
             if(TempData["result"] != null)
             {
                 ViewBag.Success = true;
-                ViewBag.SuccessMessage = TempData["result"];           }
+                ViewBag.SuccessMessage = TempData["result"];           
+            }
             return View(data.ResultObj);
         }
         [HttpGet]
