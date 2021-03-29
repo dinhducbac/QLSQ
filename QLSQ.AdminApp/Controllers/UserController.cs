@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -19,8 +20,10 @@ using QLSQ.ViewModel.System.Users;
 
 namespace QLSQ.AdminApp.Controllers
 {
+    [Authorize]
     public class UserController : Controller
     {
+   
         public readonly IUserApiClient _userApiClient;
         public readonly IConfiguration _configuration;
         public readonly IRolesApiClient _rolesApiClient;
