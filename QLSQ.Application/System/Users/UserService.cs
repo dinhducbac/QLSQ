@@ -134,13 +134,15 @@ namespace QLSQ.Application.System.Users
         public async Task<APIResult<UserViewModel>> GetUserByID(Guid ID)
         {
             var user = await _userManager.FindByIdAsync(ID.ToString());
+            var roles = await _userManager.GetRolesAsync(user);
             var uservm = new UserViewModel
             {
                 ID = user.Id,
                 Email = user.Email,
                 Username = user.UserName,
                 Password = user.PasswordHash,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber,
+                Roles = roles
                
             };
             return new APISuccessedResult<UserViewModel>(uservm);
@@ -168,6 +170,27 @@ namespace QLSQ.Application.System.Users
 
             };
             return new APISuccessedResult<UserViewModel>(uservm);
+        }
+
+        public async Task<APIResult<bool>> RoleAssign(Guid id, RoleAssignRequest request)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if(user == null)
+            {
+                return new APIErrorResult<bool>("Tài khoản không tồn tại"); 
+            }
+            var removeRoles = request.Roles.Where(x=>x.Selected == false).Select(x=> x.Name).ToList();
+            await _userManager.RemoveFromRolesAsync(user, removeRoles);  
+            var addRoles = request.Roles.Where(x => x.Selected == true).Select(x => x.Name).ToList();
+            foreach (var roleName in addRoles)
+            {
+                if (await _userManager.IsInRoleAsync(user, roleName)==false)
+                {
+                    await _userManager.AddToRolesAsync(user, addRoles);
+                }
+            }
+        
+            return new APISuccessedResult<bool>(); 
         }
     }
 }

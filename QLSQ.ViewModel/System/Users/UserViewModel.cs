@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLSQ.ViewModel.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,5 +12,6 @@ namespace QLSQ.ViewModel.System.Users
         public string Password { set; get; }
         public string Email { set; get; }
         public string PhoneNumber { set; get; }
+        public IList<string>  Roles { get; set; }
     }
 }

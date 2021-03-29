@@ -14,6 +14,7 @@ namespace QLSQ.BackEndAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -82,6 +83,17 @@ namespace QLSQ.BackEndAPI.Controllers
         {
             var user = await _userService.DetailUser(id);
             return Ok(user);
+        }
+        //put http://localhost/api/user/id
+        [HttpPut("{id}/roles")]
+        public async Task<IActionResult> RoleAssign(Guid id, [FromBody] RoleAssignRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _userService.RoleAssign(id, request);
+            if (!result.IsSuccessed)
+                return BadRequest(result);
+            return Ok(result);
         }
     }
 }
