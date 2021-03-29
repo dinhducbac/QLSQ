@@ -43,6 +43,7 @@ namespace QLSQ.AdminApp
             services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
             services.AddTransient<IUserApiClient, UserApiClient>();
             services.AddTransient<IRolesApiClient, RolesApiClient>();
+            services.AddTransient<ISiQuanApiClient, SiQuanApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
             var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT");
 #if DEBUG

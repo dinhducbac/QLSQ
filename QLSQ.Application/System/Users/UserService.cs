@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using QLSQ.Data.EF;
 using QLSQ.Data.Entities;
 using QLSQ.Utilities.Exceptions;
 using QLSQ.ViewModel.Common;
@@ -198,6 +199,17 @@ namespace QLSQ.Application.System.Users
             }
 
             return new APISuccessedResult<bool>(); 
+        }
+
+        public async Task<APIResult<List<Guid>>> GetAllUserID()
+        {
+            List<Guid> listuserid = new List<Guid>();
+            var query = _userManager.Users;
+            foreach (var userid in query)
+            {
+                listuserid.Add(userid.Id);
+            }
+            return new APISuccessedResult<List<Guid>>(listuserid);
         }
     }
 }

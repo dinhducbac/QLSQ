@@ -37,6 +37,12 @@ namespace QLSQ.BackEndAPI.Controllers
             var siquan = await _publicSiQuanServices.GetAllBySiQuanId(request);
             return Ok(siquan);
         }
+        [HttpGet("manage-paging")]
+        public async Task<IActionResult> GetAllManagePaging([FromQuery] GetManageSiQuanPagingRequest request)
+        {
+            var siquan = await _manageSiQuanServices.GetAllPaging(request);
+            return Ok(siquan);
+        }
         [HttpGet("{IDSQ}")]
         public async Task<IActionResult> GetById(int IDSQ)
         {
