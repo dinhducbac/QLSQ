@@ -18,7 +18,7 @@ namespace QLSQ.Application.Catalog.SiQuans
 
         Task<SiQuanViewModel> GetById(int SiQuanID);
 
-        Task<PageResult<SiQuanViewModel>> GetAllPaging(GetManageSiQuanPagingRequest request);
+        Task<APIResult<PageResult<SiQuanViewModel>>> GetAllPaging(GetManageSiQuanPagingRequest request);
         Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request);
         Task<int> RemoveImages(int ImageID);
         Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request);
