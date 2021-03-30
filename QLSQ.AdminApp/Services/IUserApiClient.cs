@@ -18,5 +18,6 @@ namespace QLSQ.AdminApp.Services
         Task<APIResult<UserViewModel>> GetUserByID(Guid Id);
         Task<APIResult<UserViewModel>> DetailUser(Guid Id);
         Task<APIResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
+        Task<APIResult<List<UserViewModel>>> GetAllUser();
     }
 }

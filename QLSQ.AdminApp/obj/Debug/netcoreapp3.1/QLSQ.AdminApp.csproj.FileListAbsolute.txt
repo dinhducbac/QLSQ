@@ -422,3 +422,5 @@ D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Det
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Pager\Default.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\User\RoleAssign.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\SiQuans\Index.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\SiQuans\Create.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\SiQuans\Details.cshtml.g.cs

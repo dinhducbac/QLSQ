@@ -43,37 +43,39 @@ namespace QLSQ.BackEndAPI.Controllers
             var siquan = await _manageSiQuanServices.GetAllPaging(request);
             return Ok(siquan);
         }
-        [HttpGet("{IDSQ}")]
+        [HttpGet("{IDSQ}/detail")]
         public async Task<IActionResult> GetById(int IDSQ)
         {
             var siquan = await _manageSiQuanServices.GetById(IDSQ);
             return Ok(siquan);
         }
-        [HttpPost]
-        public async Task<IActionResult> Create([FromQuery]SiQuanCreateRequest request)
+        [HttpPost("create")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Create([FromBody]SiQuanCreateRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
             var siquanId = await _manageSiQuanServices.Create(request);
-            if (siquanId == 0)
-                return BadRequest();
-            var siquan = await _manageSiQuanServices.GetById(siquanId);
-            return CreatedAtAction(nameof(GetById),siquanId);
+            if (siquanId.ResultObj == 0)
+                return BadRequest(siquanId);
+            return Ok(siquanId);
+            //var siquan = await _manageSiQuanServices.GetById(siquanId.ResultObj);
+            //return CreatedAtAction(nameof(GetById),siquanId);
         }
-        [HttpPut]
-        public async Task<IActionResult> Update([FromQuery]SiQuanUpdateRequest request)
+        [HttpPut("{IDSQ}/update")]
+        public async Task<IActionResult> Update(int IDSQ,[FromBody]SiQuanUpdateRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var siquanId = await _manageSiQuanServices.Update(request);
-            if (siquanId == 0)
+            var result = await _manageSiQuanServices.Update(IDSQ,request);
+            if (!result.IsSuccessed)
                 return BadRequest();
-            var siquan = await _manageSiQuanServices.GetById(siquanId);
-            return Ok(siquan);
+            //var siquan = await _manageSiQuanServices.GetById(result);
+            return Ok(result);
         }
         [HttpDelete("{IDSQ}")]
         public async Task<IActionResult> Delete([FromQuery] int IDSQ)

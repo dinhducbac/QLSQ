@@ -11,12 +11,12 @@ namespace QLSQ.Application.Catalog.SiQuans
 {
     public interface IManageSiQuanServices
     {
-        Task<int> Create(SiQuanCreateRequest request);
+        Task<APIResult<int>> Create(SiQuanCreateRequest request);
 
-        Task<int> Update(SiQuanUpdateRequest request);
+        Task<APIResult<bool>> Update(int IDSQ, SiQuanUpdateRequest request);
         Task<int> Detele(int SiQuanID);
 
-        Task<SiQuanViewModel> GetById(int SiQuanID);
+        Task<APIResult<SiQuanViewModel>> GetById(int IDSQ);
 
         Task<APIResult<PageResult<SiQuanViewModel>>> GetAllPaging(GetManageSiQuanPagingRequest request);
         Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request);
