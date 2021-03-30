@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace QLSQ.AdminApp.Services
@@ -23,6 +24,22 @@ namespace QLSQ.AdminApp.Services
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
         }
+
+        public async Task<APIResult<int>> Create(SiQuanCreateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var reponse = await client.PostAsync($"/api/SiQuans/create", httpContent);
+            if (reponse.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<APISuccessedResult<int>>(await reponse.Content.ReadAsStringAsync());
+            }
+            return JsonConvert.DeserializeObject<APIErrorResult<int>>(await reponse.Content.ReadAsStringAsync());
+
+        }
+
         public async Task<APIResult<PageResult<SiQuanViewModel>>> GetAllManagePaging(GetManageSiQuanPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
@@ -33,6 +50,37 @@ namespace QLSQ.AdminApp.Services
             var body = await reponse.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<APIResult<PageResult<SiQuanViewModel>>>(body);
             return user;
+        }
+
+        public async Task<APIResult<SiQuanViewModel>> GetByID(int IDSQ)
+        {
+            var test = IDSQ;
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var reponse = await client.GetAsync($"/api/SiQuans/{IDSQ}/detail");
+            var body = await reponse.Content.ReadAsStringAsync();
+            var user = JsonConvert.DeserializeObject<APIResult<SiQuanViewModel>>(body);
+            return user;
+        }
+
+        public async Task<APIResult<bool>> Update(int IDSQ,SiQuanUpdateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var reponse = await client.PutAsync($"/api/SiQuans/{IDSQ}/update", httpContent);
+            var body = await reponse.Content.ReadAsStringAsync();
+            if (reponse.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            }
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
     }
 }

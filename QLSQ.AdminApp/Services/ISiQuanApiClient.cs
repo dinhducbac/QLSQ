@@ -10,5 +10,8 @@ namespace QLSQ.AdminApp.Services
     public interface ISiQuanApiClient
     {
         public Task<APIResult<PageResult<SiQuanViewModel>>> GetAllManagePaging(GetManageSiQuanPagingRequest request);
+        public Task<APIResult<int>> Create(SiQuanCreateRequest request);
+        public Task<APIResult<SiQuanViewModel>> GetByID(int IDSQ);
+        public Task<APIResult<bool>> Update(int IDSQ,SiQuanUpdateRequest request);
     }
 }
