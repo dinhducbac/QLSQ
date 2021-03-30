@@ -13,5 +13,6 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<int>> Create(SiQuanCreateRequest request);
         public Task<APIResult<SiQuanViewModel>> GetByID(int IDSQ);
         public Task<APIResult<bool>> Update(int IDSQ,SiQuanUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int IDSQ, SiQuanDeleteRequest request);
     }
 }
