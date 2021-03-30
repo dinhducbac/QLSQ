@@ -94,5 +94,41 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpPost]
+        public async Task<IActionResult> Edit(SiQuanUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _siQuanApiClient.Update(request.IDSQ, request);
+            if(result.IsSuccessed)
+                return RedirectToAction("Index");
+            return View(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDSQ)
+        {
+            var result = await _siQuanApiClient.GetByID(IDSQ);
+            if (result.IsSuccessed)
+            {
+                var siquanDeleteRequest = new SiQuanDeleteRequest()
+                {
+                    IDSQ = IDSQ,
+                    HoTen = result.ResultObj.HoTen
+                };
+                return View(siquanDeleteRequest);
+            }
+            return RedirectToAction("Eror", "Home");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(SiQuanDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var test = request.IDSQ;
+            var result = await _siQuanApiClient.Delete(request.IDSQ, request);
+            if (result.IsSuccessed)
+                return RedirectToAction("Index");
+            return View(result);
+        }
     }
 }
