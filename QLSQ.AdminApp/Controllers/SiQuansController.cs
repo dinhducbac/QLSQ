@@ -125,6 +125,7 @@ namespace QLSQ.AdminApp.Controllers
             if (!ModelState.IsValid)
                 return View(ModelState);
             var test = request.IDSQ;
+            var test1 = request.HoTen;
             var result = await _siQuanApiClient.Delete(request.IDSQ, request);
             if (result.IsSuccessed)
                 return RedirectToAction("Index");
