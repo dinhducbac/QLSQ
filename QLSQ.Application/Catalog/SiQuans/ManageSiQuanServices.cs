@@ -111,7 +111,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         }
         //------------------------------------------------------------------------------------------------
         // Part of SiQuan
-        public async Task<int> Create(SiQuanCreateRequest request)
+        public async Task<APIResult<int>> Create(SiQuanCreateRequest request)
         {
             var siquan = new QLSQ.Data.Entities.SiQuan()
             {
@@ -122,6 +122,7 @@ namespace QLSQ.Application.Catalog.SiQuans
                 QueQuan = request.QueQuan,
                 SDT = request.SDT
             };
+            var test = siquan.UserId;
             if(request.ThumbnailImage != null)
             {
                 siquan.SiQuanImages = new List<SiQuanImage>()
@@ -139,7 +140,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             }
             _context.SiQuans.Add(siquan);
            await _context.SaveChangesAsync();
-            return siquan.IDSQ;
+            return new APISuccessedResult<int>(siquan.IDSQ);
         }
 
         public async Task<int> Detele(int SiQuanID)
@@ -190,11 +191,11 @@ namespace QLSQ.Application.Catalog.SiQuans
             return new APISuccessedResult<PageResult<SiQuanViewModel>>(pageResult);
         }
 
-        public async Task<int> Update(SiQuanUpdateRequest request)
+        public async Task<APIResult<bool>> Update(int IDSQ,SiQuanUpdateRequest request)
         {
-            var siquan = await _context.SiQuans.FirstOrDefaultAsync(x => x.IDSQ == request.IDSQ);
+            var siquan = await _context.SiQuans.FirstOrDefaultAsync(x => x.IDSQ == IDSQ);
             if (siquan == null)
-                throw new QLSQException($"Không thể tìm thấy sĩ quan có ID: {request.IDSQ}");
+                return new APIErrorResult<bool>($"Không thể tìm thấy sĩ quan có ID: {IDSQ}");
             siquan.UserId = request.UserId;
             siquan.HoTen = request.HoTen;
             siquan.NgaySinh = request.NgaySinh;
@@ -213,14 +214,14 @@ namespace QLSQ.Application.Catalog.SiQuans
                 }
             }
           await _context.SaveChangesAsync();
-          return siquan.IDSQ;
+          return new APISuccessedResult<bool>();
         }
 
-        public async Task<SiQuanViewModel> GetById(int SiQuanID)
+        public async Task<APIResult<SiQuanViewModel>> GetById(int IDSQ)
         {
-            var siquan = await _context.SiQuans.FindAsync(SiQuanID );
+            var siquan = await _context.SiQuans.FindAsync(IDSQ);
             if (siquan == null)
-                throw new QLSQException($"Không tìm thấy sĩ quan nào có ID = {SiQuanID} ");
+                throw new QLSQException($"Không tìm thấy sĩ quan nào có ID = {IDSQ} ");
             var siquanmd = new SiQuanViewModel();
             siquanmd.IDSQ = siquan.IDSQ;
             siquanmd.UserId = siquan.UserId;
@@ -229,7 +230,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             siquanmd.GioiTinh = siquan.GioiTinh;
             siquanmd.QueQuan = siquan.QueQuan;
             siquanmd.SDT = siquan.SDT;
-            return siquanmd;
+            return new APISuccessedResult<SiQuanViewModel>(siquanmd);
         }
 
        

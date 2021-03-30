@@ -18,7 +18,7 @@ namespace QLSQ.Application.System.Users
         Task<APIResult<string>> DeleteUser(Guid id);
         Task<APIResult<UserViewModel>> DetailUser(Guid ID);
         Task<APIResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
-        Task<APIResult<List<Guid>>> GetAllUserID();
+        Task<APIResult<List<UserViewModel>>> GetAllUser();
 
     }
 }

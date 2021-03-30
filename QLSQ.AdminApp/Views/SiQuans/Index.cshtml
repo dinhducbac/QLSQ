@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="col-md-6 col-xl-12">
                                 <p>
-                                    <a asp-action="Create">Create New</a>
+                                    <a class="btn btn-primary" asp-action="Create">Create New</a>
                                 </p>
                             </div>
                             <div class="col-md-6 col-xl-12">
@@ -109,9 +109,9 @@
                                         @Html.DisplayFor(modelItem => item.QueQuan)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { id = item.IDSQ }) |
-                                        @Html.ActionLink("Details", "Details", new { id = item.IDSQ }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.IDSQ })
+                                        @Html.ActionLink("Edit", "Edit", new { IDSQ = item.IDSQ }) |
+                                        @Html.ActionLink("Details", "Details", new { IDSQ = item.IDSQ }) |
+                                        @Html.ActionLink("Delete", "Delete", new { IDSQ = item.IDSQ })
                                     </td>
                                 </tr>
                                 }

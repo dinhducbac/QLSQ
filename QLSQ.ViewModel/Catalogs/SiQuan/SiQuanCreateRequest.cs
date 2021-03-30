@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Http;
+using QLSQ.ViewModel.System.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,5 +16,8 @@ namespace QLSQ.ViewModel.Catalogs.SiQuan
         public string QueQuan { get; set; }
         public string SDT { get; set; }
         public IFormFile ThumbnailImage { get; set; }
+
+        public List<UserViewModel> userViewModels { get; set; }
+
     }
 }

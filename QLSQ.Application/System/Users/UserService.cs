@@ -201,15 +201,20 @@ namespace QLSQ.Application.System.Users
             return new APISuccessedResult<bool>(); 
         }
 
-        public async Task<APIResult<List<Guid>>> GetAllUserID()
+        public async Task<APIResult<List<UserViewModel>>> GetAllUser()
         {
-            List<Guid> listuserid = new List<Guid>();
+            List<UserViewModel> listuser = new List<UserViewModel>();
             var query = _userManager.Users;
-            foreach (var userid in query)
+            foreach (var user in query)
             {
-                listuserid.Add(userid.Id);
+                var uservm = new UserViewModel()
+                {
+                    ID = user.Id,
+                    Username = user.UserName
+                };
+                listuser.Add(uservm);
             }
-            return new APISuccessedResult<List<Guid>>(listuserid);
+            return new APISuccessedResult<List<UserViewModel>>(listuser);
         }
     }
 }

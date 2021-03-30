@@ -95,5 +95,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest(result);
             return Ok(result);
         }
+        [HttpGet("getalluser")]
+        public async Task<IActionResult> GetAllUser()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _userService.GetAllUser();
+            if (!result.IsSuccessed)
+                return BadRequest(result);
+            return Ok(result);
+        }
     }
 }
