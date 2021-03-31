@@ -89,31 +89,31 @@
                             <tbody>
                                 @foreach (var item in Model.Items)
                                 {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.IDSQ)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.UserId)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.HoTen)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NgaySinh)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.GioiTinh)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.QueQuan)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Edit", "Edit", new { IDSQ = item.IDSQ }) |
-                                        @Html.ActionLink("Details", "Details", new { IDSQ = item.IDSQ }) |
-                                        @Html.ActionLink("Delete", "Delete", new { IDSQ = item.IDSQ })
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IDSQ)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UserId)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.HoTen)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NgaySinh)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.GioiTinh)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.QueQuan)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { IDSQ = item.IDSQ }) |
+                                            @Html.ActionLink("Details", "Details", new { IDSQ = item.IDSQ }) |
+                                            @Html.ActionLink("Delete", "Delete", new { IDSQ = item.IDSQ })
+                                        </td>
+                                    </tr>
                                 }
                             </tbody>
                         </table>

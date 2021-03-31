@@ -40,7 +40,7 @@ namespace QLSQ.AdminApp.Services
 
         }
 
-        public async Task<APIResult<bool>> Delete(int IDSQ, SiQuanDeleteRequest request)
+        public async Task<APIResult<string>> Delete(int IDSQ)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
@@ -50,9 +50,9 @@ namespace QLSQ.AdminApp.Services
             var body = await reponse.Content.ReadAsStringAsync();
             if (reponse.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+                return JsonConvert.DeserializeObject<APISuccessedResult<string>>(body);
             }
-            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<string>>(body);
         }
 
         public async Task<APIResult<PageResult<SiQuanViewModel>>> GetAllManagePaging(GetManageSiQuanPagingRequest request)

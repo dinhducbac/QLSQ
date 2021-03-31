@@ -14,7 +14,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         Task<APIResult<int>> Create(SiQuanCreateRequest request);
 
         Task<APIResult<bool>> Update(int IDSQ, SiQuanUpdateRequest request);
-        Task<APIResult<bool>> Detele(int IDSQ, SiQuanDeleteRequest request);
+        Task<APIResult<string>> Detele(int IDSQ);
 
         Task<APIResult<SiQuanViewModel>> GetById(int IDSQ);
 

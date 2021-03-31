@@ -32,7 +32,11 @@ namespace QLSQ.AdminApp.Controllers
                 pageSize = pageSize
             };
             var data = await _siQuanApiClient.GetAllManagePaging(request);
-
+            if (TempData["result"] != null)
+            {
+                ViewBag.Success = true;
+                ViewBag.SuccessMessage = TempData["result"];
+            }
             return View(data.ResultObj);
         }
         [HttpGet]
@@ -56,7 +60,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _siQuanApiClient.Create(request);
             if (result.ResultObj != null)
             {
-                TempData["result"] = "Tạo tài khoản thành công!";
+                TempData["result"] = "Tạo sĩ quan thành công!";
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", result.Message);
@@ -101,21 +105,25 @@ namespace QLSQ.AdminApp.Controllers
                 return View(ModelState);
             var result = await _siQuanApiClient.Update(request.IDSQ, request);
             if(result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa sĩ quan thành công!";
                 return RedirectToAction("Index");
+            }    
+               
             return View(result);
         }
         [HttpGet]
         public async Task<IActionResult> Delete(int IDSQ)
         {
             var result = await _siQuanApiClient.GetByID(IDSQ);
-            if (result.IsSuccessed)
+           if (result.IsSuccessed)
             {
-                var siquanDeleteRequest = new SiQuanDeleteRequest()
+                var siQuanDeleteRequest = new SiQuanDeleteRequest()
                 {
                     IDSQ = IDSQ,
                     HoTen = result.ResultObj.HoTen
                 };
-                return View(siquanDeleteRequest);
+                return View(siQuanDeleteRequest);
             }
             return RedirectToAction("Eror", "Home");
         }
@@ -124,11 +132,12 @@ namespace QLSQ.AdminApp.Controllers
         {
             if (!ModelState.IsValid)
                 return View(ModelState);
-            var test = request.IDSQ;
-            var test1 = request.HoTen;
-            var result = await _siQuanApiClient.Delete(request.IDSQ, request);
+            var result = await _siQuanApiClient.Delete(request.IDSQ);
             if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa sĩ quan thành công!";
                 return RedirectToAction("Index");
+            }    
             return View(result);
         }
     }

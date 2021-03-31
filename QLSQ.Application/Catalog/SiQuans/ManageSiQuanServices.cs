@@ -143,12 +143,12 @@ namespace QLSQ.Application.Catalog.SiQuans
             return new APISuccessedResult<int>(siquan.IDSQ);
         }
 
-        public async Task<APIResult<bool>> Detele(int IDSQ, SiQuanDeleteRequest request)
+        public async Task<APIResult<string>> Detele(int IDSQ)
         {
             var siquan = await _context.SiQuans.FindAsync(IDSQ);
             if (siquan == null)
             {
-                return new APIErrorResult<bool>($"Không thể tìm thấy sĩ quan có Id: {IDSQ}");
+                return new APIErrorResult<string>($"Không thể tìm thấy sĩ quan có Id: {IDSQ}");
             }
             var thumbnailImage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IDSQ == IDSQ);
             if (thumbnailImage != null)
@@ -157,7 +157,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             }
             _context.SiQuans.Remove(siquan);
             await _context.SaveChangesAsync();
-            return new APISuccessedResult<bool>();
+            return new APISuccessedResult<string>("Xóa tài khoản thành công!");
         }
 
 
