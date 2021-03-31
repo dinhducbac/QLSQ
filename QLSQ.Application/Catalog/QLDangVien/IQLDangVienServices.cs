@@ -11,5 +11,6 @@ namespace QLSQ.Application.Catalog.QLDangVien
     public interface IQLDangVienServices
     {
         public Task<APIResult<PageResult<QLDangVienViewModel>>> GetAllQLDangVien(GetQLDangVienPagingRequest request);
+        public Task<APIResult<bool>> Create(QLDangVienCreateRequest request);
     }
 }

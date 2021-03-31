@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using QLSQ.Data.Entities;
+using QLSQ.Data.Entities;
 
 namespace QLSQ.Application.Catalog.QLDangVien
 {
@@ -21,6 +23,20 @@ namespace QLSQ.Application.Catalog.QLDangVien
             _context = context;
             _storageServices = storageServices;
         }
+
+        public async Task<APIResult<bool>> Create(QLDangVienCreateRequest request)
+        {
+            var qldv = new QLSQ.Data.Entities.QLDangVien()
+            {
+                IDSQ = request.IDSQ,
+                NgayVaoDang = request.NgayVaoDang,
+                NoiVaoDang = request.NoiVaoDang
+            };
+            _context.QLDangViens.Add(qldv);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async  Task<APIResult<PageResult<QLDangVienViewModel>>> GetAllQLDangVien(GetQLDangVienPagingRequest request)
         {
             var query = (from sq in _context.SiQuans
@@ -28,6 +44,7 @@ namespace QLSQ.Application.Catalog.QLDangVien
                         on sq.IDSQ equals qldv.IDSQ
                         select new QLDangVienViewModel()
                         { 
+                            IDQLDV = qldv.IDQLDV,
                             IDSQ = qldv.IDSQ,
                             HoTen = sq.HoTen,
                             NgayVaoDang = qldv.NgayVaoDang,
@@ -42,6 +59,7 @@ namespace QLSQ.Application.Catalog.QLDangVien
                .Take(request.pageSize)
                .Select(x => new QLDangVienViewModel()
                {
+                   IDQLDV = x.IDQLDV,
                    IDSQ = x.IDSQ,
                    HoTen = x.HoTen,
                    NgayVaoDang = x.NgayVaoDang,
