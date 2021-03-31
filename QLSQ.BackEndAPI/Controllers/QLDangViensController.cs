@@ -51,5 +51,17 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpPut("{IDQLDV}/edit")]
+        public async Task<IActionResult> Edit(int IDQLDV, [FromBody] QLDangVienUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _qLDangVienServices.Edit(IDQLDV,request);
+            if (result.IsSuccessed)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
