@@ -78,12 +78,12 @@ namespace QLSQ.BackEndAPI.Controllers
             return Ok(result);
         }
         [HttpDelete("{IDSQ}/delete")]
-        public async Task<IActionResult> Delete( int IDSQ, [FromBody] SiQuanDeleteRequest request)
+        public async Task<IActionResult> Delete( int IDSQ)
         {
-            var result = await _manageSiQuanServices.Detele(IDSQ, request);
+            var result = await _manageSiQuanServices.Detele(IDSQ);
             if (!result.IsSuccessed)
-                return BadRequest();
-            return Ok();
+                return BadRequest(result);
+            return Ok(result);
         }
         // SiQuanImage---------------------------------------------------------------------
         [HttpPost("{IDSQ}/images")]

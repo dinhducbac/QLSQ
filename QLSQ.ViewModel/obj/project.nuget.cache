@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "COCiwiMX56wAD0tTtnw9PR+ZkvcGSmdmW/ck1Hwg8m56g1VpTCm++WSDRxHH6jhONnbj+pJ5OKPIGjThJOuCEQ==",
+  "dgSpecHash": "m+J9n7UjRX/LiTCC3L98EG5Lu/8oWZnfg0dQruS6dO4wSPf9bWFGDV1Xo6pRjy3O+Ml8/fgI6OVeo9WvpF8hrw==",
   "success": true,
   "projectFilePath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ.ViewModel\\QLSQ.ViewModel.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.0\\microsoft.aspnetcore.http.features.5.0.0.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\system.io.pipelines\\5.0.0\\system.io.pipelines.5.0.0.nupkg.sha512"
   ],
   "logs": []
