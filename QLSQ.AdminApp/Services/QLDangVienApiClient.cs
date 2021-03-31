@@ -40,6 +40,11 @@ namespace QLSQ.AdminApp.Services
 
         }
 
+        public Task<APIResult<bool>> Edit(int IDQLDV, QLDangVienUpdateRequest request)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<APIResult<PageResult<QLDangVienViewModel>>> GetAllQLDangVien(GetQLDangVienPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
