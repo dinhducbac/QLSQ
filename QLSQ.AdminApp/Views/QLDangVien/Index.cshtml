@@ -1,0 +1,128 @@
+﻿@using QLSQ.ViewModel.Common;
+@model PageResult<QLSQ.ViewModel.Catalogs.QLDangVien.QLDangVienViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000);
+    </script>
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Danh sách QL Đảng viên</h1>
+
+            </div><!-- /.col -->
+
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6 col-xl-12">
+                                <p>
+                                    <a class="btn btn-primary" asp-action="Create">Create New</a>
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-xl-12">
+                                <form asp-action="Index" method="get">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="submit" class="btn btn-primary">Tìm</button>
+                                            <button type="reset" onclick="window.location.href='/User/Index'" class="btn btn-dark">Resest</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        @if (ViewBag.Success == true)
+                        {
+                            <div id="msgAlert" class="alert alert-success" role="alert">
+                                @ViewBag.SuccessMessage;
+                            </div>
+                        }
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                       IDQLDV
+                                    </th>
+                                    <th>
+                                        IDSQ
+                                    </th>
+                                    <th>
+                                        Họ và tên
+                                    </th>
+                                    <th>
+                                        Ngày vào đảng
+                                    </th>
+                                    <th>
+                                       Nơi vào đảng
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IDQLDV)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IDSQ)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.HoTen)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NgayVaoDang)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NoiVaoDang)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @await Component.InvokeAsync("Pager", Model)
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+
