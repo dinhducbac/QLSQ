@@ -15,7 +15,7 @@ namespace QLSQ.BackEndAPI.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class SiQuansController : ControllerBase
     {
         private readonly IPublicSiQuanServices _publicSiQuanServices;
