@@ -13,5 +13,6 @@ namespace QLSQ.Application.Catalog.QLDangVien
         public Task<APIResult<PageResult<QLDangVienViewModel>>> GetAllQLDangVien(GetQLDangVienPagingRequest request);
         public Task<APIResult<bool>> Create(QLDangVienCreateRequest request);
         public Task<APIResult<QLDangVienViewModel>> GetByID(int IDQLDV);
+        public Task<APIResult<bool>> Edit(int IDQLDV,QLDangVienUpdateRequest request);
     }
 }

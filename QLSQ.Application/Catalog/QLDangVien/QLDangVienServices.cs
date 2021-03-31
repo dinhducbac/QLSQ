@@ -38,6 +38,15 @@ namespace QLSQ.Application.Catalog.QLDangVien
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Edit(int IDQLDV,QLDangVienUpdateRequest request)
+        {
+            var qldv = await _context.QLDangViens.FirstOrDefaultAsync(x=>x.IDQLDV == IDQLDV);
+            qldv.NgayVaoDang = request.NgayVaoDang;
+            qldv.NoiVaoDang = request.NoiVaoDang;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async  Task<APIResult<PageResult<QLDangVienViewModel>>> GetAllQLDangVien(GetQLDangVienPagingRequest request)
         {
             var query = (from sq in _context.SiQuans
