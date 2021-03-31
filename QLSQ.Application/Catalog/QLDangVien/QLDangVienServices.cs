@@ -75,5 +75,30 @@ namespace QLSQ.Application.Catalog.QLDangVien
             };
             return new APISuccessedResult<PageResult<QLDangVienViewModel>>(pageResult);
         }
+
+        public async Task<APIResult<QLDangVienViewModel>> GetByID(int IDQLDV)
+        {
+            var query = (from sq in _context.SiQuans
+                         join qldv in _context.QLDangViens
+                         on sq.IDSQ equals qldv.IDSQ
+                         where qldv.IDQLDV == IDQLDV
+                         select new QLDangVienViewModel()
+                         {
+                             IDQLDV = qldv.IDQLDV,
+                             IDSQ = qldv.IDSQ,
+                             HoTen = sq.HoTen,
+                             NgayVaoDang = qldv.NgayVaoDang,
+                             NoiVaoDang = qldv.NoiVaoDang
+                         }).FirstOrDefaultAsync();
+            var qldvViewModel = new QLDangVienViewModel() 
+            {
+                IDQLDV = query.Result.IDQLDV,
+                IDSQ = query.Result.IDSQ,
+                HoTen = query.Result.HoTen,
+                NgayVaoDang = query.Result.NgayVaoDang,
+                NoiVaoDang = query.Result.NoiVaoDang
+            };
+            return new APISuccessedResult<QLDangVienViewModel>(qldvViewModel);
+        }
     }
 }

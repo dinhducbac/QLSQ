@@ -51,5 +51,17 @@ namespace QLSQ.AdminApp.Services
             var user = JsonConvert.DeserializeObject<APISuccessedResult<PageResult<QLDangVienViewModel>>>(body);
             return user;
         }
+
+        public async Task<APIResult<QLDangVienViewModel>> GetByID(int IDQLDV)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var reponse = await client.GetAsync($"/api/QLDangViens/{IDQLDV}/details");
+            var body = await reponse.Content.ReadAsStringAsync();
+            var user = JsonConvert.DeserializeObject<APIResult<QLDangVienViewModel>>(body);
+            return user;
+        }
     }
 }
