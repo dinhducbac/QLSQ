@@ -4,6 +4,7 @@ using QLSQ.Application.Common;
 using QLSQ.Data.EF;
 using QLSQ.Data.Entities;
 using QLSQ.Utilities.Exceptions;
+using QLSQ.ViewModel.Catalogs.QLDangVien;
 using QLSQ.ViewModel.Catalogs.SiQuan;
 using QLSQ.ViewModel.Catalogs.SiQuanImage;
 using QLSQ.ViewModel.Common;
@@ -234,6 +235,22 @@ namespace QLSQ.Application.Catalog.SiQuans
             return new APISuccessedResult<SiQuanViewModel>(siquanmd);
         }
 
-       
+        public async Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien()
+        {
+            List<SiQuanViewModel> siQuanViewModels = new List<SiQuanViewModel>();
+            var query = from sq in _context.SiQuans 
+                        where !_context.QLDangViens.Any(qldv=>(qldv.IDSQ==sq.IDSQ))
+                        select sq;
+            foreach(var data in query)
+            {
+                var sqModel = new SiQuanViewModel()
+                {
+                    IDSQ = data.IDSQ,
+                    HoTen = data.HoTen
+                };
+                siQuanViewModels.Add(sqModel);
+            }
+            return new APISuccessedResult<List<SiQuanViewModel>>(siQuanViewModels); 
+        }
     }
 }
