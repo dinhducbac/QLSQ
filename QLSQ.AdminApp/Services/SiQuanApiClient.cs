@@ -80,6 +80,18 @@ namespace QLSQ.AdminApp.Services
             return user;
         }
 
+        public async Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var reponse = await client.GetAsync($"/api/SiQuans/getnotinqldv");
+            var body = await reponse.Content.ReadAsStringAsync();
+            var user = JsonConvert.DeserializeObject<APIResult<List<SiQuanViewModel>>>(body);
+            return user;
+        }
+
         public async Task<APIResult<bool>> Update(int IDSQ,SiQuanUpdateRequest request)
         {
             var client = _httpClientFactory.CreateClient();
