@@ -10,5 +10,6 @@ namespace QLSQ.AdminApp.Services
     public interface IQLDangVienAPIClient
     {
         public Task<APIResult<PageResult<QLDangVienViewModel>>> GetAllQLDangVien(GetQLDangVienPagingRequest request);
+        public Task<APIResult<bool>> Create(QLDangVienCreateRequest request);
     }
 }

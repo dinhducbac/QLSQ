@@ -85,6 +85,16 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest(result);
             return Ok(result);
         }
+        [HttpGet("getnotinqldv")]
+        public async Task<IActionResult> GetSiQuanNotInQLDangVien()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var listSq = await _manageSiQuanServices.GetSiQuanNotInQLDangVien();
+            if(listSq.IsSuccessed)
+                return Ok(listSq);
+            return BadRequest(listSq);
+        }
         // SiQuanImage---------------------------------------------------------------------
         [HttpPost("{IDSQ}/images")]
         public async Task<IActionResult> AddImage( int IDSQ, [FromForm]SiQuanImageCreateRequest request)

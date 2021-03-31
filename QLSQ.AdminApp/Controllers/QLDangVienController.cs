@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using QLSQ.AdminApp.Services;
 using QLSQ.ViewModel.Catalogs.QLDangVien;
+using QLSQ.ViewModel.Catalogs.SiQuan;
 
 namespace QLSQ.AdminApp.Controllers
 {
@@ -31,6 +32,28 @@ namespace QLSQ.AdminApp.Controllers
             };
             var result = await _qLDangVienAPIClient.GetAllQLDangVien(request);
             return View(result.ResultObj);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var qldvCreateRequest = new QLDangVienCreateRequest()
+            {
+                siQuanViewModels = new List<SiQuanViewModel>()
+            };
+            var getsq = await _siQuanApiClient.GetSiQuanNotInQLDangVien();
+            var sqlist = getsq.ResultObj;
+            qldvCreateRequest.siQuanViewModels = sqlist;
+            return View(qldvCreateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(QLDangVienCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLDangVienAPIClient.Create(request);
+            if (result.IsSuccessed)
+                return RedirectToAction("Index");
+            return View(result);
         }
     }
 }
