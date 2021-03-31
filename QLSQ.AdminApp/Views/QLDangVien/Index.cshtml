@@ -103,9 +103,9 @@
                                             @Html.DisplayFor(modelItem => item.NoiVaoDang)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            @Html.ActionLink("Edit", "Edit", new { IDQLDV = item.IDQLDV}) |
+                                            @Html.ActionLink("Details", "Details", new { IDQLDV = item.IDQLDV }) |
+                                            @Html.ActionLink("Delete", "Delete", new { IDQLDV = item.IDQLDV })
                                         </td>
                                     </tr>
                                 }

@@ -55,5 +55,14 @@ namespace QLSQ.AdminApp.Controllers
                 return RedirectToAction("Index");
             return View(result);
         }
+        public async Task<IActionResult> Details(int IDQLDV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLDangVienAPIClient.GetByID(IDQLDV);
+            if (result.ResultObj != null)
+                return View(result.ResultObj);
+            return View(result);
+        }
     }
 }
