@@ -39,6 +39,18 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(await reponse.Content.ReadAsStringAsync());
         }
 
+        public async Task<APIResult<QLCongTacViewModel>> Details(int IDCT)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var reponse = await client.GetAsync($"/api/QLCongTacs/{IDCT}/details");
+            var body = await reponse.Content.ReadAsStringAsync();
+            var user = JsonConvert.DeserializeObject<APIResult<QLCongTacViewModel>>(body);
+            return user;
+        }
+
         public async Task<APIResult<PageResult<QLCongTacViewModel>>> GetAll(GetQLCongTacPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();

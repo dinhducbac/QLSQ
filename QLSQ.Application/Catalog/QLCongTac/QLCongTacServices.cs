@@ -32,6 +32,33 @@ namespace QLSQ.Application.Catalog.QLCongTac
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<QLCongTacViewModel>> Details(int IDCT)
+        {
+            var qlctdetail = (from sq in _context.SiQuans
+                       join qlct in _context.QLCongTacs
+                       on sq.IDSQ equals qlct.IDSQ
+                       where qlct.IDCT == IDCT
+                       select new QLCongTacViewModel()
+                       {
+                           IDCT = qlct.IDCT,
+                           IDSQ = qlct.IDSQ,
+                           HoTen = sq.HoTen,
+                           DiaChiCT = qlct.DiaChiCT,
+                           ThoiGianBatDauCT = qlct.ThoiGianBatDauCT,
+                           ThoiGianKetThucCT = qlct.ThoiGianKetThucCT
+                       }).FirstOrDefault();
+            var qlctvm = new QLCongTacViewModel()
+            {
+                IDCT = qlctdetail.IDCT,
+                IDSQ = qlctdetail.IDSQ,
+                HoTen = qlctdetail.HoTen,
+                DiaChiCT = qlctdetail.DiaChiCT,
+                ThoiGianBatDauCT = qlctdetail.ThoiGianBatDauCT,
+                ThoiGianKetThucCT = qlctdetail.ThoiGianKetThucCT
+            };
+            return new APISuccessedResult<QLCongTacViewModel>(qlctvm);
+        }
+
         public async Task<APIResult<PageResult<QLCongTacViewModel>>> GetAll(GetQLCongTacPagingRequest request)
         {
             var query = (from sq in _context.SiQuans
