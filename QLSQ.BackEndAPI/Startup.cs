@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using QLSQ.Application.Catalog.QLCongTac;
 using QLSQ.Application.Catalog.QLDangVien;
 using QLSQ.Application.Catalog.SiQuan;
 using QLSQ.Application.Catalog.SiQuans;
@@ -56,6 +57,7 @@ namespace QLSQ.BackEndAPI
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRolesService, RolesService>();
             services.AddTransient<IQLDangVienServices, QLDangVienServices>();
+            services.AddTransient<IQLCongTacServices, QLCongTacServices>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
