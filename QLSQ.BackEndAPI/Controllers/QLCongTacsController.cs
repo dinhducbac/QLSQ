@@ -30,5 +30,11 @@ namespace QLSQ.BackEndAPI.Controllers
             var result = await _qLCongTacServices.Create(request);
             return Ok(result);
         }
+        [HttpGet("{IDCT}/details")]
+        public async Task<IActionResult> Details(int IDCT)
+        {
+            var result = await _qLCongTacServices.Details(IDCT);
+            return Ok(result);
+        }
     }
 }
