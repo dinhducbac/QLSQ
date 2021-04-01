@@ -13,5 +13,6 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<bool>> Create(QLDangVienCreateRequest request);
         public Task<APIResult<QLDangVienViewModel>> GetByID(int IDQLDV);
         public Task<APIResult<bool>> Edit(int IDQLDV, QLDangVienUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int IDQLDV);
     }
 }

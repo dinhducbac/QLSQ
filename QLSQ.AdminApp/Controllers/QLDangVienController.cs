@@ -31,6 +31,11 @@ namespace QLSQ.AdminApp.Controllers
                 pageSize = pageSize
             };
             var result = await _qLDangVienAPIClient.GetAllQLDangVien(request);
+            if (TempData["result"] != null)
+            {
+                ViewBag.Success = true;
+                ViewBag.SuccessMessage = TempData["result"];
+            }
             return View(result.ResultObj);
         }
         [HttpGet]
@@ -52,7 +57,10 @@ namespace QLSQ.AdminApp.Controllers
                 return View(ModelState);
             var result = await _qLDangVienAPIClient.Create(request);
             if (result.IsSuccessed)
+            {
+                TempData["result"] = "Tạo đảng viên thành công!";
                 return RedirectToAction("Index");
+            }           
             return View(result);
         }
         public async Task<IActionResult> Details(int IDQLDV)
@@ -90,9 +98,38 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLDangVienAPIClient.Edit(request.IDQLDV, request);
             if (result.IsSuccessed)
             {
+                TempData["result"] = "Sửa đảng viên thành công!";
                 return RedirectToAction("Index");
             }
             return View(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDQLDV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLDangVienAPIClient.GetByID(IDQLDV);
+            var qldvDeleteRequest = new QLDangVienDeleteRequest()
+            {
+                IDQLDV = result.ResultObj.IDQLDV,
+                IDSQ = result.ResultObj.IDSQ,
+                HoTen = result.ResultObj.HoTen,
+                NgayVaoDang = result.ResultObj.NgayVaoDang,
+                NoiVaoDang = result.ResultObj.NoiVaoDang
+            };
+            return View(qldvDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(QLDangVienDeleteRequest request)
+        {
+            var test = request.IDQLDV;
+            var result = await _qLDangVienAPIClient.Delete(request.IDQLDV);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa đảng viên thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Eror", "Home");
         }
     }
 }

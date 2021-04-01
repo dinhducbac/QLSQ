@@ -40,6 +40,21 @@ namespace QLSQ.AdminApp.Services
 
         }
 
+        public async Task<APIResult<bool>> Delete(int IDQLDV)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var reponse = await client.DeleteAsync($"/api/QLDangViens/{IDQLDV}/delete");
+            var body = await reponse.Content.ReadAsStringAsync();
+            if (reponse.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            }
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
         public async Task<APIResult<bool>> Edit(int IDQLDV, QLDangVienUpdateRequest request)
         {
             var client = _httpClientFactory.CreateClient();
