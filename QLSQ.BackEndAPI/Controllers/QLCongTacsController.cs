@@ -36,5 +36,12 @@ namespace QLSQ.BackEndAPI.Controllers
             var result = await _qLCongTacServices.Details(IDCT);
             return Ok(result);
         }
+        [HttpPut("{IDCT}/edit")]
+        public async Task<IActionResult> Edit(int IDCT, QLCongTacUpdateRequest request)
+        {
+            var result = await _qLCongTacServices.Edit(IDCT,request);
+            return Ok(result);
+
+        }
     }
 }
