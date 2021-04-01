@@ -1,0 +1,86 @@
+﻿@model QLSQ.ViewModel.Catalogs.QLCongTac.QLCongTacUpdateRequest
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Chỉnh sửa thông tin công tác</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Edit">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="IDCT" class="control-label"></label>
+                                        <input asp-for="IDCT" class="form-control" readonly />
+                                        <span asp-validation-for="IDCT" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDSQ" class="control-label"></label>
+                                        <input asp-for="IDSQ" class="form-control" readonly />
+                                        <span asp-validation-for="IDSQ" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="HoTen" class="control-label"></label>
+                                        <input asp-for="HoTen" class="form-control" readonly />
+                                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="DiaChiCT" class="control-label"></label>
+                                        <input asp-for="DiaChiCT" class="form-control" />
+                                        <span asp-validation-for="DiaChiCT" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ThoiGianBatDauCT" class="control-label"></label>
+                                        <input asp-for="ThoiGianBatDauCT" class="form-control" />
+                                        <span asp-validation-for="ThoiGianBatDauCT" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ThoiGianKetThucCT" class="control-label"></label>
+                                        <input asp-for="ThoiGianKetThucCT" class="form-control" />
+                                        <span asp-validation-for="ThoiGianKetThucCT" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+
+

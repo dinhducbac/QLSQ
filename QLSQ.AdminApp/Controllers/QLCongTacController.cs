@@ -75,5 +75,34 @@ namespace QLSQ.AdminApp.Controllers
             }
             return View(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDCT)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qlctvm = await _qLCongTacApiClient.Details(IDCT);
+            var qlctUpdateRequest = new QLCongTacUpdateRequest()
+            {
+                IDCT = qlctvm.ResultObj.IDCT,
+                IDSQ = qlctvm.ResultObj.IDSQ,
+                HoTen = qlctvm.ResultObj.HoTen,
+                DiaChiCT = qlctvm.ResultObj.DiaChiCT,
+                ThoiGianBatDauCT = qlctvm.ResultObj.ThoiGianBatDauCT,
+                ThoiGianKetThucCT = qlctvm.ResultObj.ThoiGianKetThucCT
+            };
+            return View(qlctUpdateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(QLCongTacUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLCongTacApiClient.Edit(request.IDCT, request);
+            if (result.IsSuccessed)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Eror", "Home");
+        }
     }
 }
