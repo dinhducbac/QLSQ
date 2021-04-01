@@ -32,6 +32,15 @@ namespace QLSQ.Application.Catalog.QLCongTac
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDCT)
+        {
+            var qlct = await _context.QLCongTacs.FirstOrDefaultAsync(x => x.IDCT == IDCT);
+            _context.QLCongTacs.Remove(qlct);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true); 
+
+        }
+
         public async Task<APIResult<QLCongTacViewModel>> Details(int IDCT)
         {
             var qlctdetail = (from sq in _context.SiQuans

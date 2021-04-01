@@ -59,6 +59,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLCongTacApiClient.Create(request);
             if (result.IsSuccessed)
             {
+                TempData["result"] = "Tạo công tác thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Eror", "Home");
@@ -100,9 +101,39 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLCongTacApiClient.Edit(request.IDCT, request);
             if (result.IsSuccessed)
             {
+                TempData["result"] = "Sửa công tác thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Eror", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDCT)
+        {
+            var qlctDetails = await _qLCongTacApiClient.Details(IDCT);
+            var qlctDeleteRequest = new QLCongTacDeleteRequest()
+            {
+                IDCT = qlctDetails.ResultObj.IDCT,
+                IDSQ = qlctDetails.ResultObj.IDSQ,
+                HoTen = qlctDetails.ResultObj.HoTen,
+                DiaChiCT = qlctDetails.ResultObj.DiaChiCT,
+                ThoiGianBatDauCT = qlctDetails.ResultObj.ThoiGianBatDauCT,
+                ThoiGianKetThucCT = qlctDetails.ResultObj.ThoiGianKetThucCT
+            };
+            return View(qlctDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(QLCongTacDeleteRequest request)
+        {
+            var test = request.IDCT;
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLCongTacApiClient.Delete(request.IDCT);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa công tác thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Eror","Home");
         }
     }
 }
