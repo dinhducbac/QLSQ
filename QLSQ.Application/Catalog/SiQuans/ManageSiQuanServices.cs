@@ -252,5 +252,21 @@ namespace QLSQ.Application.Catalog.SiQuans
             }
             return new APISuccessedResult<List<SiQuanViewModel>>(siQuanViewModels); 
         }
+
+        public async Task<APIResult<List<SiQuanViewModel>>> GetAllWithoutPaging()
+        {
+            List<SiQuanViewModel> listsqvm = new List<SiQuanViewModel>();
+            var query = _context.SiQuans;
+            foreach(var data in query)
+            {
+                var siquanvm = new SiQuanViewModel()
+                {
+                    IDSQ = data.IDSQ,
+                    HoTen = data.HoTen
+                };
+                listsqvm.Add(siquanvm);
+            }
+            return new APISuccessedResult<List<SiQuanViewModel>>(listsqvm);
+        }
     }
 }

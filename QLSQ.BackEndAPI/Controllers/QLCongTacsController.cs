@@ -24,5 +24,11 @@ namespace QLSQ.BackEndAPI.Controllers
             var result = await _qLCongTacServices.GetAll(request);
             return Ok(result);
         }
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] QLCongTacCreateRequest request)
+        {
+            var result = await _qLCongTacServices.Create(request);
+            return Ok(result);
+        }
     }
 }

@@ -11,5 +11,6 @@ namespace QLSQ.Application.Catalog.QLCongTac
     public interface IQLCongTacServices
     {
         public Task<APIResult<PageResult<QLCongTacViewModel>>> GetAll(GetQLCongTacPagingRequest request);
+        public Task<APIResult<bool>> Create(QLCongTacCreateRequest request);
     }
 }

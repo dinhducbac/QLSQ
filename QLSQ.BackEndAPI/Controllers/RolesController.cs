@@ -13,7 +13,7 @@ namespace QLSQ.BackEndAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class RolesController : ControllerBase
     {
         private readonly IRolesService _rolesService;
