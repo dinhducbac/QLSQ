@@ -59,6 +59,16 @@ namespace QLSQ.Application.Catalog.QLCongTac
             return new APISuccessedResult<QLCongTacViewModel>(qlctvm);
         }
 
+        public async Task<APIResult<bool>> Edit(int IDCT, QLCongTacUpdateRequest request)
+        {
+            var qlct = await _context.QLCongTacs.FirstOrDefaultAsync(x=>x.IDCT == IDCT);
+            qlct.DiaChiCT = request.DiaChiCT;
+            qlct.ThoiGianBatDauCT = request.ThoiGianBatDauCT;
+            qlct.ThoiGianKetThucCT = request.ThoiGianKetThucCT;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLCongTacViewModel>>> GetAll(GetQLCongTacPagingRequest request)
         {
             var query = (from sq in _context.SiQuans
