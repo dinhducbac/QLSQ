@@ -38,6 +38,14 @@ namespace QLSQ.Application.Catalog.QLDangVien
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDQLDV)
+        {
+            var qldv = await _context.QLDangViens.FirstOrDefaultAsync(x=>x.IDQLDV == IDQLDV);
+            _context.QLDangViens.Remove(qldv);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>();
+        }
+
         public async Task<APIResult<bool>> Edit(int IDQLDV,QLDangVienUpdateRequest request)
         {
             var qldv = await _context.QLDangViens.FirstOrDefaultAsync(x=>x.IDQLDV == IDQLDV);

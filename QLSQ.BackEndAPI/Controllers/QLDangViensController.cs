@@ -63,5 +63,13 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpDelete("{IDQLDV}/delete")]
+        public async Task<IActionResult> Delete(int IDQLDV)
+        {
+            var result = await _qLDangVienServices.Delete(IDQLDV);
+            if (result.IsSuccessed)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
