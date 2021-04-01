@@ -287,21 +287,21 @@ namespace QL_SiQuan.Data.Extensions
                     IDSQ = 1, 
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 
                     ThoiGianBatDauCT = DateTime.Parse("2007-9-13"),
-                    ThoiGianCT = 15
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
                 },
                 new QLCongTac {
                     IDCT = 2,
                     IDSQ = 2, 
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 
                     ThoiGianBatDauCT = DateTime.Parse("2007-9-13"),
-                    ThoiGianCT = 15
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
                 },
                 new QLCongTac {
                     IDCT = 3,
                     IDSQ = 3, 
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 
                     ThoiGianBatDauCT = DateTime.Parse("2007-9-13"),
-                    ThoiGianCT = 15
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
                 },
                 new QLCongTac
                 {
@@ -309,7 +309,7 @@ namespace QL_SiQuan.Data.Extensions
                     IDSQ = 4,
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa",
                     ThoiGianBatDauCT = DateTime.Parse("2007-9-13"),
-                    ThoiGianCT = 15
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
                 },
                 new QLCongTac
                 {
@@ -317,7 +317,7 @@ namespace QL_SiQuan.Data.Extensions
                     IDSQ = 5,
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa",
                     ThoiGianBatDauCT = DateTime.Parse("2005-9-13"),
-                    ThoiGianCT = 17
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
                 }
             );
         }

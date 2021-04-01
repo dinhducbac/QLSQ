@@ -12,7 +12,7 @@ namespace QLSQ.Data.Entities
         public int IDSQ { set; get; }
         public string DiaChiCT { set; get; }
         public DateTime ThoiGianBatDauCT { set; get; }
-        public int ThoiGianCT { get; set; }
+        public DateTime ThoiGianKetThucCT { get; set; }
 
         public SiQuan SiQuan { set; get; }
 

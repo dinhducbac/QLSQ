@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QLSQ.Data.Migrations
 {
-    public partial class identity : Migration
+    public partial class ChangeQLCongTac : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -196,7 +196,7 @@ namespace QLSQ.Data.Migrations
                     IDSQ = table.Column<int>(type: "int", nullable: false),
                     DiaChiCT = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     ThoiGianBatDauCT = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ThoiGianCT = table.Column<int>(type: "int", nullable: false)
+                    ThoiGianKetThucCT = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -274,6 +274,30 @@ namespace QLSQ.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "SiQuanImage",
+                columns: table => new
+                {
+                    IDImage = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IDSQ = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "varchar(300)", unicode: false, maxLength: 300, nullable: false),
+                    Caption = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: true),
+                    IsDefault = table.Column<bool>(type: "bit", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FileSize = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SiQuanImage", x => x.IDImage);
+                    table.ForeignKey(
+                        name: "FK_SiQuanImage_SiQuan_IDSQ",
+                        column: x => x.IDSQ,
+                        principalTable: "SiQuan",
+                        principalColumn: "IDSQ",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "QLChucVu",
                 columns: table => new
                 {
@@ -311,8 +335,8 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Mota", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "9214e5a0-e405-467e-a529-fc733f5a4f27", "Administrator Role", "admin", "admin" },
-                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "fd2b3bed-fc2c-467e-9d4d-c1520b5acff5", "Si Quan Role", "Si Quan", "Si Quan" }
+                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "9e1c3a3e-7299-4549-82c5-61a57be4aee7", "Administrator Role", "admin", "admin" },
+                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "cb75424c-8509-4c6d-b009-359fb4f6fc35", "Si Quan Role", "Si Quan", "Si Quan" }
                 });
 
             migrationBuilder.InsertData(
@@ -320,12 +344,12 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "1047e55b-3449-4de4-bc00-3e451588f186", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEGj6JYzf0YkXgmtgnReGloN1b9y0AD/4nXct0U82RGU76HWwHY8evD9whg1YPRE0PQ==", null, false, "", false, "dovantuan" },
-                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "8a223c20-8ab1-4a5a-8ea5-578204e2cfa4", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAEBlGIbeJs+6upU/Joy4+JVFVRBBH4OLiWVkU/QWL+PgkXaFIB3IRKdiAQSq2U++aZg==", null, false, "", false, "vuvancanh" },
-                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "22509324-1b6f-4c74-a992-80198e20a96d", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAEKIds6KWyvwjvH3D5FsEG7V08UjjdXXNdiannundbYApjdwaKIWJ7f7obUWQzCZI7w==", null, false, "", false, "admin" },
-                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "cadce2d4-d7f3-42b3-a65c-775326b0489e", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAELvY/qcnNF6uTyfJIQb3sPKBQYIMno+W8YPByuHh2gPWuOpSBspB5ZoEAgqDqEA/VQ==", null, false, "", false, "lethihien" },
-                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "d15995ad-8052-47c6-90a3-7ec20c45f848", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEChTvPLfAlV90nL2qi9D8AkhO+LXIeA8VOKEZxymAnFV9JcgMHnYUkUly3D1tujCHg==", null, false, "", false, "nguyenvanhoan" },
-                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "859c423f-e49d-431b-9f74-244f82e72ced", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEOZmgAKMjxa4LUXnxDVRuXtVZ4jLNPZBugQXJZ+gbDKUZVLKYhf4ScLAIWXO/DeObw==", null, false, "", false, "lethigiang" }
+                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "62aa2026-7dfb-41b4-863b-2fb61c4dbc09", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEOOYODsVZMa90EdI3RM5hOSNq+41u+BsGi/1JRpiiakP+DABQS2FN9619L4H2H5yhg==", null, false, "", false, "dovantuan" },
+                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "533234d0-2c8f-4cce-9206-ef1c62f7706a", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAEIB904fnF74o/OQWABM/vYlKE8zyDrFACZvMqmsCVB3Ls/UKOM2J84mHWdI2n6ep/Q==", null, false, "", false, "vuvancanh" },
+                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "bf8a4ab5-732c-4e85-a28e-96c3e4bfcc42", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAEFC8yiqMMBUQGHetcLAPX/LpNukT93Pl+A2FVBRYQ2fL6MPGB0QCmfEc+0JSJLNFQg==", null, false, "", false, "admin" },
+                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "be498637-df8d-48b1-a948-e089c6deec0b", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAEGkBIrtNScC+VBPYxKrtri9iqWRoIRZyQQ48J08hi1t2UgJ0/QxXKi0ciX8QDcoI+Q==", null, false, "", false, "lethihien" },
+                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "3a9d03a9-660e-4ec4-a8dc-a9e57c5731ab", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEHOaDQ1eE2ByYBPB4BJjs3kS/f/8CS7UN79JzIuPz3PV9eRF5kJHoOuTKHwBI+uE6g==", null, false, "", false, "nguyenvanhoan" },
+                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "a70cdba1-2d65-409c-9e0b-5f06fa123398", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEMzxbxKub7wzIeMouARhyFU/4S0uAa2hzdz4bZurbFi/OXhGk2UgkVq7++FEc1vbNA==", null, false, "", false, "lethigiang" }
                 });
 
             migrationBuilder.InsertData(
@@ -426,14 +450,14 @@ namespace QLSQ.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "QLCongTac",
-                columns: new[] { "IDCT", "DiaChiCT", "IDSQ", "ThoiGianBatDauCT", "ThoiGianCT" },
+                columns: new[] { "IDCT", "DiaChiCT", "IDSQ", "ThoiGianBatDauCT", "ThoiGianKetThucCT" },
                 values: new object[,]
                 {
-                    { 5, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 5, new DateTime(2005, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 17 },
-                    { 4, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 4, new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 15 },
-                    { 2, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 2, new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 15 },
-                    { 3, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 3, new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 15 },
-                    { 1, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 1, new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), 15 }
+                    { 5, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 5, new DateTime(2005, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 4, new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 2, new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 3, new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 1, "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 1, new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -505,6 +529,11 @@ namespace QLSQ.Data.Migrations
                 table: "SiQuan",
                 column: "UserId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SiQuanImage_IDSQ",
+                table: "SiQuanImage",
+                column: "IDSQ");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -529,6 +558,9 @@ namespace QLSQ.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "RoleClaim");
+
+            migrationBuilder.DropTable(
+                name: "SiQuanImage");
 
             migrationBuilder.DropTable(
                 name: "UserClaim");

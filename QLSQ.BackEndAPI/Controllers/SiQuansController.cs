@@ -95,6 +95,17 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(listSq);
             return BadRequest(listSq);
         }
+        [HttpGet("getallwithoutpaging")]
+        public async Task<IActionResult> GetAllWithoutPaging()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var listsq = await _manageSiQuanServices.GetAllWithoutPaging();
+            if (listsq.IsSuccessed)
+                return Ok(listsq);
+            return BadRequest(listsq);
+
+        }
         // SiQuanImage---------------------------------------------------------------------
         [HttpPost("{IDSQ}/images")]
         public async Task<IActionResult> AddImage( int IDSQ, [FromForm]SiQuanImageCreateRequest request)

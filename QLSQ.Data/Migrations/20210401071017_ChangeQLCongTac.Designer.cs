@@ -10,8 +10,8 @@ using QLSQ.Data.EF;
 namespace QLSQ.Data.Migrations
 {
     [DbContext(typeof(QL_SiQuanDBContext))]
-    [Migration("20201120072339_ChangeFileImageSize")]
-    partial class ChangeFileImageSize
+    [Migration("20210401071017_ChangeQLCongTac")]
+    partial class ChangeQLCongTac
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -175,7 +175,7 @@ namespace QLSQ.Data.Migrations
                         new
                         {
                             Id = new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"),
-                            ConcurrencyStamp = "0dede3f7-6489-4cdc-bcd4-e19cf1a85df3",
+                            ConcurrencyStamp = "9e1c3a3e-7299-4549-82c5-61a57be4aee7",
                             Mota = "Administrator Role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -183,7 +183,7 @@ namespace QLSQ.Data.Migrations
                         new
                         {
                             Id = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"),
-                            ConcurrencyStamp = "42f14c76-c045-4d2b-b3c5-b967a2ad7466",
+                            ConcurrencyStamp = "cb75424c-8509-4c6d-b009-359fb4f6fc35",
                             Mota = "Si Quan Role",
                             Name = "Si Quan",
                             NormalizedName = "Si Quan"
@@ -247,13 +247,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b90f027e-561b-4e7c-8528-9667129a8236",
+                            ConcurrencyStamp = "bf8a4ab5-732c-4e85-a28e-96c3e4bfcc42",
                             Email = "dinhducbac1998@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "dinhducbac1998@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBpXq0cdEsBAljReAOSkPED+HI46WV0txVjkPEogDUzGOhNfZZKB/+Kxm7jYsTob0A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFC8yiqMMBUQGHetcLAPX/LpNukT93Pl+A2FVBRYQ2fL6MPGB0QCmfEc+0JSJLNFQg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -263,13 +263,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8652cd47-697b-41b5-8c17-0d03080b77d3",
+                            ConcurrencyStamp = "be498637-df8d-48b1-a948-e089c6deec0b",
                             Email = "lethihien@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "lethihien@gmail.com",
                             NormalizedUserName = "lethihien",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPa5mEsyYPVcpL4VZCHtEuUB1Gy5SDwLxvdGCuBVxsgluA1qYqDhAlQklrtUvFz3og==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGkBIrtNScC+VBPYxKrtri9iqWRoIRZyQQ48J08hi1t2UgJ0/QxXKi0ciX8QDcoI+Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -279,13 +279,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7746f526-e8e4-4ac1-a611-380082a0159b",
+                            ConcurrencyStamp = "62aa2026-7dfb-41b4-863b-2fb61c4dbc09",
                             Email = "dovantuan@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "dovantuan@gmail.com",
                             NormalizedUserName = "dovantuan",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIfFjZOS5BpGTLpFM1FW2uEa6vUVZqPtZk3N+TbcxUn/ryBnWpQY3VB2dKmNy2VfLA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOOYODsVZMa90EdI3RM5hOSNq+41u+BsGi/1JRpiiakP+DABQS2FN9619L4H2H5yhg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -295,13 +295,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "84a53fdf-e1f6-4fa5-afcb-b4c81049d67d",
+                            ConcurrencyStamp = "a70cdba1-2d65-409c-9e0b-5f06fa123398",
                             Email = "lethigiang@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "lethigiang@gmail.com",
                             NormalizedUserName = "lethigiang",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJ4oMuuLTW21soCn+uolLZnbtpau95NeqOCbGgTU10iCXRy4qNpdmLJlA4TbeP4gPA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMzxbxKub7wzIeMouARhyFU/4S0uAa2hzdz4bZurbFi/OXhGk2UgkVq7++FEc1vbNA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -311,13 +311,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f35032cd-2e95-42fc-b995-7973d40db770",
+                            ConcurrencyStamp = "3a9d03a9-660e-4ec4-a8dc-a9e57c5731ab",
                             Email = "nguyenvanhoan@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "nguyenvanhoan@gmail.com",
                             NormalizedUserName = "nguyenvanhoan",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBdBMH6q2GKAZDw6Dw53l15PG8bT73MbwjKpQLJCOxttiIUYqzZAX+dIA/rE7ASPfg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHOaDQ1eE2ByYBPB4BJjs3kS/f/8CS7UN79JzIuPz3PV9eRF5kJHoOuTKHwBI+uE6g==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -327,13 +327,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2b43b74e-6ce9-48ed-9b0d-54114bf48313",
+                            ConcurrencyStamp = "533234d0-2c8f-4cce-9206-ef1c62f7706a",
                             Email = "vuvancanh@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "vuvancanh@gmail.com",
                             NormalizedUserName = "vuvancanh",
-                            PasswordHash = "AQAAAAEAACcQAAAAED8/2giydekdGdnL3NApkcm6T8BMPZ87HgTa8/eZtOPuulPhCfdtBceNrFvDqMKtzw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIB904fnF74o/OQWABM/vYlKE8zyDrFACZvMqmsCVB3Ls/UKOM2J84mHWdI2n6ep/Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -620,8 +620,8 @@ namespace QLSQ.Data.Migrations
                     b.Property<DateTime>("ThoiGianBatDauCT")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ThoiGianCT")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("ThoiGianKetThucCT")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("IDCT");
 
@@ -636,7 +636,7 @@ namespace QLSQ.Data.Migrations
                             DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa",
                             IDSQ = 1,
                             ThoiGianBatDauCT = new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ThoiGianCT = 15
+                            ThoiGianKetThucCT = new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -644,7 +644,7 @@ namespace QLSQ.Data.Migrations
                             DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa",
                             IDSQ = 2,
                             ThoiGianBatDauCT = new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ThoiGianCT = 15
+                            ThoiGianKetThucCT = new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -652,7 +652,7 @@ namespace QLSQ.Data.Migrations
                             DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa",
                             IDSQ = 3,
                             ThoiGianBatDauCT = new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ThoiGianCT = 15
+                            ThoiGianKetThucCT = new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -660,7 +660,7 @@ namespace QLSQ.Data.Migrations
                             DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa",
                             IDSQ = 4,
                             ThoiGianBatDauCT = new DateTime(2007, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ThoiGianCT = 15
+                            ThoiGianKetThucCT = new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -668,7 +668,7 @@ namespace QLSQ.Data.Migrations
                             DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa",
                             IDSQ = 5,
                             ThoiGianBatDauCT = new DateTime(2005, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ThoiGianCT = 17
+                            ThoiGianKetThucCT = new DateTime(2030, 9, 13, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
