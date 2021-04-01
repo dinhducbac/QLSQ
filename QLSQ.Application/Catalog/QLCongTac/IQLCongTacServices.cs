@@ -14,5 +14,6 @@ namespace QLSQ.Application.Catalog.QLCongTac
         public Task<APIResult<bool>> Create(QLCongTacCreateRequest request);
         public Task<APIResult<QLCongTacViewModel>> Details(int IDCT);
         public Task<APIResult<bool>> Edit(int IDCT, QLCongTacUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int IDCT);
     }
 }
