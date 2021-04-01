@@ -22,7 +22,7 @@ namespace QLSQ.BackEndAPI.Controllers
         public async Task<IActionResult> GetAll([FromQuery] GetQLCongTacPagingRequest request)
         {
             var result = await _qLCongTacServices.GetAll(request);
-            return Ok(request);
+            return Ok(result);
         }
     }
 }
