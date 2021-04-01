@@ -64,5 +64,35 @@ namespace QLSQ.AdminApp.Controllers
                 return View(result.ResultObj);
             return View(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDQLDV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLDangVienAPIClient.GetByID(IDQLDV);
+            if (result.ResultObj != null)
+            {
+                var qldvUpdateRequest = new QLDangVienUpdateRequest()
+                {
+                    IDQLDV = result.ResultObj.IDQLDV,
+                    IDSQ = result.ResultObj.IDSQ,
+                    HoTen = result.ResultObj.HoTen,
+                    NgayVaoDang = result.ResultObj.NgayVaoDang,
+                    NoiVaoDang = result.ResultObj.NoiVaoDang
+                };
+                return View(qldvUpdateRequest);
+            }
+            return View(result);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(QLDangVienUpdateRequest request)
+        {
+            var result = await _qLDangVienAPIClient.Edit(request.IDQLDV, request);
+            if (result.IsSuccessed)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(result);
+        }
     }
 }
