@@ -79,7 +79,7 @@
                                     Thời gian bắt đầu công tác
                                 </th>
                                 <th>
-                                    Thời gian công tác
+                                    Thời gian kết thúc công tác
                                 </th>
                                 <th>
                                     Action
@@ -106,12 +106,12 @@
                                         @Html.DisplayFor(modelItem => item.ThoiGianBatDauCT)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ThoiGianCT)
+                                        @Html.DisplayFor(modelItem => item.ThoiGianKetThucCT)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                        @Html.ActionLink("Edit", "Edit", new { IDCT = item.IDCT }) |
+                                        @Html.ActionLink("Details", "Details", new { IDCT = item.IDCT }) |
+                                        @Html.ActionLink("Delete", "Delete", new { IDCT = item.IDCT })
                                     </td>
                                 </tr>
                             }

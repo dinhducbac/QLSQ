@@ -10,5 +10,6 @@ namespace QLSQ.AdminApp.Services
     public interface IQLCongTacApiClient
     {
         public Task<APIResult<PageResult<QLCongTacViewModel>>> GetAll(GetQLCongTacPagingRequest request);
+        public Task<APIResult<bool>> Create(QLCongTacCreateRequest request);
     }
 }

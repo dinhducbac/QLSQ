@@ -1,0 +1,73 @@
+﻿@model QLSQ.ViewModel.Catalogs.QLCongTac.QLCongTacCreateRequest
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Tạo công tác của sĩ quan</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tạo User</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="IDSQ" class="control-label"></label>
+                                        <select asp-for="IDSQ" class="form-control" asp-items="@(new SelectList(Model.siQuanViewModels,"IDSQ","HoTen"))"></select>
+                                        <span asp-validation-for="IDSQ" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="DiaChiCT" class="control-label"></label>
+                                        <input asp-for="DiaChiCT" class="form-control" />
+                                        <span asp-validation-for="DiaChiCT" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ThoiGianBatDauCT" class="control-label"></label>
+                                        <input asp-for="ThoiGianBatDauCT" class="form-control" />
+                                        <span asp-validation-for="ThoiGianBatDauCT" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ThoiGianKetThucCT" class="control-label"></label>
+                                        <input asp-for="ThoiGianKetThucCT" class="form-control" />
+                                        <span asp-validation-for="ThoiGianKetThucCT" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+

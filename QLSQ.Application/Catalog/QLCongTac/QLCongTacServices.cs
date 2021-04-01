@@ -17,6 +17,21 @@ namespace QLSQ.Application.Catalog.QLCongTac
         {
             _context = context;
         }
+
+        public async Task<APIResult<bool>> Create(QLCongTacCreateRequest request)
+        {
+            var qlct = new QLSQ.Data.Entities.QLCongTac()
+            {
+                IDSQ = request.IDSQ,
+                DiaChiCT = request.DiaChiCT,
+                ThoiGianBatDauCT = request.ThoiGianBatDauCT,
+                ThoiGianKetThucCT = request.ThoiGianKetThucCT
+            };
+            _context.QLCongTacs.Add(qlct);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLCongTacViewModel>>> GetAll(GetQLCongTacPagingRequest request)
         {
             var query = (from sq in _context.SiQuans
@@ -29,7 +44,7 @@ namespace QLSQ.Application.Catalog.QLCongTac
                              HoTen = sq.HoTen,
                              DiaChiCT = qlct.DiaChiCT,
                              ThoiGianBatDauCT = qlct.ThoiGianBatDauCT,
-                             ThoiGianCT = qlct.ThoiGianCT
+                             ThoiGianKetThucCT = qlct.ThoiGianKetThucCT
                          });
             if (!string.IsNullOrEmpty(request.keyword))
             {
@@ -45,7 +60,7 @@ namespace QLSQ.Application.Catalog.QLCongTac
                     HoTen = x.HoTen,
                     DiaChiCT = x.DiaChiCT,
                     ThoiGianBatDauCT = x.ThoiGianBatDauCT,
-                    ThoiGianCT = x.ThoiGianCT
+                    ThoiGianKetThucCT = x.ThoiGianKetThucCT
                 }).ToListAsync();
             var pageresult = new PageResult<QLCongTacViewModel>()
             {
