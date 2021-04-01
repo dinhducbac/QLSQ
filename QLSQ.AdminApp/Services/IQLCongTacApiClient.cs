@@ -11,5 +11,6 @@ namespace QLSQ.AdminApp.Services
     {
         public Task<APIResult<PageResult<QLCongTacViewModel>>> GetAll(GetQLCongTacPagingRequest request);
         public Task<APIResult<bool>> Create(QLCongTacCreateRequest request);
+        public Task<APIResult<QLCongTacViewModel>> Details(int IDCT);
     }
 }
