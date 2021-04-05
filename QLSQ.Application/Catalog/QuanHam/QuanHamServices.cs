@@ -19,6 +19,21 @@ namespace QLSQ.Application.Catalog.QuanHam
             _context = context;
         }
 
+        public async Task<APIResult<bool>> Create(QuanHamCreateRequest request)
+        {
+            if (!string.IsNullOrEmpty(request.TenQH))
+            {
+                var qh = new QLSQ.Data.Entities.QuanHam()
+                {
+                    TenQH = request.TenQH
+                };
+                _context.QuanHams.Add(qh);
+                await _context.SaveChangesAsync();
+                return new APISuccessedResult<bool>(true);
+            }
+            return new APIErrorResult<bool>("Thất bại");
+        }
+
         public async Task<APIResult<QuanHamViewModel>> Details(int IDQH)
         {
             var qh =  _context.QuanHams.FirstOrDefaultAsync(x=>x.IDQH == IDQH);
