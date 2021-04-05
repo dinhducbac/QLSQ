@@ -17,7 +17,7 @@ namespace QLSQ.Data.Entities
         public string SDT { get; set; }
 
         public AppUser AppUser {  get; set; }
-        public List<QLLuong> QLLuongs { set; get; }
+        public QLLuong QLLuongs { set; get; }
         public List<QLDangVien> QLDangViens { set; get; }
         public List<QLChucVu> QLChucVus { set; get; }
         public List<QLCongTac> QLCongTacs { set; get; }

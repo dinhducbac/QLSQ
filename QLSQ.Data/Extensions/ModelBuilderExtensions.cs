@@ -238,14 +238,14 @@ namespace QL_SiQuan.Data.Extensions
                 }
             );
             modelBuilder.Entity<BoPhan>().HasData(
-                new BoPhan { IDBP = 1, TenBP= "Ban giám hiệu"},
+                new BoPhan { IDBP = 1, TenBP = "Ban giám hiệu" },
                 new BoPhan { IDBP = 2, TenBP = "Phòng" },
-                new BoPhan { IDBP = 3, TenBP = "Trợ lý"},
+                new BoPhan { IDBP = 3, TenBP = "Trợ lý" },
                 new BoPhan { IDBP = 4, TenBP = "Khoa" },
-                new BoPhan { IDBP = 5, TenBP = "Đơn vị"}
+                new BoPhan { IDBP = 5, TenBP = "Đơn vị" }
             );
             modelBuilder.Entity<ChucVu>().HasData(
-                new ChucVu { IDCV = 1, TenCV = "Hiệu trưởng", IDBP= 1 },
+                new ChucVu { IDCV = 1, TenCV = "Hiệu trưởng", IDBP = 1 },
                 new ChucVu { IDCV = 2, TenCV = "Hiệu phó đào tạo", IDBP = 1 },
                 new ChucVu { IDCV = 3, TenCV = "Phó quân sự", IDBP = 1 },
                 new ChucVu { IDCV = 4, TenCV = "Phó kỹ thuật", IDBP = 1 },
@@ -268,18 +268,38 @@ namespace QL_SiQuan.Data.Extensions
                 new ChucVu { IDCV = 21, TenCV = "Trung đội trưởng", IDBP = 5 }
                 );
             modelBuilder.Entity<QLChucVu>().HasData(
-                new QLChucVu { IDQLCV = 1, IDSQ = 1, IDQH = 8, IDCV = 15},
+                new QLChucVu { IDQLCV = 1, IDSQ = 1, IDQH = 8, IDCV = 15 },
                 new QLChucVu { IDQLCV = 2, IDSQ = 2, IDQH = 8, IDCV = 15 },
                 new QLChucVu { IDQLCV = 3, IDSQ = 3, IDQH = 5, IDCV = 15 },
                 new QLChucVu { IDQLCV = 4, IDSQ = 4, IDQH = 6, IDCV = 15 },
                 new QLChucVu { IDQLCV = 5, IDSQ = 5, IDQH = 8, IDCV = 15 }
             );
+            modelBuilder.Entity<HeSoLuongTheoQuanHam>().HasData(
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 1, IDQH = 1, HeSoLuong = 4.2f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 2, IDQH = 2, HeSoLuong = 4.6f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 3, IDQH = 3, HeSoLuong = 5.0f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 4, IDQH = 4, HeSoLuong = 5.4f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 5, IDQH = 5, HeSoLuong = 6.0f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 6, IDQH = 6, HeSoLuong = 6.6f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 7, IDQH = 7, HeSoLuong = 7.3f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 8, IDQH = 8, HeSoLuong = 8.0f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 9, IDQH = 9, HeSoLuong = 8.6f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 10, IDQH = 10, HeSoLuong = 9.2f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 11, IDQH = 11, HeSoLuong = 9.8f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 12, IDQH = 12, HeSoLuong = 10.4f }
+            );
+            modelBuilder.Entity<HeSoPhuCapTheoChucVu>().HasData(
+                new HeSoPhuCapTheoChucVu{ IDHeSoPhuCapCV = 1, IDCV = 15, HeSoPhuCap = 0.25f}
+                );
+            modelBuilder.Entity<LuongCoBan>().HasData(
+                new LuongCoBan { IDLuongCB=1,LuongCB = 1429000 }
+                );
             modelBuilder.Entity<QLLuong>().HasData(
-                new QLLuong { IDLuong = 1, IDSQ = 1, HeSoLuong = 8.0F, LuongCoBan = 1429000, HeSoPhuCap = 0F },
-                new QLLuong { IDLuong = 2, IDSQ = 2, HeSoLuong = 8.0F, LuongCoBan = 1429000, HeSoPhuCap = 0F },
-                new QLLuong { IDLuong = 3, IDSQ = 3, HeSoLuong = 6.0F, LuongCoBan = 1429000, HeSoPhuCap = 0F },
-                new QLLuong { IDLuong = 4, IDSQ = 4, HeSoLuong = 6.6F, LuongCoBan = 1429000, HeSoPhuCap = 0F },
-                new QLLuong { IDLuong = 5, IDSQ = 5, HeSoLuong = 8.0F, LuongCoBan = 1429000, HeSoPhuCap = 0F }
+                new QLLuong { IDLuong = 1, IDSQ = 1, IDHeSoLuongQH = 8, IDLuongCB = 1, IDHeSoPhuCapCV = 1 },
+                new QLLuong { IDLuong = 2, IDSQ = 2, IDHeSoLuongQH = 8, IDLuongCB = 1, IDHeSoPhuCapCV = 1 },
+                new QLLuong { IDLuong = 3, IDSQ = 3, IDHeSoLuongQH = 5, IDLuongCB = 1, IDHeSoPhuCapCV = 1 },
+                new QLLuong { IDLuong = 4, IDSQ = 4, IDHeSoLuongQH = 6, IDLuongCB = 1, IDHeSoPhuCapCV = 1 },
+                new QLLuong { IDLuong = 5, IDSQ = 5, IDHeSoLuongQH = 8, IDLuongCB = 1, IDHeSoPhuCapCV = 1 }
             );
             modelBuilder.Entity<QLCongTac>().HasData(
                 new QLCongTac { 

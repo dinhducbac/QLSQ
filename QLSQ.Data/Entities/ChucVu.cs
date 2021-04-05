@@ -14,5 +14,6 @@ namespace QLSQ.Data.Entities
 
         public BoPhan BoPhan { get; set; }
         public List<QLChucVu> QLChucVus { get; set; }
+        public List<HeSoPhuCapTheoChucVu> HeSoPhuCapTheoChucVus { get; set; }
     }
 }
