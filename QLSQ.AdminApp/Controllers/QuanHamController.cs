@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using QLSQ.AdminApp.Services;
 using QLSQ.ViewModel.Catalogs.QuanHam;
 
@@ -10,10 +11,12 @@ namespace QLSQ.AdminApp.Controllers
 {
     public class QuanHamController : Controller
     {
+        public readonly IConfiguration _configuration;
         public readonly IQuanHamApiClient _quanHamApiClient;
-        public QuanHamController(IQuanHamApiClient quanHamApiClient)
+        public QuanHamController(IQuanHamApiClient quanHamApiClient,IConfiguration configuration )
         {
             _quanHamApiClient = quanHamApiClient;
+            _configuration = configuration;
         }
         public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize  = 10)
         {
@@ -42,6 +45,23 @@ namespace QLSQ.AdminApp.Controllers
                 return View(result.ResultObj);
             }
             return View(result);
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(QuanHamCreateRequest request)
+        {
+            var result = await _quanHamApiClient.Create(request);
+            if (result.IsSuccessed)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Eror","Home");
         }
     }
 }
