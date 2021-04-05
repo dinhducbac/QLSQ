@@ -45,6 +45,15 @@ namespace QLSQ.Application.Catalog.QuanHam
             return new APISuccessedResult<QuanHamViewModel>(qhvm);
         }
 
+        public async Task<APIResult<bool>> Edit(int IDQH,QuanHamUpdateRequest request)
+        {
+            var qh = await _context.QuanHams.FirstOrDefaultAsync(x => x.IDQH == IDQH);
+            qh.TenQH = request.TenQH;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+
+        }
+
         public async Task<APIResult<PageResult<QuanHamViewModel>>> GetAllWithPaging(GetQuanHamPagingRequest request)
         {
             var query = from qh in _context.QuanHams select qh;

@@ -63,5 +63,33 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Eror","Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDQH)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qhvm = await _quanHamApiClient.Details(IDQH);
+            if(qhvm.ResultObj != null)
+            {
+                var qhUpdateRequest = new QuanHamUpdateRequest()
+                {
+                    IDQH = qhvm.ResultObj.IDQH,
+                    TenQH = qhvm.ResultObj.TenQH
+                };
+                return View(qhUpdateRequest);
+            }
+            return View(qhvm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(QuanHamUpdateRequest request)
+        {
+            var test = request.IDQH;
+            var qhEdit = await _quanHamApiClient.Edit(request.IDQH,request);
+            if (qhEdit.IsSuccessed)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Eror","Home");
+        }
     }
 }

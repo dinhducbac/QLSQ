@@ -38,5 +38,11 @@ namespace QLSQ.BackEndAPI.Controllers
             var create = await _quanHamServices.Create(request);
             return Ok(create);
         }
+        [HttpPut("{IDQH}/edit")]
+        public async Task<IActionResult> Edit(int IDQH, [FromBody] QuanHamUpdateRequest request)
+        {
+            var edit = await _quanHamServices.Edit(IDQH,request);
+            return Ok(edit);
+        }
     }
 }
