@@ -13,5 +13,6 @@ namespace QLSQ.Data.Entities
         public string TenQH { set; get; }
 
         public List<QLChucVu> QLChucVus { set; get; }
+        public List<HeSoLuongTheoQuanHam> HeSoLuongTheoQuanHams { set; get; }
     }
 }

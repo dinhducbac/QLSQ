@@ -28,6 +28,10 @@ namespace QLSQ.Data.EF
             modelBuilder.ApplyConfiguration(new AppUserConfigurations());
             modelBuilder.ApplyConfiguration(new AppRoleConfigurations());
             modelBuilder.ApplyConfiguration(new SiQuanImageConfigurations());
+            modelBuilder.ApplyConfiguration(new HeSoLuongTheoQuanHamConfiguarations());
+            modelBuilder.ApplyConfiguration(new HeSoPhuCapTheoChucVuConfigurations());
+            modelBuilder.ApplyConfiguration(new LuongCoBanConfigrations());
+
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole").HasKey(x => new { x.UserId, x.RoleId });
             modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin").HasKey(x => x.UserId);
@@ -40,7 +44,7 @@ namespace QLSQ.Data.EF
         {
         }
 
-        public DbSet<SiQuan> SiQuans { get; set; }
+
         public DbSet<QLLuong> QLLuongs { get; set; }
         public DbSet<QLDangVien> QLDangViens { get; set; }
         public DbSet<QLNghiPhep> QLNghiPheps { get; set; }
@@ -50,6 +54,10 @@ namespace QLSQ.Data.EF
         public DbSet<ChucVu> ChucVus { get; set; }
         public DbSet<QLChucVu> QLChucVus { get; set; }
         public DbSet<SiQuanImage> SiQuanImages { get; set; }
+        public DbSet<HeSoLuongTheoQuanHam> HeSoLuongTheoQuanHams { get; set; }
+        public DbSet<HeSoPhuCapTheoChucVu> HeSoPhuCapTheoChucVus { get; set; }
+        public DbSet<LuongCoBan> LuongCoBans { get; set; }
+        public DbSet<SiQuan> SiQuans { get; set; }
         //public DbSet<AppUser> AppUsers { get; set; }
         //public DbSet<AppRole> AppRoles { get; set; }
     }
