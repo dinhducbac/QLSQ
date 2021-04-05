@@ -173,7 +173,7 @@ namespace QLSQ.Data.Migrations
                         new
                         {
                             Id = new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"),
-                            ConcurrencyStamp = "9e1c3a3e-7299-4549-82c5-61a57be4aee7",
+                            ConcurrencyStamp = "8c875327-79c9-4be5-8ffe-a945574bcc6f",
                             Mota = "Administrator Role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -181,7 +181,7 @@ namespace QLSQ.Data.Migrations
                         new
                         {
                             Id = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"),
-                            ConcurrencyStamp = "cb75424c-8509-4c6d-b009-359fb4f6fc35",
+                            ConcurrencyStamp = "4ceefbd4-c1bc-4d7b-af70-7f30339d685a",
                             Mota = "Si Quan Role",
                             Name = "Si Quan",
                             NormalizedName = "Si Quan"
@@ -245,13 +245,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bf8a4ab5-732c-4e85-a28e-96c3e4bfcc42",
+                            ConcurrencyStamp = "2d8a025d-1210-427a-b451-99ea411b7fa7",
                             Email = "dinhducbac1998@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "dinhducbac1998@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFC8yiqMMBUQGHetcLAPX/LpNukT93Pl+A2FVBRYQ2fL6MPGB0QCmfEc+0JSJLNFQg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGMEHTdj0qYPAmPn47M4upkfgYLCFa7usxpd2kpATT/xm7KQDkU7psRu2l3nhEg0cQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -261,13 +261,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "be498637-df8d-48b1-a948-e089c6deec0b",
+                            ConcurrencyStamp = "16e42bc8-ed04-4404-90c5-86715103afab",
                             Email = "lethihien@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "lethihien@gmail.com",
                             NormalizedUserName = "lethihien",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGkBIrtNScC+VBPYxKrtri9iqWRoIRZyQQ48J08hi1t2UgJ0/QxXKi0ciX8QDcoI+Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMUIcNxPy3iyc0f5X63RJLzHI59iK9UQB2PTqDPdcz33HtPhxbvmWWUA+U/pT167Bg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -277,13 +277,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "62aa2026-7dfb-41b4-863b-2fb61c4dbc09",
+                            ConcurrencyStamp = "d81045d1-6008-4719-9d63-da4c2dbb052a",
                             Email = "dovantuan@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "dovantuan@gmail.com",
                             NormalizedUserName = "dovantuan",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOOYODsVZMa90EdI3RM5hOSNq+41u+BsGi/1JRpiiakP+DABQS2FN9619L4H2H5yhg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMmLpZWrYwQ4ik233Ie6ukTIzb0vmv3Q6gLxWBDfXbjXQn/lzm5jpBJfKIqx/mEJqQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -293,13 +293,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a70cdba1-2d65-409c-9e0b-5f06fa123398",
+                            ConcurrencyStamp = "ab0e32ca-e5c7-46e3-b65a-730df989f0b4",
                             Email = "lethigiang@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "lethigiang@gmail.com",
                             NormalizedUserName = "lethigiang",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMzxbxKub7wzIeMouARhyFU/4S0uAa2hzdz4bZurbFi/OXhGk2UgkVq7++FEc1vbNA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDyiNNfgA8QHRpYRcPPqFJXlWo6I+n+B8GcqkM1MFSQRM+eZOIwnXtSwVMUAkheD/Q==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -309,13 +309,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3a9d03a9-660e-4ec4-a8dc-a9e57c5731ab",
+                            ConcurrencyStamp = "6b2129a9-8e9f-492a-8a8c-f289a94876e1",
                             Email = "nguyenvanhoan@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "nguyenvanhoan@gmail.com",
                             NormalizedUserName = "nguyenvanhoan",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHOaDQ1eE2ByYBPB4BJjs3kS/f/8CS7UN79JzIuPz3PV9eRF5kJHoOuTKHwBI+uE6g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEInH0QthzrkNI/w3U6fp4O/qVzZRgOKTZFCvN3GS+Erxilx9RQHpGHDINBvHL/tFkg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -325,13 +325,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "533234d0-2c8f-4cce-9206-ef1c62f7706a",
+                            ConcurrencyStamp = "b78cd81d-5018-41f6-bd9a-c61d3cb3583b",
                             Email = "vuvancanh@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "vuvancanh@gmail.com",
                             NormalizedUserName = "vuvancanh",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIB904fnF74o/OQWABM/vYlKE8zyDrFACZvMqmsCVB3Ls/UKOM2J84mHWdI2n6ep/Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPhTBZ8Iqd52SNS7Fz6OeL1J7faB0xkXD/nLIhgAh5wS6guHhshCmW79RZdBqalkMA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -532,6 +532,150 @@ namespace QLSQ.Data.Migrations
                             IDCV = 21,
                             IDBP = 5,
                             TenCV = "Trung đội trưởng"
+                        });
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.HeSoLuongTheoQuanHam", b =>
+                {
+                    b.Property<int>("IDHeSoLuongQH")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<float>("HeSoLuong")
+                        .HasColumnType("real");
+
+                    b.Property<int>("IDQH")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDHeSoLuongQH");
+
+                    b.HasIndex("IDQH");
+
+                    b.ToTable("HeSoLuongTheoQuanHam");
+
+                    b.HasData(
+                        new
+                        {
+                            IDHeSoLuongQH = 1,
+                            HeSoLuong = 4.2f,
+                            IDQH = 1
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 2,
+                            HeSoLuong = 4.6f,
+                            IDQH = 2
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 3,
+                            HeSoLuong = 5f,
+                            IDQH = 3
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 4,
+                            HeSoLuong = 5.4f,
+                            IDQH = 4
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 5,
+                            HeSoLuong = 6f,
+                            IDQH = 5
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 6,
+                            HeSoLuong = 6.6f,
+                            IDQH = 6
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 7,
+                            HeSoLuong = 7.3f,
+                            IDQH = 7
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 8,
+                            HeSoLuong = 8f,
+                            IDQH = 8
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 9,
+                            HeSoLuong = 8.6f,
+                            IDQH = 9
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 10,
+                            HeSoLuong = 9.2f,
+                            IDQH = 10
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 11,
+                            HeSoLuong = 9.8f,
+                            IDQH = 11
+                        },
+                        new
+                        {
+                            IDHeSoLuongQH = 12,
+                            HeSoLuong = 10.4f,
+                            IDQH = 12
+                        });
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.HeSoPhuCapTheoChucVu", b =>
+                {
+                    b.Property<int>("IDHeSoPhuCapCV")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<float>("HeSoPhuCap")
+                        .HasColumnType("real");
+
+                    b.Property<int>("IDCV")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDHeSoPhuCapCV");
+
+                    b.HasIndex("IDCV");
+
+                    b.ToTable("HeSoPhuCapTheoChucVu");
+
+                    b.HasData(
+                        new
+                        {
+                            IDHeSoPhuCapCV = 1,
+                            HeSoPhuCap = 0.25f,
+                            IDCV = 15
+                        });
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.LuongCoBan", b =>
+                {
+                    b.Property<int>("IDLuongCB")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<decimal>("LuongCB")
+                        .HasColumnType("decimal(20,0)");
+
+                    b.HasKey("IDLuongCB");
+
+                    b.ToTable("LuongCoBan");
+
+                    b.HasData(
+                        new
+                        {
+                            IDLuongCB = 1,
+                            LuongCB = 1429000m
                         });
                 });
 
@@ -740,23 +884,28 @@ namespace QLSQ.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<float>("HeSoLuong")
-                        .HasColumnType("real");
+                    b.Property<int>("IDHeSoLuongQH")
+                        .HasColumnType("int");
 
-                    b.Property<float>("HeSoPhuCap")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("real")
-                        .HasDefaultValue(0f);
+                    b.Property<int>("IDHeSoPhuCapCV")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IDLuongCB")
+                        .HasColumnType("int");
 
                     b.Property<int>("IDSQ")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("LuongCoBan")
-                        .HasColumnType("decimal(20,0)");
-
                     b.HasKey("IDLuong");
 
-                    b.HasIndex("IDSQ");
+                    b.HasIndex("IDHeSoLuongQH");
+
+                    b.HasIndex("IDHeSoPhuCapCV");
+
+                    b.HasIndex("IDLuongCB");
+
+                    b.HasIndex("IDSQ")
+                        .IsUnique();
 
                     b.ToTable("QLLuong");
 
@@ -764,42 +913,42 @@ namespace QLSQ.Data.Migrations
                         new
                         {
                             IDLuong = 1,
-                            HeSoLuong = 8f,
-                            HeSoPhuCap = 0f,
-                            IDSQ = 1,
-                            LuongCoBan = 1429000m
+                            IDHeSoLuongQH = 8,
+                            IDHeSoPhuCapCV = 1,
+                            IDLuongCB = 1,
+                            IDSQ = 1
                         },
                         new
                         {
                             IDLuong = 2,
-                            HeSoLuong = 8f,
-                            HeSoPhuCap = 0f,
-                            IDSQ = 2,
-                            LuongCoBan = 1429000m
+                            IDHeSoLuongQH = 8,
+                            IDHeSoPhuCapCV = 1,
+                            IDLuongCB = 1,
+                            IDSQ = 2
                         },
                         new
                         {
                             IDLuong = 3,
-                            HeSoLuong = 6f,
-                            HeSoPhuCap = 0f,
-                            IDSQ = 3,
-                            LuongCoBan = 1429000m
+                            IDHeSoLuongQH = 5,
+                            IDHeSoPhuCapCV = 1,
+                            IDLuongCB = 1,
+                            IDSQ = 3
                         },
                         new
                         {
                             IDLuong = 4,
-                            HeSoLuong = 6.6f,
-                            HeSoPhuCap = 0f,
-                            IDSQ = 4,
-                            LuongCoBan = 1429000m
+                            IDHeSoLuongQH = 6,
+                            IDHeSoPhuCapCV = 1,
+                            IDLuongCB = 1,
+                            IDSQ = 4
                         },
                         new
                         {
                             IDLuong = 5,
-                            HeSoLuong = 8f,
-                            HeSoPhuCap = 0f,
-                            IDSQ = 5,
-                            LuongCoBan = 1429000m
+                            IDHeSoLuongQH = 8,
+                            IDHeSoPhuCapCV = 1,
+                            IDLuongCB = 1,
+                            IDSQ = 5
                         });
                 });
 
@@ -1054,6 +1203,28 @@ namespace QLSQ.Data.Migrations
                     b.Navigation("BoPhan");
                 });
 
+            modelBuilder.Entity("QLSQ.Data.Entities.HeSoLuongTheoQuanHam", b =>
+                {
+                    b.HasOne("QLSQ.Data.Entities.QuanHam", "QuanHam")
+                        .WithMany("HeSoLuongTheoQuanHams")
+                        .HasForeignKey("IDQH")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QuanHam");
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.HeSoPhuCapTheoChucVu", b =>
+                {
+                    b.HasOne("QLSQ.Data.Entities.ChucVu", "ChucVu")
+                        .WithMany("HeSoPhuCapTheoChucVus")
+                        .HasForeignKey("IDCV")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ChucVu");
+                });
+
             modelBuilder.Entity("QLSQ.Data.Entities.QLChucVu", b =>
                 {
                     b.HasOne("QLSQ.Data.Entities.ChucVu", "ChucVu")
@@ -1105,11 +1276,35 @@ namespace QLSQ.Data.Migrations
 
             modelBuilder.Entity("QLSQ.Data.Entities.QLLuong", b =>
                 {
-                    b.HasOne("QLSQ.Data.Entities.SiQuan", "SiQuan")
+                    b.HasOne("QLSQ.Data.Entities.HeSoLuongTheoQuanHam", "HeSoLuongTheoQuanHam")
                         .WithMany("QLLuongs")
-                        .HasForeignKey("IDSQ")
+                        .HasForeignKey("IDHeSoLuongQH")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("QLSQ.Data.Entities.HeSoPhuCapTheoChucVu", "HeSoPhuCapTheoChucVu")
+                        .WithMany("QLLuongs")
+                        .HasForeignKey("IDHeSoPhuCapCV")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QLSQ.Data.Entities.LuongCoBan", "LuongCoBan")
+                        .WithMany("QLLuongs")
+                        .HasForeignKey("IDLuongCB")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("QLSQ.Data.Entities.SiQuan", "SiQuan")
+                        .WithOne("QLLuongs")
+                        .HasForeignKey("QLSQ.Data.Entities.QLLuong", "IDSQ")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HeSoLuongTheoQuanHam");
+
+                    b.Navigation("HeSoPhuCapTheoChucVu");
+
+                    b.Navigation("LuongCoBan");
 
                     b.Navigation("SiQuan");
                 });
@@ -1159,11 +1354,30 @@ namespace QLSQ.Data.Migrations
 
             modelBuilder.Entity("QLSQ.Data.Entities.ChucVu", b =>
                 {
+                    b.Navigation("HeSoPhuCapTheoChucVus");
+
                     b.Navigation("QLChucVus");
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.HeSoLuongTheoQuanHam", b =>
+                {
+                    b.Navigation("QLLuongs");
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.HeSoPhuCapTheoChucVu", b =>
+                {
+                    b.Navigation("QLLuongs");
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.LuongCoBan", b =>
+                {
+                    b.Navigation("QLLuongs");
                 });
 
             modelBuilder.Entity("QLSQ.Data.Entities.QuanHam", b =>
                 {
+                    b.Navigation("HeSoLuongTheoQuanHams");
+
                     b.Navigation("QLChucVus");
                 });
 
