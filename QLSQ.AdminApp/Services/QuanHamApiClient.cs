@@ -51,6 +51,24 @@ namespace QLSQ.AdminApp.Services
             return user;
         }
 
+        public async Task<APIResult<bool>> Edit(int IDQH,QuanHamUpdateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var reponse = await client.PutAsync($"/api/QuanHams/{IDQH}/edit", httpContent);
+            var body = await reponse.Content.ReadAsStringAsync();
+            if (reponse.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            }
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
         public async Task<APIResult<PageResult<QuanHamViewModel>>> GetAllWithPaging(GetQuanHamPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
