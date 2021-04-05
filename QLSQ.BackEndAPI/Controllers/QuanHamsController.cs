@@ -44,5 +44,11 @@ namespace QLSQ.BackEndAPI.Controllers
             var edit = await _quanHamServices.Edit(IDQH,request);
             return Ok(edit);
         }
+        [HttpDelete("{IDQH}/delete")]
+        public async Task<IActionResult> Delete(int IDQH)
+        {
+            var delete = await _quanHamServices.Delete(IDQH);
+            return Ok(delete);
+        }
     }
 }
