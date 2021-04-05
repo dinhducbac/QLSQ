@@ -34,6 +34,14 @@ namespace QLSQ.Application.Catalog.QuanHam
             return new APIErrorResult<bool>("Thất bại");
         }
 
+        public async Task<APIResult<bool>> Delete(int IDQH)
+        {
+            var qh = await _context.QuanHams.FirstOrDefaultAsync(x=>x.IDQH == IDQH);
+            _context.QuanHams.Remove(qh);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<QuanHamViewModel>> Details(int IDQH)
         {
             var qh =  _context.QuanHams.FirstOrDefaultAsync(x=>x.IDQH == IDQH);

@@ -59,6 +59,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _quanHamApiClient.Create(request);
             if (result.IsSuccessed)
             {
+                TempData["result"] = "Tạo quân hàm thành công";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Eror","Home");
@@ -83,13 +84,40 @@ namespace QLSQ.AdminApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(QuanHamUpdateRequest request)
         {
-            var test = request.IDQH;
             var qhEdit = await _quanHamApiClient.Edit(request.IDQH,request);
             if (qhEdit.IsSuccessed)
             {
+                TempData["result"] = "Chỉnh sửa quân hàm thành công";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Eror","Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDQH)
+        {
+            var qhvm = await _quanHamApiClient.Details(IDQH);
+            if (qhvm.ResultObj != null)
+            {
+                var qhDeleteRequest = new QuanHamDeleteRequest()
+                {
+                    IDQH = qhvm.ResultObj.IDQH,
+                    TenQH = qhvm.ResultObj.TenQH
+                };
+                return View(qhDeleteRequest);
+            }
+            return View(qhvm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(QuanHamDeleteRequest request)
+        {
+            var test = request.IDQH;
+            var qhdelete = await _quanHamApiClient.Delete(request.IDQH,request);
+            if (qhdelete.IsSuccessed)
+            {
+                TempData["result"] = "Xóa quân hàm thành công";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Eror", "Home");
         }
     }
 }
