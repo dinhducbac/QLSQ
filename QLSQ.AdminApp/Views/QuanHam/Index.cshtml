@@ -1,10 +1,11 @@
 ﻿@using QLSQ.ViewModel.Common;
-@model PageResult<QLSQ.ViewModel.Catalogs.QLLuong.QLLuongViewModel>
+@model PageResult<QLSQ.ViewModel.Catalogs.QuanHam.QuanHamViewModel>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 
 @section Scripts{
     <script>
@@ -24,6 +25,7 @@
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
 </div>
+
 
 <section class="content">
     <div class="container-fluid">
@@ -64,25 +66,10 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        ID lương
+                                       ID quânhamf
                                     </th>
                                     <th>
-                                        ID sĩ quan
-                                    </th>
-                                    <th>
-                                        Họ và tên
-                                    </th>
-                                    <th>
-                                        Hệ số lương
-                                    </th>
-                                    <th>
-                                        Hệ số phụ cấp
-                                    </th>
-                                    <th>
-                                        Lương cơ bản
-                                    </th>
-                                    <th>
-                                        Lương
+                                        Tên quân hàm 
                                     </th>
                                     <th></th>
                                 </tr>
@@ -92,35 +79,21 @@
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.IDLuong)
+                                            @Html.DisplayFor(modelItem => item.IDQH)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.IDSQ)
+                                            @Html.DisplayFor(modelItem => item.TenQH)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.HoTen)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.HeSoLuong)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.HeSoPhuCap)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.LuongCB)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Luong)
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            @Html.ActionLink("Edit", "Edit", new { IDQH = item.IDQH }) |
+                                            @Html.ActionLink("Details", "Details", new { IDQH = item.IDQH }) |
+                                            @Html.ActionLink("Delete", "Delete", new { IDQH = item.IDQH })
                                         </td>
                                     </tr>
                                 }
                             </tbody>
                         </table>
+
 
 
                         @await Component.InvokeAsync("Pager", Model)
