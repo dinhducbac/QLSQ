@@ -2,12 +2,12 @@
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
+namespace QLSQ.AdminApp.Services
 {
-    public interface IHeSoLuongTheoQuanHamServices
+    public interface IHeSoLuongTheoQuanHamApiClient
     {
         public Task<APIResult<PageResult<HeSoLuongTheoQuanHamViewModel>>> GetAllWithPaging(GetPagingRequestHeSoLuongTheoQuanHam request);
     }
