@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using QLSQ.Application.Catalog.QuanHam;
@@ -29,6 +30,13 @@ namespace QLSQ.BackEndAPI.Controllers
         {
             var qh = await _quanHamServices.Details(IDQH);
             return Ok(qh);
+        }
+        [HttpPost("create")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Create([FromBody]QuanHamCreateRequest request)
+        {
+            var create = await _quanHamServices.Create(request);
+            return Ok(create);
         }
     }
 }
