@@ -55,6 +55,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _heSoLuongTheoQuanHamApiClient.Create(request);
             if (result.IsSuccessed)
             {
+                TempData["result"] = "Tạo hệ số lương thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Eror", "Home");
@@ -98,6 +99,39 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _heSoLuongTheoQuanHamApiClient.Edit(request.IDHeSoLuongQH, request);
             if (result.IsSuccessed)
             {
+                TempData["result"] = "Sửa hệ số lương thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDHeSoLuongQH)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var hslvm = await _heSoLuongTheoQuanHamApiClient.Details(IDHeSoLuongQH);
+            if (hslvm.IsSuccessed)
+            {
+                var hslDeleteRequest = new HeSoLuongTheoQuanHamDeleteRequest()
+                {
+                    IDHeSoLuongQH = hslvm.ResultObj.IDHeSoLuongQH,
+                    IDQH = hslvm.ResultObj.IDQH,
+                    TenQH = hslvm.ResultObj.TenQH,
+                    HeSoLuong = hslvm.ResultObj.HeSoLuong
+                };
+                return View(hslDeleteRequest);
+            }
+            return View(hslvm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(HeSoLuongTheoQuanHamDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _heSoLuongTheoQuanHamApiClient.Delete(request.IDHeSoLuongQH);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa hệ số lương thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");
