@@ -31,6 +31,29 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<HeSoLuongTheoQuanHamViewModel>> Details(int IDHeSoLuongQH)
+        {
+            var query = await (from qh in _context.QuanHams
+             join hsltqh in _context.HeSoLuongTheoQuanHams
+             on qh.IDQH equals hsltqh.IDQH
+             where hsltqh.IDHeSoLuongQH == IDHeSoLuongQH
+             select new HeSoLuongTheoQuanHamViewModel()
+             {
+                 IDHeSoLuongQH = hsltqh.IDHeSoLuongQH,
+                 IDQH = hsltqh.IDQH,
+                 TenQH = qh.TenQH,
+                 HeSoLuong = hsltqh.HeSoLuong
+             }).FirstOrDefaultAsync();
+            var hslvm = new HeSoLuongTheoQuanHamViewModel()
+            {
+                IDHeSoLuongQH = query.IDHeSoLuongQH,
+                IDQH = query.IDQH,
+                TenQH = query.TenQH,
+                HeSoLuong = query.HeSoLuong
+            };
+            return new APISuccessedResult<HeSoLuongTheoQuanHamViewModel>(hslvm); 
+        }
+
         public async Task<APIResult<PageResult<HeSoLuongTheoQuanHamViewModel>>> GetAllWithPaging(GetPagingRequestHeSoLuongTheoQuanHam request)
         {
             var query = (from qh in _context.QuanHams
