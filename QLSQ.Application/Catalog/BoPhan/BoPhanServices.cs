@@ -17,6 +17,18 @@ namespace QLSQ.Application.Catalog.BoPhan
         {
             _context = context;
         }
+
+        public async Task<APIResult<bool>> Create(BoPhanCreateRequest request)
+        {
+            var bp = new QLSQ.Data.Entities.BoPhan()
+            {
+                TenBP = request.TenBP
+            };
+            _context.BoPhans.Add(bp);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<BoPhanViewModel>>> GetAllWithPaging(GetBoPhanPagingRequest request)
         {
             var query = from bp in _context.BoPhans select bp;
