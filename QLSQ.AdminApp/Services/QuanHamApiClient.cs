@@ -95,5 +95,17 @@ namespace QLSQ.AdminApp.Services
             var user = JsonConvert.DeserializeObject<APISuccessedResult<PageResult<QuanHamViewModel>>>(body);
             return user;
         }
+
+        public async Task<APIResult<List<QuanHamViewModel>>> GetListQuanHamNotInHeSoLuong()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var reponse = await client.GetAsync($"/api/QuanHams/quanhamnotinhesoluong");
+            var body = await reponse.Content.ReadAsStringAsync();
+            var list = JsonConvert.DeserializeObject<APISuccessedResult<List<QuanHamViewModel>>>(body);
+            return list;
+        }
     }
 }

@@ -24,5 +24,12 @@ namespace QLSQ.BackEndAPI.Controllers
             var result = await _heSoLuongTheoQuanHamServices.GetAllWithPaging(request);
             return Ok(result);
         }
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] HeSoLuongTheoQuanHamCreateRequest request)
+        {
+            var result = await _heSoLuongTheoQuanHamServices.Create(request);
+            return Ok(result);
+        }
+
     }
 }

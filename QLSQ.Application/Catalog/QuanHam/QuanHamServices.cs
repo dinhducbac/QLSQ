@@ -86,5 +86,23 @@ namespace QLSQ.Application.Catalog.QuanHam
             };
             return new APISuccessedResult<PageResult<QuanHamViewModel>>(pageresult);
         }
+
+        public async Task<APIResult<List<QuanHamViewModel>>> GetListQuanHamNotInHeSoLuong()
+        {
+            var query = (from qh in _context.QuanHams
+                         where !_context.HeSoLuongTheoQuanHams.Any(x => x.IDQH == qh.IDQH)
+                         select qh);
+            var list = new List<QuanHamViewModel>();
+            foreach (var data in query)
+            {
+                var qhvm = new QuanHamViewModel()
+                {
+                    IDQH = data.IDQH,
+                    TenQH = data.TenQH
+                };
+                list.Add(qhvm);
+            }
+            return new APISuccessedResult<List<QuanHamViewModel>>(list);
+        }
     }
 }
