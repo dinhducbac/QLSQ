@@ -29,6 +29,14 @@ namespace QLSQ.Application.Catalog.BoPhan
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDBP)
+        {
+            var bp = await _context.BoPhans.FirstOrDefaultAsync(x=>x.IDBP == IDBP);
+            _context.BoPhans.Remove(bp);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<BoPhanViewModel>> Details(int IDBP)
         {
             var bp = await _context.BoPhans.FirstOrDefaultAsync(x=>x.IDBP == IDBP);
