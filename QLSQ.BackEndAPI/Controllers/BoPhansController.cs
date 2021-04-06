@@ -50,5 +50,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
-    }
+        [HttpPut("{IDBP}/edit")]
+        public async Task<IActionResult> Edit(int IDBP, BoPhanUpdateRequest request) 
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _boPhanServices.Edit(IDBP, request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
+    }  
 }
