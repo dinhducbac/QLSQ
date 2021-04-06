@@ -30,5 +30,15 @@ namespace QLSQ.BackEndAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(BoPhanCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _boPhanServices.Create(request);
+            if (result.IsSuccessed)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
