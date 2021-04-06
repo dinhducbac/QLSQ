@@ -77,6 +77,18 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(await reponse.Content.ReadAsStringAsync());
         }
 
+        public async Task<APIResult<List<BoPhanViewModel>>> GetAllWithNotPaging()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/BoPhans/getall");
+            var body = await response.Content.ReadAsStringAsync();
+            var list =  JsonConvert.DeserializeObject<APISuccessedResult<List<BoPhanViewModel>>>(body);
+            return list;
+        }
+
         public async Task<APIResult<PageResult<BoPhanViewModel>>> GetAllWithPaging(GetBoPhanPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();

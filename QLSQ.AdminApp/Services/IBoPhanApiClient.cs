@@ -14,5 +14,7 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<BoPhanViewModel>> Details(int IDBP);
         public Task<APIResult<bool>> Edit(int IDBP, BoPhanUpdateRequest request);
         public Task<APIResult<bool>> Delete(int IDBP);
+        public Task<APIResult<List<BoPhanViewModel>>> GetAllWithNotPaging();
+   
     }
 }
