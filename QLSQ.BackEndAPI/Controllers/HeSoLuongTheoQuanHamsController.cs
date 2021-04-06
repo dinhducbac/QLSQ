@@ -40,5 +40,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest(result);
             return Ok(result);
         }
+        [HttpPut("{IDHeSoLuongQH}/edit")]
+        public async Task<IActionResult> Edit(int IDHeSoLuongQH, HeSoLuongTheoQuanHamUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _heSoLuongTheoQuanHamServices.Edit(IDHeSoLuongQH,request);
+            if (!result.IsSuccessed)
+                return BadRequest(result);
+            return Ok(result);
+        }
     }
 }
