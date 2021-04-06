@@ -51,6 +51,20 @@ namespace QLSQ.AdminApp.Services
             return bp;
         }
 
+        public async Task<APIResult<bool>> Edit(int IDBP, BoPhanUpdateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var reponse = await client.PutAsync($"/api/BoPhans/{IDBP}/edit", httpContent);
+            if (reponse.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(await reponse.Content.ReadAsStringAsync());
+            }
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(await reponse.Content.ReadAsStringAsync());
+        }
+
         public async Task<APIResult<PageResult<BoPhanViewModel>>> GetAllWithPaging(GetBoPhanPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();

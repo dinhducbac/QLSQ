@@ -40,6 +40,14 @@ namespace QLSQ.Application.Catalog.BoPhan
             return new APISuccessedResult<BoPhanViewModel>(bpmd);
         }
 
+        public async Task<APIResult<bool>> Edit(int IDBP, BoPhanUpdateRequest request)
+        {
+            var bp = await _context.BoPhans.FirstOrDefaultAsync(x=>x.IDBP == IDBP);
+            bp.TenBP = request.TenBP;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true); 
+        }
+
         public async Task<APIResult<PageResult<BoPhanViewModel>>> GetAllWithPaging(GetBoPhanPagingRequest request)
         {
             var query = from bp in _context.BoPhans select bp;
