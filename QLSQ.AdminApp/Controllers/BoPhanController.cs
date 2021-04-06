@@ -27,12 +27,31 @@ namespace QLSQ.AdminApp.Controllers
                 pageIndex = pageIndex,
                 pageSize = pageSize
             };
-            var result = await _boPhanApiClient.GetAllWithPaging(pagingRequest);
-            if (result.ResultObj != null)
+            if (TempData["result"] != null)
             {
-                return View(result.ResultObj);
+                ViewBag.Success = true;
+                ViewBag.SuccessMessage = TempData["result"];
             }
-            return View(result);
+            var result = await _boPhanApiClient.GetAllWithPaging(pagingRequest);
+            return View(result.ResultObj);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(BoPhanCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _boPhanApiClient.Create(request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Tạo bộ phận chức vụ thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
         }
     }
 }
