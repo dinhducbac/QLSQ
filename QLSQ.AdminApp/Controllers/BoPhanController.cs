@@ -53,5 +53,15 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDBP)
+        {
+            if(!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _boPhanApiClient.Details(IDBP);
+            if (result.ResultObj != null)
+                return View(result.ResultObj);
+            return View(result);
+        }
     }
 }
