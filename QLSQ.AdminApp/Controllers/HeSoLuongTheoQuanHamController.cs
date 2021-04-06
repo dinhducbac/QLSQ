@@ -71,5 +71,36 @@ namespace QLSQ.AdminApp.Controllers
             }
             return View(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDHeSoLuongQH)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var hslvm = await _heSoLuongTheoQuanHamApiClient.Details(IDHeSoLuongQH);
+            if (hslvm.IsSuccessed)
+            {
+                var hslUpdateRequest = new HeSoLuongTheoQuanHamUpdateRequest()
+                {
+                    IDHeSoLuongQH = hslvm.ResultObj.IDHeSoLuongQH,
+                    IDQH = hslvm.ResultObj.IDQH,
+                    TenQH = hslvm.ResultObj.TenQH,
+                    HeSoLuong = hslvm.ResultObj.HeSoLuong
+                };
+                return View(hslUpdateRequest);
+            }
+            return View(hslvm);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(HeSoLuongTheoQuanHamUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _heSoLuongTheoQuanHamApiClient.Edit(request.IDHeSoLuongQH, request);
+            if (result.IsSuccessed)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
