@@ -1,4 +1,5 @@
 ﻿using QLSQ.ViewModel.Catalogs.HeSoLuongTheoQuanHam;
+using QLSQ.ViewModel.Catalogs.QuanHam;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
     public interface IHeSoLuongTheoQuanHamServices
     {
         public Task<APIResult<PageResult<HeSoLuongTheoQuanHamViewModel>>> GetAllWithPaging(GetPagingRequestHeSoLuongTheoQuanHam request);
+        public Task<APIResult<bool>> Create(HeSoLuongTheoQuanHamCreateRequest request);
     }
 }

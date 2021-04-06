@@ -10,5 +10,6 @@ namespace QLSQ.AdminApp.Services
     public interface IHeSoLuongTheoQuanHamApiClient
     {
         public Task<APIResult<PageResult<HeSoLuongTheoQuanHamViewModel>>> GetAllWithPaging(GetPagingRequestHeSoLuongTheoQuanHam request);
+        public Task<APIResult<bool>> Create(HeSoLuongTheoQuanHamCreateRequest request);
     }
 }

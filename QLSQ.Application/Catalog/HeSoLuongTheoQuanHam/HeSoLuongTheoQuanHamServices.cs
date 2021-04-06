@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using QLSQ.ViewModel.Catalogs.QuanHam;
 
 namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
 {
@@ -17,6 +18,19 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
         {
             _context = context;
         }
+
+        public async Task<APIResult<bool>> Create(HeSoLuongTheoQuanHamCreateRequest request)
+        {
+            var hsl = new QLSQ.Data.Entities.HeSoLuongTheoQuanHam()
+            {
+                IDQH = request.IDQH,
+                HeSoLuong = request.HeSoLuong
+            };
+            _context.HeSoLuongTheoQuanHams.Add(hsl);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<HeSoLuongTheoQuanHamViewModel>>> GetAllWithPaging(GetPagingRequestHeSoLuongTheoQuanHam request)
         {
             var query = (from qh in _context.QuanHams
@@ -51,6 +65,6 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
                 Items = data
             };
             return new APISuccessedResult<PageResult<HeSoLuongTheoQuanHamViewModel>>(pageresult); 
-        }
+        } 
     }
 }

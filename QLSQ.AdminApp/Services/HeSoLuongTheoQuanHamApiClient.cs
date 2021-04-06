@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace QLSQ.AdminApp.Services
@@ -23,6 +24,21 @@ namespace QLSQ.AdminApp.Services
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
         }
+
+        public async Task<APIResult<bool>> Create(HeSoLuongTheoQuanHamCreateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var reponse = await client.PostAsync($"/api/HeSoLuongTheoQuanHams/create", httpContent);
+            if (reponse.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(await reponse.Content.ReadAsStringAsync());
+            }
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(await reponse.Content.ReadAsStringAsync());
+        }
+
         public async Task<APIResult<PageResult<HeSoLuongTheoQuanHamViewModel>>> GetAllWithPaging(GetPagingRequestHeSoLuongTheoQuanHam request)
         {
             var client = _httpClientFactory.CreateClient();

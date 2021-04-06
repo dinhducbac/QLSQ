@@ -15,5 +15,6 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<bool>> Create(QuanHamCreateRequest request);
         public Task<APIResult<bool>> Edit(int IDQH,QuanHamUpdateRequest request);
         public Task<APIResult<bool>> Delete(int IDQH, QuanHamDeleteRequest request);
+        public Task<APIResult<List<QuanHamViewModel>>> GetListQuanHamNotInHeSoLuong();
     }
 }
