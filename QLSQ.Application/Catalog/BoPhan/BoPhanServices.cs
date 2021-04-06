@@ -1,7 +1,10 @@
-﻿using QLSQ.ViewModel.Catalogs.BoPhan;
+﻿using Microsoft.EntityFrameworkCore;
+using QLSQ.Data.EF;
+using QLSQ.ViewModel.Catalogs.BoPhan;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,9 +12,34 @@ namespace QLSQ.Application.Catalog.BoPhan
 {
     public class BoPhanServices : IBoPhanServices
     {
-        public Task<APIResult<PageResult<BoPhanViewModel>>> GetAllWithPaging(GetBoPhanPagingRequest request)
+        public readonly QL_SiQuanDBContext _context;
+        public BoPhanServices(QL_SiQuanDBContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task<APIResult<PageResult<BoPhanViewModel>>> GetAllWithPaging(GetBoPhanPagingRequest request)
+        {
+            var query = from bp in _context.BoPhans select bp;
+            if (!string.IsNullOrEmpty(request.keyword))
+            {
+                query = query.Where(x => x.TenBP.Contains(request.keyword));
+            }
+            var totalRow = await query.CountAsync();
+            var data = await query.Skip((request.pageIndex - 1) * request.pageSize)
+                .Take(request.pageSize)
+                .Select(x => new BoPhanViewModel
+                {
+                    IDBP = x.IDBP,
+                    TenBP = x.TenBP
+                }).ToListAsync();
+            var pageResult = new PageResult<BoPhanViewModel>()
+            {
+                TotalRecord = totalRow,
+                PageIndex = request.pageIndex,
+                PageSize = request.pageSize,
+                Items = data
+            };
+            return new APISuccessedResult<PageResult<BoPhanViewModel>>(pageResult); 
         }
     }
 }
