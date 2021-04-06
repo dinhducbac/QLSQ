@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using QLSQ.Application.Catalog.BoPhan;
 using QLSQ.Application.Catalog.HeSoLuongTheoQuanHam;
 using QLSQ.Application.Catalog.QLCongTac;
 using QLSQ.Application.Catalog.QLDangVien;
@@ -64,6 +65,7 @@ namespace QLSQ.BackEndAPI
             services.AddTransient<IQLLuongServices, QLLuongServices>();
             services.AddTransient<IQuanHamServices, QuanHamServices>();
             services.AddTransient<IHeSoLuongTheoQuanHamServices, HeSoLuongTheoQuanHamServices>();
+            services.AddTransient<IBoPhanServices, BoPhanServices>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
