@@ -11,5 +11,6 @@ namespace QLSQ.Application.Catalog.BoPhan
     {
         public Task<APIResult<PageResult<BoPhanViewModel>>> GetAllWithPaging(GetBoPhanPagingRequest request);
         public Task<APIResult<bool>> Create(BoPhanCreateRequest request);
+        public Task<APIResult<BoPhanViewModel>> Details(int IDBP);
     }
 }
