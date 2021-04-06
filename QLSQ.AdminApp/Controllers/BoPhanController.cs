@@ -63,5 +63,31 @@ namespace QLSQ.AdminApp.Controllers
                 return View(result.ResultObj);
             return View(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDBP)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _boPhanApiClient.Details(IDBP);
+            var bpUpdateRequest = new BoPhanUpdateRequest()
+            {
+                IDBP = result.ResultObj.IDBP,
+                TenBP = result.ResultObj.TenBP
+            };
+            return View(bpUpdateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(BoPhanUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _boPhanApiClient.Edit(request.IDBP, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa bộ phận chức vụ thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
