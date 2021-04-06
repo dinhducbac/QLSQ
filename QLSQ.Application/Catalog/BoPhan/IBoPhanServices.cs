@@ -13,5 +13,6 @@ namespace QLSQ.Application.Catalog.BoPhan
         public Task<APIResult<bool>> Create(BoPhanCreateRequest request);
         public Task<APIResult<BoPhanViewModel>> Details(int IDBP);
         public Task<APIResult<bool>> Edit(int IDBP, BoPhanUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int IDBP);
     }
 }

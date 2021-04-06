@@ -51,11 +51,21 @@ namespace QLSQ.BackEndAPI.Controllers
             return BadRequest(result);
         }
         [HttpPut("{IDBP}/edit")]
-        public async Task<IActionResult> Edit(int IDBP, BoPhanUpdateRequest request) 
+        public async Task<IActionResult> Edit(int IDBP, BoPhanUpdateRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _boPhanServices.Edit(IDBP, request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpDelete("{IDBP}/delete")]
+        public async Task<IActionResult> Delete(int IDBP) 
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _boPhanServices.Delete(IDBP);
             if (result.ResultObj == true)
                 return Ok(result);
             return BadRequest(result);
