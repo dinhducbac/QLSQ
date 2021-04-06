@@ -59,5 +59,17 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Eror", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDHeSoLuongQH)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _heSoLuongTheoQuanHamApiClient.Details(IDHeSoLuongQH);
+            if (result.IsSuccessed)
+            {
+                return View(result.ResultObj);
+            }
+            return View(result);
+        }
     }
 }

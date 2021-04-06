@@ -5,32 +5,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create</h1>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Tạo hệ số lương</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tạo User</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="IDQH" class="control-label"></label>
+                                        <select asp-for="IDQH" class="form-control" asp-items="@( new SelectList(Model.quanHamViewModels,"IDQH","TenQH"))"></select>
+                                        <span asp-validation-for="IDQH" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="HeSoLuong" class="control-label"></label>
+                                        <input asp-for="HeSoLuong" class="form-control" />
+                                        <span asp-validation-for="HeSoLuong" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 
-<h4>HeSoLuongTheoQuanHamCreateRequest</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="IDQH" class="control-label"></label>
-                <select asp-for="IDQH" class="form-control" asp-items="@( new SelectList(Model.quanHamViewModels,"IDQH","TenQH"))"></select>
-                <span asp-validation-for="IDQH" class="text-danger"></span>
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
             </div>
-            <div class="form-group">
-                <label asp-for="HeSoLuong" class="control-label"></label>
-                <input asp-for="HeSoLuong" class="form-control" />
-                <span asp-validation-for="HeSoLuong" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
     </div>
-</div>
+    <!-- /.container-fluid -->
+</section>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
+
+
 

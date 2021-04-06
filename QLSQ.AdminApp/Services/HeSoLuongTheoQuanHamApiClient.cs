@@ -39,6 +39,18 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(await reponse.Content.ReadAsStringAsync());
         }
 
+        public async Task<APIResult<HeSoLuongTheoQuanHamViewModel>> Details(int IDHeSoLuongQH)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var reponse = await client.GetAsync($"/api/HeSoLuongTheoQuanHams/{IDHeSoLuongQH}/details");
+            var body = await reponse.Content.ReadAsStringAsync();
+            var details = JsonConvert.DeserializeObject<APISuccessedResult<HeSoLuongTheoQuanHamViewModel>>(body);
+            return details;
+        }
+
         public async Task<APIResult<PageResult<HeSoLuongTheoQuanHamViewModel>>> GetAllWithPaging(GetPagingRequestHeSoLuongTheoQuanHam request)
         {
             var client = _httpClientFactory.CreateClient();

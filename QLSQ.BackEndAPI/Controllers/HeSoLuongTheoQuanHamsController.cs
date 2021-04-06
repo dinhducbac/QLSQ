@@ -30,6 +30,15 @@ namespace QLSQ.BackEndAPI.Controllers
             var result = await _heSoLuongTheoQuanHamServices.Create(request);
             return Ok(result);
         }
-
+        [HttpGet("{IDHeSoLuongQH}/details")]
+        public async Task<IActionResult> Details(int IDHeSoLuongQH)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _heSoLuongTheoQuanHamServices.Details(IDHeSoLuongQH);
+            if (!result.IsSuccessed)
+                return BadRequest(result);
+            return Ok(result);
+        }
     }
 }
