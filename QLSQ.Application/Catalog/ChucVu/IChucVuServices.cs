@@ -9,6 +9,7 @@ namespace QLSQ.Application.Catalog.ChucVu
 {
     public interface IChucVuServices
     {
-        public Task<APIResult<PageResult<ChucVuViewModel>>> GetAllWithPaging(GetChucVuPagingRequest request); 
+        public Task<APIResult<PageResult<ChucVuViewModel>>> GetAllWithPaging(GetChucVuPagingRequest request);
+        public Task<APIResult<bool>> Create(ChucVuCreateRequest request);
     }
 }

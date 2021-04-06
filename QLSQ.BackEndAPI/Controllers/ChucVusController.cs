@@ -28,5 +28,17 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] ChucVuCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _chucVuServices.Create(request);
+            if(result.ResultObj == true)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

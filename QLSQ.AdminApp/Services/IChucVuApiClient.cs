@@ -10,5 +10,6 @@ namespace QLSQ.AdminApp.Services
     public interface IChucVuApiClient
     {
         public Task<APIResult<PageResult<ChucVuViewModel>>> GetAllWithPaging(GetChucVuPagingRequest request);
+        public Task<APIResult<bool>> Create(ChucVuCreateRequest request);
     }
 }
