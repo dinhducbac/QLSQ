@@ -45,7 +45,17 @@ namespace QLSQ.BackEndAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var result = await _heSoLuongTheoQuanHamServices.Edit(IDHeSoLuongQH,request);
+            var result = await _heSoLuongTheoQuanHamServices.Edit(IDHeSoLuongQH, request);
+            if (!result.IsSuccessed)
+                return BadRequest(result);
+            return Ok(result);
+        }
+        [HttpDelete("{IDHeSoLuongQH}/delete")]
+        public async Task<IActionResult> Delete(int IDHeSoLuongQH)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _heSoLuongTheoQuanHamServices.Delete(IDHeSoLuongQH);
             if (!result.IsSuccessed)
                 return BadRequest(result);
             return Ok(result);
