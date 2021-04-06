@@ -17,6 +17,19 @@ namespace QLSQ.Application.Catalog.ChucVu
         {
             _context = context;
         }
+
+        public async Task<APIResult<bool>> Create(ChucVuCreateRequest request)
+        {
+            var cv = new QLSQ.Data.Entities.ChucVu()
+            {
+                TenCV = request.TenCV,
+                IDBP = request.IDBP
+            };
+            _context.ChucVus.Add(cv);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<ChucVuViewModel>>> GetAllWithPaging(GetChucVuPagingRequest request)
         {
             var query = from bp in _context.BoPhans

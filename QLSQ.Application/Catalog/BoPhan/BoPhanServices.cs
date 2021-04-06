@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using QLSQ.Data.EF;
 using QLSQ.ViewModel.Catalogs.BoPhan;
+using QLSQ.ViewModel.Catalogs.ChucVu;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
@@ -54,6 +55,22 @@ namespace QLSQ.Application.Catalog.BoPhan
             bp.TenBP = request.TenBP;
             await _context.SaveChangesAsync();
             return new APISuccessedResult<bool>(true); 
+        }
+
+        public async Task<APIResult<List<BoPhanViewModel>>> GetAllWithNotPaging()
+        {
+            var query = from bp in _context.BoPhans select bp;
+            var list = new List<BoPhanViewModel>();
+            foreach(var data in query)
+            {
+                var cvmd = new BoPhanViewModel()
+                {
+                    TenBP = data.TenBP,
+                    IDBP = data.IDBP
+                };
+                list.Add(cvmd);
+            }
+            return new APISuccessedResult<List<BoPhanViewModel>>(list);
         }
 
         public async Task<APIResult<PageResult<BoPhanViewModel>>> GetAllWithPaging(GetBoPhanPagingRequest request)

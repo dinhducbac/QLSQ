@@ -1,4 +1,5 @@
 ﻿using QLSQ.ViewModel.Catalogs.BoPhan;
+using QLSQ.ViewModel.Catalogs.ChucVu;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace QLSQ.Application.Catalog.BoPhan
         public Task<APIResult<BoPhanViewModel>> Details(int IDBP);
         public Task<APIResult<bool>> Edit(int IDBP, BoPhanUpdateRequest request);
         public Task<APIResult<bool>> Delete(int IDBP);
+        public Task<APIResult<List<BoPhanViewModel>>> GetAllWithNotPaging();
     }
 }
