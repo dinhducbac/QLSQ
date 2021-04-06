@@ -50,5 +50,11 @@ namespace QLSQ.BackEndAPI.Controllers
             var delete = await _quanHamServices.Delete(IDQH);
             return Ok(delete);
         }
+        [HttpGet("quanhamnotinhesoluong")]
+        public async Task<IActionResult> GetListQuanHamNotInHeSoLuong()
+        {
+            var result = await _quanHamServices.GetListQuanHamNotInHeSoLuong();
+            return Ok(result);
+        }
     }
 }
