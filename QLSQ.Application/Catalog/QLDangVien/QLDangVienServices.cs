@@ -8,8 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using QLSQ.Data.Entities;
-using QLSQ.Data.Entities;
+
 
 namespace QLSQ.Application.Catalog.QLDangVien
 {

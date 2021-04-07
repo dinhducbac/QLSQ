@@ -5,9 +5,11 @@ using System.Text;
 
 namespace QLSQ.ViewModel.Catalogs.ChucVu
 {
-    public class ChucVuViewModel
+    public class ChucVuDetailsViewModel
     {
-        [Display(Name ="Tên bộ phận")]
+        [Display(Name = "ID bộ phận")]
+        public int IDBP { get; set; }
+        [Display(Name = "Tên bộ phận")]
         public string TenBP { get; set; }
         [Display(Name = "ID chức vụ")]
         public int IDCV { get; set; }

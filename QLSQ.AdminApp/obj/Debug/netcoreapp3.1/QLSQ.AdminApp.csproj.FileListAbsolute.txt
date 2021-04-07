@@ -454,3 +454,5 @@ D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\BoPhan\E
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\BoPhan\Delete.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\ChucVu\Index.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\ChucVu\Create.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\ChucVu\Details.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\ChucVu\Edit.cshtml.g.cs

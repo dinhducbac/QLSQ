@@ -60,7 +60,6 @@ namespace QLSQ.Application.System.Users
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: creds);
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
-            var test = tokenString;
             return new APISuccessedResult<string>(tokenString);
         }
 
@@ -79,7 +78,6 @@ namespace QLSQ.Application.System.Users
                     PhoneNumber = request.PhoneNumber,
                     UserName = request.Username
                 };
-                string test = user.UserName;
                 var result = await _userManager.CreateAsync(user, request.Password);
                 if (result.Succeeded)
                 {

@@ -63,5 +63,52 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDCV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _chucVuApiClient.Details(IDCV);
+            if (result.IsSuccessed)
+            {
+                return View(result.ResultObj);
+            }
+            return View(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDCV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var cvModel = await _chucVuApiClient.Details(IDCV);
+
+            var cvUpdateRequest = new ChucVuUpdateRequest()
+            {
+                IDBP = cvModel.ResultObj.IDBP,
+                IDCV = cvModel.ResultObj.IDCV,
+                TenCV = cvModel.ResultObj.TenCV,
+                boPhanViewModels = new List<ViewModel.Catalogs.BoPhan.BoPhanViewModel>()
+                
+            };
+            var getlistbp = await _boPhanApiClient.GetAllWithNotPaging();
+            var listbp = getlistbp.ResultObj;
+            cvUpdateRequest.boPhanViewModels = listbp;
+            return View(cvUpdateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(ChucVuUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _chucVuApiClient.Edit(request.IDCV, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa chức vụ thành công";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+
+
+        }
     }
 }
