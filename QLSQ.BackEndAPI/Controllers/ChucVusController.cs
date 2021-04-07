@@ -60,5 +60,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpDelete("{IDCV}/delete")]
+        public async Task<IActionResult> Delete(int IDCV)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _chucVuServices.Delete(IDCV);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

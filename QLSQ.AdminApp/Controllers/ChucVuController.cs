@@ -107,8 +107,31 @@ namespace QLSQ.AdminApp.Controllers
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");
-
-
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDCV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var cv = await _chucVuApiClient.Details(IDCV);
+            var cvDeleteRequest = new ChucVuDeleteRequest()
+            {
+                TenBP = cv.ResultObj.TenBP,
+                IDCV = cv.ResultObj.IDCV,
+                TenCV = cv.ResultObj.TenCV
+            };
+            return View(cvDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(ChucVuDeleteRequest request)
+        {
+            var result = await _chucVuApiClient.Delete(request.IDCV);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa chức vụ thành công";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
         }
     }
 }

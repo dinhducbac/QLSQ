@@ -30,6 +30,14 @@ namespace QLSQ.Application.Catalog.ChucVu
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDCV)
+        {
+            var cv = await _context.ChucVus.FirstOrDefaultAsync(x => x.IDCV == IDCV);
+            _context.ChucVus.Remove(cv);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<ChucVuDetailsViewModel>> Details(int IDCV)
         {
             var query = await (from bp in _context.BoPhans
