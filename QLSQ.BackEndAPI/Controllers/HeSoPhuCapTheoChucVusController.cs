@@ -42,5 +42,16 @@ namespace QLSQ.BackEndAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("{IDHeSoPhuCapCV}/details")]
+        public async Task<IActionResult> Details(int IDHeSoPhuCapCV)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _heSoPhuCapTheoChucVuServices.Details(IDHeSoPhuCapCV);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+
     }
 }
