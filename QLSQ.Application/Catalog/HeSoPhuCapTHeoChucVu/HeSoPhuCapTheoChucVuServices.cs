@@ -18,6 +18,19 @@ namespace QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu
         {
             _context = context;
         }
+
+        public async Task<APIResult<bool>> Create(HeSoPhuCapTheoChucVuCreateRequest request)
+        {
+            var hspc = new QLSQ.Data.Entities.HeSoPhuCapTheoChucVu()
+            {
+                IDCV = request.IDCV,
+                HeSoPhuCap = request.HeSoPhuCap
+            };
+            _context.HeSoPhuCapTheoChucVus.Add(hspc);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<HeSoPhuCapTheoChucVuViewModel>>> GetAllWithPaging(GetHeSoPhuCapPagingRequest request)
         {
             var query = from cv in _context.ChucVus

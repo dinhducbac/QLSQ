@@ -14,6 +14,7 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<ChucVuDetailsViewModel>> Details(int IDCV);
         public Task<APIResult<bool>> Edit(int IDCV, ChucVuUpdateRequest request);
         public Task<APIResult<bool>> Delete(int IDCV);
+        public Task<APIResult<List<ChucVuViewModel>>> GetChucVuWithIDBP(int IDBP);
 
     }
 }
