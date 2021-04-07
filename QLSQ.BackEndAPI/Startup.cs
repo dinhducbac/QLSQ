@@ -19,6 +19,7 @@ using Microsoft.OpenApi.Models;
 using QLSQ.Application.Catalog.BoPhan;
 using QLSQ.Application.Catalog.ChucVu;
 using QLSQ.Application.Catalog.HeSoLuongTheoQuanHam;
+using QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu;
 using QLSQ.Application.Catalog.QLCongTac;
 using QLSQ.Application.Catalog.QLDangVien;
 using QLSQ.Application.Catalog.QLLuong;
@@ -68,6 +69,7 @@ namespace QLSQ.BackEndAPI
             services.AddTransient<IHeSoLuongTheoQuanHamServices, HeSoLuongTheoQuanHamServices>();
             services.AddTransient<IBoPhanServices, BoPhanServices>();
             services.AddTransient<IChucVuServices, ChucVuServices>();
+            services.AddTransient<IHeSoPhuCapTheoChucVuServices, HeSoPhuCapTheoChucVuServices>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
