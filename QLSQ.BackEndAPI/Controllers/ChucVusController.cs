@@ -70,5 +70,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("{IDBP}/GetChucVuWithIDBP")]
+        public async Task<IActionResult> GetChucVuWithIDBP(int IDBP)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _chucVuServices.GetChucVuWithIDBP(IDBP);
+            if (result.ResultObj !=null)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

@@ -103,5 +103,23 @@ namespace QLSQ.Application.Catalog.ChucVu
             };
             return new APISuccessedResult<PageResult<ChucVuViewModel>>(pageResult);
         }
+
+        public async Task<APIResult<List<ChucVuViewModel>>> GetChucVuWithIDBP(int IDBP)
+        {
+            var query = await (from cv in _context.ChucVus
+                        where cv.IDBP == IDBP
+                        select cv).ToListAsync();
+            var list = new List<ChucVuViewModel>();
+            foreach (var data in query)
+            {
+                var cvvm = new ChucVuViewModel()
+                {
+                    IDCV = data.IDCV,
+                    TenCV = data.TenCV
+                };
+                list.Add(cvvm);
+            }
+            return new APISuccessedResult<List<ChucVuViewModel>>(list);
+        }
     }
 }
