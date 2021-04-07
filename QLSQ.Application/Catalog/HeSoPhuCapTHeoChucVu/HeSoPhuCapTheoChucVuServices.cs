@@ -31,6 +31,35 @@ namespace QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<HeSoPhuCapTheoChucVuDetailsViewModel>> Details(int IDHeSoPhuCapCV)
+        {
+            var query = await (from bp in _context.BoPhans
+                         join cv in _context.ChucVus
+                         on bp.IDBP equals cv.IDBP
+                         join hspc in _context.HeSoPhuCapTheoChucVus
+                         on cv.IDCV equals hspc.IDCV
+                         where hspc.IDHeSoPhuCapCV == IDHeSoPhuCapCV
+                         select new HeSoPhuCapTheoChucVuDetailsViewModel 
+                         {
+                            IDHeSoPhuCapCV = IDHeSoPhuCapCV,
+                            IDBP = cv.IDBP,
+                            TenBP = bp.TenBP,
+                            IDCV = cv.IDCV,
+                            TenCV = cv.TenCV,
+                            HeSoPhuCap = hspc.HeSoPhuCap
+                         }).FirstOrDefaultAsync();
+            var hspcDetailsViewModel = new HeSoPhuCapTheoChucVuDetailsViewModel()
+            {
+                IDHeSoPhuCapCV = query.IDHeSoPhuCapCV,
+                IDBP = query.IDBP,
+                TenBP = query.TenBP,
+                IDCV = query.IDCV,
+                TenCV = query.TenCV,
+                HeSoPhuCap = query.HeSoPhuCap
+            };
+            return new APISuccessedResult<HeSoPhuCapTheoChucVuDetailsViewModel>(hspcDetailsViewModel);
+        }
+
         public async Task<APIResult<PageResult<HeSoPhuCapTheoChucVuViewModel>>> GetAllWithPaging(GetHeSoPhuCapPagingRequest request)
         {
             var query = from cv in _context.ChucVus

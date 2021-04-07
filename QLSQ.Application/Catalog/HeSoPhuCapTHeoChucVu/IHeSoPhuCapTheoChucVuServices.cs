@@ -11,5 +11,6 @@ namespace QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu
     {
         public Task<APIResult<PageResult<HeSoPhuCapTheoChucVuViewModel>>> GetAllWithPaging(GetHeSoPhuCapPagingRequest request);
         public Task<APIResult<bool>> Create(HeSoPhuCapTheoChucVuCreateRequest request);
+        public Task<APIResult<HeSoPhuCapTheoChucVuDetailsViewModel>> Details(int IDHeSoPhuCapCV);
     }
 }
