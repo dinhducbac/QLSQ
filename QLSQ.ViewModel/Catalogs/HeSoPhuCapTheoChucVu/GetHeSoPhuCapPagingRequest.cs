@@ -5,7 +5,7 @@ using System.Text;
 
 namespace QLSQ.ViewModel.Catalogs.HeSoPhuCapTheoChucVu
 {
-    public class GetHeSoPhuCapPagingRequest : PagedResultBase
+    public class GetHeSoPhuCapPagingRequest : PagingRequestBase
     {
         public string keyword { get; set; }
         public List<int> IDCV { get; set; }
