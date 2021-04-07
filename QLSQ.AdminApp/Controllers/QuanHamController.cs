@@ -110,7 +110,6 @@ namespace QLSQ.AdminApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(QuanHamDeleteRequest request)
         {
-            var test = request.IDQH;
             var qhdelete = await _quanHamApiClient.Delete(request.IDQH,request);
             if (qhdelete.IsSuccessed)
             {

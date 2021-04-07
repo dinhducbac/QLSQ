@@ -40,5 +40,25 @@ namespace QLSQ.BackEndAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet("{IDCV}/details")]
+        public async Task<IActionResult> Details(int IDCV)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _chucVuServices.Details(IDCV);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpPut("{IDCV}/edit")]
+        public async Task<IActionResult> Edit(int IDCV, ChucVuUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _chucVuServices.Edit(IDCV,request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

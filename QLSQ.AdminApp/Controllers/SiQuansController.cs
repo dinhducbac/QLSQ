@@ -56,7 +56,6 @@ namespace QLSQ.AdminApp.Controllers
         {
             if (!ModelState.IsValid)
                 return View(ModelState);
-            var test = request.UserId;
             var result = await _siQuanApiClient.Create(request);
             if (result.ResultObj != null)
             {
@@ -70,7 +69,6 @@ namespace QLSQ.AdminApp.Controllers
         {
             if (!ModelState.IsValid)
                 return View(ModelState);
-            var test = IDSQ;
             var result = await _siQuanApiClient.GetByID(IDSQ);
             if (result.ResultObj != null)
                 return View(result.ResultObj);

@@ -42,7 +42,6 @@ namespace QLSQ.AdminApp.Controllers
                 quanHamViewModels = new List<QuanHamViewModel>()
             };
             var getqh = await _quanHamApiClient.GetListQuanHamNotInHeSoLuong();
-            var test = getqh.IsSuccessed;
             var qh = getqh.ResultObj;
             createRequest.quanHamViewModels = qh.ToList();
             return View(createRequest);

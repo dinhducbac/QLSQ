@@ -43,7 +43,6 @@ namespace QLSQ.AdminApp.Controllers
             };
             var data = await _userApiClient.GetUserPaging(request);
             ViewBag.Keyword = keyword;
-            var test = TempData["result"];
             if(TempData["result"] != null)
             {
                 ViewBag.Success = true;
@@ -83,7 +82,7 @@ namespace QLSQ.AdminApp.Controllers
             return RedirectToAction("Login", "User");
         }
 
-        public async Task<IActionResult> CreateUser()
+        public  IActionResult CreateUser()
         {
             return View();
         }
@@ -165,7 +164,6 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _userApiClient.GetUserByID(id);
             if (result.IsSuccessed)
             {
-                var user = result.ResultObj;
                 var deleterequest = new DeleteUserRequest()
                 {
                     ID = id
