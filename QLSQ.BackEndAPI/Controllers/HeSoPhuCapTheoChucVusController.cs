@@ -30,5 +30,17 @@ namespace QLSQ.BackEndAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody]HeSoPhuCapTheoChucVuCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _heSoPhuCapTheoChucVuServices.Create(request);
+            if (result.ResultObj != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
