@@ -30,6 +30,38 @@ namespace QLSQ.Application.Catalog.ChucVu
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<ChucVuDetailsViewModel>> Details(int IDCV)
+        {
+            var query = await (from bp in _context.BoPhans
+                        join cv in _context.ChucVus
+                        on bp.IDBP equals cv.IDBP
+                        where cv.IDCV == IDCV
+                        select new ChucVuDetailsViewModel 
+                        { 
+                            IDBP = cv.IDBP,
+                            TenBP = bp.TenBP,
+                            IDCV = cv.IDCV,
+                            TenCV = cv.TenCV
+                        }).FirstOrDefaultAsync();
+            var cvViewModel = new ChucVuDetailsViewModel()
+            {
+                IDBP = query.IDBP,
+                IDCV = query.IDCV,
+                TenBP = query.TenBP,
+                TenCV = query.TenCV
+            };
+            return new APISuccessedResult<ChucVuDetailsViewModel>(cvViewModel);
+        }
+
+        public async Task<APIResult<bool>> Edit(int IDCV, ChucVuUpdateRequest request)
+        {
+            var cv = await _context.ChucVus.FirstOrDefaultAsync(x=>x.IDCV == IDCV);
+            cv.IDBP = request.IDBP;
+            cv.TenCV = request.TenCV;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<ChucVuViewModel>>> GetAllWithPaging(GetChucVuPagingRequest request)
         {
             var query = from bp in _context.BoPhans

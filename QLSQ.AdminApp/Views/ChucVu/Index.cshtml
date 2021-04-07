@@ -89,9 +89,9 @@
                                             @Html.DisplayFor(modelItem => item.TenCV)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            @Html.ActionLink("Edit", "Edit", new { IDCV = item.IDCV }) |
+                                            @Html.ActionLink("Details", "Details", new { IDCV = item.IDCV }) |
+                                            @Html.ActionLink("Delete", "Delete", new { IDCV = item.IDCV })
                                         </td>
                                     </tr>
                                 }
