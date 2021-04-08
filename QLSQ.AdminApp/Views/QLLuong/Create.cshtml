@@ -1,0 +1,158 @@
+﻿@model QLSQ.ViewModel.Catalogs.QLLuong.QLLuongCreateRequest
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Tạo đảng viên</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tạo User</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label>Test Autocomplete</label>
+                                        <input id="autocomplete" type="text" class="form-control" />
+                                        <div id="autoCompleteDiv"></div>
+                                        <span class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDSQ" class="control-label"></label>
+                                        <input asp-for="IDSQ" class="form-control" />
+                                        <span asp-validation-for="IDSQ" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDHeSoLuongQH" class="control-label"></label>
+                                        <input asp-for="IDHeSoLuongQH" class="form-control" />
+                                        <span asp-validation-for="IDHeSoLuongQH" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDLuongCB" class="control-label"></label>
+                                        <input asp-for="IDLuongCB" class="form-control" />
+                                        <span asp-validation-for="IDLuongCB" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDHeSoPhuCapCV" class="control-label"></label>
+                                        <input asp-for="IDHeSoPhuCapCV" class="form-control" />
+                                        <span asp-validation-for="IDHeSoPhuCapCV" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!--
+
+<script type="text/javascript">
+    $(function () {
+        $("#autocomplete").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: '/QLLuong/AutoComplete/',
+                    data: { "preconfix": request.term },
+                    type: "POST",
+                    success: function (data) {
+                        alert(request.term);
+                        response($.map(data, function (item) {
+                            return item;
+                        }))
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+                //alert("hello");
+            },
+            select: function (e, i) {
+                $("#hfCustomer").val(i.item.val);
+            },
+            minLength: 1
+        });
+    });
+</script>
+-->
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+      rel="Stylesheet" type="text/css" />
+
+@section Scripttt{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#autocomplete").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/QLLuong/AutoComplete/',
+                        data: { "preconfix": request.term },
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+
+                            response($.map(data, function (item) {
+                                //alert(item.hoTen);
+                                return item.hoTen;
+                            }));
+                            /*$.each(data, function (i, item) {
+                                alert(item.hoTen);
+                            });*/
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                    //alert("hello");
+                },
+                select: function (e, i) {
+                    $("#hfCustomer").val(i.item.val);
+                    $(this).val(i.item.hoTen);
+
+                },
+                minLength: 0
+            });
+        });
+    </script>
+}
+
+
+

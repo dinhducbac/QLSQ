@@ -26,5 +26,6 @@ namespace QLSQ.Application.Catalog.SiQuans
         Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request);
         Task<SiQuanImageViewModel> GetImageByID(int SiQuanImageID);
         Task<List<SiQuanImageViewModel>> GetListImage(int SiQuanID);
+        Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanAutocomplete(string preconfix);
     }
 }
