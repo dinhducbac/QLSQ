@@ -106,6 +106,16 @@ namespace QLSQ.BackEndAPI.Controllers
             return BadRequest(listsq);
 
         }
+        [HttpGet("getlistsiquanautocomplete")]
+        public async Task<IActionResult> GetListSiQuanAutocomplete(string preconfix)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var listsq = await _manageSiQuanServices.GetListSiQuanAutocomplete(preconfix);
+            if (listsq.IsSuccessed)
+                return Ok(listsq);
+            return BadRequest(listsq);
+        }
         // SiQuanImage---------------------------------------------------------------------
         [HttpPost("{IDSQ}/images")]
         public async Task<IActionResult> AddImage( int IDSQ, [FromForm]SiQuanImageCreateRequest request)
