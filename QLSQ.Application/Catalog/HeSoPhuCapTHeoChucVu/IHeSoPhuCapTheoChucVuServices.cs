@@ -13,5 +13,6 @@ namespace QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu
         public Task<APIResult<bool>> Create(HeSoPhuCapTheoChucVuCreateRequest request);
         public Task<APIResult<HeSoPhuCapTheoChucVuDetailsViewModel>> Details(int IDHeSoPhuCapCV);
         public Task<APIResult<bool>> Edit(int IDHeSoPhuCapCV, HeSoPhuCapTheoChucVuUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int IDHeSoPhuCapCV);
     }
 }

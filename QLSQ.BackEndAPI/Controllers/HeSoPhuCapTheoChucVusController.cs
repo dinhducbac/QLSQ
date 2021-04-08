@@ -17,14 +17,14 @@ namespace QLSQ.BackEndAPI.Controllers
         public HeSoPhuCapTheoChucVusController(IHeSoPhuCapTheoChucVuServices heSoPhuCapTheoChucVuServices)
         {
             _heSoPhuCapTheoChucVuServices = heSoPhuCapTheoChucVuServices;
-        } 
+        }
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllWithPaging([FromQuery]GetHeSoPhuCapPagingRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _heSoPhuCapTheoChucVuServices.GetAllWithPaging(request);
-            if(result.ResultObj != null)
+            if (result.ResultObj != null)
             {
                 return Ok(result);
             }
@@ -58,6 +58,16 @@ namespace QLSQ.BackEndAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _heSoPhuCapTheoChucVuServices.Edit(IDHeSoPhuCapCV, request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpDelete("{IDHeSoPhuCapCV}/delete")]
+        public async Task<IActionResult> Delete(int IDHeSoPhuCapCV)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _heSoPhuCapTheoChucVuServices.Delete(IDHeSoPhuCapCV);
             if (result.ResultObj == true)
                 return Ok(result);
             return BadRequest(result);
