@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using QLSQ.ViewModel.Catalogs.QLLuong;
+using QLSQ.ViewModel.Catalogs.SiQuan;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
@@ -34,5 +35,7 @@ namespace QLSQ.AdminApp.Services
             var user = JsonConvert.DeserializeObject<APISuccessedResult<PageResult<QLLuongViewModel>>>(body);
             return user;
         }
+
+      
     }
 }

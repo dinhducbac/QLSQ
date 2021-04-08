@@ -1,4 +1,5 @@
 ﻿using QLSQ.ViewModel.Catalogs.QLLuong;
+using QLSQ.ViewModel.Catalogs.SiQuan;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace QLSQ.AdminApp.Services
     public interface IQLLuongApiClient
     {
         public Task<APIResult<PageResult<QLLuongViewModel>>> GetAllWithPaging(GetQLLuongPagingRequest request);
+      
     }
 }
