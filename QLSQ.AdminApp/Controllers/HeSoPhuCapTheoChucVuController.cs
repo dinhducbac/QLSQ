@@ -127,6 +127,34 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDHeSoPhuCapCV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var hspc = await _heSoPhuCapTheoChucVuApiClient.Details(IDHeSoPhuCapCV);
+            var hspcDeleteRequest = new HeSoPhuCapTheoChucVuDeleteRequest()
+            {
+                IDHeSoPhuCapCV = hspc.ResultObj.IDHeSoPhuCapCV,
+                IDBP = hspc.ResultObj.IDBP,
+                TenBP = hspc.ResultObj.TenBP,
+                IDCV = hspc.ResultObj.IDCV,
+                TenCV = hspc.ResultObj.TenCV,
+                HeSoPhuCap = hspc.ResultObj.HeSoPhuCap
+            };
+            return View(hspcDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(HeSoPhuCapTheoChucVuDeleteRequest request)
+        {
+            var result = await _heSoPhuCapTheoChucVuApiClient.Delete(request.IDHeSoPhuCapCV);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa phụ cấp thành công";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
 
     }
 }

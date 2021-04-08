@@ -31,6 +31,14 @@ namespace QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDHeSoPhuCapCV)
+        {
+            var hspc = await _context.HeSoPhuCapTheoChucVus.FirstOrDefaultAsync(x=>x.IDHeSoPhuCapCV ==  IDHeSoPhuCapCV);
+            _context.HeSoPhuCapTheoChucVus.Remove(hspc);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<HeSoPhuCapTheoChucVuDetailsViewModel>> Details(int IDHeSoPhuCapCV)
         {
             var query = await (from bp in _context.BoPhans
