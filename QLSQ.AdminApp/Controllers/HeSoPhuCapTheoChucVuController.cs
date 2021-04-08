@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp;
 using QLSQ.AdminApp.Services;
 using QLSQ.ViewModel.Catalogs.ChucVu;
 using QLSQ.ViewModel.Catalogs.HeSoPhuCapTheoChucVu;
@@ -93,6 +94,38 @@ namespace QLSQ.AdminApp.Controllers
             if (result.IsSuccessed)
                 return View(result.ResultObj);
             return View(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDHeSoPhuCapCV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var hspc = await _heSoPhuCapTheoChucVuApiClient.Details(IDHeSoPhuCapCV);
+            var hspcUpdateRequest = new HeSoPhuCapTheoChucVuUpdateRequest()
+            {
+                IDHeSoPhuCapCV = hspc.ResultObj.IDHeSoPhuCapCV,
+                IDBP = hspc.ResultObj.IDBP,
+                IDCV = hspc.ResultObj.IDCV,
+                HeSoPhuCap = hspc.ResultObj.HeSoPhuCap,
+                boPhanViewModels = new List<ViewModel.Catalogs.BoPhan.BoPhanViewModel>(),
+                chucVuViewModels = new List<ChucVuViewModel>()
+            };
+            var getListBP = await _boPhanApiClient.GetAllWithNotPaging();
+            hspcUpdateRequest.boPhanViewModels = getListBP.ResultObj;
+            var getListCV = await _chucVuApiClient.GetChucVuWithIDBP(hspc.ResultObj.IDBP);
+            hspcUpdateRequest.chucVuViewModels = getListCV.ResultObj;
+            return View(hspcUpdateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(HeSoPhuCapTheoChucVuUpdateRequest request)
+        {
+            var result = await _heSoPhuCapTheoChucVuApiClient.Edit(request.IDHeSoPhuCapCV, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa hệ số phu cấp thành công";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
         }
 
     }
