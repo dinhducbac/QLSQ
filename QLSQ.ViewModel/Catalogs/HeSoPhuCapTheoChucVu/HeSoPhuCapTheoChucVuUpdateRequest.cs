@@ -3,14 +3,15 @@ using QLSQ.ViewModel.Catalogs.ChucVu;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace QLSQ.ViewModel.Catalogs.HeSoPhuCapTheoChucVu
 {
-    public class HeSoPhuCapTheoChucVuCreateRequest
+    public class HeSoPhuCapTheoChucVuUpdateRequest
     {
-        [Display(Name ="ID bộ phận")]
+        [Display(Name = "ID hệ số phụ cấp")]
+        public int IDHeSoPhuCapCV { get; set; }
+        [Display(Name = "ID bộ phận")]
         public int IDBP { get; set; }
         [Display(Name = "ID chức vụ")]
         public int IDCV { get; set; }
@@ -18,6 +19,5 @@ namespace QLSQ.ViewModel.Catalogs.HeSoPhuCapTheoChucVu
         public float HeSoPhuCap { get; set; }
         public List<BoPhanViewModel> boPhanViewModels { get; set; }
         public List<ChucVuViewModel> chucVuViewModels { get; set; }
-
     }
 }

@@ -60,6 +60,15 @@ namespace QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu
             return new APISuccessedResult<HeSoPhuCapTheoChucVuDetailsViewModel>(hspcDetailsViewModel);
         }
 
+        public async Task<APIResult<bool>> Edit(int IDHeSoPhuCapCV, HeSoPhuCapTheoChucVuUpdateRequest request)
+        {
+            var hspc = await _context.HeSoPhuCapTheoChucVus.FirstOrDefaultAsync(x => x.IDHeSoPhuCapCV == IDHeSoPhuCapCV);
+            hspc.IDCV = request.IDCV;
+            hspc.HeSoPhuCap = request.HeSoPhuCap;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<HeSoPhuCapTheoChucVuViewModel>>> GetAllWithPaging(GetHeSoPhuCapPagingRequest request)
         {
             var query = from cv in _context.ChucVus

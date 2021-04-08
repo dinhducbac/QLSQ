@@ -1,0 +1,101 @@
+﻿@model QLSQ.ViewModel.Catalogs.HeSoPhuCapTheoChucVu.HeSoPhuCapTheoChucVuUpdateRequest
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Chỉnh sửa thông tin hệ số phụ cấp</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Edit">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="IDHeSoPhuCapCV" class="control-label"></label>
+                                        <input asp-for="IDHeSoPhuCapCV" class="form-control" />
+                                        <span asp-validation-for="IDHeSoPhuCapCV" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDBP" class="control-label"></label>
+                                        <select id="IDBP" asp-for="IDBP" class="form-control" asp-items="@(new SelectList(Model.boPhanViewModels,"IDBP","TenBP"))"></select>
+                                        <span asp-validation-for="IDBP" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDCV" class="control-label"></label>
+                                        <select id="IDCV" asp-for="IDCV" class="form-control" asp-items="@(new SelectList(Model.chucVuViewModels,"IDCV","TenCV"))"></select>
+                                        <span asp-validation-for="IDCV" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="HeSoPhuCap" class="control-label"></label>
+                                        <input asp-for="HeSoPhuCap" class="form-control" />
+                                        <span asp-validation-for="HeSoPhuCap" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+@section Script{
+
+    <script>
+        $(document).ready(function () {
+            $("#IDBP").on("change", function () {
+                $list = $("#IDCV");
+                $.ajax({
+                    url: "/HeSoPhuCapTheoChucVu/getCV",
+                    type: "GET",
+                    data: { IDBP : $("#IDBP").val() },
+                    traditional: true,
+                    success: function (result) {
+                        console.log(result);
+                        $("#IDCV").empty();
+                        //alert($("#IDBP").val());
+                        $.each(result, function (i, item) {
+                            $("#IDCV").append('<option value="' + item.value + '"> ' + item.text + ' </option>');
+                        });
+                    },
+                    error: function () {
+                        alert("Something went wrong");
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+
