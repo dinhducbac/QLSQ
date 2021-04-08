@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu;
 using QLSQ.ViewModel.Catalogs.HeSoPhuCapTheoChucVu;
 using QLSQ.ViewModel.Common;
 using System;
@@ -37,6 +38,21 @@ namespace QLSQ.AdminApp.Services
                 return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
             }
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
+        public async Task<APIResult<HeSoPhuCapTheoChucVuDetailsViewModel>> Details(int IDHeSoPhuCapCV)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/HeSoPhuCapTheoChucVus/{IDHeSoPhuCapCV}/details");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<APISuccessedResult<HeSoPhuCapTheoChucVuDetailsViewModel>>(body);
+            }
+            return JsonConvert.DeserializeObject<APIErrorResult<HeSoPhuCapTheoChucVuDetailsViewModel>>(body);
         }
 
         public async Task<APIResult<PageResult<HeSoPhuCapTheoChucVuViewModel>>> GetAllWithPaging(GetHeSoPhuCapPagingRequest request)

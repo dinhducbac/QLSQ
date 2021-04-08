@@ -84,5 +84,16 @@ namespace QLSQ.AdminApp.Controllers
             return Json(new SelectList(list, "IDCV", "TenCV"));
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDHeSoPhuCapCV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _heSoPhuCapTheoChucVuApiClient.Details(IDHeSoPhuCapCV);
+            if (result.IsSuccessed)
+                return View(result.ResultObj);
+            return View(result);
+        }
+
     }
 }
