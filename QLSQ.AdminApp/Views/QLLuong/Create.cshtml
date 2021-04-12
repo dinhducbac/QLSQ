@@ -5,12 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-12">
-                <h1 class="m-0 text-dark">Tạo đảng viên</h1>
+                <h1 class="m-0 text-dark">Tạo quản lý lương</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -21,23 +20,24 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tạo User</h3>
+                        <h3 class="card-title">Tạo QLL</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+
                         <div class="row">
                             <div class="col-md-4">
                                 <form asp-action="Create">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
-                                        <label>Test Autocomplete</label>
-                                        <input id="autocomplete" type="text" class="form-control" />
-                                        <div id="autoCompleteDiv"></div>
+                                        <label class="control-label">Test Autocomplete</label>
+                                        <input type="text" id="autocomplete" class="form-control" />
                                         <span class="text-danger"></span>
+                                        <input type="hidden" id="hfCustomer" name="CustomerId" />
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="IDSQ" class="control-label"></label>
-                                        <input asp-for="IDSQ" class="form-control" />
+                                        <select asp-for="IDSQ" class="form-control" asp-items="@(new SelectList(Model.siQuanViewModels,"IDSQ","HoTen"))"></select>
                                         <span asp-validation-for="IDSQ" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -76,45 +76,15 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-<!--
 
-<script type="text/javascript">
-    $(function () {
-        $("#autocomplete").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: '/QLLuong/AutoComplete/',
-                    data: { "preconfix": request.term },
-                    type: "POST",
-                    success: function (data) {
-                        alert(request.term);
-                        response($.map(data, function (item) {
-                            return item;
-                        }))
-                    },
-                    error: function (response) {
-                        alert(response.responseText);
-                    },
-                    failure: function (response) {
-                        alert(response.responseText);
-                    }
-                });
-                //alert("hello");
-            },
-            select: function (e, i) {
-                $("#hfCustomer").val(i.item.val);
-            },
-            minLength: 1
-        });
-    });
-</script>
--->
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+
+
+<!--
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
 <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
       rel="Stylesheet" type="text/css" />
-
-@section Scripttt{
+    section Scripttt{
     <script type="text/javascript">
         $(document).ready(function () {
             $("#autocomplete").autocomplete({
@@ -144,15 +114,47 @@
                     //alert("hello");
                 },
                 select: function (e, i) {
-                    $("#hfCustomer").val(i.item.val);
-                    $(this).val(i.item.hoTen);
+                    $("#hfCustomer").val(i.item.hoTen);
+                    //$(this).val(i.item.hoTen);
 
                 },
                 minLength: 0
             });
         });
     </script>
+}-->
+@section Autocomplete{
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+          rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $("#autocomplete").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/QLLuong/AutoComplete/',
+                        data: { "preconfix": request.term },
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item.hoTen;
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    $("#hfCustomer").val(i.item.val);
+                },
+                minLength: 1
+            });
+        });
+    </script>
 }
-
-
-

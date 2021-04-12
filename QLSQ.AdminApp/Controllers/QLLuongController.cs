@@ -45,9 +45,16 @@ namespace QLSQ.AdminApp.Controllers
             return Json(listsq.ResultObj);
         }
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var qllCreateRequest = new QLLuongCreateRequest()
+            {
+                siQuanViewModels = new List<ViewModel.Catalogs.SiQuan.SiQuanViewModel>()
+            };
+            var getlistsq = await _siQuanApiClient.GetAllWithoutPaging();
+            var listsq = getlistsq.ResultObj;
+            qllCreateRequest.siQuanViewModels = listsq;
+            return View(qllCreateRequest);
         }
     }
 }
