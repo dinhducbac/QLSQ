@@ -19,6 +19,20 @@ namespace QLSQ.Application.Catalog.QLLuong
             _context = context;
         }
 
+        public async Task<APIResult<bool>> Create(QLLuongCreateRequest request)
+        {
+            var qll = new QLSQ.Data.Entities.QLLuong()
+            {
+                IDSQ = request.IDSQ,
+                IDHeSoLuongQH = request.IDHeSoLuongQH,
+                IDLuongCB = request.IDLuongCB,
+                IDHeSoPhuCapCV = request.IDHeSoPhuCapCV
+            };
+            _context.QLLuongs.Add(qll);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLLuongViewModel>>> GetAllWithPaging(GetQLLuongPagingRequest request)
         {
             var query = (from sq in _context.SiQuans

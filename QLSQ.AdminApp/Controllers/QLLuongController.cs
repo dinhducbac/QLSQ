@@ -37,7 +37,7 @@ namespace QLSQ.AdminApp.Controllers
         public async Task<JsonResult> AutoComplete(string preconfix)
         {
             var listsq = await _siQuanApiClient.GetListSiQuanAutocomplete(preconfix) ;
-            //var s = Json(listsq.ResultObj);
+            var ss = listsq.ResultObj;
             foreach (var data in listsq.ResultObj)
             {
                 var s = data.HoTen;
