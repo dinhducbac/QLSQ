@@ -13,5 +13,6 @@ namespace QLSQ.Application.Catalog.QLChucVu
         public Task<APIResult<bool>> Create(QLChucVuCreateRequest request);
         public Task<APIResult<QLChucVuDetailsViewModel>> Details(int IDQLCVS);
         public Task<APIResult<bool>> Edit(int IDQLCV, QLChucVuUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int IDQLCV);
     }
 }

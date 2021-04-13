@@ -31,6 +31,14 @@ namespace QLSQ.Application.Catalog.QLChucVu
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDQLCV)
+        {
+            var qlcv = await _context.QLChucVus.FirstOrDefaultAsync(x => x.IDQLCV == IDQLCV);
+            _context.QLChucVus.Remove(qlcv);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<QLChucVuDetailsViewModel>> Details(int IDQLCVS)
         {
             var query =  await (from qlcv in _context.QLChucVus
