@@ -29,7 +29,7 @@ namespace QLSQ.AdminApp.Services
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
             var json = JsonConvert.SerializeObject(request);
-            var httpContent = new StringContent(json, Encoding.UTF8, "appliation/json");
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync($"/api/QLChucVus/create", httpContent);
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)

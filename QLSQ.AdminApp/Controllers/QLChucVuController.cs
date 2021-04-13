@@ -26,7 +26,7 @@ namespace QLSQ.AdminApp.Controllers
             _chucVuApiClient = chucVuApiClient;
             _siQuanApiClient = siQuanApiClient;
         }
-        public async Task<IActionResult> Index(string keyword, int pageIndex =1, int pageSize = 10)
+        public async Task<IActionResult> Index(string keyword, int pageIndex =1, int pageSize = 5)
         {
             var qlcvPagingRequest = new GetQLChucVuPagingRequest()
             {
@@ -69,6 +69,17 @@ namespace QLSQ.AdminApp.Controllers
             var getLiChucVu = await _chucVuApiClient.GetChucVuWithIDBP(1);
             qlcvCreateRequest.chucVuViewModels = getLiChucVu.ResultObj;
             return View(qlcvCreateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(QLChucVuCreateRequest request)
+        {
+            var result = await _qLChucVuApiClient.Create(request);
+            if (result.IsSuccessed)
+            {
+                ViewData["result"] = "Tạo quản lý chức vụ sĩ quan thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
         }
     }
 }
