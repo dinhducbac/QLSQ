@@ -130,5 +130,34 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDQLCV)
+        {
+            var qlcvDetailsViewModel = await _qLChucVuApiClient.Details(IDQLCV);
+            var qlcvDeleteRequest = new QLChucVuDeleteRequest()
+            {
+                IDQLCV = qlcvDetailsViewModel.ResultObj.IDQLCV,
+                IDSQ = qlcvDetailsViewModel.ResultObj.IDSQ,
+                HoTen = qlcvDetailsViewModel.ResultObj.HoTen,
+                IDQH = qlcvDetailsViewModel.ResultObj.IDQH,
+                TenQH = qlcvDetailsViewModel.ResultObj.TenQH,
+                IDBP = qlcvDetailsViewModel.ResultObj.IDBP,
+                TenBP = qlcvDetailsViewModel.ResultObj.TenBP,
+                IDCV = qlcvDetailsViewModel.ResultObj.IDCV,
+                TenCV = qlcvDetailsViewModel.ResultObj.TenCV
+            };
+            return View(qlcvDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(QLChucVuDeleteRequest request)
+        {
+            var result = await _qLChucVuApiClient.Delete(request.IDQLCV);
+            if (result.IsSuccessed)
+            {
+                ViewData["result"] = "Xóa chức vụ của sĩ quan thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
