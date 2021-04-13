@@ -70,6 +70,15 @@ namespace QLSQ.Application.Catalog.QLChucVu
             return new APISuccessedResult<QLChucVuDetailsViewModel>(qlcvvm);
         }
 
+        public async Task<APIResult<bool>> Edit(int IDQLCV, QLChucVuUpdateRequest request)
+        {
+            var qlcv = await _context.QLChucVus.FirstOrDefaultAsync(x => x.IDQLCV == IDQLCV);
+            qlcv.IDQH = request.IDQH;
+            qlcv.IDCV = request.IDCV;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLChucVuViewModel>>> GetAllWithPaging(GetQLChucVuPagingRequest request)
         {
             var query = from qlcv in _context.QLChucVus
