@@ -12,9 +12,19 @@ namespace QLSQ.AdminApp.Controllers
     public class QLChucVuController : Controller
     {
         public readonly IQLChucVuApiClient _qLChucVuApiClient;
-        public QLChucVuController(IQLChucVuApiClient qLChucVuApiClient)
+        private readonly ISiQuanApiClient _siQuanApiClient;
+        public readonly IQuanHamApiClient _quanHamApiClient;
+        public readonly IBoPhanApiClient _boPhanApiClient;
+        public readonly IChucVuApiClient _chucVuApiClient; 
+
+        public QLChucVuController(IQLChucVuApiClient qLChucVuApiClient,IQuanHamApiClient quanHamApiClient, 
+            IBoPhanApiClient boPhanApiClient, IChucVuApiClient chucVuApiClient, ISiQuanApiClient siQuanApiClient)
         {
             _qLChucVuApiClient = qLChucVuApiClient;
+            _quanHamApiClient = quanHamApiClient;
+            _boPhanApiClient = boPhanApiClient;
+            _chucVuApiClient = chucVuApiClient;
+            _siQuanApiClient = siQuanApiClient;
         }
         public async Task<IActionResult> Index(string keyword, int pageIndex =1, int pageSize = 10)
         {
@@ -33,6 +43,17 @@ namespace QLSQ.AdminApp.Controllers
             return View(result.ResultObj);
         }
         [HttpGet]
+        public async Task<JsonResult> Autocomplete(string prefix)
+        {
+            var listsq = await _siQuanApiClient.GetListSiQuanNotInQLChucVuAutocomplete(prefix);
+            //var s = Json(listsq.ResultObj);
+            foreach (var data in listsq.ResultObj)
+            {
+                var s = data.HoTen;
+            }
+            return Json(listsq.ResultObj);
+        }
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             var qlcvCreateRequest = new QLChucVuCreateRequest()
@@ -41,7 +62,13 @@ namespace QLSQ.AdminApp.Controllers
                 boPhanViewModels = new List<ViewModel.Catalogs.BoPhan.BoPhanViewModel>(),
                 chucVuViewModels = new List<ViewModel.Catalogs.ChucVu.ChucVuViewModel>()
             };
-            return View();
+            var getlListQuanHam = await _quanHamApiClient.GetAllWithoutPaging();
+            qlcvCreateRequest.quanHamViewModels = getlListQuanHam.ResultObj;
+            var getListBoPhan = await _boPhanApiClient.GetAllWithNotPaging();
+            qlcvCreateRequest.boPhanViewModels = getListBoPhan.ResultObj;
+            var getLiChucVu = await _chucVuApiClient.GetChucVuWithIDBP(1);
+            qlcvCreateRequest.chucVuViewModels = getLiChucVu.ResultObj;
+            return View(qlcvCreateRequest);
         }
     }
 }

@@ -12,7 +12,7 @@ using QLSQ.ViewModel.Catalogs.SiQuanImage;
 
 namespace QLSQ.BackEndAPI.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     //[Authorize]
@@ -20,7 +20,7 @@ namespace QLSQ.BackEndAPI.Controllers
     {
         private readonly IPublicSiQuanServices _publicSiQuanServices;
         private readonly IManageSiQuanServices _manageSiQuanServices;
-        public SiQuansController(IPublicSiQuanServices publicSiQuanServices,IManageSiQuanServices manageSiQuanServices)
+        public SiQuansController(IPublicSiQuanServices publicSiQuanServices, IManageSiQuanServices manageSiQuanServices)
         {
             _publicSiQuanServices = publicSiQuanServices;
             _manageSiQuanServices = manageSiQuanServices;
@@ -65,20 +65,20 @@ namespace QLSQ.BackEndAPI.Controllers
             //return CreatedAtAction(nameof(GetById),siquanId);
         }
         [HttpPut("{IDSQ}/update")]
-        public async Task<IActionResult> Update(int IDSQ,[FromBody]SiQuanUpdateRequest request)
+        public async Task<IActionResult> Update(int IDSQ, [FromBody]SiQuanUpdateRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var result = await _manageSiQuanServices.Update(IDSQ,request);
+            var result = await _manageSiQuanServices.Update(IDSQ, request);
             if (!result.IsSuccessed)
                 return BadRequest();
             //var siquan = await _manageSiQuanServices.GetById(result);
             return Ok(result);
         }
         [HttpDelete("{IDSQ}/delete")]
-        public async Task<IActionResult> Delete( int IDSQ)
+        public async Task<IActionResult> Delete(int IDSQ)
         {
             var result = await _manageSiQuanServices.Detele(IDSQ);
             if (!result.IsSuccessed)
@@ -91,7 +91,7 @@ namespace QLSQ.BackEndAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var listSq = await _manageSiQuanServices.GetSiQuanNotInQLDangVien();
-            if(listSq.IsSuccessed)
+            if (listSq.IsSuccessed)
                 return Ok(listSq);
             return BadRequest(listSq);
         }
@@ -112,6 +112,16 @@ namespace QLSQ.BackEndAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var listsq = await _manageSiQuanServices.GetListSiQuanAutocomplete(preconfix);
+            if (listsq.IsSuccessed)
+                return Ok(listsq);
+            return BadRequest(listsq);
+        }
+        [HttpGet("getlistsiquannotinqlchucvuautocomplete")]
+        public async Task<IActionResult> GetListSiQuanNotInQLChucVuAutocomplete(string prefix)
+        {
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var listsq = await _manageSiQuanServices.GetListSiQuanNotInQLChucVuAutocomplete(prefix);
             if (listsq.IsSuccessed)
                 return Ok(listsq);
             return BadRequest(listsq);

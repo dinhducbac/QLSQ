@@ -290,5 +290,23 @@ namespace QLSQ.Application.Catalog.SiQuans
             }
             return new APISuccessedResult<List<SiQuanViewModel>>(listsqvm);
         }
+
+        public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix)
+        {
+            var query = from sq in _context.SiQuans
+                        where !_context.QLChucVus.Any(x => x.IDSQ == sq.IDSQ) && sq.HoTen.StartsWith(prefix)
+                        select sq;
+            var list = new List<SiQuanViewModel>();
+            foreach (var data in query)
+            {
+                var sq = new SiQuanViewModel()
+                {
+                    IDSQ = data.IDSQ,
+                    HoTen = data.HoTen
+                };
+                list.Add(sq);
+            }
+            return new APISuccessedResult<List<SiQuanViewModel>>(list);
+        }
     }
 }

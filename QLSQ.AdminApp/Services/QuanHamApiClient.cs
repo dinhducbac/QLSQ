@@ -84,6 +84,19 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
+        public async Task<APIResult<List<QuanHamViewModel>>> GetAllWithoutPaging()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/QuanHams/getallwithoutpaging");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<QuanHamViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<QuanHamViewModel>>>(body);
+        }
+
         public async Task<APIResult<PageResult<QuanHamViewModel>>> GetAllWithPaging(GetQuanHamPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
