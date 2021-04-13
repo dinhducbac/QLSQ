@@ -62,6 +62,22 @@ namespace QLSQ.Application.Catalog.QuanHam
 
         }
 
+        public async Task<APIResult<List<QuanHamViewModel>>> GetAllWithoutPaging()
+        {
+            var query = from qh in _context.QuanHams select qh;
+            var list = new List<QuanHamViewModel>();
+            foreach (var data in query)
+            {
+                var qh = new QuanHamViewModel()
+                {
+                    IDQH = data.IDQH,
+                    TenQH = data.TenQH
+                };
+                list.Add(qh);
+            }
+            return new APISuccessedResult<List<QuanHamViewModel>>(list); 
+        }
+
         public async Task<APIResult<PageResult<QuanHamViewModel>>> GetAllWithPaging(GetQuanHamPagingRequest request)
         {
             var query = from qh in _context.QuanHams select qh;
