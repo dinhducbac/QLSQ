@@ -17,7 +17,7 @@ namespace QLSQ.BackEndAPI.Controllers
         public QLChucVusController(IQLChucVuServices qLChucVuServices)
         {
             _qLChucVuServices = qLChucVuServices;
-        } 
+        }
         [HttpGet("paging")]
         public async Task<IActionResult> GetAllWithPaging([FromQuery]GetQLChucVuPagingRequest request)
         {
@@ -35,6 +35,16 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest(ModelState);
             var result = await _qLChucVuServices.Create(request);
             if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("{IDQLCV}/details")]
+        public async Task<IActionResult> Details(int IDQLCV)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLChucVuServices.Details(IDQLCV);
+            if (result.ResultObj != null)
                 return Ok(result);
             return BadRequest(result);
         }

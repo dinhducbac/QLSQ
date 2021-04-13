@@ -11,6 +11,6 @@ namespace QLSQ.AdminApp.Services
     {
         public Task<APIResult<PageResult<QLChucVuViewModel>>> GetAllWithPaging(GetQLChucVuPagingRequest request);
         public Task<APIResult<bool>> Create(QLChucVuCreateRequest request);
-
+        public Task<APIResult<QLChucVuDetailsViewModel>> Details(int IDQLCV);
     }
 }

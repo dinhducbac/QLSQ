@@ -113,9 +113,9 @@
                                             @Html.DisplayFor(modelItem => item.TenCV)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            @Html.ActionLink("Edit", "Edit", new { IDQLCV = item.IDQLCV }) |
+                                            @Html.ActionLink("Details", "Details", new { IDQLCV = item.IDQLCV }) |
+                                            @Html.ActionLink("Delete", "Delete", new { IDQLCV = item.IDQLCV })
                                         </td>
                                     </tr>
                                 }

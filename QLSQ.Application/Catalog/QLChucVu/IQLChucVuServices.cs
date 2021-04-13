@@ -11,5 +11,6 @@ namespace QLSQ.Application.Catalog.QLChucVu
     {
         public Task<APIResult<PageResult<QLChucVuViewModel>>> GetAllWithPaging(GetQLChucVuPagingRequest request);
         public Task<APIResult<bool>> Create(QLChucVuCreateRequest request);
+        public Task<APIResult<QLChucVuDetailsViewModel>> Details(int IDQLCVS);
     }
 }
