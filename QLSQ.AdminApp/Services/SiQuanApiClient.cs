@@ -110,6 +110,19 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<List<SiQuanViewModel>>>(body);
         }
 
+        public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var reponse = await client.GetAsync($"/api/SiQuans/getlistsiquannotinqlchucvuautocomplete?prefix={prefix}");
+            var body = await reponse.Content.ReadAsStringAsync();
+            if (reponse.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<SiQuanViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<SiQuanViewModel>>>(body); 
+        }
+
         public async Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien()
         {
             var client = _httpClientFactory.CreateClient();

@@ -11,21 +11,22 @@ namespace QLSQ.Application.Catalog.SiQuans
 {
     public interface IManageSiQuanServices
     {
-        Task<APIResult<int>> Create(SiQuanCreateRequest request);
+        public Task<APIResult<int>> Create(SiQuanCreateRequest request);
 
-        Task<APIResult<bool>> Update(int IDSQ, SiQuanUpdateRequest request);
-        Task<APIResult<string>> Detele(int IDSQ);
+        public Task<APIResult<bool>> Update(int IDSQ, SiQuanUpdateRequest request);
+        public Task<APIResult<string>> Detele(int IDSQ);
 
-        Task<APIResult<SiQuanViewModel>> GetById(int IDSQ);
+        public Task<APIResult<SiQuanViewModel>> GetById(int IDSQ);
 
-        Task<APIResult<PageResult<SiQuanViewModel>>> GetAllPaging(GetManageSiQuanPagingRequest request);
-        Task<APIResult<List<SiQuanViewModel>>> GetAllWithoutPaging();
-        Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien();
-        Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request);
-        Task<int> RemoveImages(int ImageID);
-        Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request);
-        Task<SiQuanImageViewModel> GetImageByID(int SiQuanImageID);
-        Task<List<SiQuanImageViewModel>> GetListImage(int SiQuanID);
-        Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanAutocomplete(string preconfix);
+        public Task<APIResult<PageResult<SiQuanViewModel>>> GetAllPaging(GetManageSiQuanPagingRequest request);
+        public Task<APIResult<List<SiQuanViewModel>>> GetAllWithoutPaging();
+        public Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien();
+        public Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request);
+        public Task<int> RemoveImages(int ImageID);
+        public Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request);
+        public Task<SiQuanImageViewModel> GetImageByID(int SiQuanImageID);
+        public Task<List<SiQuanImageViewModel>> GetListImage(int SiQuanID);
+        public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanAutocomplete(string preconfix);
+        public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix);
     }
 }

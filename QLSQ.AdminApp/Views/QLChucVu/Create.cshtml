@@ -1,0 +1,137 @@
+﻿@model QLSQ.ViewModel.Catalogs.QLChucVu.QLChucVuCreateRequest
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Tạo quản lý chức vụ sĩ quan</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tạo quản lý chức vụ sĩ quan</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label class="control-label">Tên sĩ quan</label>
+                                        <input id="autocomplete" type="text" class="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDSQ" class="control-label"></label>
+                                        <input id="IDSQ" type="text" readonly asp-for="IDSQ" class="form-control"/>
+                                        <span asp-validation-for="IDSQ" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDQH" class="control-label"></label>
+                                        <select asp-for="IDQH" class="form-control" asp-items="@(new SelectList(Model.quanHamViewModels,"IDQH","TenQH"))"></select>
+                                        <span asp-validation-for="IDQH" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDBP" class="control-label"></label>
+                                        <select id="IDBP" asp-for="IDBP" class="form-control" asp-items="@(new SelectList(Model.boPhanViewModels,"IDBP","TenBP"))"></select>
+                                        <span asp-validation-for="IDBP" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDCV" class="control-label"></label>
+                                        <select id="IDCV" asp-for="IDCV" class="form-control" asp-items="@(new SelectList(Model.chucVuViewModels,"IDCV","TenCV"))"></select>
+                                        <span asp-validation-for="IDCV" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+@section Script{
+
+    <script>
+        $(document).ready(function () {
+            $("#IDBP").on("change", function () {
+                $list = $("#IDCV");
+                $.ajax({
+                    url: "/HeSoPhuCapTheoChucVu/getCV",
+                    type: "GET",
+                    data: { IDBP: $("#IDBP").val() },
+                    traditional: true,
+                    success: function (result) {
+                        console.log(result);
+                        $("#IDCV").empty();
+                        //alert($("#IDBP").val());
+                        $.each(result, function (i, item) {
+                            $("#IDCV").append('<option value="' + item.value + '"> ' + item.text + ' </option>');
+                        });
+                    },
+                    error: function () {
+                        alert("Something went wrong");
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+          rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $("#autocomplete").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/QLChucVu/Autocomplete/',
+                        data: { "prefix": request.term },
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.hoTen, value: item.hoTen, idsq: item.idsq };
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    $("#IDSQ").val(i.item.idsq);
+                    //alert($("#IDSQ").val);
+                },
+                minLength: 1
+            });
+        });
+    </script>
+}
