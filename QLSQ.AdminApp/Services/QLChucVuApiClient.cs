@@ -50,6 +50,19 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<QLChucVuDetailsViewModel>>(body);
         }
 
+        public async Task<APIResult<bool>> Edit(int IDQLCV, QLChucVuUpdateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/api/QLChucVus/{IDQLCV}/edit", httpContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
         public async Task<APIResult<PageResult<QLChucVuViewModel>>> GetAllWithPaging(GetQLChucVuPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();

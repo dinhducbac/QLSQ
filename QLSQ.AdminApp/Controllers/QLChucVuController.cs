@@ -93,5 +93,42 @@ namespace QLSQ.AdminApp.Controllers
             }                   
             return View(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDQLCV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLChucVuApiClient.Details(IDQLCV);
+            var qlcvUpdateRequest = new QLChucVuUpdateRequest()
+            {
+                IDQLCV = result.ResultObj.IDQLCV,
+                IDSQ = result.ResultObj.IDSQ,
+                HoTen = result.ResultObj.HoTen,
+                IDQH = result.ResultObj.IDQH,
+                IDBP = result.ResultObj.IDBP,
+                IDCV = result.ResultObj.IDCV,
+                quanHamViewModels = new List<ViewModel.Catalogs.QuanHam.QuanHamViewModel>(),
+                boPhanViewModels = new List<ViewModel.Catalogs.BoPhan.BoPhanViewModel>(),
+                chucVuViewModels = new List<ViewModel.Catalogs.ChucVu.ChucVuViewModel>()
+            };
+            var getlListQuanHam = await _quanHamApiClient.GetAllWithoutPaging();
+            qlcvUpdateRequest.quanHamViewModels = getlListQuanHam.ResultObj;
+            var getListBoPhan = await _boPhanApiClient.GetAllWithNotPaging();
+            qlcvUpdateRequest.boPhanViewModels = getListBoPhan.ResultObj;
+            var getLiChucVu = await _chucVuApiClient.GetChucVuWithIDBP(qlcvUpdateRequest.IDBP);
+            qlcvUpdateRequest.chucVuViewModels = getLiChucVu.ResultObj;
+            return View(qlcvUpdateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(QLChucVuUpdateRequest request)
+        {
+            var result = await _qLChucVuApiClient.Edit(request.IDQLCV, request);
+            if (result.IsSuccessed)
+            {
+                ViewData["result"] = "Sửa quản lý chức vụ thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
