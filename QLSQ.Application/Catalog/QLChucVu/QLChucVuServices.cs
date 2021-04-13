@@ -31,6 +31,45 @@ namespace QLSQ.Application.Catalog.QLChucVu
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<QLChucVuDetailsViewModel>> Details(int IDQLCVS)
+        {
+            var query =  await (from qlcv in _context.QLChucVus
+                        join cv in _context.ChucVus
+                        on qlcv.IDCV equals cv.IDCV
+                        join bp in _context.BoPhans
+                        on cv.IDBP equals bp.IDBP
+                        join sq in _context.SiQuans
+                        on qlcv.IDSQ equals sq.IDSQ
+                        join qh in _context.QuanHams
+                        on qlcv.IDQH equals qh.IDQH
+                        where qlcv.IDQLCV == IDQLCVS
+                        select new QLChucVuDetailsViewModel 
+                        {
+                            IDQLCV = qlcv.IDQLCV,
+                            IDSQ = qlcv.IDSQ,
+                            HoTen = sq.HoTen,
+                            IDQH = qlcv.IDQH,
+                            TenQH = qh.TenQH,
+                            IDBP = bp.IDBP,
+                            TenBP = bp.TenBP,
+                            IDCV = qlcv.IDCV,
+                            TenCV = cv.TenCV
+                        }).FirstOrDefaultAsync();
+            var qlcvvm = new QLChucVuDetailsViewModel()
+            {
+                IDQLCV = query.IDQLCV,
+                IDSQ = query.IDSQ,
+                HoTen = query.HoTen,
+                IDQH = query.IDQH,
+                TenQH = query.TenQH,
+                IDBP = query.IDBP,
+                TenBP = query.TenBP,
+                IDCV = query.IDCV,
+                TenCV = query.TenCV
+            };
+            return new APISuccessedResult<QLChucVuDetailsViewModel>(qlcvvm);
+        }
+
         public async Task<APIResult<PageResult<QLChucVuViewModel>>> GetAllWithPaging(GetQLChucVuPagingRequest request)
         {
             var query = from qlcv in _context.QLChucVus

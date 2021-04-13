@@ -81,5 +81,17 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDQLCV)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLChucVuApiClient.Details(IDQLCV);
+            if (result.IsSuccessed)
+            {
+                return View(result.ResultObj);
+            }                   
+            return View(result);
+        }
     }
 }
