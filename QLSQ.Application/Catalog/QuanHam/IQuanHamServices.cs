@@ -15,5 +15,6 @@ namespace QLSQ.Application.Catalog.QuanHam
         public Task<APIResult<bool>> Edit(int IDQH,QuanHamUpdateRequest request);
         public Task<APIResult<bool>> Delete(int IDQH);
         public Task<APIResult<List<QuanHamViewModel>>> GetListQuanHamNotInHeSoLuong();
+        public Task<APIResult<List<QuanHamViewModel>>> GetAllWithoutPaging();
     }
 }

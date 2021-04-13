@@ -56,5 +56,15 @@ namespace QLSQ.BackEndAPI.Controllers
             var result = await _quanHamServices.GetListQuanHamNotInHeSoLuong();
             return Ok(result);
         }
+        [HttpGet("getallwithoutpaging")]
+        public async Task<IActionResult> GetAllWithoutPaging()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _quanHamServices.GetAllWithoutPaging();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
