@@ -22,6 +22,20 @@ namespace QLSQ.AdminApp.Services
             _httpClientFactory = httpClientFactory;
             _httpContextAccessor = httpContextAccessor;
         }
+
+        public async Task<APIResult<LuongCoBanViewModel>> Details(int IDLuongCB)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/LuongCoBans/{IDLuongCB}/details");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<LuongCoBanViewModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<LuongCoBanViewModel>>(body);
+        }
+
         public async Task<APIResult<PageResult<LuongCoBanViewModel>>> GetAllWithPaging(GetLuongCoBanPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
