@@ -19,7 +19,7 @@ namespace QLSQ.Data.Configurations
             builder.Property(x => x.DiaChiCT).IsRequired(true).IsUnicode(true).HasMaxLength(300);
             builder.Property(x => x.ThoiGianBatDauCT).IsRequired(true);
             builder.Property(x => x.ThoiGianKetThucCT).IsRequired(true);
-
+            builder.Property(x => x.CongTacState).IsRequired().HasDefaultValue(1);
         }
     }
 }

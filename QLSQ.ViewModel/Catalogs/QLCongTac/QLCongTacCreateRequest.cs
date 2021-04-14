@@ -16,6 +16,8 @@ namespace QLSQ.ViewModel.Catalogs.QLCongTac
         public DateTime ThoiGianBatDauCT { get; set; }
         [Display(Name = "Thời gian kết thúc công tác")]
         public DateTime ThoiGianKetThucCT { get; set; }
+        [Display(Name = "Trạng thái công tác")]
+        public int CongTacState { get; set; }
         public List<SiQuanViewModel> siQuanViewModels { get; set; }
 
     }

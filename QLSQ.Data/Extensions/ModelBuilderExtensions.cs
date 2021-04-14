@@ -307,21 +307,24 @@ namespace QL_SiQuan.Data.Extensions
                     IDSQ = 1, 
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 
                     ThoiGianBatDauCT = DateTime.Parse("2007-9-13"),
-                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13"),
+                    CongTacState = 1
                 },
                 new QLCongTac {
                     IDCT = 2,
                     IDSQ = 2, 
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 
                     ThoiGianBatDauCT = DateTime.Parse("2007-9-13"),
-                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13"),
+                    CongTacState = 1
                 },
                 new QLCongTac {
                     IDCT = 3,
                     IDSQ = 3, 
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa", 
                     ThoiGianBatDauCT = DateTime.Parse("2007-9-13"),
-                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13"),
+                    CongTacState = 1
                 },
                 new QLCongTac
                 {
@@ -329,7 +332,8 @@ namespace QL_SiQuan.Data.Extensions
                     IDSQ = 4,
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa",
                     ThoiGianBatDauCT = DateTime.Parse("2007-9-13"),
-                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13"),
+                    CongTacState = 1
                 },
                 new QLCongTac
                 {
@@ -337,7 +341,18 @@ namespace QL_SiQuan.Data.Extensions
                     IDSQ = 5,
                     DiaChiCT = "Trường Sĩ quan Thông tin, Nha Trang, Khánh Hòa",
                     ThoiGianBatDauCT = DateTime.Parse("2005-9-13"),
-                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13")
+                    ThoiGianKetThucCT = DateTime.Parse("2030-9-13"),
+                    CongTacState = 1
+                }
+            );
+            modelBuilder.Entity<QLNghiPhep>().HasData(
+                new QLNghiPhep
+                {
+                    IDNP = 1,
+                    IDSQ = 1,
+                    ThoiGianBDNP = DateTime.Parse("2019-9-13"),
+                    ThoiGianKTNP = DateTime.Parse("2019-10-13"),
+                    NghiPhepState = 0
                 }
             );
         }

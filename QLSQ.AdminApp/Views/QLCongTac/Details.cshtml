@@ -63,6 +63,19 @@
                                 <dd class="col-sm-10">
                                     @Html.DisplayFor(model => model.ThoiGianKetThucCT)
                                 </dd>
+                                <dt class="col-sm-2">
+                                    @Html.DisplayNameFor(model => model.CongTacState)
+                                </dt>
+                                <dd class="col-sm-10">
+                                    @if (Model.CongTacState == 1)
+                                    {
+                                        <span>Đang công tác tại đây</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Không công tác tại đây</span>
+                                    }
+                                </dd>
                             </dl>
                         </div>
                         <div>

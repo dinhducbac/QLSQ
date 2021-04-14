@@ -25,7 +25,8 @@ namespace QLSQ.Application.Catalog.QLCongTac
                 IDSQ = request.IDSQ,
                 DiaChiCT = request.DiaChiCT,
                 ThoiGianBatDauCT = request.ThoiGianBatDauCT,
-                ThoiGianKetThucCT = request.ThoiGianKetThucCT
+                ThoiGianKetThucCT = request.ThoiGianKetThucCT,
+                CongTacState = request.CongTacState
             };
             _context.QLCongTacs.Add(qlct);
             await _context.SaveChangesAsync();
@@ -54,7 +55,8 @@ namespace QLSQ.Application.Catalog.QLCongTac
                            HoTen = sq.HoTen,
                            DiaChiCT = qlct.DiaChiCT,
                            ThoiGianBatDauCT = qlct.ThoiGianBatDauCT,
-                           ThoiGianKetThucCT = qlct.ThoiGianKetThucCT
+                           ThoiGianKetThucCT = qlct.ThoiGianKetThucCT,
+                           CongTacState = qlct.CongTacState
                        }).FirstOrDefault();
             var qlctvm = new QLCongTacViewModel()
             {
@@ -63,7 +65,8 @@ namespace QLSQ.Application.Catalog.QLCongTac
                 HoTen = qlctdetail.HoTen,
                 DiaChiCT = qlctdetail.DiaChiCT,
                 ThoiGianBatDauCT = qlctdetail.ThoiGianBatDauCT,
-                ThoiGianKetThucCT = qlctdetail.ThoiGianKetThucCT
+                ThoiGianKetThucCT = qlctdetail.ThoiGianKetThucCT,
+                CongTacState = qlctdetail.CongTacState
             };
             return new APISuccessedResult<QLCongTacViewModel>(qlctvm);
         }
@@ -74,6 +77,7 @@ namespace QLSQ.Application.Catalog.QLCongTac
             qlct.DiaChiCT = request.DiaChiCT;
             qlct.ThoiGianBatDauCT = request.ThoiGianBatDauCT;
             qlct.ThoiGianKetThucCT = request.ThoiGianKetThucCT;
+            qlct.CongTacState = request.CongTacState;
             await _context.SaveChangesAsync();
             return new APISuccessedResult<bool>(true);
         }
@@ -90,7 +94,8 @@ namespace QLSQ.Application.Catalog.QLCongTac
                              HoTen = sq.HoTen,
                              DiaChiCT = qlct.DiaChiCT,
                              ThoiGianBatDauCT = qlct.ThoiGianBatDauCT,
-                             ThoiGianKetThucCT = qlct.ThoiGianKetThucCT
+                             ThoiGianKetThucCT = qlct.ThoiGianKetThucCT,
+                             CongTacState = qlct.CongTacState
                          });
             if (!string.IsNullOrEmpty(request.keyword))
             {
@@ -106,7 +111,8 @@ namespace QLSQ.Application.Catalog.QLCongTac
                     HoTen = x.HoTen,
                     DiaChiCT = x.DiaChiCT,
                     ThoiGianBatDauCT = x.ThoiGianBatDauCT,
-                    ThoiGianKetThucCT = x.ThoiGianKetThucCT
+                    ThoiGianKetThucCT = x.ThoiGianKetThucCT,
+                    CongTacState = x.CongTacState
                 }).ToListAsync();
             var pageresult = new PageResult<QLCongTacViewModel>()
             {
