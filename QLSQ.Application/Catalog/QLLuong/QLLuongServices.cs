@@ -34,6 +34,14 @@ namespace QLSQ.Application.Catalog.QLLuong
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDLuong)
+        {
+            var qll = await _context.QLLuongs.FirstOrDefaultAsync(x => x.IDLuong == IDLuong);
+            _context.QLLuongs.Remove(qll);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<QLLuongDetailsViewModel>> Details(int IDLuong)
         {
             var query = await (from qll in _context.QLLuongs

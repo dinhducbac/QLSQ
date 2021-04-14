@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using QLSQ.Application.Catalog.QLLuong;
 using QLSQ.ViewModel.Catalogs.QLLuong;
 
@@ -41,6 +42,16 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest(ModelState);
             var result = await _qLLuongServices.Details(IDLuong);
             if (result.ResultObj != null )
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpDelete("{IDLuong}/delete")]
+        public async Task<IActionResult> Delete(int IDLuong)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLLuongServices.Delete(IDLuong);
+            if (result.ResultObj == true)
                 return Ok(result);
             return BadRequest(result);
         }
