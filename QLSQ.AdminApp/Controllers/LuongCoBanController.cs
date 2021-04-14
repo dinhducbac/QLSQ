@@ -46,5 +46,33 @@ namespace QLSQ.AdminApp.Controllers.Component
                 return View(result.ResultObj);
             return View(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDLuongCB)
+        {
+            if(!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _luongCoBanApiClient.Details(IDLuongCB);
+            if (result.IsSuccessed)
+            {
+                var lcbUpdateRequest = new LuongCoBanUpdateRequest()
+                {
+                    IDLuongCB = result.ResultObj.IDLuongCB,
+                    LuongCB = result.ResultObj.LuongCB
+                };
+                return View(lcbUpdateRequest);
+            }
+            return View(result);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(LuongCoBanUpdateRequest request)
+        {
+            var result = await _luongCoBanApiClient.Edit(request.IDLuongCB, request);
+            if (result.IsSuccessed)
+            {
+                ViewData["result"] = "Sửa lương cơ bản thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
