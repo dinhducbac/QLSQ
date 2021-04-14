@@ -34,7 +34,60 @@ namespace QLSQ.Application.Catalog.QLLuong
             return new APISuccessedResult<bool>(true);
         }
 
-        public async Task<APIResult<PageResult<QLLuongViewModel>>> GetAllWithPaging(GetQLLuongPagingRequest request)
+        public async Task<APIResult<QLLuongDetailsViewModel>> Details(int IDLuong)
+        {
+            var query = await (from qll in _context.QLLuongs
+                        join sq in _context.SiQuans
+                        on qll.IDSQ equals sq.IDSQ
+                        join hsl in _context.HeSoLuongTheoQuanHams
+                        on qll.IDHeSoLuongQH equals hsl.IDHeSoLuongQH
+                        join qh in _context.QuanHams
+                        on hsl.IDQH equals qh.IDQH
+                        join hspc in _context.HeSoPhuCapTheoChucVus
+                        on qll.IDHeSoPhuCapCV equals hspc.IDHeSoPhuCapCV
+                        join cv in _context.ChucVus
+                        on hspc.IDCV equals cv.IDCV
+                        join lcb in _context.LuongCoBans
+                        on qll.IDLuongCB equals lcb.IDLuongCB
+                        where qll.IDLuong == IDLuong
+                        select new QLLuongDetailsViewModel()
+                        {
+                            IDLuong = qll.IDLuong,
+                            HoTen = sq.HoTen,
+                            IDSQ = qll.IDSQ,
+                            IDQH = qh.IDQH,
+                            TenQH = qh.TenQH,
+                            IDHeSoLuongQH = qll.IDHeSoLuongQH,
+                            HeSoLuongQH = hsl.HeSoLuong,
+                            IDCV = cv.IDCV,
+                            TenCV = cv.TenCV,
+                            IDHeSoPhuCapCV = qll.IDHeSoPhuCapCV,
+                            HeSoPhuCapCV = hspc.HeSoPhuCap,
+                            IDLuongCB = qll.IDLuongCB,
+                            LuongCB = lcb.LuongCB
+                        }).FirstOrDefaultAsync();
+            var qllDetailsViewModel = new QLLuongDetailsViewModel()
+            {
+                IDLuong = query.IDLuong,
+                HoTen = query.HoTen,
+                IDSQ = query.IDSQ,
+                IDQH = query.IDQH,
+                TenQH = query.TenQH,
+                IDHeSoLuongQH = query.IDHeSoLuongQH,
+                HeSoLuongQH = query.HeSoLuongQH,
+                IDCV = query.IDCV,
+                TenCV = query.TenCV,
+                IDHeSoPhuCapCV = query.IDHeSoPhuCapCV,
+                HeSoPhuCapCV = query.HeSoPhuCapCV,
+                IDLuongCB = query.IDLuongCB,
+                LuongCB = query.LuongCB,
+                Luong = Convert.ToUInt64(query.HeSoLuongQH * query.LuongCB + query.HeSoPhuCapCV * query.LuongCB)
+            };
+            return new APISuccessedResult<QLLuongDetailsViewModel>(qllDetailsViewModel);
+            
+        }
+
+    public async Task<APIResult<PageResult<QLLuongViewModel>>> GetAllWithPaging(GetQLLuongPagingRequest request)
         {
             var query = (from sq in _context.SiQuans
                          join qlluong in _context.QLLuongs
