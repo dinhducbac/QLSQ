@@ -89,7 +89,8 @@ namespace QLSQ.AdminApp.Controllers
                 HoTen = qlctvm.ResultObj.HoTen,
                 DiaChiCT = qlctvm.ResultObj.DiaChiCT,
                 ThoiGianBatDauCT = qlctvm.ResultObj.ThoiGianBatDauCT,
-                ThoiGianKetThucCT = qlctvm.ResultObj.ThoiGianKetThucCT
+                ThoiGianKetThucCT = qlctvm.ResultObj.ThoiGianKetThucCT,
+                CongTacState = qlctvm.ResultObj.CongTacState
             };
             return View(qlctUpdateRequest);
         }
@@ -117,7 +118,8 @@ namespace QLSQ.AdminApp.Controllers
                 HoTen = qlctDetails.ResultObj.HoTen,
                 DiaChiCT = qlctDetails.ResultObj.DiaChiCT,
                 ThoiGianBatDauCT = qlctDetails.ResultObj.ThoiGianBatDauCT,
-                ThoiGianKetThucCT = qlctDetails.ResultObj.ThoiGianKetThucCT
+                ThoiGianKetThucCT = qlctDetails.ResultObj.ThoiGianKetThucCT,
+                CongTacState = qlctDetails.ResultObj.CongTacState
             };
             return View(qlctDeleteRequest);
         }
