@@ -40,6 +40,19 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
+        public async Task<APIResult<QLLuongDetailsViewModel>> Details(int IDLuong)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            var httpContent = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/QLLuongs/{IDLuong}/details");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<QLLuongDetailsViewModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<QLLuongDetailsViewModel>>(body);
+        }
+
         public async Task<APIResult<PageResult<QLLuongViewModel>>> GetAllWithPaging(GetQLLuongPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();

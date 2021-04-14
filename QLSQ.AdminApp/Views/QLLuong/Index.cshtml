@@ -113,9 +113,9 @@
                                             @Html.DisplayFor(modelItem => item.Luong)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            @Html.ActionLink("Edit", "Edit", new { IDLuong = item.IDLuong }) |
+                                            @Html.ActionLink("Details", "Details", new { IDLuong = item.IDLuong }) |
+                                            @Html.ActionLink("Delete", "Delete", new { IDLuong = item.IDLuong })
                                         </td>
                                     </tr>
                                 }
