@@ -13,6 +13,7 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<PageResult<QLLuongViewModel>>> GetAllWithPaging(GetQLLuongPagingRequest request);
         public Task<APIResult<bool>> Create(QLLuongCreateRequest request);
         public Task<APIResult<QLLuongDetailsViewModel>> Details(int IDLuong);
+        public Task<APIResult<bool>> Delete(int IDLuong);
       
     }
 }

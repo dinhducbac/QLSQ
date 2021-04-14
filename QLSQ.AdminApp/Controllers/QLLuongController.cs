@@ -68,5 +68,41 @@ namespace QLSQ.AdminApp.Controllers
                 return View(result.ResultObj);
             return View(result);
         }
+        [HttpGet] 
+        public async Task<IActionResult> Delete(int IDLuong)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qllDetailsModel = await _qLLuongApiClient.Details(IDLuong);
+            var qllDeleteRequest = new QLLuongDeleteRequest()
+            {
+                IDLuong = qllDetailsModel.ResultObj.IDLuong,
+                IDSQ = qllDetailsModel.ResultObj.IDSQ,
+                HoTen = qllDetailsModel.ResultObj.HoTen,
+                IDQH = qllDetailsModel.ResultObj.IDQH,
+                TenQH = qllDetailsModel.ResultObj.TenQH,
+                IDHeSoLuongQH = qllDetailsModel.ResultObj.IDHeSoLuongQH,
+                HeSoLuongQH = qllDetailsModel.ResultObj.HeSoLuongQH,
+                IDCV = qllDetailsModel.ResultObj.IDCV,
+                TenCV = qllDetailsModel.ResultObj.TenCV,
+                IDHeSoPhuCapCV = qllDetailsModel.ResultObj.IDHeSoPhuCapCV,
+                HeSoPhuCapCV = qllDetailsModel.ResultObj.HeSoPhuCapCV,
+                IDLuongCB = qllDetailsModel.ResultObj.IDLuongCB,
+                LuongCB = qllDetailsModel.ResultObj.LuongCB,
+                Luong = qllDetailsModel.ResultObj.Luong
+            };
+            return View(qllDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(QLLuongDeleteRequest request)
+        {
+            var result = await _qLLuongApiClient.Delete(request.IDLuong);
+            if (result.IsSuccessed)
+            {
+                ViewData["result"] = "Xóa quản lý lương thành cồng!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
