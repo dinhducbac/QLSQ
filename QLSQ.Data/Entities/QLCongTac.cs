@@ -13,7 +13,7 @@ namespace QLSQ.Data.Entities
         public string DiaChiCT { set; get; }
         public DateTime ThoiGianBatDauCT { set; get; }
         public DateTime ThoiGianKetThucCT { get; set; }
-
+        public int CongTacState { get; set; }
         public SiQuan SiQuan { set; get; }
 
 
