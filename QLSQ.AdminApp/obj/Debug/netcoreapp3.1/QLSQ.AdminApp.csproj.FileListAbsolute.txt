@@ -468,3 +468,4 @@ D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLChucVu
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLChucVu\Edit.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLChucVu\Delete.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLLuong\Create.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLLuong\Details.cshtml.g.cs
