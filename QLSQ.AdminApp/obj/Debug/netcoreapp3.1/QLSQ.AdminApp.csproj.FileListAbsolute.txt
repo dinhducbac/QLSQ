@@ -472,3 +472,4 @@ D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLLuong\
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLLuong\Delete.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\LuongCoBan\Index.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\LuongCoBan\Details.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\LuongCoBan\Edit.cshtml.g.cs
