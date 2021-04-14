@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QLSQ.Data.Migrations
 {
-    public partial class updatedatabase : Migration
+    public partial class fixQLNghiPhep : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -271,7 +271,7 @@ namespace QLSQ.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IDSQ = table.Column<int>(type: "int", nullable: false),
                     ThoiGianBDNP = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ThoiGianNP = table.Column<int>(type: "int", nullable: false)
+                    ThoiGianKTNP = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -406,8 +406,8 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Mota", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "8c875327-79c9-4be5-8ffe-a945574bcc6f", "Administrator Role", "admin", "admin" },
-                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "4ceefbd4-c1bc-4d7b-af70-7f30339d685a", "Si Quan Role", "Si Quan", "Si Quan" }
+                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "28791a45-02f7-4ccc-a012-e99db5081a75", "Administrator Role", "admin", "admin" },
+                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "89843962-4dcc-40bc-a675-2ded1803ce7d", "Si Quan Role", "Si Quan", "Si Quan" }
                 });
 
             migrationBuilder.InsertData(
@@ -415,12 +415,12 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "d81045d1-6008-4719-9d63-da4c2dbb052a", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEMmLpZWrYwQ4ik233Ie6ukTIzb0vmv3Q6gLxWBDfXbjXQn/lzm5jpBJfKIqx/mEJqQ==", null, false, "", false, "dovantuan" },
-                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "b78cd81d-5018-41f6-bd9a-c61d3cb3583b", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAEPhTBZ8Iqd52SNS7Fz6OeL1J7faB0xkXD/nLIhgAh5wS6guHhshCmW79RZdBqalkMA==", null, false, "", false, "vuvancanh" },
-                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "2d8a025d-1210-427a-b451-99ea411b7fa7", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAEGMEHTdj0qYPAmPn47M4upkfgYLCFa7usxpd2kpATT/xm7KQDkU7psRu2l3nhEg0cQ==", null, false, "", false, "admin" },
-                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "16e42bc8-ed04-4404-90c5-86715103afab", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAEMUIcNxPy3iyc0f5X63RJLzHI59iK9UQB2PTqDPdcz33HtPhxbvmWWUA+U/pT167Bg==", null, false, "", false, "lethihien" },
-                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "6b2129a9-8e9f-492a-8a8c-f289a94876e1", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEInH0QthzrkNI/w3U6fp4O/qVzZRgOKTZFCvN3GS+Erxilx9RQHpGHDINBvHL/tFkg==", null, false, "", false, "nguyenvanhoan" },
-                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "ab0e32ca-e5c7-46e3-b65a-730df989f0b4", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEDyiNNfgA8QHRpYRcPPqFJXlWo6I+n+B8GcqkM1MFSQRM+eZOIwnXtSwVMUAkheD/Q==", null, false, "", false, "lethigiang" }
+                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "6f9978a8-a938-40ab-9419-cffcd410aa7f", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEE38WJp0iogZ8uT12zssisZAFK9bUtjcVW+iyRKRx1TkDcbXf7Cgael8hsmv7g+6zQ==", null, false, "", false, "dovantuan" },
+                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "ec2bdc44-e70c-4bd2-a5f8-8551f8fdab4c", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAEGN60TxGudnRhsOP9RQdMvGsI3I4I8e7avUqrUcnfMyiAaoNV9LregvYILkvdwHLcw==", null, false, "", false, "vuvancanh" },
+                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "68626117-f6e9-40dd-b38f-6fd2d1c27f15", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAEIAB5RcDbfndxvW75E3mYXzHI7wN+2iDNhi4qnclEiP5bOFXqXqQ96b/47Jam4xnvA==", null, false, "", false, "admin" },
+                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "0902d695-d58e-4b7a-ba20-2ad17f0621a5", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAEJTIWoxOpl4jUxITzmCR9/gpNZetw/ThCPjm1a01xmKB0E6f4MzAz7Gqz08bO3DY6A==", null, false, "", false, "lethihien" },
+                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "52596725-f1e8-432b-b3c9-16e4e44d37ff", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEKNcdv2SG8u1dK0yeKifHgMGzMnwAa/mTUdXKDuJUhTzGzmRQ6OGBobtTQ5eYWJvfA==", null, false, "", false, "nguyenvanhoan" },
+                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "c6446a36-4fa3-43c7-8e3a-cfe69d579f2a", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEH3vkA3mb93ok3p2cDIDtvv5wggXZ8YRTAuRht/th+dZUJZ6jUexoFBqNaU4QX9JLQ==", null, false, "", false, "lethigiang" }
                 });
 
             migrationBuilder.InsertData(

@@ -18,7 +18,7 @@ namespace QLSQ.Data.Configurations
             builder.Property(x => x.IDSQ).IsRequired();
             builder.HasOne(x => x.SiQuan).WithMany(x => x.QLNghiPheps).HasForeignKey(x => x.IDSQ);
             builder.Property(x => x.ThoiGianBDNP).IsRequired();
-            builder.Property(x => x.ThoiGianNP).IsRequired();
+            builder.Property(x => x.ThoiGianKTNP).IsRequired();
         }
     }
 }
