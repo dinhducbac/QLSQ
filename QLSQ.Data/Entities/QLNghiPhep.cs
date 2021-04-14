@@ -11,7 +11,7 @@ namespace QLSQ.Data.Entities
         public int IDNP { set; get; }
         public int IDSQ { set; get; }
         public DateTime ThoiGianBDNP { set; get; }
-        public int ThoiGianNP { set; get; }
+        public DateTime ThoiGianKTNP { set; get; }
 
         public SiQuan SiQuan { set; get; }
     }
