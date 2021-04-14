@@ -29,6 +29,14 @@ namespace QLSQ.Application.Catalog.LuongCoBan
             return new APISuccessedResult<LuongCoBanViewModel>(lcbDetails);
         }
 
+        public async Task<APIResult<bool>> Edit(int IDLuongCB, LuongCoBanUpdateRequest request)
+        {
+            var lcb = await _context.LuongCoBans.FirstOrDefaultAsync(x=>x.IDLuongCB == IDLuongCB);
+            lcb.LuongCB = request.LuongCB;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<LuongCoBanViewModel>>> GetALLWithPaging(GetLuongCoBanPagingRequest request)
         {
             var query = from lcb in _context.LuongCoBans select lcb;

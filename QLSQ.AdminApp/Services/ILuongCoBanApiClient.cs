@@ -11,5 +11,6 @@ namespace QLSQ.AdminApp.Services
     {
         public Task<APIResult<PageResult<LuongCoBanViewModel>>> GetAllWithPaging(GetLuongCoBanPagingRequest request);
         public Task<APIResult<LuongCoBanViewModel>> Details(int IDLuongCB);
+        public Task<APIResult<bool>> Edit(int IDLuongCB, LuongCoBanUpdateRequest request);
     }
 }
