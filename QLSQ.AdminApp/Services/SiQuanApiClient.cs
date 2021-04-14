@@ -92,7 +92,7 @@ namespace QLSQ.AdminApp.Services
             return user;
         }
 
-        public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanAutocomplete(string preconfix)
+        public async Task<APIResult<List<SiQuanInQLLuongViewModel>>> GetListSiQuanAutocomplete(string preconfix)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
@@ -105,9 +105,9 @@ namespace QLSQ.AdminApp.Services
             var body = await reponse.Content.ReadAsStringAsync();
             if (reponse.IsSuccessStatusCode)
             {
-                return JsonConvert.DeserializeObject<APISuccessedResult<List<SiQuanViewModel>>>(body);
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<SiQuanInQLLuongViewModel>>>(body);
             }
-            return JsonConvert.DeserializeObject<APIErrorResult<List<SiQuanViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<SiQuanInQLLuongViewModel>>>(body);
         }
 
         public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix)
