@@ -36,5 +36,15 @@ namespace QLSQ.AdminApp.Controllers.Component
             }
             return View(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDLuongCB)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _luongCoBanApiClient.Details(IDLuongCB);
+            if (result.IsSuccessed)
+                return View(result.ResultObj);
+            return View(result);
+        }
     }
 }

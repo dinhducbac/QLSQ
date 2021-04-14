@@ -10,5 +10,6 @@ namespace QLSQ.AdminApp.Services
     public interface ILuongCoBanApiClient
     {
         public Task<APIResult<PageResult<LuongCoBanViewModel>>> GetAllWithPaging(GetLuongCoBanPagingRequest request);
+        public Task<APIResult<LuongCoBanViewModel>> Details(int IDLuongCB);
     }
 }
