@@ -11,6 +11,7 @@ namespace QLSQ.AdminApp.Services
     public interface IQLLuongApiClient
     {
         public Task<APIResult<PageResult<QLLuongViewModel>>> GetAllWithPaging(GetQLLuongPagingRequest request);
+        public Task<APIResult<bool>> Create(QLLuongCreateRequest request);
       
     }
 }

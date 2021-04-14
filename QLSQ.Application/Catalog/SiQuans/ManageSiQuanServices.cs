@@ -269,26 +269,56 @@ namespace QLSQ.Application.Catalog.SiQuans
             return new APISuccessedResult<List<SiQuanViewModel>>(listsqvm);
         }
 
-        public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanAutocomplete(string preconfix)
+        public async Task<APIResult<List<SiQuanInQLLuongViewModel>>> GetListSiQuanAutocomplete(string preconfix)
         {
-            List<SiQuanViewModel> listsqvm = new List<SiQuanViewModel>();
+            List<SiQuanInQLLuongViewModel> listsqvm = new List<SiQuanInQLLuongViewModel>();
             var query = from sq in _context.SiQuans
-                        where sq.HoTen.StartsWith(preconfix)
-                        select new SiQuanViewModel
+                        join qlcv in _context.QLChucVus
+                        on sq.IDSQ equals qlcv.IDSQ
+                        join qh in _context.QuanHams
+                        on qlcv.IDQH equals qh.IDQH
+                        join hslqh in _context.HeSoLuongTheoQuanHams
+                        on qh.IDQH equals hslqh.IDQH
+                        join cv in _context.ChucVus
+                        on qlcv.IDCV equals cv.IDCV
+                        join hspccv in _context.HeSoPhuCapTheoChucVus
+                        on cv.IDCV equals hspccv.IDCV          
+                        where sq.HoTen.StartsWith(preconfix) && !_context.QLLuongs.Any(x=>x.IDSQ == sq.IDSQ)
+                        select new SiQuanInQLLuongViewModel
                         { 
                             IDSQ = sq.IDSQ,
-                            HoTen = sq.HoTen
+                            HoTen = sq.HoTen,
+                            IDQH = qlcv.IDQH,
+                            TenQH = qh.TenQH,
+                            IDHeSoLuongQH = hslqh.IDHeSoLuongQH,
+                            HeSoLuongQH = hslqh.HeSoLuong,
+                            IDCV = qlcv.IDCV,
+                            TenCV = cv.TenCV,
+                            IDHeSoPhuCapCV = hspccv.IDHeSoPhuCapCV,
+                            HeSoPhuCapCV = hspccv.HeSoPhuCap
                         };
+            var queryGetLuongCB = await (from lcb in _context.LuongCoBans select lcb).FirstOrDefaultAsync();
             foreach (var data in query)
             {
-                var siquanvm = new SiQuanViewModel()
+                var siquanvm = new SiQuanInQLLuongViewModel()
                 {
                     IDSQ = data.IDSQ,
-                    HoTen = data.HoTen
+                    HoTen = data.HoTen,
+                    IDQH = data.IDQH,
+                    TenQH = data.TenQH,
+                    IDHeSoLuongQH = data.IDHeSoLuongQH,
+                    HeSoLuongQH = data.HeSoLuongQH,
+                    IDCV = data.IDCV,
+                    TenCV = data.TenCV,
+                    IDHeSoPhuCapCV = data.IDHeSoPhuCapCV,
+                    HeSoPhuCapCV = data.HeSoPhuCapCV
                 };
+                siquanvm.IDLuongCB = queryGetLuongCB.IDLuongCB;
+                siquanvm.LuongCB = queryGetLuongCB.LuongCB;
+                siquanvm.Luong = Convert.ToUInt64(siquanvm.HeSoLuongQH * siquanvm.LuongCB + siquanvm.HeSoPhuCapCV * siquanvm.LuongCB);
                 listsqvm.Add(siquanvm);
             }
-            return new APISuccessedResult<List<SiQuanViewModel>>(listsqvm);
+            return new APISuccessedResult<List<SiQuanInQLLuongViewModel>>(listsqvm);
         }
 
         public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix)

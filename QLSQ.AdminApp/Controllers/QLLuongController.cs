@@ -38,23 +38,25 @@ namespace QLSQ.AdminApp.Controllers
         {
             var listsq = await _siQuanApiClient.GetListSiQuanAutocomplete(preconfix) ;
             //var s = Json(listsq.ResultObj);
-            foreach (var data in listsq.ResultObj)
-            {
-                var s = data.HoTen;
-            }
             return Json(listsq.ResultObj);
         }
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var qllCreateRequest = new QLLuongCreateRequest()
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(QLLuongCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLLuongApiClient.Create(request);
+            if (result.IsSuccessed)
             {
-                siQuanViewModels = new List<ViewModel.Catalogs.SiQuan.SiQuanViewModel>()
-            };
-            var getlistsq = await _siQuanApiClient.GetAllWithoutPaging();
-            var listsq = getlistsq.ResultObj;
-            qllCreateRequest.siQuanViewModels = listsq;
-            return View(qllCreateRequest);
+                ViewData["result"] = "Tạo quản lý lương thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
         }
     }
 }

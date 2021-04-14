@@ -16,7 +16,7 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<string>> Delete(int IDSQ);
         public Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien();
         public Task<APIResult<List<SiQuanViewModel>>> GetAllWithoutPaging();
-        public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanAutocomplete(string preconfix);
+        public Task<APIResult<List<SiQuanInQLLuongViewModel>>> GetListSiQuanAutocomplete(string preconfix);
         public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix);
     }
 }

@@ -10,5 +10,6 @@ namespace QLSQ.Application.Catalog.QLLuong
     public interface IQLLuongServices
     {
         public Task<APIResult<PageResult<QLLuongViewModel>>> GetAllWithPaging(GetQLLuongPagingRequest request);
+        public Task<APIResult<bool>> Create(QLLuongCreateRequest request);
     }
 }

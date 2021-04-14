@@ -24,5 +24,15 @@ namespace QLSQ.BackEndAPI.Controllers
             var qll = await _qLLuongServices.GetAllWithPaging(request);
             return Ok(qll);
         }
+        [HttpPost("create")]
+        public async Task<IActionResult> Create([FromBody] QLLuongCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLLuongServices.Create(request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
