@@ -113,7 +113,7 @@
                                             @Html.DisplayFor(modelItem => item.Luong)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Edit", "Edit", new { IDLuong = item.IDLuong }) |
+                                            <!--@Html.ActionLink("Edit", "Edit", new { IDLuong = item.IDLuong }) |-->
                                             @Html.ActionLink("Details", "Details", new { IDLuong = item.IDLuong }) |
                                             @Html.ActionLink("Delete", "Delete", new { IDLuong = item.IDLuong })
                                         </td>
@@ -121,8 +121,6 @@
                                 }
                             </tbody>
                         </table>
-
-
                         @await Component.InvokeAsync("Pager", Model)
                     </div>
                     <!-- /.card-body -->
