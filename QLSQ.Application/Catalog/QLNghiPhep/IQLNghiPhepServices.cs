@@ -11,5 +11,6 @@ namespace QLSQ.Application.Catalog.QLNghiPhep
     {
         public Task<APIResult<PageResult<QLNghiPhepViewModel>>> GetAllWithPaging(GetQLNghiPhepPagingRequest request);
         public Task<APIResult<bool>> Create(QLNghiPhepCreateRequest request);
+        public Task<APIResult<QLNghiPhepViewModel>> Details(int IDNP);
     }
 }

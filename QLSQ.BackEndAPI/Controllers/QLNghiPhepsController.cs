@@ -40,5 +40,17 @@ namespace QLSQ.BackEndAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDNP)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLNghiPhepServices.Details(IDNP);
+            if (result.ResultObj != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
