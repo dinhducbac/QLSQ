@@ -38,6 +38,19 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
+        public async Task<APIResult<QLNghiPhepViewModel>> Details(int IDNP)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var resonse = await client.GetAsync($"/api/QLNghiPheps/{IDNP}/details");
+            var body = await resonse.Content.ReadAsStringAsync();
+            if (resonse.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<QLNghiPhepViewModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<QLNghiPhepViewModel>>(body);
+        }
+
         public async Task<APIResult<PageResult<QLNghiPhepViewModel>>> GetAllWithPaging(GetQLNghiPhepPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
