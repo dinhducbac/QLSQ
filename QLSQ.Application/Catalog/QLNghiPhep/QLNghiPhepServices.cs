@@ -17,6 +17,32 @@ namespace QLSQ.Application.Catalog.QLNghiPhep
         {
             _context = context;
         }
+
+        public async Task<APIResult<bool>> Create(QLNghiPhepCreateRequest request)
+        {
+            if (DateTime.Compare(request.ThoiGianBDNP, request.ThoiGianKTNP) > 0)
+            {
+                return new APIErrorResult<bool>("Thất bại");
+            }
+            var qlnp = new QLSQ.Data.Entities.QLNghiPhep()
+            {
+                IDSQ = request.IDSQ,
+                ThoiGianBDNP = request.ThoiGianBDNP,
+                ThoiGianKTNP = request.ThoiGianKTNP
+            };
+            if (DateTime.Compare(request.ThoiGianKTNP, DateTime.Now) <0 )
+            {
+                qlnp.NghiPhepState = 0;
+            }
+            else
+            {
+                qlnp.NghiPhepState = 1;
+            }
+            _context.QLNghiPheps.Add(qlnp);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLNghiPhepViewModel>>> GetAllWithPaging(GetQLNghiPhepPagingRequest request)
         {
             var query = from qlnp in _context.QLNghiPheps

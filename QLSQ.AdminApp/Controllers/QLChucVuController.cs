@@ -35,7 +35,7 @@ namespace QLSQ.AdminApp.Controllers
                 pageSize = pageSize
             };
             var result = await _qLChucVuApiClient.GetAllWithPaging(qlcvPagingRequest);
-            if (ViewData["result"] != null)
+            if (TempData["result"] != null)
             {
                 ViewBag.Success = true;
                 ViewBag.SuccessMessage = ViewData["result"];
@@ -76,7 +76,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLChucVuApiClient.Create(request);
             if (result.IsSuccessed)
             {
-                ViewData["result"] = "Tạo quản lý chức vụ sĩ quan thành công!";
+                TempData["result"] = "Tạo quản lý chức vụ sĩ quan thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");
@@ -125,7 +125,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLChucVuApiClient.Edit(request.IDQLCV, request);
             if (result.IsSuccessed)
             {
-                ViewData["result"] = "Sửa quản lý chức vụ thành công!";
+                TempData["result"] = "Sửa quản lý chức vụ thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");
@@ -154,7 +154,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLChucVuApiClient.Delete(request.IDQLCV);
             if (result.IsSuccessed)
             {
-                ViewData["result"] = "Xóa chức vụ của sĩ quan thành công!";
+                TempData["result"] = "Xóa chức vụ của sĩ quan thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");
