@@ -11,9 +11,12 @@ namespace QLSQ.AdminApp.Controllers
     public class QLNghiPhepController : Controller
     {
         public readonly IQLNghiPhepApiClient _qLNghiPhepApiClient;
-        public QLNghiPhepController(IQLNghiPhepApiClient qLNghiPhepApiClient) 
+        public readonly ISiQuanApiClient _siQuanApiClient;
+
+        public QLNghiPhepController(IQLNghiPhepApiClient qLNghiPhepApiClient, ISiQuanApiClient siQuanApiClient) 
         {
             _qLNghiPhepApiClient = qLNghiPhepApiClient;
+            _siQuanApiClient = siQuanApiClient;
         }
         public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 5)
         {
@@ -26,14 +29,45 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLNghiPhepApiClient.GetAllWithPaging(pagingRequest);
             if (result.IsSuccessed)
             {
-                if(ViewData["result"] != null)
+                if(TempData["result"] != null)
                 {
                     ViewBag.Success = true;
-                    ViewBag.SuccessMessage = ViewData["result"];
+                    ViewBag.SuccessMessage = TempData["result"];
                 }
                 return View(result.ResultObj);
             }
             return View(result);
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetListSiQuanAutoComplete(string preconfix)
+        {
+            var result = await _siQuanApiClient.GetFullListSiQuanAutocomplete(preconfix);
+            return Json(result.ResultObj);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            var qlnpCreateRequest = new QLNghiPhepCreateRequest()
+            {
+                ThoiGianBDNP = DateTime.Now,
+                ThoiGianKTNP = DateTime.Now
+            };
+            return View(qlnpCreateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(QLNghiPhepCreateRequest request)
+        {
+            var result = await _qLNghiPhepApiClient.Create(request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Tạo nghỉ phép thành công!";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["result"] = "Tạo nghỉ phép thất bại!";
+                return RedirectToAction("Error","Home");
+            }
         }
     }
 }

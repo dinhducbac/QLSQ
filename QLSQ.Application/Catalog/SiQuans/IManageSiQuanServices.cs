@@ -27,6 +27,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         public Task<SiQuanImageViewModel> GetImageByID(int SiQuanImageID);
         public Task<List<SiQuanImageViewModel>> GetListImage(int SiQuanID);
         public Task<APIResult<List<SiQuanInQLLuongViewModel>>> GetListSiQuanAutocomplete(string preconfix);
+        public Task<APIResult<List<SiQuanViewModel>>> GetFullListSiQuanAutocomplete(string preconfix);
         public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix);
     }
 }

@@ -92,6 +92,24 @@ namespace QLSQ.AdminApp.Services
             return user;
         }
 
+        public async Task<APIResult<List<SiQuanViewModel>>> GetFullListSiQuanAutocomplete(string preconfix)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            //var json = JsonConvert.SerializeObject(preconfix);
+            //var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            //var reponse = await client.PostAsync($"/api/SiQuans/getlistsiquanautocomplete",httpContent);
+            var reponse = await client.GetAsync($"/api/SiQuans/getfulllistsiquanautocomplete?preconfix={preconfix}");
+            var body = await reponse.Content.ReadAsStringAsync();
+            if (reponse.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<SiQuanViewModel>>>(body);
+            }
+            return JsonConvert.DeserializeObject<APIErrorResult<List<SiQuanViewModel>>>(body);
+        }
+
         public async Task<APIResult<List<SiQuanInQLLuongViewModel>>> GetListSiQuanAutocomplete(string preconfix)
         {
             var client = _httpClientFactory.CreateClient();

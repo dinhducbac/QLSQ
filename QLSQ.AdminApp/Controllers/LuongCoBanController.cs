@@ -27,7 +27,7 @@ namespace QLSQ.AdminApp.Controllers.Component
             var result = await _luongCoBanApiClient.GetAllWithPaging(lcbPagingRequest);
             if (result.IsSuccessed)
             {
-                if(ViewData["result"] != null)
+                if(TempData["result"] != null)
                 {
                     ViewBag.Success = true;
                     ViewBag.SuccessMessage = ViewData["result"];
@@ -69,7 +69,7 @@ namespace QLSQ.AdminApp.Controllers.Component
             var result = await _luongCoBanApiClient.Edit(request.IDLuongCB, request);
             if (result.IsSuccessed)
             {
-                ViewData["result"] = "Sửa lương cơ bản thành công!";
+                TempData["result"] = "Sửa lương cơ bản thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");

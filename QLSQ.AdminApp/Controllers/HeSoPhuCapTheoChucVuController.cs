@@ -35,7 +35,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _heSoPhuCapTheoChucVuApiClient.GetAllWithPaging(cvPagingRequest);
             if (result.IsSuccessed)
             {
-                if (ViewData["result"] != null)
+                if (TempData["result"] != null)
                 {
                     ViewBag.Success = true;
                     ViewBag.SuccessMessage = ViewData["result"];
