@@ -10,5 +10,6 @@ namespace QLSQ.AdminApp.Services
     public interface IQLNghiPhepApiClient
     {
         public Task<APIResult<PageResult<QLNghiPhepViewModel>>> GetAllWithPaging(GetQLNghiPhepPagingRequest request);
+        public Task<APIResult<bool>> Create(QLNghiPhepCreateRequest request);
     }
 }

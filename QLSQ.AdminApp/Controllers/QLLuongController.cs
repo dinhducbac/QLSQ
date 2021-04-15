@@ -53,7 +53,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLLuongApiClient.Create(request);
             if (result.IsSuccessed)
             {
-                ViewData["result"] = "Tạo quản lý lương thành công!";
+                TempData["result"] = "Tạo quản lý lương thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");
@@ -99,7 +99,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLLuongApiClient.Delete(request.IDLuong);
             if (result.IsSuccessed)
             {
-                ViewData["result"] = "Xóa quản lý lương thành cồng!";
+                TempData["result"] = "Xóa quản lý lương thành cồng!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");
