@@ -52,5 +52,15 @@ namespace QLSQ.BackEndAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPut("{IDNP}/edit")]
+        public async Task<IActionResult> Edit(int IDNP, QLNghiPhepUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLNghiPhepServices.Edit(IDNP, request);
+            if (result.IsSuccessed)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
