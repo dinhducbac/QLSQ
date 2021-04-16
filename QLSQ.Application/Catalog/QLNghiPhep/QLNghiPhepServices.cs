@@ -43,6 +43,14 @@ namespace QLSQ.Application.Catalog.QLNghiPhep
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDNP)
+        {
+            var qlnp = await _context.QLNghiPheps.FirstOrDefaultAsync(x=>x.IDNP == IDNP);
+            _context.QLNghiPheps.Remove(qlnp);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<QLNghiPhepViewModel>> Details(int IDNP)
         {
             var qlnpvm = await (from qlnp in _context.QLNghiPheps
