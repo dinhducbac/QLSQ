@@ -13,5 +13,6 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<bool>> Create(QLNghiPhepCreateRequest request);
         public Task<APIResult<QLNghiPhepViewModel>> Details(int IDNP);
         public Task<APIResult<bool>> Edit(int IDNP, QLNghiPhepUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int IDNP);
     }
 }

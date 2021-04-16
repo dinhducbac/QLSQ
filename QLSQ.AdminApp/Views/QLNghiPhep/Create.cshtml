@@ -104,6 +104,29 @@
                 },
                 minLength: 1
             });
+            var timeBD = $("#ThoiGianBDNP").val();
+            var timeKT = $("#ThoiGianKTNP").val();
+            $("#ThoiGianBDNP").change(function () {
+                var getDateBD = new Date($("#ThoiGianBDNP").val());
+                var getDateKT = new Date($("#ThoiGianKTNP").val());
+
+                if (getDateBD > getDateKT) {
+                    setTimeout(function () {
+                        alert("Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
+                        $("#ThoiGianBDNP").val(timeBD);
+                    }, 500);
+                }              
+            });
+            $("#ThoiGianKTNP").change(function () {
+                var getDateBD = new Date($("#ThoiGianBDNP").val());
+                var getDateKT = new Date($("#ThoiGianKTNP").val());
+                if (getDateKT < getDateBD) {
+                    setTimeout(function () {
+                        alert("Ngày kết thúc phải lớn hơn ngày bắt đầu");
+                        $("#ThoiGianKTNP").val(timeKT);
+                    }, 500);
+                }               
+            });
         });
     </script>
 }

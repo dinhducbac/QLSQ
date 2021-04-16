@@ -13,7 +13,7 @@ namespace QLSQ.AdminApp.Controllers
         public readonly IQLNghiPhepApiClient _qLNghiPhepApiClient;
         public readonly ISiQuanApiClient _siQuanApiClient;
 
-        public QLNghiPhepController(IQLNghiPhepApiClient qLNghiPhepApiClient, ISiQuanApiClient siQuanApiClient) 
+        public QLNghiPhepController(IQLNghiPhepApiClient qLNghiPhepApiClient, ISiQuanApiClient siQuanApiClient)
         {
             _qLNghiPhepApiClient = qLNghiPhepApiClient;
             _siQuanApiClient = siQuanApiClient;
@@ -29,7 +29,7 @@ namespace QLSQ.AdminApp.Controllers
             var result = await _qLNghiPhepApiClient.GetAllWithPaging(pagingRequest);
             if (result.IsSuccessed)
             {
-                if(TempData["result"] != null)
+                if (TempData["result"] != null)
                 {
                     ViewBag.Success = true;
                     ViewBag.SuccessMessage = TempData["result"];
@@ -66,7 +66,7 @@ namespace QLSQ.AdminApp.Controllers
             else
             {
                 TempData["result"] = "Tạo nghỉ phép thất bại!";
-                return RedirectToAction("Error","Home");
+                return RedirectToAction("Error", "Home");
             }
         }
         [HttpGet]
@@ -103,6 +103,35 @@ namespace QLSQ.AdminApp.Controllers
             if (result.IsSuccessed)
             {
                 TempData["result"] = "Sửa nghỉ phép thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDNP)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qlnpViewModel = await _qLNghiPhepApiClient.Details(IDNP);
+            var qlnpDeleteRequest = new QLNghiPhepDeleteRequest()
+            {
+                IDNP = qlnpViewModel.ResultObj.IDNP,
+                IDSQ = qlnpViewModel.ResultObj.IDSQ,
+                HoTen = qlnpViewModel.ResultObj.HoTen,
+                ThoiGianBDNP = qlnpViewModel.ResultObj.ThoiGianBDNP,
+                ThoiGianKTNP = qlnpViewModel.ResultObj.ThoiGianKTNP,
+                NghiPhepState = qlnpViewModel.ResultObj.NghiPhepState
+            };
+            return View(qlnpDeleteRequest);
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(QLNghiPhepDeleteRequest request)
+        {
+            var result = await _qLNghiPhepApiClient.Delete(request.IDNP);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa nghỉ phép thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");
