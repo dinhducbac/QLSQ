@@ -40,7 +40,7 @@ namespace QLSQ.BackEndAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpGet]
+        [HttpGet("{IDNP}/details")]
         public async Task<IActionResult> Details(int IDNP)
         {
             if (!ModelState.IsValid)

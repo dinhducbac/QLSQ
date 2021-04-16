@@ -69,5 +69,15 @@ namespace QLSQ.AdminApp.Controllers
                 return RedirectToAction("Error","Home");
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDNP)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLNghiPhepApiClient.Details(IDNP);
+            if (result.IsSuccessed)
+                return View(result.ResultObj);
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
