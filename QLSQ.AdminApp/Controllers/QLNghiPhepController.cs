@@ -79,5 +79,33 @@ namespace QLSQ.AdminApp.Controllers
                 return View(result.ResultObj);
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDNP)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qlnpDetails = await _qLNghiPhepApiClient.Details(IDNP);
+            var qlnpUpdateRequest = new QLNghiPhepUpdateRequest()
+            {
+                IDNP = qlnpDetails.ResultObj.IDNP,
+                IDSQ = qlnpDetails.ResultObj.IDSQ,
+                HoTen = qlnpDetails.ResultObj.HoTen,
+                ThoiGianBDNP = qlnpDetails.ResultObj.ThoiGianBDNP,
+                ThoiGianKTNP = qlnpDetails.ResultObj.ThoiGianKTNP,
+                NghiPhepState = qlnpDetails.ResultObj.NghiPhepState
+            };
+            return View(qlnpUpdateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(QLNghiPhepUpdateRequest request)
+        {
+            var result = await _qLNghiPhepApiClient.Edit(request.IDNP, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa nghỉ phép thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }

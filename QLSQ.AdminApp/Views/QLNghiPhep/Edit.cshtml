@@ -1,0 +1,137 @@
+﻿@model QLSQ.ViewModel.Catalogs.QLNghiPHep.QLNghiPhepUpdateRequest
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Chỉnh sửa thông tin nghỉ phép</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Edit">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="IDNP" class="control-label"></label>
+                                        <input asp-for="IDNP" class="form-control" readonly />
+                                        <span asp-validation-for="IDNP" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDSQ" class="control-label"></label>
+                                        <input asp-for="IDSQ" class="form-control" readonly />
+                                        <span asp-validation-for="IDSQ" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="HoTen" class="control-label"></label>
+                                        <input asp-for="HoTen" class="form-control" readonly />
+                                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ThoiGianBDNP" class="control-label"></label>
+                                        <input asp-for="ThoiGianBDNP" id="ThoiGianBDNP" class="form-control" />
+                                        <span asp-validation-for="ThoiGianBDNP" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="ThoiGianKTNP" class="control-label"></label>
+                                        <input asp-for="ThoiGianKTNP" id="ThoiGianKTNP" class="form-control" />
+                                        <span asp-validation-for="ThoiGianKTNP" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NghiPhepState" class="control-label"></label>
+                                        <select asp-for="NghiPhepState" id="NghiPhepState" class="form-control">
+                                            <option value="0">Không nghỉ phép</option>
+                                            <option value="1">Đang nghỉ phép</option>
+                                        </select>
+                                        <span asp-validation-for="NghiPhepState" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+@section DisableSelectTag{
+<script type="text/javascript">
+    $(function () {
+        $("#NghiPhepState").prop("disabled", true);
+        var timeBD = $("#ThoiGianBDNP").val();
+        var timeKT = $("#ThoiGianKTNP").val();
+        $("#ThoiGianBDNP").change(function () {      
+            var getDateBD = new Date($("#ThoiGianBDNP").val());
+            var getDateKT = new Date($("#ThoiGianKTNP").val());
+      
+            if (getDateBD > getDateKT) {           
+                setTimeout(function () {
+                    alert("Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
+                    $("#ThoiGianBDNP").val(timeBD);
+                }, 500);    
+            }
+            var now = new Date();         
+            //alert(getDateBD + "||" + now + "||" + getDateKT);
+            if (getDateBD <= now && now <= getDateKT) {
+                $("#NghiPhepState").val("1").change();
+            }
+            else {
+                $("#NghiPhepState").val("0").change();
+            }
+            //alert(showDateBD);
+        });
+        $("#ThoiGianKTNP").change(function () {
+            var getDateBD = new Date($("#ThoiGianBDNP").val());        
+            var getDateKT = new Date($("#ThoiGianKTNP").val());           
+            if (getDateKT < getDateBD) {
+                setTimeout(function () {
+                    alert("Ngày kết thúc phải lớn hơn ngày bắt đầu");
+                    $("#ThoiGianKTNP").val(timeKT);
+                }, 500);
+            }
+            var now = new Date();
+            //alert(getDateBD + "||" + now + "||" + getDateKT);
+            if (getDateBD <= now && now <= getDateKT) {
+                $("#NghiPhepState").val("1").change();
+            }
+            else {
+                $("#NghiPhepState").val("0").change();
+            }
+        });
+    });
+    
+</script>
+   
+}
+
+
+
