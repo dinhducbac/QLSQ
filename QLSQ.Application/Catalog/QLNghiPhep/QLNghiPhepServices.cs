@@ -70,6 +70,23 @@ namespace QLSQ.Application.Catalog.QLNghiPhep
             return new APISuccessedResult<QLNghiPhepViewModel>(qlnpViewModel);
         }
 
+        public async Task<APIResult<bool>> Edit(int IDNP, QLNghiPhepUpdateRequest request)
+        {
+            var qlnp = await _context.QLNghiPheps.FirstOrDefaultAsync(x=>x.IDNP == IDNP);
+            if (DateTime.Compare(request.ThoiGianBDNP, request.ThoiGianKTNP) > 0)
+            {
+                return new APIErrorResult<bool>("Thất bại");
+            }
+            qlnp.ThoiGianBDNP = request.ThoiGianBDNP;
+            qlnp.ThoiGianKTNP = request.ThoiGianKTNP;
+            if ( (DateTime.Compare(request.ThoiGianBDNP,DateTime.Now) < 0) && (DateTime.Compare(request.ThoiGianKTNP, DateTime.Now) >= 0))
+                qlnp.NghiPhepState = 1;
+            else
+                qlnp.NghiPhepState = 0;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLNghiPhepViewModel>>> GetAllWithPaging(GetQLNghiPhepPagingRequest request)
         {
             var query = from qlnp in _context.QLNghiPheps
