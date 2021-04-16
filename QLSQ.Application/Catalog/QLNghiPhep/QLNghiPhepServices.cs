@@ -43,6 +43,33 @@ namespace QLSQ.Application.Catalog.QLNghiPhep
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<QLNghiPhepViewModel>> Details(int IDNP)
+        {
+            var qlnpvm = await (from qlnp in _context.QLNghiPheps
+                             join sq in _context.SiQuans
+                             on qlnp.IDSQ equals sq.IDSQ
+                             where qlnp.IDNP == IDNP
+                             select new QLNghiPhepViewModel()
+                             {
+                                 IDNP = qlnp.IDNP,
+                                 IDSQ = qlnp.IDSQ,
+                                 HoTen = sq.HoTen,
+                                 ThoiGianBDNP = qlnp.ThoiGianBDNP,
+                                 ThoiGianKTNP = qlnp.ThoiGianKTNP,
+                                 NghiPhepState = qlnp.NghiPhepState
+                             }).FirstOrDefaultAsync();
+            var qlnpViewModel = new QLNghiPhepViewModel()
+            {
+                IDNP = qlnpvm.IDNP,
+                IDSQ = qlnpvm.IDSQ,
+                HoTen = qlnpvm.HoTen,
+                ThoiGianBDNP = qlnpvm.ThoiGianBDNP,
+                ThoiGianKTNP = qlnpvm.ThoiGianKTNP,
+                NghiPhepState = qlnpvm.NghiPhepState
+            };
+            return new APISuccessedResult<QLNghiPhepViewModel>(qlnpViewModel);
+        }
+
         public async Task<APIResult<PageResult<QLNghiPhepViewModel>>> GetAllWithPaging(GetQLNghiPhepPagingRequest request)
         {
             var query = from qlnp in _context.QLNghiPheps
