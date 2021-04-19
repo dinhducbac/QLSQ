@@ -11,9 +11,12 @@ namespace QLSQ.AdminApp.Controllers
     public class QLKhenThuongKiLuatController : Controller
     {
         public readonly IQLKhenThuongKiLuatApiClient _qLKhenThuongKiLuatApiClient;
-        public QLKhenThuongKiLuatController(IQLKhenThuongKiLuatApiClient qLKhenThuongKiLuatApiClient)
+        public readonly ISiQuanApiClient _siQuanApiClient;
+        public QLKhenThuongKiLuatController(IQLKhenThuongKiLuatApiClient qLKhenThuongKiLuatApiClient
+            , ISiQuanApiClient siQuanApiClient)
         {
             _qLKhenThuongKiLuatApiClient = qLKhenThuongKiLuatApiClient;
+            _siQuanApiClient = siQuanApiClient;
         }
         public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 5)
         {
@@ -34,6 +37,15 @@ namespace QLSQ.AdminApp.Controllers
                 return View(result.ResultObj);
             }
             return View(result);
+        }
+        public async Task<JsonResult> GetListSiQuanAutocomplete(string preconfix)
+        {
+            var result = await _siQuanApiClient.GetFullListSiQuanAutocomplete(preconfix);
+            return Json(result.ResultObj);
+        }
+        public IActionResult Create()
+        {
+            return View();
         }
     }
 }
