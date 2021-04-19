@@ -10,14 +10,15 @@ namespace QLSQ.AdminApp.Services
 {
     public interface IUserApiClient
     {
-        Task<APIResult<string>> Authentication(LoginRequest request);
-        Task<APIResult<string>> CreateUser(CreateUserRequest request);
-        Task<APIResult<string>> UpdateUser(Guid ID,UpdateUserRequest request);
-        Task<APIResult<string>> DeleteUser(Guid ID);
-        Task<APIResult<PageResult<UserViewModel>>> GetUserPaging(GetUserPagingRequest request);
-        Task<APIResult<UserViewModel>> GetUserByID(Guid Id);
-        Task<APIResult<UserViewModel>> DetailUser(Guid Id);
-        Task<APIResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
-        Task<APIResult<List<UserViewModel>>> GetAllUser();
+        public Task<APIResult<string>> Authentication(LoginRequest request);
+        public Task<APIResult<string>> CreateUser(CreateUserRequest request);
+        public Task<APIResult<string>> UpdateUser(Guid ID,UpdateUserRequest request);
+        public Task<APIResult<string>> DeleteUser(Guid ID);
+        public Task<APIResult<PageResult<UserViewModel>>> GetUserPaging(GetUserPagingRequest request);
+        public Task<APIResult<UserViewModel>> GetUserByID(Guid Id);
+        public Task<APIResult<UserViewModel>> DetailUser(Guid Id);
+        public Task<APIResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
+        public Task<APIResult<List<UserViewModel>>> GetAllUser();
+        public Task<APIResult<List<UserViewModel>>> GetListUserAutocomplete(string prefix);
     }
 }

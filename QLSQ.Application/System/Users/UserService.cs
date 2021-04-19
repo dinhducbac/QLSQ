@@ -16,6 +16,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace QLSQ.Application.System.Users
 {
@@ -24,14 +25,16 @@ namespace QLSQ.Application.System.Users
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<AppRole> _roleManager;
+        private readonly QL_SiQuanDBContext _context;
         private readonly IConfiguration _config;
         public UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager, 
-            RoleManager<AppRole> roleManager, IConfiguration configuration)
+            RoleManager<AppRole> roleManager, IConfiguration configuration,QL_SiQuanDBContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _config = configuration;
+            _context = context;
         }
         public async Task<APIResult<string>> Authenticate(LoginRequest request)
         {
@@ -211,6 +214,32 @@ namespace QLSQ.Application.System.Users
                     Username = user.UserName
                 };
                 listuser.Add(uservm);
+            }
+            return new APISuccessedResult<List<UserViewModel>>(listuser);
+        }
+
+        public async Task<APIResult<List<UserViewModel>>> GetListUserAutocomplete(string prefix)
+        {
+            List<UserViewModel> listuser = new List<UserViewModel>();
+            var query = from user in _userManager.Users
+                        where !_context.SiQuans.Any(x => x.UserId == user.Id)
+                        select user;
+            if (!string.IsNullOrEmpty(prefix))
+            {
+                 query = from user in _userManager.Users
+                            where !_context.SiQuans.Any(x => x.UserId == user.Id) && (user.UserName.StartsWith(prefix) ||
+                            user.UserName.Contains(prefix))
+                            select user;
+            }
+            
+            foreach(var data in query)
+            {
+                var userViewModel = new UserViewModel()
+                {
+                    ID = data.Id,
+                    Username = data.UserName
+                };
+                listuser.Add(userViewModel);
             }
             return new APISuccessedResult<List<UserViewModel>>(listuser);
         }

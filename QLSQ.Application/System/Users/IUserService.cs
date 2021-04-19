@@ -19,6 +19,7 @@ namespace QLSQ.Application.System.Users
         Task<APIResult<UserViewModel>> DetailUser(Guid ID);
         Task<APIResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
         Task<APIResult<List<UserViewModel>>> GetAllUser();
+        Task<APIResult<List<UserViewModel>>> GetListUserAutocomplete(string prefix);
 
     }
 }
