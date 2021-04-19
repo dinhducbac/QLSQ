@@ -1,0 +1,151 @@
+﻿@model QLSQ.ViewModel.Catalogs.QLKhenThuongKiLuat.QLKhenThuongKiLuatCreateRequest
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Tạo quản lý khen thưởng/kỉ luật</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tạo User</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="HoTen" class="control-label"></label>
+                                        <input asp-for="HoTen" class="form-control" />
+                                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDSQ" class="control-label"></label>
+                                        <input asp-for="IDSQ" class="form-control" />
+                                        <span asp-validation-for="IDSQ" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NgayThucHien" class="control-label"></label>
+                                        <input asp-for="NgayThucHien" class="form-control" />
+                                        <span asp-validation-for="NgayThucHien" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="LoaiKTKL" class="control-label"></label>
+                                        <input asp-for="LoaiKTKL" class="form-control" />
+                                        <span asp-validation-for="LoaiKTKL" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="HinhThuc" class="control-label"></label>
+                                        <input asp-for="HinhThuc" class="form-control" />
+                                        <span asp-validation-for="HinhThuc" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="DonViCap" class="control-label"></label>
+                                        <input asp-for="DonViCap" class="form-control" />
+                                        <span asp-validation-for="DonViCap" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NoiDung" class="control-label"></label>
+                                        <input asp-for="NoiDung" class="form-control" />
+                                        <span asp-validation-for="NoiDung" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+@section Autocomplete{
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+          rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $("#autocomplete").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/QLNghiPhep/GetListSiQuanAutoComplete/',
+                        data: { "preconfix": request.term },
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.hoTen, value: item.hoTen, idsq: item.idsq
+                                };
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    $("#IDSQ").val(i.item.idsq);
+                    //alert(i.item.idluongCB);
+                },
+                minLength: 1
+            });
+            var timeBD = $("#ThoiGianBDNP").val();
+            var timeKT = $("#ThoiGianKTNP").val();
+            $("#ThoiGianBDNP").change(function () {
+                var getDateBD = new Date($("#ThoiGianBDNP").val());
+                var getDateKT = new Date($("#ThoiGianKTNP").val());
+
+                if (getDateBD > getDateKT) {
+                    setTimeout(function () {
+                        alert("Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
+                        $("#ThoiGianBDNP").val(timeBD);
+                    }, 500);
+                }
+            });
+            $("#ThoiGianKTNP").change(function () {
+                var getDateBD = new Date($("#ThoiGianBDNP").val());
+                var getDateKT = new Date($("#ThoiGianKTNP").val());
+                if (getDateKT < getDateBD) {
+                    setTimeout(function () {
+                        alert("Ngày kết thúc phải lớn hơn ngày bắt đầu");
+                        $("#ThoiGianKTNP").val(timeKT);
+                    }, 500);
+                }
+            });
+        });
+    </script>
+}
+
+

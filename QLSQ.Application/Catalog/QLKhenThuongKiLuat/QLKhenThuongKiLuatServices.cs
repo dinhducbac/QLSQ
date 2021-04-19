@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using QLSQ.ViewModel.Catalogs.QLKhenThuongKiLuat;
 
 namespace QLSQ.Application.Catalog.QLKhenThuongKiLuat
 {
@@ -17,6 +18,23 @@ namespace QLSQ.Application.Catalog.QLKhenThuongKiLuat
         {
             _context = context;
         }
+
+        public async Task<APIResult<bool>> Create(QLKhenThuongKiLuatCreateRequest request)
+        {
+            var qlktkl = new QLSQ.Data.Entities.QLKhenThuongKiLuat()
+            {
+                IDSQ = request.IDSQ,
+                NgayThucHien = request.NgayThucHien,
+                LoaiKTKL = request.LoaiKTKL,
+                HinhThuc = request.HinhThuc,
+                DonViCap = request.DonViCap,
+                NoiDung = request.NoiDung
+            };
+            _context.QLKhenThuongKiLuats.Add(qlktkl);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLKhenThuongKiLuatViewModel>>> GetAllWithPaging(GetQLKhenThuongKiLuatPagingRequest request)
         {
             var query = from qlktkl in _context.QLKhenThuongKiLuats
