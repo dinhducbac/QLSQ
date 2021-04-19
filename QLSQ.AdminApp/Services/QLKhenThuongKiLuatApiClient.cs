@@ -2,11 +2,13 @@
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using QLSQ.ViewModel.Catalog.QLKhenThuongKiLuat;
+using QLSQ.ViewModel.Catalogs.QLKhenThuongKiLuat;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace QLSQ.AdminApp.Services
@@ -23,6 +25,20 @@ namespace QLSQ.AdminApp.Services
             _httpContextAccessor = httpContextAccessor;
             _httpClientFactory = httpClientFactory;
         }
+
+        public async Task<APIResult<bool>> Create(QLKhenThuongKiLuatCreateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"/api/QLKhenTHuongKiLuats/create", httpContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
         public async Task<APIResult<PageResult<QLKhenThuongKiLuatViewModel>>> GetAllWithPaging(GetQLKhenThuongKiLuatPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();

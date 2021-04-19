@@ -1,4 +1,5 @@
 ﻿using QLSQ.ViewModel.Catalog.QLKhenThuongKiLuat;
+using QLSQ.ViewModel.Catalogs.QLKhenThuongKiLuat;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,7 @@ namespace QLSQ.AdminApp.Services
     public interface IQLKhenThuongKiLuatApiClient
     {
         public Task<APIResult<PageResult<QLKhenThuongKiLuatViewModel>>> GetAllWithPaging(GetQLKhenThuongKiLuatPagingRequest request);
+        public Task<APIResult<bool>> Create(QLKhenThuongKiLuatCreateRequest request);
+
     }
 }
