@@ -23,5 +23,8 @@ namespace QLSQ.Data.Entities
         public List<QLCongTac> QLCongTacs { set; get; }
         public List<QLNghiPhep> QLNghiPheps { set; get; }
         public List<SiQuanImage> SiQuanImages { set; get; }
+        public List<QLKhenThuongKiLuat> QLKhenThuongKiLuats { get; set; }
+        public List<QLQuaTrinhDaoTao> QLQuaTrinhDaoTaos { get; set; }
+        public List<QLGiaDinhSQ> QLGiaDinhSQs { get; set; }
     }
 }
