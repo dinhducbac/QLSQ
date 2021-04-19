@@ -355,6 +355,42 @@ namespace QL_SiQuan.Data.Extensions
                     NghiPhepState = 0
                 }
             );
+            modelBuilder.Entity<QLKhenThuongKiLuat>().HasData(
+                new QLKhenThuongKiLuat
+                {
+                    IDQLKTKL =1,
+                    IDSQ = 5,
+                    NgayThucHien = DateTime.Parse("2020-6-13"),
+                    LoaiKTKL = 1,
+                    HinhThuc = "Huân chương",
+                    DonViCap = "Trường sĩ quan thông tin",
+                    NoiDung = "Huân chương lao động hạng 3"
+                }
+            );
+            modelBuilder.Entity<QLQuaTrinhDaoTao>().HasData(
+                new QLQuaTrinhDaoTao
+                {
+                    IDQLQTDT = 1,
+                    IDSQ = 1, 
+                    TenTruong = "Trường Sĩ quan Thông tin",
+                    NganhHoc = "Công nghệ thông tin",
+                    ThoiGianBDDT = DateTime.Parse("2004-9-4"),
+                    ThoiGianKTDT = DateTime.Parse("2007-6-20"),
+                    HinhThucDT = "Chính quy",
+                    VanBang = "Cử nhân"
+                }                   
+            );
+            modelBuilder.Entity<QLGiaDinhSQ>().HasData(
+                new QLGiaDinhSQ
+                {
+                    IDQLGDSQ = 1,
+                    IDSQ = 1,
+                    QuanHe = "Chồng",
+                    HoTen= "Test",
+                    NgaySinh = DateTime.Parse("1967-8-13"),
+                    GhiChu ="Nghề nghiệp: Test"
+                }
+            );
         }
     }
 }

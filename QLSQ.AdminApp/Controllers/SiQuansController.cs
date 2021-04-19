@@ -40,6 +40,12 @@ namespace QLSQ.AdminApp.Controllers
             return View(data.ResultObj);
         }
         [HttpGet]
+        public async Task<JsonResult> GetListUserAutocomplete(string prefix)
+        {
+            var result = await _userApiClient.GetListUserAutocomplete(prefix);
+            return Json(result.ResultObj);
+        }
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             var siquanCreateRequest = new SiQuanCreateRequest()

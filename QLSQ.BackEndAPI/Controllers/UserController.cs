@@ -105,5 +105,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest(result);
             return Ok(result);
         }
+        [HttpGet("getlistuserautocomplete")]
+        public async Task<IActionResult> GetListUserAutoComplete(string prefix)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _userService.GetListUserAutocomplete(prefix);
+            if (result.IsSuccessed)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
