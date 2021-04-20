@@ -56,6 +56,7 @@ namespace QLSQ.AdminApp
             services.AddTransient<ILuongCoBanApiClient, LuongCoBanApiClient>();
             services.AddTransient<IQLNghiPhepApiClient, QLNghiPhepApiClient>();
             services.AddTransient<IQLKhenThuongKiLuatApiClient, QLKhenThuongKiLuatApiClient>();
+            services.AddTransient<IQLQuaTrinhDaoTaoApiClient, QLQuaTrinhDaoTaoApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
             var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT");
 #if DEBUG
