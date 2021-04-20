@@ -35,6 +35,14 @@ namespace QLSQ.Application.Catalog.QLKhenThuongKiLuat
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDQLKTKL)
+        {
+            var qlktkl = await _context.QLKhenThuongKiLuats.FirstOrDefaultAsync(x => x.IDQLKTKL == IDQLKTKL);
+             _context.QLKhenThuongKiLuats.Remove(qlktkl);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<QLKhenThuongKiLuatViewModel>> Details(int IDQLKTKL)
         {
             var getqlktklvm = await (from qlktkl in _context.QLKhenThuongKiLuats
