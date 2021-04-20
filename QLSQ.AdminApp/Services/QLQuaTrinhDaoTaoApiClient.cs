@@ -38,6 +38,32 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
+        public async Task<APIResult<QLQuaTrinhDaoTaoViewModel>> Details(int IDQLQTDT)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/QLQuaTrinhDaoTaos/{IDQLQTDT}/details");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<QLQuaTrinhDaoTaoViewModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<QLQuaTrinhDaoTaoViewModel>>(body);
+        }
+
+        public async Task<APIResult<bool>> Edit(int IDQLQTDT, QLQuaTrinhDaoTaoUpdateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/api/QLQuaTrinhDaoTaos/{IDQLQTDT}/edit", httpContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
         public async Task<APIResult<PageResult<QLQuaTrinhDaoTaoViewModel>>> GetAllWithPaging(GetQLQuaTrinhDaoTaoPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
