@@ -35,6 +35,40 @@ namespace QLSQ.Application.Catalog.QLQuaTrinhDaoTao
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<QLQuaTrinhDaoTaoViewModel>> Details(int IDQLQTDT)
+        {
+            var qlqtdtViewModel = await (from qlqtdt in _context.QLQuaTrinhDaoTaos
+                        join sq in _context.SiQuans
+                        on qlqtdt.IDSQ equals sq.IDSQ
+                        where qlqtdt.IDQLQTDT == IDQLQTDT
+                        select new QLQuaTrinhDaoTaoViewModel()
+                        {
+                            IDQLQTDT = qlqtdt.IDQLQTDT,
+                            IDSQ = qlqtdt.IDSQ,
+                            HoTen = sq.HoTen,
+                            TenTruong = qlqtdt.TenTruong,
+                            NganhHoc = qlqtdt.NganhHoc,
+                            ThoiGianBDDT = qlqtdt.ThoiGianBDDT,
+                            ThoiGianKTDT = qlqtdt.ThoiGianKTDT,
+                            HinhThucDT = qlqtdt.HinhThucDT,
+                            VanBang = qlqtdt.VanBang
+                        }).FirstOrDefaultAsync();
+            return new APISuccessedResult<QLQuaTrinhDaoTaoViewModel>(qlqtdtViewModel);
+        }
+
+        public async Task<APIResult<bool>> Edit(int IDQLQTDT, QLQuaTrinhDaoTaoUpdateRequest request)
+        {
+            var qlqtdt = await _context.QLQuaTrinhDaoTaos.FirstOrDefaultAsync(x=>x.IDQLQTDT == IDQLQTDT);
+            qlqtdt.TenTruong = request.TenTruong;
+            qlqtdt.NganhHoc = request.NganhHoc;
+            qlqtdt.ThoiGianBDDT = request.ThoiGianBDDT;
+            qlqtdt.ThoiGianKTDT = request.ThoiGianKTDT;
+            qlqtdt.HinhThucDT = request.HinhThucDT;
+            qlqtdt.VanBang = request.VanBang;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLQuaTrinhDaoTaoViewModel>>> GetAllWithPaging(GetQLQuaTrinhDaoTaoPagingRequest request)
         {
             var query = from qlqtdt in _context.QLQuaTrinhDaoTaos
