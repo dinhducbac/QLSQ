@@ -10,5 +10,7 @@ namespace QLSQ.AdminApp.Services
     public interface IQLQuaTrinhDaoTaoApiClient
     {
         public Task<APIResult<PageResult<QLQuaTrinhDaoTaoViewModel>>> GetAllWithPaging(GetQLQuaTrinhDaoTaoPagingRequest request);
+        public Task<APIResult<bool>> Create(QLQuaTrinhDaoTaoCreateRequest request);
+    
     }
 }
