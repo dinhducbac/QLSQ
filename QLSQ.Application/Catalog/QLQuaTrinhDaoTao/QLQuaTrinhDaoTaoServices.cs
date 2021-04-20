@@ -35,6 +35,14 @@ namespace QLSQ.Application.Catalog.QLQuaTrinhDaoTao
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDQLQTDT)
+        {
+            var qlqtdt = await _context.QLQuaTrinhDaoTaos.FirstOrDefaultAsync(x => x.IDQLQTDT == IDQLQTDT);
+            _context.QLQuaTrinhDaoTaos.Remove(qlqtdt);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<QLQuaTrinhDaoTaoViewModel>> Details(int IDQLQTDT)
         {
             var qlqtdtViewModel = await (from qlqtdt in _context.QLQuaTrinhDaoTaos

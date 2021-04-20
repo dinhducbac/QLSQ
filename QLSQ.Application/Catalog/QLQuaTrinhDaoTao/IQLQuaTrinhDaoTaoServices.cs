@@ -13,5 +13,6 @@ namespace QLSQ.Application.Catalog.QLQuaTrinhDaoTao
         public Task<APIResult<bool>> Create(QLQuaTrinhDaoTaoCreateRequest request);
         public Task<APIResult<QLQuaTrinhDaoTaoViewModel>> Details(int IDQLQTDT);
         public Task<APIResult<bool>> Edit(int IDQLQTDT, QLQuaTrinhDaoTaoUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int IDQLQTDT);
     }
 }

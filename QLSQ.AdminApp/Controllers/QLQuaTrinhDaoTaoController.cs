@@ -100,6 +100,36 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
-       
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDQLQTDT)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qlqtdtViewModel = await _qLQuaTrinhDaoTaoApiClient.Details(IDQLQTDT);
+            var qlqtdtDeleteRequest = new QLQuaTrinhDaoTaoDeleteRequest()
+            {
+                IDQLQTDT = qlqtdtViewModel.ResultObj.IDQLQTDT,
+                IDSQ = qlqtdtViewModel.ResultObj.IDSQ,
+                HoTen = qlqtdtViewModel.ResultObj.HoTen,
+                TenTruong = qlqtdtViewModel.ResultObj.TenTruong,
+                NganhHoc = qlqtdtViewModel.ResultObj.NganhHoc,
+                ThoiGianBDDT = qlqtdtViewModel.ResultObj.ThoiGianBDDT,
+                ThoiGianKTDT = qlqtdtViewModel.ResultObj.ThoiGianKTDT,
+                HinhThucDT = qlqtdtViewModel.ResultObj.HinhThucDT,
+                VanBang = qlqtdtViewModel.ResultObj.VanBang
+            };
+            return View(qlqtdtDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(QLQuaTrinhDaoTaoDeleteRequest request)
+        {
+            var result = await _qLQuaTrinhDaoTaoApiClient.Delete(request.IDQLQTDT);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa quá trình đào tạo thành công";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
