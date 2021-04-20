@@ -38,5 +38,25 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("{IDQLQTDT}/details")]
+        public async Task<IActionResult> Details(int IDQLQTDT)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLQuaTrinhDaoTaoServices.Details(IDQLQTDT);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpPut("{IDQLQTDT}/edit")]
+        public async Task<IActionResult> Edit(int IDQLQTDT,[FromBody] QLQuaTrinhDaoTaoUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLQuaTrinhDaoTaoServices.Edit(IDQLQTDT,request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
