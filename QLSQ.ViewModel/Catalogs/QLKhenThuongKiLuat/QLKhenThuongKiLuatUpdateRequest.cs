@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace QLSQ.ViewModel.Catalog.QLKhenThuongKiLuat
+namespace QLSQ.ViewModel.Catalogs.QLKhenThuongKiLuat
 {
-    public class QLKhenThuongKiLuatViewModel
+    public class QLKhenThuongKiLuatUpdateRequest
     {
-        [Display(Name ="ID Khen thưởng/kỉ luật")]
+        [Display(Name = "ID Khen thưởng/kỉ luật")]
         public int IDQLKTKL { get; set; }
         [Display(Name = "ID sĩ quan")]
-        public int IDSQ { get; set;}
+        public int IDSQ { get; set; }
         [Display(Name = "Họ tên sĩ quan")]
         public string HoTen { get; set; }
         [Display(Name = "Ngày thực hiện")]

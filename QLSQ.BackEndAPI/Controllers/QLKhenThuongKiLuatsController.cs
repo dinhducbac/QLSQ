@@ -39,5 +39,25 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("{IDQLKTKL}/details")]
+        public async Task<IActionResult> Details(int IDQLKTKL)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLKhenThuongKiLuatServices.Details(IDQLKTKL);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpPut("{IDQLKTKL}/edit")]
+        public async Task<IActionResult> Edit(int IDQLKTKL, QLKhenThuongKiLuatUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLKhenThuongKiLuatServices.Edit(IDQLKTKL, request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
