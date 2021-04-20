@@ -30,22 +30,25 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label asp-for="HoTen" class="control-label"></label>
-                                        <input asp-for="HoTen" class="form-control" />
+                                        <input asp-for="HoTen" type="text" id="autocomplete" class="form-control" />
                                         <span asp-validation-for="HoTen" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="IDSQ" class="control-label"></label>
-                                        <input asp-for="IDSQ" class="form-control" />
+                                        <input asp-for="IDSQ" id="IDSQ" class="form-control" readonly />
                                         <span asp-validation-for="IDSQ" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="NgayThucHien" class="control-label"></label>
-                                        <input asp-for="NgayThucHien" class="form-control" />
+                                        <input asp-for="NgayThucHien" value="@DateTime.Now" class="form-control" />
                                         <span asp-validation-for="NgayThucHien" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="LoaiKTKL" class="control-label"></label>
-                                        <input asp-for="LoaiKTKL" class="form-control" />
+                                        <label asp-for="LoaiKTKL" class="control-label"></label>                                     
+                                        <select asp-for="LoaiKTKL" class="form-control">
+                                            <option value="0">Kỉ luật</option>
+                                            <option value="1">Khen thưởng</option>
+                                        </select>
                                         <span asp-validation-for="LoaiKTKL" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -96,7 +99,7 @@
             $("#autocomplete").autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: '/QLNghiPhep/GetListSiQuanAutoComplete/',
+                        url: '/QLKhenThuongKiLuat/GetListSiQuanAutocomplete/',
                         data: { "preconfix": request.term },
                         type: "GET",
                         dataType: "json",
@@ -120,30 +123,7 @@
                     //alert(i.item.idluongCB);
                 },
                 minLength: 1
-            });
-            var timeBD = $("#ThoiGianBDNP").val();
-            var timeKT = $("#ThoiGianKTNP").val();
-            $("#ThoiGianBDNP").change(function () {
-                var getDateBD = new Date($("#ThoiGianBDNP").val());
-                var getDateKT = new Date($("#ThoiGianKTNP").val());
-
-                if (getDateBD > getDateKT) {
-                    setTimeout(function () {
-                        alert("Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
-                        $("#ThoiGianBDNP").val(timeBD);
-                    }, 500);
-                }
-            });
-            $("#ThoiGianKTNP").change(function () {
-                var getDateBD = new Date($("#ThoiGianBDNP").val());
-                var getDateKT = new Date($("#ThoiGianKTNP").val());
-                if (getDateKT < getDateBD) {
-                    setTimeout(function () {
-                        alert("Ngày kết thúc phải lớn hơn ngày bắt đầu");
-                        $("#ThoiGianKTNP").val(timeKT);
-                    }, 500);
-                }
-            });
+            });          
         });
     </script>
 }

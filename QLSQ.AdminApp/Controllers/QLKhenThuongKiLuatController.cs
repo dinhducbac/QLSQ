@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using QLSQ.AdminApp.Services;
 using QLSQ.ViewModel.Catalog.QLKhenThuongKiLuat;
+using QLSQ.ViewModel.Catalogs.QLKhenThuongKiLuat;
 
 namespace QLSQ.AdminApp.Controllers
 {
@@ -38,14 +39,28 @@ namespace QLSQ.AdminApp.Controllers
             }
             return View(result);
         }
+        [HttpGet]
         public async Task<JsonResult> GetListSiQuanAutocomplete(string preconfix)
         {
             var result = await _siQuanApiClient.GetFullListSiQuanAutocomplete(preconfix);
             return Json(result.ResultObj);
         }
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> Create(QLKhenThuongKiLuatCreateRequest request)
+        {
+            var result = await _qLKhenThuongKiLuatApiClient.Create(request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Tạo khen thưởng kỉ luật thành công";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
+
     }
 }
