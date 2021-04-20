@@ -17,6 +17,24 @@ namespace QLSQ.Application.Catalog.QLQuaTrinhDaoTao
         {
             _context = context;
         }
+
+        public async Task<APIResult<bool>> Create(QLQuaTrinhDaoTaoCreateRequest request)
+        {
+            var qlqldt = new QLSQ.Data.Entities.QLQuaTrinhDaoTao()
+            {
+                IDSQ = request.IDSQ,
+                TenTruong = request.TenTruong,
+                NganhHoc = request.NganhHoc,
+                ThoiGianBDDT = request.ThoiGianBDDT,
+                ThoiGianKTDT = request.ThoiGianKTDT,
+                HinhThucDT = request.HinhThucDT,
+                VanBang = request.VanBang
+            };
+            _context.QLQuaTrinhDaoTaos.Add(qlqldt);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLQuaTrinhDaoTaoViewModel>>> GetAllWithPaging(GetQLQuaTrinhDaoTaoPagingRequest request)
         {
             var query = from qlqtdt in _context.QLQuaTrinhDaoTaos

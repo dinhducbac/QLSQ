@@ -11,9 +11,11 @@ namespace QLSQ.AdminApp.Controllers
     public class QLQuaTrinhDaoTaoController : Controller
     {
         public readonly IQLQuaTrinhDaoTaoApiClient _qLQuaTrinhDaoTaoApiClient;
-        public QLQuaTrinhDaoTaoController(IQLQuaTrinhDaoTaoApiClient qLQuaTrinhDaoTaoApiClient)
+        public readonly ISiQuanApiClient _siQuanApiClient;
+        public QLQuaTrinhDaoTaoController(IQLQuaTrinhDaoTaoApiClient qLQuaTrinhDaoTaoApiClient,ISiQuanApiClient siQuanApiClient)
         {
             _qLQuaTrinhDaoTaoApiClient = qLQuaTrinhDaoTaoApiClient;
+            _siQuanApiClient = siQuanApiClient;
         }
         public async Task<IActionResult> Index(string keyword, int pageIndex=1,int pageSize = 5)
         {
@@ -35,5 +37,28 @@ namespace QLSQ.AdminApp.Controllers
             }
             return View(result);
         }
+        [HttpGet]
+        public async Task<JsonResult> GetListSiQuanAutoComplete(string preconfix)
+        {
+            var result = await _siQuanApiClient.GetFullListSiQuanAutocomplete(preconfix);
+            return Json(result.ResultObj);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(QLQuaTrinhDaoTaoCreateRequest request)
+        {
+            var result = await _qLQuaTrinhDaoTaoApiClient.Create(request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Tạo quá trình đào tạo thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
+       
     }
 }
