@@ -45,7 +45,7 @@ namespace QLSQ.AdminApp.Controllers
             return Json(result.ResultObj);
         }
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public  IActionResult Create()
         {
             var qlnpCreateRequest = new QLNghiPhepCreateRequest()
             {

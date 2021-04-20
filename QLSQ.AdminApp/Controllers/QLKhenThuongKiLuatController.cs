@@ -101,5 +101,35 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDQLKTKL)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qlktklViewModel = await _qLKhenThuongKiLuatApiClient.Details(IDQLKTKL);
+            var qlktklDeleteRequest = new QLKhenThuongKiLuatDeleteRequest()
+            {
+                IDQLKTKL = qlktklViewModel.ResultObj.IDQLKTKL,
+                IDSQ = qlktklViewModel.ResultObj.IDSQ,
+                HoTen = qlktklViewModel.ResultObj.HoTen,
+                NgayThucHien = qlktklViewModel.ResultObj.NgayThucHien,
+                LoaiKTKL = qlktklViewModel.ResultObj.LoaiKTKL,
+                HinhThuc = qlktklViewModel.ResultObj.HinhThuc,
+                DonViCap = qlktklViewModel.ResultObj.DonViCap,
+                NoiDung = qlktklViewModel.ResultObj.NoiDung
+            };
+            return View(qlktklDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(QLKhenThuongKiLuatDeleteRequest request)
+        {
+            var result = await _qLKhenThuongKiLuatApiClient.Delete(request.IDQLKTKL);
+            if (result.ResultObj == true)
+            {
+                TempData["result"] = "Xóa khen thưởng kỉ luật thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
