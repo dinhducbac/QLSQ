@@ -35,6 +35,48 @@ namespace QLSQ.Application.Catalog.QLKhenThuongKiLuat
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<QLKhenThuongKiLuatViewModel>> Details(int IDQLKTKL)
+        {
+            var getqlktklvm = await (from qlktkl in _context.QLKhenThuongKiLuats
+                                join sq in _context.SiQuans
+                                on qlktkl.IDSQ equals sq.IDSQ
+                                where qlktkl.IDQLKTKL == IDQLKTKL
+                                     select new QLKhenThuongKiLuatViewModel()
+                                {
+                                    IDQLKTKL = qlktkl.IDQLKTKL,
+                                    IDSQ = qlktkl.IDSQ,
+                                    HoTen = sq.HoTen,
+                                    NgayThucHien = qlktkl.NgayThucHien,
+                                    LoaiKTKL = qlktkl.LoaiKTKL,
+                                    HinhThuc = qlktkl.HinhThuc,
+                                    DonViCap = qlktkl.DonViCap,
+                                    NoiDung = qlktkl.NoiDung
+                                }).FirstOrDefaultAsync();
+            var qlktklvm = new QLKhenThuongKiLuatViewModel()
+            {
+                IDQLKTKL = getqlktklvm.IDQLKTKL,
+                IDSQ = getqlktklvm.IDSQ,
+                HoTen = getqlktklvm.HoTen,
+                NgayThucHien = getqlktklvm.NgayThucHien,
+                LoaiKTKL = getqlktklvm.LoaiKTKL,
+                HinhThuc = getqlktklvm.HinhThuc,
+                DonViCap = getqlktklvm.DonViCap,
+                NoiDung = getqlktklvm.NoiDung
+            };
+            return new APISuccessedResult<QLKhenThuongKiLuatViewModel>(qlktklvm);
+        }
+
+        public async Task<APIResult<bool>> Edit(int IDQLKTKL, QLKhenThuongKiLuatUpdateRequest request)
+        {
+            var qlktkl = await _context.QLKhenThuongKiLuats.FirstOrDefaultAsync(x => x.IDQLKTKL == IDQLKTKL);
+            qlktkl.LoaiKTKL = request.LoaiKTKL;
+            qlktkl.NgayThucHien = request.NgayThucHien;
+            qlktkl.HinhThuc = request.HinhThuc;
+            qlktkl.NoiDung = request.NoiDung;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLKhenThuongKiLuatViewModel>>> GetAllWithPaging(GetQLKhenThuongKiLuatPagingRequest request)
         {
             var query = from qlktkl in _context.QLKhenThuongKiLuats
@@ -42,7 +84,7 @@ namespace QLSQ.Application.Catalog.QLKhenThuongKiLuat
                         on qlktkl.IDSQ equals sq.IDSQ
                         select new QLKhenThuongKiLuatViewModel()
                         {
-                            IDKTKL = qlktkl.IDSQ,
+                            IDQLKTKL = qlktkl.IDQLKTKL,
                             IDSQ = qlktkl.IDSQ,
                             HoTen = sq.HoTen,
                             NgayThucHien = qlktkl.NgayThucHien,
@@ -59,7 +101,7 @@ namespace QLSQ.Application.Catalog.QLKhenThuongKiLuat
                 .Take(request.pageSize)
                 .Select(x => new QLKhenThuongKiLuatViewModel
                 {
-                    IDKTKL = x.IDSQ,
+                    IDQLKTKL = x.IDQLKTKL,
                     IDSQ = x.IDSQ,
                     HoTen = x.HoTen,
                     NgayThucHien = x.NgayThucHien,

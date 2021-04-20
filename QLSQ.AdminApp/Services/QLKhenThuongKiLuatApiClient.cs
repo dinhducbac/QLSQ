@@ -39,6 +39,32 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
+        public async Task<APIResult<QLKhenThuongKiLuatViewModel>> Details(int IDQLKTKL)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var resonse = await client.GetAsync($"/api/QLKhenThuongKiLuats/{IDQLKTKL}/details");
+            var body = await resonse.Content.ReadAsStringAsync();
+            if (resonse.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<QLKhenThuongKiLuatViewModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<QLKhenThuongKiLuatViewModel>>(body);
+        }
+
+        public async Task<APIResult<bool>> Edit(int IDQLKTKL, QLKhenThuongKiLuatUpdateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PutAsync($"/api/QLKhenThuongKiLuats/{IDQLKTKL}/edit", httpContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
         public async Task<APIResult<PageResult<QLKhenThuongKiLuatViewModel>>> GetAllWithPaging(GetQLKhenThuongKiLuatPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
