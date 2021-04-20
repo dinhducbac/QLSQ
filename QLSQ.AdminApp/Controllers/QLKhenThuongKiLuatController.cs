@@ -32,7 +32,7 @@ namespace QLSQ.AdminApp.Controllers
             {
                 if (TempData["result"] != null)
                 {
-                    ViewBag.Succsess = true;
+                    ViewBag.Success = true;
                     ViewBag.SuccessMessage = TempData["result"];
                 }
                 return View(result.ResultObj);
@@ -61,6 +61,45 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
-
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDQLKTKL)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLKhenThuongKiLuatApiClient.Details(IDQLKTKL);
+            if (result.ResultObj != null)
+                return View(result.ResultObj);
+            return RedirectToAction("Error", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDQLKTKL)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qlktklViewModel = await _qLKhenThuongKiLuatApiClient.Details(IDQLKTKL);
+            var qlktklUpdateRequest = new QLKhenThuongKiLuatUpdateRequest()
+            {
+                IDQLKTKL = qlktklViewModel.ResultObj.IDQLKTKL,
+                IDSQ = qlktklViewModel.ResultObj.IDSQ,
+                HoTen = qlktklViewModel.ResultObj.HoTen,
+                NgayThucHien = qlktklViewModel.ResultObj.NgayThucHien,
+                LoaiKTKL = qlktklViewModel.ResultObj.LoaiKTKL,
+                HinhThuc = qlktklViewModel.ResultObj.HinhThuc,
+                DonViCap = qlktklViewModel.ResultObj.DonViCap,
+                NoiDung = qlktklViewModel.ResultObj.NoiDung
+            };
+            return View(qlktklUpdateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(QLKhenThuongKiLuatUpdateRequest request)
+        {
+            var result = await _qLKhenThuongKiLuatApiClient.Edit(request.IDQLKTKL, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa khen thưởng/kỉ luật thành công";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }

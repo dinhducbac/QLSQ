@@ -480,8 +480,8 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Mota", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "d976ac71-ed9a-4ab6-a9bc-783510209877", "Administrator Role", "admin", "admin" },
-                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "68e76d0b-c2f4-468b-912b-d608836497af", "Si Quan Role", "Si Quan", "Si Quan" }
+                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "21296855-4ea2-4a19-998a-92cff5c3c3bc", "Administrator Role", "admin", "admin" },
+                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "07111ec3-3d8b-4f29-8df9-79c848ffcccc", "Si Quan Role", "Si Quan", "Si Quan" }
                 });
 
             migrationBuilder.InsertData(
@@ -489,12 +489,12 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "3f4f32cc-73ee-45a8-9ea0-f2c2b42331bc", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEKpuDlA17cCod5AoyXHoYEOvBUr3Xe0d+yAZ62AL1YTUKGKDnCIt/IPa5MOboe2NTA==", null, false, "", false, "dovantuan" },
-                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "58ccf7cf-78a8-43b8-940e-2da99394b587", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAECDdNBMCzv6w/VMxMwZ2x1lX6W3zWf8mwv5e0E7EB70xK8rAnXt0El/ueQsLn5EtIw==", null, false, "", false, "vuvancanh" },
-                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "322322cc-30df-49ff-96f1-6af7cdacd6fa", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAECIYqmwv02J1kgJPf4fz7z5DS2A4ddQG9yatRqa+VLkv3iXPbqmTcqnQubZtstLdkw==", null, false, "", false, "admin" },
-                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "3b1b426e-b6fe-4547-9084-f3155a0fff47", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAEJyO/BHRpIopMOQoQrf9JpMxXoP1Hy+AY6AQgwfwMZ5RLmMm2r5PdA8xeB0ILJt+Ng==", null, false, "", false, "lethihien" },
-                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "10cbb7a1-2640-42a0-ba32-cc7b20f476b3", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEAiJ2FC76sZt57IY3sKcyHlYzpwSZTJ2rPfTe7ET9wNS2O4Th/ZsMLQSuAiBQwFD7Q==", null, false, "", false, "nguyenvanhoan" },
-                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "96359297-5737-43dc-b3ee-8b8b771a7d4f", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEJ30NyLGmgNMwKh7rIy3Rp6Dapyhw/DhvMja0F0RqC6r0FQZqmTBXFomKKinx7ZmwA==", null, false, "", false, "lethigiang" }
+                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "afcfd7f2-fe62-4c31-99e8-acc2baff57d0", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEGtN3UhQfK73g7M3rvCoMcLmDtT4wHNWDX7NSx97WjJleS1nclhSNPClt5DxOEpkQQ==", null, false, "", false, "dovantuan" },
+                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "dd7f4f93-fef5-4c9a-8d9c-894dfa85b8e0", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAEJ7J/KkNYjmZHHe2y3/logvDlfC3Gsc0fqYCSuH0XneVJmcVOyEiBUcmAdZ9Od5S4A==", null, false, "", false, "vuvancanh" },
+                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "e2c101c7-ffd3-4c6b-ba03-52bec09f3c61", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAEOgOikqmJhmKeT3AAYpIJtWWD/jGCMsnojnbqNeNyWwiLOKcEWCoWGOa9IBD9wlCZA==", null, false, "", false, "admin" },
+                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "dcd7df1a-b398-4f21-a914-61322ab166a8", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAELaeHA7Vg1Ii+xrgkhqFayofo8DHwYUVvc0kNZKCwU3ZuGUNwlpKSMqZ/Qbni43sxw==", null, false, "", false, "lethihien" },
+                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "bf02f6da-25d5-406f-8db8-daefb897562c", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEA7IdCHgHkkuG8E8THkhKVWNzeWUbPNqmj0xbDFtcWmeLEQTAUDg/dD+gNy3DOyrUA==", null, false, "", false, "nguyenvanhoan" },
+                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "ee84f76d-2da9-43c3-9b2b-2ec16d6d2ad2", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEIZMoKVL+lHWx/QjQDSSGasL4udlD8Nq3V6aa4osqRGlCIeMhAVy1ll5g/wgxEHRAw==", null, false, "", false, "lethigiang" }
                 });
 
             migrationBuilder.InsertData(
