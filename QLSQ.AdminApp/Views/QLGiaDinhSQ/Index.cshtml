@@ -1,0 +1,137 @@
+﻿@using QLSQ.ViewModel.Common
+@model PageResult<QLSQ.ViewModel.Catalogs.QLGiaDinhSQ.QLGiaDinhSQViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Scripts{
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000);
+    </script>
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Quản lý gia đình sĩ quan</h1>
+
+            </div><!-- /.col -->
+
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6 col-xl-12">
+                                <p>
+                                    <a class="btn btn-primary" asp-action="Create">Create New</a>
+                                </p>
+                            </div>
+                            <div class="col-md-6 col-xl-12">
+                                <form asp-action="Index" method="get">
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <input type="text" value="@ViewBag.Keyword" name="keyword" class="form-control" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button type="submit" class="btn btn-primary">Tìm</button>
+                                            <button type="reset" onclick="window.location.href='/User/Index'" class="btn btn-dark">Resest</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        @if (ViewBag.Success == true)
+                        {
+                            <div id="msgAlert" class="alert alert-success" role="alert">
+                                @ViewBag.SuccessMessage;
+                            </div>
+                        }
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        ID quản lý gia đình sĩ quan
+                                    </th>
+                                    <th>
+                                        ID sĩ quan
+                                    </th>
+                                    <th>
+                                        Họ tên sĩ quan
+                                    </th>
+                                    <th>
+                                        Quan hệ
+                                    </th>
+                                    <th>
+                                        Họ tên
+                                    </th>
+                                    <th>
+                                        Ngày sinh
+                                    </th>
+                                    <th>
+                                        Ghi chú
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Items)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IDQLGDSQ)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IDSQ)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.HoTenSQ)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.QuanHe)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.HoTen)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NgaySinh)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.GhiChu)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { IDQLGDSQ = item.IDQLGDSQ }) |
+                                            @Html.ActionLink("Details", "Details", new { IDQLGDSQ = item.IDQLGDSQ }) |
+                                            @Html.ActionLink("Delete", "Delete", new { IDQLGDSQ = item.IDQLGDSQ })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @await Component.InvokeAsync("Pager", Model)
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
