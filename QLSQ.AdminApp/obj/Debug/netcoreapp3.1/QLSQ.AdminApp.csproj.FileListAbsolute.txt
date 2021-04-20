@@ -482,3 +482,4 @@ D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLKhenTh
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLKhenThuongKiLuat\Create.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLKhenThuongKiLuat\Details.cshtml.g.cs
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLKhenThuongKiLuat\Edit.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\QLKhenThuongKiLuat\Delete.cshtml.g.cs

@@ -59,5 +59,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpDelete("{IDQLKTKL}/delete")]
+        public async Task<IActionResult> Delete(int IDQLKTKL)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLKhenThuongKiLuatServices.Delete(IDQLKTKL);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

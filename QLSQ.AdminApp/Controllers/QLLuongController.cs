@@ -41,7 +41,7 @@ namespace QLSQ.AdminApp.Controllers
             return Json(listsq.ResultObj);
         }
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public  IActionResult Create()
         {
             return View();
         }
