@@ -39,6 +39,7 @@ namespace QLSQ.AdminApp.Controllers
             }
             return View(data.ResultObj);
         }
+            
         [HttpGet]
         public async Task<JsonResult> GetListUserAutocomplete(string prefix)
         {
