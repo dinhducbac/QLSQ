@@ -17,6 +17,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         public Task<APIResult<string>> Detele(int IDSQ);
 
         public Task<APIResult<SiQuanViewModel>> GetById(int IDSQ);
+        public Task<string> SaveFile(IFormFile file);
 
         public Task<APIResult<PageResult<SiQuanViewModel>>> GetAllPaging(GetManageSiQuanPagingRequest request);
         public Task<APIResult<List<SiQuanViewModel>>> GetAllWithoutPaging();

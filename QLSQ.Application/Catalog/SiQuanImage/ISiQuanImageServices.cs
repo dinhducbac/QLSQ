@@ -10,5 +10,6 @@ namespace QLSQ.Application.Catalog.SiQuanImage
     public interface ISiQuanImageServices
     {
         public Task<APIResult<PageResult<SiQuanImageViewModel>>> GetAllWithPaging(GetSiQuanImagePagingRequest request);
+        public Task<APIResult<bool>> Create(SiQuanImageCreateRequest request);
     }
 }

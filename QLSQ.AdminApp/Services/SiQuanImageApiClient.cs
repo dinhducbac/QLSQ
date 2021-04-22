@@ -5,6 +5,7 @@ using QLSQ.ViewModel.Catalogs.SiQuanImage;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -23,6 +24,24 @@ namespace QLSQ.AdminApp.Services
             _httpClientFactory = httpClientFactory;
             _httpContextAccessor = httpContextAccessor;
         }
+
+        public Task<APIResult<bool>> Create(SiQuanImageCreateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var requestContent = new MultipartFormDataContent();
+            if (request.ImageFile != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ImageFile.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "ImageFile", request.ImageFile.FileName);
+            }
+        }
+
         public async Task<APIResult<PageResult<SiQuanImageViewModel>>> GetAllWithPaging(GetSiQuanImagePagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();

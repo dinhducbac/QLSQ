@@ -101,7 +101,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             return siquanImageMd;
         }
 
-        private async Task<string> SaveFile(IFormFile file)
+        public async Task<string> SaveFile(IFormFile file)
         {
             var orignalfilename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('*');
             //var filename = $"{Guid.NewGuid()}{Path.GetExtension(orignalfilename)}";
