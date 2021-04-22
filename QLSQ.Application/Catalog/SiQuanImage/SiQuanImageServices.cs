@@ -7,16 +7,36 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using QLSQ.Application.Catalog.SiQuans;
 
 namespace QLSQ.Application.Catalog.SiQuanImage
 {
     public class SiQuanImageServices : ISiQuanImageServices
     {
         public readonly QL_SiQuanDBContext _context;
-        public SiQuanImageServices(QL_SiQuanDBContext context)
+        public readonly IManageSiQuanServices _manageSiQuanServices;
+
+        public SiQuanImageServices(QL_SiQuanDBContext context,IManageSiQuanServices manageSiQuanServices)
         {
             _context = context;
+            _manageSiQuanServices = manageSiQuanServices;
         }
+
+        public async Task<APIResult<bool>> Create(SiQuanImageCreateRequest request)
+        {
+            var sqImage = new QLSQ.Data.Entities.SiQuanImage()
+            {
+                IDSQ = request.IDSQ,
+                Caption = request.Caption,
+                IsDefault = request.IsDefault,
+                FileSize = request.ImageFile.Length,
+                ImagePath = await _manageSiQuanServices.SaveFile(request.ImageFile)
+            };
+            _context.SiQuanImages.Add(sqImage);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<SiQuanImageViewModel>>> GetAllWithPaging(GetSiQuanImagePagingRequest request)
         {
             var query = from sqimage in _context.SiQuanImages
