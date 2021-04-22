@@ -1,0 +1,120 @@
+﻿@model QLSQ.ViewModel.Catalogs.QLGiaDinhSQ.QLGiaDinhSQCreateRequest
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Tạo quản lý gia đình sĩ quan</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tạo User</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="HoTenSQ" class="control-label"></label>
+                                        <input asp-for="HoTenSQ" id="autocomplete" class="form-control" />
+                                        <span asp-validation-for="HoTenSQ" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDSQ" class="control-label"></label>
+                                        <input asp-for="IDSQ" id="IDSQ" readonly class="form-control" />
+                                        <span asp-validation-for="IDSQ" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="QuanHe" class="control-label"></label>
+                                        <input asp-for="QuanHe" class="form-control" />
+                                        <span asp-validation-for="QuanHe" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="HoTen" class="control-label"></label>
+                                        <input asp-for="HoTen" class="form-control" />
+                                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NgaySinh" class="control-label"></label>
+                                        <input asp-for="NgaySinh" class="form-control" />
+                                        <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="GhiChu" class="control-label"></label>
+                                        <input asp-for="GhiChu" class="form-control" />
+                                        <span asp-validation-for="GhiChu" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+@section Autocomplete{
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
+    <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
+          rel="Stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(function () {
+            $("#autocomplete").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/QLGiaDinhSQ/GetListSiQuanAutoComplete/',
+                        data: { "preconfix": request.term },
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.hoTen, value: item.hoTen, idsq: item.idsq
+                                };
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+                    $("#IDSQ").val(i.item.idsq);
+                    //alert(i.item.idluongCB);
+                },
+                minLength: 1
+            });           
+        });
+    </script>
+}
+

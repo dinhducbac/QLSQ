@@ -25,6 +25,19 @@ namespace QLSQ.AdminApp.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public async Task<APIResult<bool>> Create(QLGiaDinhSQCreateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"/api/QLGiaDinhSQs/create", httpContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
         public async Task<APIResult<QLGiaDinhSQViewModel>> Details(int IDQLGDSQ)
         {
             var client = _httpClientFactory.CreateClient();

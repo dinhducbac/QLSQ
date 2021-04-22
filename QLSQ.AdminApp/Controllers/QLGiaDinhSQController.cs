@@ -11,9 +11,11 @@ namespace QLSQ.AdminApp.Controllers
     public class QLGiaDinhSQController : Controller
     {
         public readonly IQLGiaDinhApiClient _qLGiaDinhApiClient;
-        public QLGiaDinhSQController(IQLGiaDinhApiClient qLGiaDinhApiClient)
+        public readonly ISiQuanApiClient _siQuanApiClient;
+        public QLGiaDinhSQController(IQLGiaDinhApiClient qLGiaDinhApiClient, ISiQuanApiClient siQuanApiClient)
         {
             _qLGiaDinhApiClient = qLGiaDinhApiClient;
+            _siQuanApiClient = siQuanApiClient;
         }
         public async Task<IActionResult> Index(string keyword,int pageIndex = 1, int pageSize = 5)
         {
@@ -34,6 +36,30 @@ namespace QLSQ.AdminApp.Controllers
                 return View(result.ResultObj);
             }
             return View(result);
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetListSiQuanAutoComplete(string preconfix)
+        {
+            var result = await _siQuanApiClient.GetFullListSiQuanAutocomplete(preconfix);
+            return Json(result.ResultObj);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(QLGiaDinhSQCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLGiaDinhApiClient.Create(request);
+            if(result.ResultObj == true)
+            {
+                TempData["result"] = "Tạo quản lý gia đình sĩ quan thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
         }
         [HttpGet]
         public async Task<IActionResult> Details(int IDQLGDSQ)
