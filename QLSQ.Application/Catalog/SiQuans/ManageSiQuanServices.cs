@@ -31,7 +31,7 @@ namespace QLSQ.Application.Catalog.SiQuans
 
         public async Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request)
         {
-            var siquanimage = new SiQuanImage()
+            var siquanimage = new QLSQ.Data.Entities.SiQuanImage()
             {
                 IDSQ = SiQuanID,
                 Caption = request.Caption,
@@ -105,7 +105,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         {
             var orignalfilename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('*');
             //var filename = $"{Guid.NewGuid()}{Path.GetExtension(orignalfilename)}";
-            var filename = orignalfilename.Substring(1, orignalfilename.Length - 2);
+            var filename = orignalfilename.Substring(0, orignalfilename.Length);
             await _storageServices.SaveFileAsync(file.OpenReadStream(), filename);
             //return filename;
             return filename;
@@ -126,9 +126,9 @@ namespace QLSQ.Application.Catalog.SiQuans
             var test = siquan.UserId;
             if(request.ThumbnailImage != null)
             {
-                siquan.SiQuanImages = new List<SiQuanImage>()
+                siquan.SiQuanImages = new List<QLSQ.Data.Entities.SiQuanImage>()
                 {
-                    new SiQuanImage()
+                    new QLSQ.Data.Entities.SiQuanImage()
                     {
                         IDSQ = siquan.IDSQ,
                         Caption = request.HoTen,
