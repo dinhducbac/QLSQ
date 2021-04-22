@@ -12,6 +12,7 @@ namespace QLSQ.AdminApp.Services
     {
         public Task<APIResult<PageResult<QLGiaDinhSQViewModel>>> GetAllWithPaging(GetQLGiaDinhSQPagingRequest request);
         public Task<APIResult<QLGiaDinhSQViewModel>> Details(int IDQLGDSQ);
-        public Task<APIResult<bool>> Edit(int IDQLGDSQ, QLGiaDinhSQUpdateRequest request); 
+        public Task<APIResult<bool>> Edit(int IDQLGDSQ, QLGiaDinhSQUpdateRequest request);
+        public Task<APIResult<bool>> Create(QLGiaDinhSQCreateRequest request);
     }
 }

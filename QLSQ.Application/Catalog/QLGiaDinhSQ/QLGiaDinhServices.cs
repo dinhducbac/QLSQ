@@ -18,6 +18,21 @@ namespace QLSQ.Application.Catalog.QLGiaDinhSQ
             _context = context;
         }
 
+        public async Task<APIResult<bool>> Create(QLGiaDinhSQCreateRequest request)
+        {
+            var qlgdsq = new QLSQ.Data.Entities.QLGiaDinhSQ()
+            {
+                IDSQ = request.IDSQ,
+                QuanHe = request.QuanHe,
+                HoTen = request.HoTen,
+                NgaySinh = request.NgaySinh,
+                GhiChu = request.GhiChu
+            };
+            _context.QLGiaDinhSQs.Add(qlgdsq);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<QLGiaDinhSQViewModel>> Details(int IDQLGDSQ)
         {
             var getqlgdsq = await (from qlgdsq in _context.QLGiaDinhSQs
