@@ -104,5 +104,34 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDQLGDSQ)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var getqlgdsqViewModel = await _qLGiaDinhApiClient.Details(IDQLGDSQ);
+            var qlgdsqDeleteRequest = new QLGiaDinhSQDeleteRequest()
+            {
+                IDQLGDSQ = getqlgdsqViewModel.ResultObj.IDQLGDSQ,
+                IDSQ = getqlgdsqViewModel.ResultObj.IDSQ,
+                HoTenSQ = getqlgdsqViewModel.ResultObj.HoTenSQ,
+                QuanHe = getqlgdsqViewModel.ResultObj.QuanHe,
+                HoTen = getqlgdsqViewModel.ResultObj.HoTen,
+                NgaySinh = getqlgdsqViewModel.ResultObj.NgaySinh,
+                GhiChu = getqlgdsqViewModel.ResultObj.GhiChu
+            };
+            return View(qlgdsqDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(QLGiaDinhSQDeleteRequest request)
+        {
+            var result = await _qLGiaDinhApiClient.Delete(request.IDQLGDSQ);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa gia đình sĩ quan thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }

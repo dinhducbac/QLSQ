@@ -63,6 +63,14 @@ namespace QLSQ.Application.Catalog.QLGiaDinhSQ
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDQLGDSQ)
+        {
+            var qlgdsq = await _context.QLGiaDinhSQs.FirstOrDefaultAsync(x => x.IDQLGDSQ == IDQLGDSQ);
+            _context.QLGiaDinhSQs.Remove(qlgdsq);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLGiaDinhSQViewModel>>> GetAllWithPaging(GetQLGiaDinhSQPagingRequest request)
         {
             var query = from qlgdsq in _context.QLGiaDinhSQs
