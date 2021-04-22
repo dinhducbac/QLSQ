@@ -50,7 +50,6 @@ namespace QLSQ.BackEndAPI.Controllers
             return Ok(siquan);
         }
         [HttpPost("create")]
-        [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody]SiQuanCreateRequest request)
         {
             if (!ModelState.IsValid)
