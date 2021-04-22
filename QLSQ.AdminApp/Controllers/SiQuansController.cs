@@ -59,7 +59,8 @@ namespace QLSQ.AdminApp.Controllers
             return View(siquanCreateRequest);
         }
         [HttpPost]
-        public async Task<IActionResult> Create(SiQuanCreateRequest request)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Create([FromForm]SiQuanCreateRequest request)
         {
             if (!ModelState.IsValid)
                 return View(ModelState);
