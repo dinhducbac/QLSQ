@@ -50,7 +50,8 @@ namespace QLSQ.BackEndAPI.Controllers
             return Ok(siquan);
         }
         [HttpPost("create")]
-        public async Task<IActionResult> Create([FromBody]SiQuanCreateRequest request)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Create([FromForm]SiQuanCreateRequest request)
         {
             if (!ModelState.IsValid)
             {
