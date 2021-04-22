@@ -35,5 +35,48 @@ namespace QLSQ.AdminApp.Controllers
             }
             return View(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDQLGDSQ)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLGiaDinhApiClient.Details(IDQLGDSQ);
+            if (result.ResultObj != null)
+                return View(result.ResultObj);
+            return View(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDQLGDSQ)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLGiaDinhApiClient.Details(IDQLGDSQ);
+            if (result.ResultObj != null)
+            {
+                var qlgdsqUpdateRequest = new QLGiaDinhSQUpdateRequest()
+                {
+                    IDQLGDSQ = result.ResultObj.IDQLGDSQ,
+                    IDSQ = result.ResultObj.IDSQ,
+                    HoTenSQ = result.ResultObj.HoTenSQ,
+                    QuanHe = result.ResultObj.QuanHe,
+                    HoTen = result.ResultObj.HoTen,
+                    NgaySinh = result.ResultObj.NgaySinh,
+                    GhiChu = result.ResultObj.GhiChu
+                };
+                return View(qlgdsqUpdateRequest);
+            }            
+            return View(result);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(QLGiaDinhSQUpdateRequest request)
+        {
+            var result = await _qLGiaDinhApiClient.Edit(request.IDQLGDSQ, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa quản lý gia đình sĩ quan thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }

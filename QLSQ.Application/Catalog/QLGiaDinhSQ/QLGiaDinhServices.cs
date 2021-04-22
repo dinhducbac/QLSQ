@@ -17,6 +17,37 @@ namespace QLSQ.Application.Catalog.QLGiaDinhSQ
         {
             _context = context;
         }
+
+        public async Task<APIResult<QLGiaDinhSQViewModel>> Details(int IDQLGDSQ)
+        {
+            var getqlgdsq = await (from qlgdsq in _context.QLGiaDinhSQs
+                                   join sq in _context.SiQuans
+                                   on qlgdsq.IDSQ equals sq.IDSQ
+                                   where qlgdsq.IDQLGDSQ == IDQLGDSQ
+                                   select new QLGiaDinhSQViewModel()
+                                   {
+                                       IDQLGDSQ = qlgdsq.IDQLGDSQ,
+                                       IDSQ = qlgdsq.IDSQ,
+                                       HoTenSQ = sq.HoTen,
+                                       QuanHe = qlgdsq.QuanHe,
+                                       HoTen = qlgdsq.HoTen,
+                                       NgaySinh = qlgdsq.NgaySinh,
+                                       GhiChu = qlgdsq.GhiChu
+                                   }).FirstOrDefaultAsync();
+            return new APISuccessedResult<QLGiaDinhSQViewModel>(getqlgdsq);
+        }
+
+        public async Task<APIResult<bool>> Edit(int IDQLGDSQ, QLGiaDinhSQUpdateRequest request)
+        {
+            var qlgdsq = await _context.QLGiaDinhSQs.FirstOrDefaultAsync(x => x.IDQLGDSQ == IDQLGDSQ);
+            qlgdsq.QuanHe = request.QuanHe;
+            qlgdsq.HoTen = request.HoTen;
+            qlgdsq.NgaySinh = request.NgaySinh;
+            qlgdsq.GhiChu = request.GhiChu;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLGiaDinhSQViewModel>>> GetAllWithPaging(GetQLGiaDinhSQPagingRequest request)
         {
             var query = from qlgdsq in _context.QLGiaDinhSQs
