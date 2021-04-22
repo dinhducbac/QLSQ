@@ -28,6 +28,16 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(QLGiaDinhSQCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLGiaDinhSQServices.Create(request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
         [HttpGet("{IDQLGDSQ}/details")]
         public async Task<IActionResult> Details(int IDQLGDSQ)
         {
@@ -48,5 +58,6 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        
     }
 }
