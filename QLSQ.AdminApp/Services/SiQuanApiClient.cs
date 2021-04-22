@@ -5,6 +5,7 @@ using QLSQ.ViewModel.Catalogs.SiQuan;
 using QLSQ.ViewModel.Common;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -29,9 +30,27 @@ namespace QLSQ.AdminApp.Services
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
-            var json = JsonConvert.SerializeObject(request);
-            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
-            var reponse = await client.PostAsync($"/api/SiQuans/create", httpContent);
+            var requestContent = new MultipartFormDataContent();
+           if(request.ThumbnailImage != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ThumbnailImage.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ThumbnailImage.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "ThumbnailImage", request.ThumbnailImage.FileName);
+            }  
+            requestContent.Add(new StringContent(request.UserId.ToString()), "UserId");
+            requestContent.Add(new StringContent(request.HoTen.ToString()), "HoTen");
+            requestContent.Add(new StringContent(request.NgaySinh.ToString()), "NgaySinh");
+            requestContent.Add(new StringContent(request.GioiTinh.ToString()), "GioiTinh");
+            requestContent.Add(new StringContent(request.QueQuan.ToString()), "QueQuan");
+            requestContent.Add(new StringContent(request.SDT.ToString()), "SDT");
+
+            //var json = JsonConvert.SerializeObject(request);
+            //var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var reponse = await client.PostAsync($"/api/SiQuans/create", requestContent);
             if (reponse.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<APISuccessedResult<int>>(await reponse.Content.ReadAsStringAsync());
