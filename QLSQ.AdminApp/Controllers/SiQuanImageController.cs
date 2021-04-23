@@ -103,5 +103,35 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDImage)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var sqImageViewModel = await _siQuanImageApiClient.Details(IDImage);
+            var sqImageDeleteRequest = new SiQuanImageDeleteRequest()
+            {
+                IDImage = sqImageViewModel.ResultObj.IDImage,
+                IDSQ = sqImageViewModel.ResultObj.IDSQ,
+                HoTenSQ = sqImageViewModel.ResultObj.HoTenSQ,
+                ImagePath = sqImageViewModel.ResultObj.ImagePath,
+                Caption = sqImageViewModel.ResultObj.Caption,
+                IsDefault = sqImageViewModel.ResultObj.IsDefault,
+                DateCreated = sqImageViewModel.ResultObj.DateCreated,
+                FileSize = sqImageViewModel.ResultObj.FileSize
+            };
+            return View(sqImageDeleteRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(SiQuanImageDeleteRequest request)
+        {
+            var result = await _siQuanImageApiClient.Delete(request.IDImage);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa ảnh sĩ quan thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
