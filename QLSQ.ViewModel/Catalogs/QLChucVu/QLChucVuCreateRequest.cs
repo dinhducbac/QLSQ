@@ -12,12 +12,11 @@ namespace QLSQ.ViewModel.Catalogs.QLChucVu
     {
         [Display(Name ="ID sĩ quan")]
         public int IDSQ { get; set; }
-        [Display(Name = "ID quân hàm")]
-        public int IDQH { get; set; }
         [Display(Name = "ID bộ phận")]
         public int IDBP { get; set; }
         [Display(Name = "ID chức vụ")]
         public int IDCV { get; set; }
+        public DateTime NgayNhan { get; set; }
 
 
         public List<QuanHamViewModel> quanHamViewModels { get; set; }

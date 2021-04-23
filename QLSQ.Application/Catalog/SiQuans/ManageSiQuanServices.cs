@@ -275,10 +275,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             var query = from sq in _context.SiQuans
                         join qlcv in _context.QLChucVus
                         on sq.IDSQ equals qlcv.IDSQ
-                        join qh in _context.QuanHams
-                        on qlcv.IDQH equals qh.IDQH
-                        join hslqh in _context.HeSoLuongTheoQuanHams
-                        on qh.IDQH equals hslqh.IDQH
+                       
                         join cv in _context.ChucVus
                         on qlcv.IDCV equals cv.IDCV
                         join hspccv in _context.HeSoPhuCapTheoChucVus
@@ -287,11 +284,7 @@ namespace QLSQ.Application.Catalog.SiQuans
                         select new SiQuanInQLLuongViewModel
                         { 
                             IDSQ = sq.IDSQ,
-                            HoTen = sq.HoTen,
-                            IDQH = qlcv.IDQH,
-                            TenQH = qh.TenQH,
-                            IDHeSoLuongQH = hslqh.IDHeSoLuongQH,
-                            HeSoLuongQH = hslqh.HeSoLuong,
+                            HoTen = sq.HoTen,                   
                             IDCV = qlcv.IDCV,
                             TenCV = cv.TenCV,
                             IDHeSoPhuCapCV = hspccv.IDHeSoPhuCapCV,

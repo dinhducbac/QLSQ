@@ -14,8 +14,9 @@ namespace QLSQ.Data.Configurations
             builder.ToTable("HeSoLuongTheoQuanHam");
             builder.HasKey(x => x.IDHeSoLuongQH);
             builder.Property(x => x.IDHeSoLuongQH).ValueGeneratedOnAdd();
-            builder.Property(x => x.IDQH).IsRequired();
+            builder.Property(x => x.IDQH).IsRequired();      
             builder.HasOne(x => x.QuanHam).WithMany(x => x.HeSoLuongTheoQuanHams).HasForeignKey(x => x.IDQH);
+            builder.Property(x => x.TenHeSoLuongQH).IsRequired();
             builder.Property(x=>x.HeSoLuong).IsRequired();
         }
     }

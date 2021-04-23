@@ -8,8 +8,10 @@ namespace QLSQ.Data.Entities
     {
         public int IDHeSoLuongQH { get; set; }
         public int IDQH { get; set; }
-        public float HeSoLuong { get; set; }
-        public QuanHam QuanHam { set; get; }
-        public List<QLLuong> QLLuongs { get; set; }
+        public string TenHeSoLuongQH { get; set; }
+        public float HeSoLuong { get; set; }    
+        public QuanHam QuanHam { get; set; }
+        public List<QLQuanHam> QLQuanHams { get; set; }
+
     }
 }

@@ -24,10 +24,8 @@ namespace QLSQ.Application.Catalog.QLLuong
         {
             var qll = new QLSQ.Data.Entities.QLLuong()
             {
-                IDSQ = request.IDSQ,
-                IDHeSoLuongQH = request.IDHeSoLuongQH,
+                IDSQ = request.IDSQ,             
                 IDLuongCB = request.IDLuongCB,
-                IDHeSoPhuCapCV = request.IDHeSoPhuCapCV
             };
             _context.QLLuongs.Add(qll);
             await _context.SaveChangesAsync();
@@ -46,15 +44,7 @@ namespace QLSQ.Application.Catalog.QLLuong
         {
             var query = await (from qll in _context.QLLuongs
                         join sq in _context.SiQuans
-                        on qll.IDSQ equals sq.IDSQ
-                        join hsl in _context.HeSoLuongTheoQuanHams
-                        on qll.IDHeSoLuongQH equals hsl.IDHeSoLuongQH
-                        join qh in _context.QuanHams
-                        on hsl.IDQH equals qh.IDQH
-                        join hspc in _context.HeSoPhuCapTheoChucVus
-                        on qll.IDHeSoPhuCapCV equals hspc.IDHeSoPhuCapCV
-                        join cv in _context.ChucVus
-                        on hspc.IDCV equals cv.IDCV
+                        on qll.IDSQ equals sq.IDSQ                                                         
                         join lcb in _context.LuongCoBans
                         on qll.IDLuongCB equals lcb.IDLuongCB
                         where qll.IDLuong == IDLuong
@@ -62,15 +52,7 @@ namespace QLSQ.Application.Catalog.QLLuong
                         {
                             IDLuong = qll.IDLuong,
                             HoTen = sq.HoTen,
-                            IDSQ = qll.IDSQ,
-                            IDQH = qh.IDQH,
-                            TenQH = qh.TenQH,
-                            IDHeSoLuongQH = qll.IDHeSoLuongQH,
-                            HeSoLuongQH = hsl.HeSoLuong,
-                            IDCV = cv.IDCV,
-                            TenCV = cv.TenCV,
-                            IDHeSoPhuCapCV = qll.IDHeSoPhuCapCV,
-                            HeSoPhuCapCV = hspc.HeSoPhuCap,
+                            IDSQ = qll.IDSQ,                     
                             IDLuongCB = qll.IDLuongCB,
                             LuongCB = lcb.LuongCB
                         }).FirstOrDefaultAsync();
@@ -99,22 +81,15 @@ namespace QLSQ.Application.Catalog.QLLuong
         {
             var query = (from sq in _context.SiQuans
                          join qlluong in _context.QLLuongs
-                            on sq.IDSQ equals qlluong.IDSQ
-                         join hslqh in _context.HeSoLuongTheoQuanHams
-                            on qlluong.IDHeSoLuongQH equals hslqh.IDHeSoLuongQH
-                         join hspccv in _context.HeSoPhuCapTheoChucVus
-                            on qlluong.IDHeSoPhuCapCV equals hspccv.IDHeSoPhuCapCV
+                            on sq.IDSQ equals qlluong.IDSQ                    
                          join lcb in _context.LuongCoBans
                             on qlluong.IDLuongCB equals lcb.IDLuongCB
                          select new QLLuongViewModel
                          {
                              IDLuong = qlluong.IDLuong,
                              IDSQ = qlluong.IDSQ,
-                             HoTen = sq.HoTen,
-                             HeSoLuong = hslqh.HeSoLuong,
-                             HeSoPhuCap = hspccv.HeSoPhuCap,
-                             LuongCB = lcb.LuongCB,
-                             Luong = Convert.ToUInt64(hslqh.HeSoLuong * lcb.LuongCB + hspccv.HeSoPhuCap * lcb.LuongCB)
+                             HoTen = sq.HoTen,                          
+                             LuongCB = lcb.LuongCB                           
                          });
             if (!string.IsNullOrEmpty(request.keyword))
             {

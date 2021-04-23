@@ -34,7 +34,7 @@ namespace QLSQ.Data.EF
             modelBuilder.ApplyConfiguration(new QLKhenThuongKiLuatConfigurations());
             modelBuilder.ApplyConfiguration(new QlQuaTrinhDaoTaoConfigurations());
             modelBuilder.ApplyConfiguration(new QLGiaDinhSQConfigurations());
-
+            modelBuilder.ApplyConfiguration(new QLQuanHamConfigurations());
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole").HasKey(x => new { x.UserId, x.RoleId });
             modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin").HasKey(x => x.UserId);
@@ -64,6 +64,7 @@ namespace QLSQ.Data.EF
         public DbSet<QLKhenThuongKiLuat> QLKhenThuongKiLuats { get; set; }
         public DbSet<QLQuaTrinhDaoTao> QLQuaTrinhDaoTaos { get; set; }
         public DbSet<QLGiaDinhSQ> QLGiaDinhSQs { get; set; }
+        public DbSet<QLQuanHam> QLQuanHams { get; set; }
         //public DbSet<AppUser> AppUsers { get; set; }
         //public DbSet<AppRole> AppRoles { get; set; }
     }
