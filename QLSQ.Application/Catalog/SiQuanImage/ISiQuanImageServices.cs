@@ -13,6 +13,7 @@ namespace QLSQ.Application.Catalog.SiQuanImage
         public Task<APIResult<bool>> Create(SiQuanImageCreateRequest request);
         public Task<APIResult<SiQuanImageViewModel>> Details(int IDImage);
         public Task<APIResult<bool>> Edit(int IDImage, SiQuanImageUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int IDImage);
 
     }
 }
