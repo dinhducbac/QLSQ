@@ -39,5 +39,26 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("{IDImage}/details")]
+        public async Task<IActionResult> Details(int IDImage)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _siQuanImageServices.Details(IDImage);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpPut("{IDImage}/edit")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Edit(int IDImage,[FromForm] SiQuanImageUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _siQuanImageServices.Edit(IDImage,request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
