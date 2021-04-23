@@ -51,6 +51,45 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
+        public async Task<APIResult<SiQuanImageViewModel>> Details(int IDImage)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/SiQuanImages/{IDImage}/Details");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<SiQuanImageViewModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<SiQuanImageViewModel>>(body);
+        }
+
+        public async Task<APIResult<bool>> Edit(int IDImage, SiQuanImageUpdateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var requestContent = new MultipartFormDataContent();
+            requestContent.Add(new StringContent(request.Caption.ToString()), "Caption");
+            requestContent.Add(new StringContent(request.DateCreated.ToString()), "DateCreated");
+            requestContent.Add(new StringContent(request.IsDefault.ToString()), "IsDefault");
+            if (request.ImageFile != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.ImageFile.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.ImageFile.OpenReadStream().Length);
+                }
+                ByteArrayContent bytes = new ByteArrayContent(data);
+                requestContent.Add(bytes, "ImageFile", request.ImageFile.FileName);
+            }
+            var response = await client.PutAsync($"/api/SiQuanImages/{IDImage}/edit", requestContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+
+        }
+
         public async Task<APIResult<PageResult<SiQuanImageViewModel>>> GetAllWithPaging(GetSiQuanImagePagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
