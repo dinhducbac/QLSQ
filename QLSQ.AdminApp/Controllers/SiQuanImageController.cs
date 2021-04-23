@@ -11,9 +11,11 @@ namespace QLSQ.AdminApp.Controllers
     public class SiQuanImageController : Controller
     {
         public readonly ISiQuanImageApiClient _siQuanImageApiClient;
-        public SiQuanImageController(ISiQuanImageApiClient siQuanImageApiClient)
+        public readonly ISiQuanApiClient _siQuanApiClient;
+        public SiQuanImageController(ISiQuanImageApiClient siQuanImageApiClient, ISiQuanApiClient siQuanApiClient)
         {
             _siQuanImageApiClient = siQuanImageApiClient;
+            _siQuanApiClient = siQuanApiClient;
         }
         public async  Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 5)
         {
@@ -34,6 +36,31 @@ namespace QLSQ.AdminApp.Controllers
                 return View(result.ResultObj);
             }
             return View(result);
+        }
+        [HttpGet]
+        public async Task<JsonResult> GetListSiQuanAutoComplete(string preconfix)
+        {
+            var result = await _siQuanApiClient.GetFullListSiQuanAutocomplete(preconfix);
+            return Json(result.ResultObj);
+        }
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Create([FromForm] SiQuanImageCreateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _siQuanImageApiClient.Create(request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Tạo ảnh thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
         }
     }
 }
