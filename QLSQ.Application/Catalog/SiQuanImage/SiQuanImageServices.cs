@@ -37,6 +37,14 @@ namespace QLSQ.Application.Catalog.SiQuanImage
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDImage)
+        {
+            var sqImage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IDImage == IDImage);
+            _context.SiQuanImages.Remove(sqImage);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<SiQuanImageViewModel>> Details(int IDImage)
         {
             var sqImageViewModel = await (from sqimage in _context.SiQuanImages

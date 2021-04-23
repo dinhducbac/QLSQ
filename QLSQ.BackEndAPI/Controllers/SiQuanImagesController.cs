@@ -60,5 +60,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpDelete("{IDImage}/delete")]
+        public async Task<IActionResult> Delete(int IDImage)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _siQuanImageServices.Delete(IDImage);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
