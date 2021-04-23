@@ -11,13 +11,13 @@ namespace QLSQ.Data.Entities
     {
         public int IDLuong { set; get; }
         public int IDSQ { set; get; }
-        public int IDHeSoLuongQH { set; get; }
-        public int IDLuongCB { set; get; }
-        public int IDHeSoPhuCapCV { set; get; }
+        public int IDQLQH { get; set; }
+        public int IDQLCV { get; set; }
+        public int IDLuongCB { get; set; }
 
         public SiQuan SiQuan { set; get; }
-        public HeSoLuongTheoQuanHam HeSoLuongTheoQuanHam { get; set; }
-        public HeSoPhuCapTheoChucVu HeSoPhuCapTheoChucVu { get; set; }
+        public QLQuanHam QLQuanHam { get; set; }
+        public QLChucVu QLChucVu { get; set; }
         public LuongCoBan LuongCoBan { get; set; }
     }
 }

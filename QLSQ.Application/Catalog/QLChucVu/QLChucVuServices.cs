@@ -23,8 +23,8 @@ namespace QLSQ.Application.Catalog.QLChucVu
             var qlcv = new QLSQ.Data.Entities.QLChucVu()
             {
                 IDSQ = request.IDSQ,
-                IDQH = request.IDQH,
-                IDCV = request.IDCV
+                IDCV = request.IDCV,
+                NgayNhan = request.NgayNhan
             };
             _context.QLChucVus.Add(qlcv);
             await _context.SaveChangesAsync();
@@ -47,17 +47,13 @@ namespace QLSQ.Application.Catalog.QLChucVu
                         join bp in _context.BoPhans
                         on cv.IDBP equals bp.IDBP
                         join sq in _context.SiQuans
-                        on qlcv.IDSQ equals sq.IDSQ
-                        join qh in _context.QuanHams
-                        on qlcv.IDQH equals qh.IDQH
+                        on qlcv.IDSQ equals sq.IDSQ                       
                         where qlcv.IDQLCV == IDQLCVS
                         select new QLChucVuDetailsViewModel 
                         {
                             IDQLCV = qlcv.IDQLCV,
                             IDSQ = qlcv.IDSQ,
-                            HoTen = sq.HoTen,
-                            IDQH = qlcv.IDQH,
-                            TenQH = qh.TenQH,
+                            HoTen = sq.HoTen,                      
                             IDBP = bp.IDBP,
                             TenBP = bp.TenBP,
                             IDCV = qlcv.IDCV,
@@ -80,8 +76,7 @@ namespace QLSQ.Application.Catalog.QLChucVu
 
         public async Task<APIResult<bool>> Edit(int IDQLCV, QLChucVuUpdateRequest request)
         {
-            var qlcv = await _context.QLChucVus.FirstOrDefaultAsync(x => x.IDQLCV == IDQLCV);
-            qlcv.IDQH = request.IDQH;
+            var qlcv = await _context.QLChucVus.FirstOrDefaultAsync(x => x.IDQLCV == IDQLCV);          
             qlcv.IDCV = request.IDCV;
             await _context.SaveChangesAsync();
             return new APISuccessedResult<bool>(true);
@@ -94,15 +89,12 @@ namespace QLSQ.Application.Catalog.QLChucVu
                         on qlcv.IDSQ equals sq.IDSQ
                         join cv in _context.ChucVus
                         on qlcv.IDCV equals cv.IDCV
-                        join qh in _context.QuanHams
-                        on qlcv.IDQH equals qh.IDQH
+                        
                         select new QLChucVuViewModel
                         {
                             IDQLCV = qlcv.IDQLCV,
                             IDSQ = sq.IDSQ,
-                            HoTenSQ = sq.HoTen,
-                            IDQH = qh.IDQH,
-                            TenQH = qh.TenQH,
+                            HoTenSQ = sq.HoTen,               
                             IDCV = cv.IDCV,
                             TenCV = cv.TenCV                    
                         };
