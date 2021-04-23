@@ -37,6 +37,42 @@ namespace QLSQ.Application.Catalog.SiQuanImage
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<SiQuanImageViewModel>> Details(int IDImage)
+        {
+            var sqImageViewModel = await (from sqimage in _context.SiQuanImages
+                          join sq in _context.SiQuans
+                          on sqimage.IDSQ equals sq.IDSQ
+                          where sqimage.IDImage == IDImage
+                          select new SiQuanImageViewModel()
+                          {
+                              IDImage = sqimage.IDImage,
+                              IDSQ = sqimage.IDSQ,
+                              HoTenSQ = sq.HoTen,
+                              ImagePath = sqimage.ImagePath,
+                              Caption = sqimage.Caption,
+                              IsDefault = sqimage.IsDefault,
+                              DateCreated = sqimage.DateCreated,
+                              FileSize = sqimage.FileSize
+                          }).FirstOrDefaultAsync();
+            return new APISuccessedResult<SiQuanImageViewModel>(sqImageViewModel);
+        }
+
+        public async Task<APIResult<bool>> Edit(int IDImage, SiQuanImageUpdateRequest request)
+        {
+            var siquanImage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IDImage == IDImage);
+            siquanImage.Caption = request.Caption;
+            siquanImage.IsDefault = request.IsDefault;
+            siquanImage.DateCreated = request.DateCreated;
+            if (request.ImageFile != null)
+            {
+                siquanImage.DateCreated = DateTime.Now;
+                siquanImage.ImagePath = await _manageSiQuanServices.SaveFile(request.ImageFile);
+                siquanImage.FileSize = request.ImageFile.Length;
+            }
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<SiQuanImageViewModel>>> GetAllWithPaging(GetSiQuanImagePagingRequest request)
         {
             var query = from sqimage in _context.SiQuanImages

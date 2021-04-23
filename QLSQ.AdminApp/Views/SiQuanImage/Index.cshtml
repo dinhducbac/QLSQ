@@ -117,9 +117,9 @@
                                             @Html.DisplayFor(modelItem => item.FileSize)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                                            @Html.ActionLink("Edit", "Edit", new { IDImage = item.IDImage }) |
+                                            @Html.ActionLink("Details", "Details", new { IDImage = item.IDImage }) |
+                                            @Html.ActionLink("Delete", "Delete", new { IDImage = item.IDImage })
                                         </td>
                                     </tr>
                                 }

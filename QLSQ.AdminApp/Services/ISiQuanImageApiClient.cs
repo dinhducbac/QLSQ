@@ -11,5 +11,7 @@ namespace QLSQ.AdminApp.Services
     {
         public Task<APIResult<PageResult<SiQuanImageViewModel>>> GetAllWithPaging(GetSiQuanImagePagingRequest request);
         public Task<APIResult<bool>> Create(SiQuanImageCreateRequest request);
+        public Task<APIResult<SiQuanImageViewModel>> Details(int IDImage);
+        public Task<APIResult<bool>> Edit(int IDImage, SiQuanImageUpdateRequest request);
     }
 }

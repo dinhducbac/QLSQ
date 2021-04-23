@@ -62,5 +62,46 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDImage)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _siQuanImageApiClient.Details(IDImage);
+            if (result.ResultObj != null)
+                return View(result.ResultObj);
+            return View(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDImage)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var sqImageViewModel = await _siQuanImageApiClient.Details(IDImage);
+            var sqImageUpdateRequest = new SiQuanImageUpdateRequest()
+            {
+                IDImage = sqImageViewModel.ResultObj.IDImage,
+                IDSQ = sqImageViewModel.ResultObj.IDSQ,
+                HoTenSQ = sqImageViewModel.ResultObj.HoTenSQ,
+                Caption = sqImageViewModel.ResultObj.Caption,
+                ImagePath = sqImageViewModel.ResultObj.ImagePath,
+                IsDefault = sqImageViewModel.ResultObj.IsDefault,
+                DateCreated = sqImageViewModel.ResultObj.DateCreated,
+                FileSize = sqImageViewModel.ResultObj.FileSize
+            };
+            return View(sqImageUpdateRequest);
+        }
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Edit(SiQuanImageUpdateRequest request)
+        {
+            var result = await _siQuanImageApiClient.Edit(request.IDImage, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa anht thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
