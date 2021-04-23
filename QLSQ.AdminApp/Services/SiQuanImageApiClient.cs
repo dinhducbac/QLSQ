@@ -25,7 +25,7 @@ namespace QLSQ.AdminApp.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public Task<APIResult<bool>> Create(SiQuanImageCreateRequest request)
+        public async Task<APIResult<bool>> Create(SiQuanImageCreateRequest request)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
@@ -40,6 +40,15 @@ namespace QLSQ.AdminApp.Services
                 ByteArrayContent bytes = new ByteArrayContent(data);
                 requestContent.Add(bytes, "ImageFile", request.ImageFile.FileName);
             }
+            requestContent.Add(new StringContent(request.IDSQ.ToString()), "IDSQ");
+            requestContent.Add(new StringContent(request.HoTenSQ.ToString()), "HoTenSQ");
+            requestContent.Add(new StringContent(request.Caption.ToString()), "Caption");
+            requestContent.Add(new StringContent(request.IsDefault.ToString()), "IsDefault");
+            var response = await client.PostAsync($"/api/SiQuanImages/create", requestContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
         public async Task<APIResult<PageResult<SiQuanImageViewModel>>> GetAllWithPaging(GetSiQuanImagePagingRequest request)
