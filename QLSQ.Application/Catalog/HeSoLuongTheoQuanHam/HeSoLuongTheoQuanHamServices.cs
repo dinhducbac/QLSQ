@@ -64,21 +64,16 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
                  IDHeSoLuongQH = hsltqh.IDHeSoLuongQH,
                  IDQH = hsltqh.IDQH,
                  TenQH = qh.TenQH,
+                 TenHeSoLuongQH = hsltqh.TenHeSoLuongQH,
                  HeSoLuong = hsltqh.HeSoLuong
              }).FirstOrDefaultAsync();
-            var hslvm = new HeSoLuongTheoQuanHamViewModel()
-            {
-                IDHeSoLuongQH = query.IDHeSoLuongQH,
-                IDQH = query.IDQH,
-                TenQH = query.TenQH,
-                HeSoLuong = query.HeSoLuong
-            };
-            return new APISuccessedResult<HeSoLuongTheoQuanHamViewModel>(hslvm); 
+            return new APISuccessedResult<HeSoLuongTheoQuanHamViewModel>(query); 
         }
 
         public async Task<APIResult<bool>> Edit(int IDHeSoLuongQH, HeSoLuongTheoQuanHamUpdateRequest request)
         {
             var hsl = await _context.HeSoLuongTheoQuanHams.FirstOrDefaultAsync(x=>x.IDHeSoLuongQH == IDHeSoLuongQH);
+            hsl.TenHeSoLuongQH = request.TenHeSoLuongQH;
             hsl.HeSoLuong = request.HeSoLuong;
             await _context.SaveChangesAsync();
             return new APISuccessedResult<bool>(true);
