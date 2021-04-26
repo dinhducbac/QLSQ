@@ -107,6 +107,7 @@ namespace QLSQ.AdminApp.Controllers
                     IDHeSoLuongQH = hslvm.ResultObj.IDHeSoLuongQH,
                     IDQH = hslvm.ResultObj.IDQH,
                     TenQH = hslvm.ResultObj.TenQH,
+                    TenHeSoLuongQH = hslvm.ResultObj.TenHeSoLuongQH,
                     HeSoLuong = hslvm.ResultObj.HeSoLuong
                 };
                 return View(hslUpdateRequest);
@@ -139,6 +140,7 @@ namespace QLSQ.AdminApp.Controllers
                     IDHeSoLuongQH = hslvm.ResultObj.IDHeSoLuongQH,
                     IDQH = hslvm.ResultObj.IDQH,
                     TenQH = hslvm.ResultObj.TenQH,
+                    TenHeSoLuongQH = hslvm.ResultObj.TenHeSoLuongQH,
                     HeSoLuong = hslvm.ResultObj.HeSoLuong
                 };
                 return View(hslDeleteRequest);
