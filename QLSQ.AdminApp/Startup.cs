@@ -59,6 +59,7 @@ namespace QLSQ.AdminApp
             services.AddTransient<IQLQuaTrinhDaoTaoApiClient, QLQuaTrinhDaoTaoApiClient>();
             services.AddTransient<IQLGiaDinhApiClient, QLGiaDinhApiClient>();
             services.AddTransient<ISiQuanImageApiClient, SiQuanImageApiClient>();
+            services.AddTransient<IQLQuanHamApiClient, QLQuanHamApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
             var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT");
 #if DEBUG
