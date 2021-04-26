@@ -72,6 +72,9 @@
                                         Tên quân hàm
                                     </th>
                                     <th>
+                                        Tên hệ số lương
+                                    </th>
+                                    <th>
                                         Hệ số lương
                                     </th>
                                     <th></th>
@@ -80,25 +83,28 @@
                             <tbody>
                                 @foreach (var item in Model.Items)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IDHeSoLuongQH)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IDQH)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TenQH)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.HeSoLuong)
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { IDHeSoLuongQH = item.IDHeSoLuongQH }) |
-                                            @Html.ActionLink("Details", "Details", new { IDHeSoLuongQH = item.IDHeSoLuongQH }) |
-                                            @Html.ActionLink("Delete", "Delete", new { IDHeSoLuongQH = item.IDHeSoLuongQH })
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IDHeSoLuongQH)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IDQH)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenQH)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenHeSoLuongQH)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HeSoLuong)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { IDHeSoLuongQH = item.IDHeSoLuongQH }) |
+                                        @Html.ActionLink("Details", "Details", new { IDHeSoLuongQH = item.IDHeSoLuongQH }) |
+                                        @Html.ActionLink("Delete", "Delete", new { IDHeSoLuongQH = item.IDHeSoLuongQH })
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>
