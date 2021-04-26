@@ -24,6 +24,20 @@ namespace QLSQ.AdminApp.Services
             _httpClientFactory = httpClientFactory;
             _httpContextAccessor = httpContextAccessor;
         }
+
+        public async Task<APIResult<QLQuanHamDetailsModel>> Details(int IDQLQH)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/QLQuanHams/{IDQLQH}/details");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<QLQuanHamDetailsModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<QLQuanHamDetailsModel>>(body);
+        }
+
         public async Task<APIResult<PageResult<QLQuanHamViewModel>>> GetAllWithPaging(GetQLQuanHamPagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
