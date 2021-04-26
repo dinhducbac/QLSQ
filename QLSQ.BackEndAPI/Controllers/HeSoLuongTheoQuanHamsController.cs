@@ -60,5 +60,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest(result);
             return Ok(result);
         }
+        [HttpPost("checkname")]
+        public async Task<IActionResult> CheckNameHeSoLuongInCreate([FromBody]string name)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _heSoLuongTheoQuanHamServices.CheckNameHeSoLuongInCreate(name);
+            if (result.IsSuccessed)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

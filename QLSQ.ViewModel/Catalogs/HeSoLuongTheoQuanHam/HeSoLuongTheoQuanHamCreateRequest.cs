@@ -10,6 +10,8 @@ namespace QLSQ.ViewModel.Catalogs.HeSoLuongTheoQuanHam
     {
         [Display(Name = "ID quân hàm")]
         public int IDQH { get; set; }
+        [Display(Name = "Tên hệ số lương")]
+        public string TenHeSoLuongQH { get; set; }
         [Display(Name = "Hệ số lương")]
         public float HeSoLuong { get; set; }
         public List<QuanHamViewModel> quanHamViewModels { get; set; }

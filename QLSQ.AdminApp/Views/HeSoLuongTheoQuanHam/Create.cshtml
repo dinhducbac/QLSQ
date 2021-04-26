@@ -4,7 +4,6 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -26,12 +25,18 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <form asp-action="Create">
+                                <form asp-action="Create" onsubmit="return CheckNameBeforeSubmit(event);">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label asp-for="IDQH" class="control-label"></label>
-                                        <select asp-for="IDQH" class="form-control" asp-items="@( new SelectList(Model.quanHamViewModels,"IDQH","TenQH"))"></select>
+                                        <select asp-for="IDQH" id="IDQH" class="form-control" asp-items="@( new SelectList(Model.quanHamViewModels,"IDQH","TenQH"))"></select>
                                         <span asp-validation-for="IDQH" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="TenHeSoLuongQH" class="control-label"></label>
+                                        <input asp-for="TenHeSoLuongQH" value="Thiếu Úy" id="TenHeSoLuongQH" class="form-control" />
+                                        <input type="button" id="CheckName" class="btn btn-primary" value="Kiểm tra tên" />
+                                        <span asp-validation-for="TenHeSoLuongQH" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="HeSoLuong" class="control-label"></label>
@@ -59,6 +64,47 @@
     </div>
     <!-- /.container-fluid -->
 </section>
+@section Script{
+    <script type="text/javascript">
+        $("#IDQH").on("change", function () {
+            $("#TenHeSoLuongQH").empty();
+            $("#TenHeSoLuongQH").val($("#IDQH").find("option:selected").text());
+        });
+        var CheckHSLName = false;
+        $("#CheckName").click(function () {
+            $(function () {
+                $(document).ready(function CheckName() {
+                    $.ajax({
+                        url: '/HeSoLuongTheoQuanHam/CheckNameHeSoLuongInCreate',
+                        data: { "name": $("#TenHeSoLuongQH").val() },
+                        type: 'POST',
+                        dataType: 'Json',
+                        success: function (data) {                          
+                            CheckHSLName = false;
+                            alert("Trùng tên");
+                        },
+                        error: function (data) {   
+                            CheckHSLName = true;
+                            alert("Không trùng tên!");
+                        },
+                        failure: function (data) {
+                            CheckHSLName = true;
+                            alert("Không trùng tên!!!");
+                        }
+                    });
+
+                })
+            });
+        });
+        function CheckNameBeforeSubmit(e) {
+            if (CheckHSLName == false) {
+                alert("Bạn phải kiểm tra tên hợp lệ không trùng trước khi thêm");
+                e.preventDefault();
+                return false;
+            }       
+        }
+    </script>
+}
 
 
 
