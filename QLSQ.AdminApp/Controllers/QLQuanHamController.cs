@@ -35,5 +35,15 @@ namespace QLSQ.AdminApp.Controllers
             }
             return View(result);
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int IDQLQH)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var result = await _qLQuanHamApiClient.Details(IDQLQH);
+            if (result.ResultObj != null)
+                return View(result.ResultObj);
+            return View(result);
+        }
     }
 }
