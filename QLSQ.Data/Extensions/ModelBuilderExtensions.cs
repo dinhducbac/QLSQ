@@ -268,25 +268,25 @@ namespace QL_SiQuan.Data.Extensions
                 new ChucVu { IDCV = 21, TenCV = "Trung đội trưởng", IDBP = 5 }
                 );
             modelBuilder.Entity<QLChucVu>().HasData(
-                new QLChucVu { IDQLCV = 1, IDSQ = 1, IDQH = 8, IDCV = 15 },
-                new QLChucVu { IDQLCV = 2, IDSQ = 2, IDQH = 8, IDCV = 15 },
-                new QLChucVu { IDQLCV = 3, IDSQ = 3, IDQH = 5, IDCV = 15 },
-                new QLChucVu { IDQLCV = 4, IDSQ = 4, IDQH = 6, IDCV = 15 },
-                new QLChucVu { IDQLCV = 5, IDSQ = 5, IDQH = 8, IDCV = 15 }
+                new QLChucVu { IDQLCV = 1, IDSQ = 1, IDCV = 15, NgayNhan = DateTime.Parse("2008-03-21") },
+                new QLChucVu { IDQLCV = 2, IDSQ = 2, IDCV = 15, NgayNhan = DateTime.Parse("2008-03-21") },
+                new QLChucVu { IDQLCV = 3, IDSQ = 3, IDCV = 15, NgayNhan = DateTime.Parse("2008-03-21") },
+                new QLChucVu { IDQLCV = 4, IDSQ = 4, IDCV = 15, NgayNhan = DateTime.Parse("2008-03-21") },
+                new QLChucVu { IDQLCV = 5, IDSQ = 5, IDCV = 15, NgayNhan = DateTime.Parse("2006-03-21"), }
             );
             modelBuilder.Entity<HeSoLuongTheoQuanHam>().HasData(
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 1, IDQH = 1, HeSoLuong = 4.2f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 2, IDQH = 2, HeSoLuong = 4.6f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 3, IDQH = 3, HeSoLuong = 5.0f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 4, IDQH = 4, HeSoLuong = 5.4f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 5, IDQH = 5, HeSoLuong = 6.0f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 6, IDQH = 6, HeSoLuong = 6.6f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 7, IDQH = 7, HeSoLuong = 7.3f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 8, IDQH = 8, HeSoLuong = 8.0f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 9, IDQH = 9, HeSoLuong = 8.6f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 10, IDQH = 10, HeSoLuong = 9.2f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 11, IDQH = 11, HeSoLuong = 9.8f },
-                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 12, IDQH = 12, HeSoLuong = 10.4f }
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 1, IDQH = 1, TenHeSoLuongQH="Thiếu Úy", HeSoLuong = 4.2f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 2, IDQH = 2, TenHeSoLuongQH = "Trung Úy", HeSoLuong = 4.6f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 3, IDQH = 3, TenHeSoLuongQH = "Thượng Úy", HeSoLuong = 5.0f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 4, IDQH = 4, TenHeSoLuongQH = "Đại Úy", HeSoLuong = 5.4f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 5, IDQH = 5, TenHeSoLuongQH = "Thiếu Tá", HeSoLuong = 6.0f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 6, IDQH = 6, TenHeSoLuongQH = "Trung Tá", HeSoLuong = 6.6f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 7, IDQH = 7, TenHeSoLuongQH = "Thượng Tá", HeSoLuong = 7.3f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 8, IDQH = 8, TenHeSoLuongQH = "Đại Tá", HeSoLuong = 8.0f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 9, IDQH = 9, TenHeSoLuongQH = "Thiếu Tướng", HeSoLuong = 8.6f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 10, IDQH = 10, TenHeSoLuongQH = "Trung Tướng", HeSoLuong = 9.2f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 11, IDQH = 11, TenHeSoLuongQH = "Thượng Tướng", HeSoLuong = 9.8f },
+                new HeSoLuongTheoQuanHam { IDHeSoLuongQH = 12, IDQH = 12, TenHeSoLuongQH = "Đại Tướng", HeSoLuong = 10.4f }
             );
             modelBuilder.Entity<HeSoPhuCapTheoChucVu>().HasData(
                 new HeSoPhuCapTheoChucVu{ IDHeSoPhuCapCV = 1, IDCV = 15, HeSoPhuCap = 0.25f}
@@ -294,12 +294,19 @@ namespace QL_SiQuan.Data.Extensions
             modelBuilder.Entity<LuongCoBan>().HasData(
                 new LuongCoBan { IDLuongCB=1,LuongCB = 1429000 }
                 );
+            modelBuilder.Entity<QLQuanHam>().HasData(
+                new QLQuanHam { IDQLQH = 1, IDSQ = 1, IDQH = 6, IDHeSoLuongTheoQH = 6 },
+                new QLQuanHam { IDQLQH = 2, IDSQ = 2, IDQH = 6, IDHeSoLuongTheoQH = 6 },
+                new QLQuanHam { IDQLQH = 3, IDSQ = 3, IDQH = 6, IDHeSoLuongTheoQH = 6 },
+                new QLQuanHam { IDQLQH = 4, IDSQ = 4, IDQH = 6, IDHeSoLuongTheoQH = 6 },
+                new QLQuanHam { IDQLQH = 5, IDSQ = 5, IDQH = 6, IDHeSoLuongTheoQH = 6 }
+            );
             modelBuilder.Entity<QLLuong>().HasData(
-                new QLLuong { IDLuong = 1, IDSQ = 1, IDHeSoLuongQH = 8, IDLuongCB = 1, IDHeSoPhuCapCV = 1 },
-                new QLLuong { IDLuong = 2, IDSQ = 2, IDHeSoLuongQH = 8, IDLuongCB = 1, IDHeSoPhuCapCV = 1 },
-                new QLLuong { IDLuong = 3, IDSQ = 3, IDHeSoLuongQH = 5, IDLuongCB = 1, IDHeSoPhuCapCV = 1 },
-                new QLLuong { IDLuong = 4, IDSQ = 4, IDHeSoLuongQH = 6, IDLuongCB = 1, IDHeSoPhuCapCV = 1 },
-                new QLLuong { IDLuong = 5, IDSQ = 5, IDHeSoLuongQH = 8, IDLuongCB = 1, IDHeSoPhuCapCV = 1 }
+                new QLLuong { IDLuong = 1, IDSQ = 1, IDQLQH = 1, IDLuongCB = 1, IDQLCV = 1 },
+                new QLLuong { IDLuong = 2, IDSQ = 2, IDQLQH = 2, IDLuongCB = 1, IDQLCV = 2 },
+                new QLLuong { IDLuong = 3, IDSQ = 3, IDQLQH = 3, IDLuongCB = 1, IDQLCV = 3 },
+                new QLLuong { IDLuong = 4, IDSQ = 4, IDQLQH = 4, IDLuongCB = 1, IDQLCV = 4 },
+                new QLLuong { IDLuong = 5, IDSQ = 5, IDQLQH = 5, IDLuongCB = 1, IDQLCV = 5 }
             );
             modelBuilder.Entity<QLCongTac>().HasData(
                 new QLCongTac { 

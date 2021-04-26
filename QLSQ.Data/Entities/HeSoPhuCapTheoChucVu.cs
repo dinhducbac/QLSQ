@@ -10,6 +10,5 @@ namespace QLSQ.Data.Entities
         public int IDCV { get; set; }
         public float HeSoPhuCap { get; set; }
         public ChucVu ChucVu { get; set; }
-        public List<QLLuong> QLLuongs { get; set; }
     }
 }

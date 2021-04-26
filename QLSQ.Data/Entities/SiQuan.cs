@@ -20,6 +20,7 @@ namespace QLSQ.Data.Entities
         public QLLuong QLLuongs { set; get; }
         public List<QLDangVien> QLDangViens { set; get; }
         public List<QLChucVu> QLChucVus { set; get; }
+        public List<QLQuanHam> QLQuanHams { set; get; }
         public List<QLCongTac> QLCongTacs { set; get; }
         public List<QLNghiPhep> QLNghiPheps { set; get; }
         public List<SiQuanImage> SiQuanImages { set; get; }

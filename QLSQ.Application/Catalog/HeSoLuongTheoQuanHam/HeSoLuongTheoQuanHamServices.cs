@@ -80,6 +80,7 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
                              IDHeSoLuongQH = hsltqh.IDHeSoLuongQH,
                              IDQH = hsltqh.IDQH,
                              TenQH = qh.TenQH,
+                             TenHeSoLuongQH = hsltqh.TenHeSoLuongQH,
                              HeSoLuong = hsltqh.HeSoLuong
                          });
             if (!string.IsNullOrEmpty(request.keyword))
@@ -94,6 +95,7 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
                     IDHeSoLuongQH = x.IDHeSoLuongQH,
                     IDQH = x.IDQH,
                     TenQH = x.TenQH,
+                    TenHeSoLuongQH = x.TenHeSoLuongQH,
                     HeSoLuong = x.HeSoLuong
                 }).ToListAsync();
             var pageresult = new PageResult<HeSoLuongTheoQuanHamViewModel>()
