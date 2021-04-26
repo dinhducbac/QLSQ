@@ -29,6 +29,16 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("{IDQLQH}/details")]
+        public async Task<IActionResult> Details(int IDQLQH)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLQuanHamServices.Details(IDQLQH);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
 
     }
 }

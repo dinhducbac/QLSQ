@@ -10,5 +10,6 @@ namespace QLSQ.AdminApp.Services
     public interface IQLQuanHamApiClient
     {
         public Task<APIResult<PageResult<QLQuanHamViewModel>>> GetAllWithPaging(GetQLQuanHamPagingRequest request);
+        public Task<APIResult<QLQuanHamDetailsModel>> Details(int IDQLQH);
     }
 }

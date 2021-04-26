@@ -17,6 +17,32 @@ namespace QLSQ.Application.Catalog.QLQuanHam
         {
             _context = context;
         }
+
+        public async Task<APIResult<QLQuanHamDetailsModel>> Details(int IDQLQH)
+        {
+            var query = await (from qlqh in _context.QLQuanHams
+                               join qh in _context.QuanHams
+                               on qlqh.IDQH equals qh.IDQH
+                               join hsltqh in _context.HeSoLuongTheoQuanHams
+                               on qlqh.IDHeSoLuongTheoQH equals hsltqh.IDHeSoLuongQH
+                               join sq in _context.SiQuans
+                               on qlqh.IDSQ equals sq.IDSQ
+                               where qlqh.IDQLQH == IDQLQH
+                               select new QLQuanHamDetailsModel()
+                               {
+                                   IDQLQH = qlqh.IDQLQH,
+                                   IDSQ = qlqh.IDSQ,
+                                   HoTen = sq.HoTen,
+                                   IDQH = qlqh.IDQH,
+                                   TenQH = qh.TenQH,
+                                   IDHeSoLuongQH = qlqh.IDHeSoLuongTheoQH,
+                                   TenHeSoLuongQH = hsltqh.TenHeSoLuongQH,
+                                   HeSoLuong = hsltqh.HeSoLuong
+                               }).FirstOrDefaultAsync();
+            return new APISuccessedResult<QLQuanHamDetailsModel>(query);
+
+        }
+
         public async Task<APIResult<PageResult<QLQuanHamViewModel>>> GetAllWithPaging(GetQLQuanHamPagingRequest request)
         {
             var query = from qlqh in _context.QLQuanHams
