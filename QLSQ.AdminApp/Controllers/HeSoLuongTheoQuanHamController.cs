@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using QLSQ.AdminApp.Services;
 using QLSQ.ViewModel.Catalogs.HeSoLuongTheoQuanHam;
@@ -34,6 +35,13 @@ namespace QLSQ.AdminApp.Controllers
             var pageresult = await _heSoLuongTheoQuanHamApiClient.GetAllWithPaging(paging);
             return View(pageresult.ResultObj);
         }
+        [HttpPost]
+        public ActionResult SetViewBag(bool check)
+        {
+            ViewBag.CheckName = check;
+            var test = ViewBag.CheckName;
+            return  Json(ViewBag.CheckName);
+        }
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -41,11 +49,12 @@ namespace QLSQ.AdminApp.Controllers
             {
                 quanHamViewModels = new List<QuanHamViewModel>()
             };
-            var getqh = await _quanHamApiClient.GetListQuanHamNotInHeSoLuong();
+            var getqh = await _quanHamApiClient.GetAllWithoutPaging();
             var qh = getqh.ResultObj;
             createRequest.quanHamViewModels = qh.ToList();
             return View(createRequest);
         }
+        
         [HttpPost]
         public async Task<IActionResult> Create(HeSoLuongTheoQuanHamCreateRequest request)
         {
@@ -58,6 +67,20 @@ namespace QLSQ.AdminApp.Controllers
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Eror", "Home");
+        }
+        [HttpPost] 
+        public async Task<IActionResult> CheckNameHeSoLuongInCreate(string name)
+        {
+            bool check = false;
+            var result = await _heSoLuongTheoQuanHamApiClient.CheckNameHeSoLuongInCreate(name);     
+            if (result.IsSuccessed)
+            {
+                //ViewBag.CheckName = false;
+                check = true;
+                return Json(check);
+            }
+            //ViewBag.CheckName = true;
+            return Json(check);
         }
         [HttpGet]
         public async Task<IActionResult> Details(int IDHeSoLuongQH)

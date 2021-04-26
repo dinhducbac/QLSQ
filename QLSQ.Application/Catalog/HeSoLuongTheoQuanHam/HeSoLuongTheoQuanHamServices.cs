@@ -19,12 +19,26 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
             _context = context;
         }
 
+        public async Task<APIResult<bool>> CheckNameHeSoLuongInCreate(string name)
+        {
+            var hslqh = await _context.HeSoLuongTheoQuanHams.ToListAsync();
+            foreach (var data in hslqh)
+            {
+                if(data.TenHeSoLuongQH.ToString().ToLower() == name.ToLower())
+                {
+                    return new APISuccessedResult<bool>(true);
+                }
+            }
+            return new APIResult<bool>();
+        }
+
         public async Task<APIResult<bool>> Create(HeSoLuongTheoQuanHamCreateRequest request)
         {
             var hsl = new QLSQ.Data.Entities.HeSoLuongTheoQuanHam()
             {
                 IDQH = request.IDQH,
-                HeSoLuong = request.HeSoLuong
+                HeSoLuong = request.HeSoLuong,
+                TenHeSoLuongQH = request.TenHeSoLuongQH
             };
             _context.HeSoLuongTheoQuanHams.Add(hsl);
             await _context.SaveChangesAsync();

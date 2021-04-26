@@ -15,5 +15,6 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
         public Task<APIResult<HeSoLuongTheoQuanHamViewModel>> Details(int IDHeSoLuongQH);
         public Task<APIResult<bool>> Edit(int IDHeSoLuongQH, HeSoLuongTheoQuanHamUpdateRequest request);
         public Task<APIResult<bool>> Delete(int IDHeSoLuongQH);
+        public Task<APIResult<bool>> CheckNameHeSoLuongInCreate(string name);
     }
 }

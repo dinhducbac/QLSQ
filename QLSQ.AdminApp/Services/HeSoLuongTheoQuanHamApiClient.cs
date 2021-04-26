@@ -25,6 +25,19 @@ namespace QLSQ.AdminApp.Services
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public async Task<APIResult<bool>> CheckNameHeSoLuongInCreate(string name)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(name);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"/api/HeSoLuongTheoQuanHams/checkname", httpContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
         public async Task<APIResult<bool>> Create(HeSoLuongTheoQuanHamCreateRequest request)
         {
             var client = _httpClientFactory.CreateClient();
