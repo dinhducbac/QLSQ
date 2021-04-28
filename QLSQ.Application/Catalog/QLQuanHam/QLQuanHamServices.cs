@@ -31,6 +31,14 @@ namespace QLSQ.Application.Catalog.QLQuanHam
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<bool>> Delete(int IDQLQH)
+        {
+            var qlqh = await _context.QLQuanHams.FirstOrDefaultAsync(x => x.IDQLQH == IDQLQH);
+            _context.QLQuanHams.Remove(qlqh);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<QLQuanHamDetailsModel>> Details(int IDQLQH)
         {
             var query = await (from qlqh in _context.QLQuanHams
