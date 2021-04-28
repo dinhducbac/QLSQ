@@ -72,17 +72,15 @@
                                     <th>
                                         Họ tên sĩ quan
                                     </th>
-                                    <th>
-                                        ID quân hàm
-                                    </th>
-                                    <th>
-                                        Quân hàm
-                                    </th>
+
                                     <th>
                                         ID chức vụ
                                     </th>
                                     <th>
                                         Tên chức vụ
+                                    </th>
+                                    <th>
+                                        Ngày nhận
                                     </th>
                                     <th></th>
                                 </tr>
@@ -90,34 +88,32 @@
                             <tbody>
                                 @foreach (var item in Model.Items)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IDQLCV)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IDSQ)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.HoTenSQ)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IDQH)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TenQH)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.IDCV)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.TenCV)
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { IDQLCV = item.IDQLCV }) |
-                                            @Html.ActionLink("Details", "Details", new { IDQLCV = item.IDQLCV }) |
-                                            @Html.ActionLink("Delete", "Delete", new { IDQLCV = item.IDQLCV })
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IDQLCV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IDSQ)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HoTenSQ)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.IDCV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TenCV)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NgayNhan)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { IDQLCV = item.IDQLCV }) |
+                                        @Html.ActionLink("Details", "Details", new { IDQLCV = item.IDQLCV }) |
+                                        @Html.ActionLink("Delete", "Delete", new { IDQLCV = item.IDQLCV })
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>

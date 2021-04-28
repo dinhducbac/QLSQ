@@ -46,6 +46,8 @@ namespace QLSQ.Application.Catalog.QLChucVu
                         on qlcv.IDCV equals cv.IDCV
                         join bp in _context.BoPhans
                         on cv.IDBP equals bp.IDBP
+                        join hspccv in _context.HeSoPhuCapTheoChucVus
+                        on cv.IDCV equals hspccv.IDCV
                         join sq in _context.SiQuans
                         on qlcv.IDSQ equals sq.IDSQ                       
                         where qlcv.IDQLCV == IDQLCVS
@@ -57,27 +59,18 @@ namespace QLSQ.Application.Catalog.QLChucVu
                             IDBP = bp.IDBP,
                             TenBP = bp.TenBP,
                             IDCV = qlcv.IDCV,
-                            TenCV = cv.TenCV
-                        }).FirstOrDefaultAsync();
-            var qlcvvm = new QLChucVuDetailsViewModel()
-            {
-                IDQLCV = query.IDQLCV,
-                IDSQ = query.IDSQ,
-                HoTen = query.HoTen,
-                IDQH = query.IDQH,
-                TenQH = query.TenQH,
-                IDBP = query.IDBP,
-                TenBP = query.TenBP,
-                IDCV = query.IDCV,
-                TenCV = query.TenCV
-            };
-            return new APISuccessedResult<QLChucVuDetailsViewModel>(qlcvvm);
+                            TenCV = cv.TenCV,
+                            NgayNhan = qlcv.NgayNhan,
+                            HeSoPhuCap = hspccv.HeSoPhuCap
+                        }).FirstOrDefaultAsync(); 
+            return new APISuccessedResult<QLChucVuDetailsViewModel>(query);
         }
 
         public async Task<APIResult<bool>> Edit(int IDQLCV, QLChucVuUpdateRequest request)
         {
             var qlcv = await _context.QLChucVus.FirstOrDefaultAsync(x => x.IDQLCV == IDQLCV);          
             qlcv.IDCV = request.IDCV;
+            qlcv.NgayNhan = request.NgayNhan;
             await _context.SaveChangesAsync();
             return new APISuccessedResult<bool>(true);
         }
@@ -96,11 +89,12 @@ namespace QLSQ.Application.Catalog.QLChucVu
                             IDSQ = sq.IDSQ,
                             HoTenSQ = sq.HoTen,               
                             IDCV = cv.IDCV,
-                            TenCV = cv.TenCV                    
+                            TenCV = cv.TenCV,
+                            NgayNhan = qlcv.NgayNhan
                         };
             if (!string.IsNullOrEmpty(request.keyword))
             {
-                query = query.Where(x => x.HoTenSQ.Contains(request.keyword) || x.TenQH.Contains(request.keyword) ||
+                query = query.Where(x => x.HoTenSQ.Contains(request.keyword) ||
                 x.TenCV.Contains(request.keyword));
             }
             var totalRow = await query.CountAsync();
@@ -111,10 +105,9 @@ namespace QLSQ.Application.Catalog.QLChucVu
                     IDQLCV = x.IDQLCV,
                     IDSQ = x.IDSQ,
                     HoTenSQ = x.HoTenSQ,
-                    IDQH = x.IDQH,
-                    TenQH = x.TenQH,
                     IDCV = x.IDCV,
-                    TenCV = x.TenCV
+                    TenCV = x.TenCV,
+                    NgayNhan = x.NgayNhan
                 }).ToListAsync();
             var pageresult = new PageResult<QLChucVuViewModel>() 
             { 
