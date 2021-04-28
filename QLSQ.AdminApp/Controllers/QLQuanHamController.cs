@@ -134,5 +134,34 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int IDQLQH)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qlqhvm = await _qLQuanHamApiClient.Details(IDQLQH);
+            var qlqhUpdateRequest = new QLQuanHamDeleteRequest()
+            {
+                IDQLQH = qlqhvm.ResultObj.IDQLQH,
+                IDSQ = qlqhvm.ResultObj.IDSQ,
+                HoTen = qlqhvm.ResultObj.HoTen,
+                IDQH = qlqhvm.ResultObj.IDQH,
+                TenQH = qlqhvm.ResultObj.TenQH,
+                IDHeSoLuongQH = qlqhvm.ResultObj.IDHeSoLuongQH,
+                TenHeSoLuongQH = qlqhvm.ResultObj.TenHeSoLuongQH,
+                HeSoLuong = qlqhvm.ResultObj.HeSoLuong
+            };
+            return View(qlqhUpdateRequest);
+        }
+        public async Task<IActionResult> Delete(QLQuanHamDeleteRequest request)
+        {
+            var result = await _qLQuanHamApiClient.Delete(request.IDQLQH);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa quân hàm của sĩ quan thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
