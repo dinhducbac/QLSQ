@@ -90,7 +90,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             var siquanImage = await _context.SiQuanImages.FindAsync(SiQuanImageID);
             if (siquanImage == null)
                 throw new QLSQException($"Không thể tìm thấy ảnh có id là: {SiQuanImageID}");
-            var siquanImageMd = new SiQuanImageViewModel();
+            var siquanImageMd = new SiQuanImageViewModel() { };
             siquanImageMd.IDImage = siquanImage.IDImage;
             siquanImageMd.IDSQ = siquanImage.IDSQ;
             siquanImageMd.ImagePath = siquanImage.ImagePath;
@@ -123,8 +123,8 @@ namespace QLSQ.Application.Catalog.SiQuans
                 QueQuan = request.QueQuan,
                 SDT = request.SDT
             };
-            var test = siquan.UserId;
-            if(request.ThumbnailImage != null)
+
+            if (request.ThumbnailImage != null)
             {
                 siquan.SiQuanImages = new List<QLSQ.Data.Entities.SiQuanImage>()
                 {
@@ -140,7 +140,7 @@ namespace QLSQ.Application.Catalog.SiQuans
                 };
             }
             _context.SiQuans.Add(siquan);
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return new APISuccessedResult<int>(siquan.IDSQ);
         }
 
@@ -193,7 +193,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             return new APISuccessedResult<PageResult<SiQuanViewModel>>(pageResult);
         }
 
-        public async Task<APIResult<bool>> Update(int IDSQ,SiQuanUpdateRequest request)
+        public async Task<APIResult<bool>> Update(int IDSQ, SiQuanUpdateRequest request)
         {
             var siquan = await _context.SiQuans.FirstOrDefaultAsync(x => x.IDSQ == IDSQ);
             if (siquan == null)
@@ -204,19 +204,19 @@ namespace QLSQ.Application.Catalog.SiQuans
             siquan.GioiTinh = request.GioiTinh;
             siquan.QueQuan = request.QueQuan;
             siquan.SDT = request.SDT;
-           // _context.SiQuans.Update(siquan);
-            if(request.ThumbnailImage != null)
+            // _context.SiQuans.Update(siquan);
+            if (request.ThumbnailImage != null)
             {
                 var thumbnailImage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IsDefault == true && x.IDSQ == request.IDSQ);
                 if (thumbnailImage != null)
                 {
-                       thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
-                       thumbnailImage.FileSize = request.ThumbnailImage.Length;
-                       _context.SiQuanImages.Update(thumbnailImage);
+                    thumbnailImage.ImagePath = await this.SaveFile(request.ThumbnailImage);
+                    thumbnailImage.FileSize = request.ThumbnailImage.Length;
+                    _context.SiQuanImages.Update(thumbnailImage);
                 }
             }
-          await _context.SaveChangesAsync();
-          return new APISuccessedResult<bool>();
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>();
         }
 
         public async Task<APIResult<SiQuanViewModel>> GetById(int IDSQ)
@@ -224,7 +224,7 @@ namespace QLSQ.Application.Catalog.SiQuans
             var siquan = await _context.SiQuans.FindAsync(IDSQ);
             if (siquan == null)
                 throw new QLSQException($"Không tìm thấy sĩ quan nào có ID = {IDSQ} ");
-            var siquanmd = new SiQuanViewModel();
+            var siquanmd = new SiQuanViewModel() { };
             siquanmd.IDSQ = siquan.IDSQ;
             siquanmd.UserId = siquan.UserId;
             siquanmd.HoTen = siquan.HoTen;
@@ -238,10 +238,10 @@ namespace QLSQ.Application.Catalog.SiQuans
         public async Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien()
         {
             List<SiQuanViewModel> siQuanViewModels = new List<SiQuanViewModel>();
-            var query = from sq in _context.SiQuans 
-                        where !_context.QLDangViens.Any(qldv=>(qldv.IDSQ==sq.IDSQ))
+            var query = from sq in _context.SiQuans
+                        where !_context.QLDangViens.Any(qldv => (qldv.IDSQ == sq.IDSQ))
                         select sq;
-            foreach(var data in query)
+            foreach (var data in query)
             {
                 var sqModel = new SiQuanViewModel()
                 {
@@ -250,14 +250,14 @@ namespace QLSQ.Application.Catalog.SiQuans
                 };
                 siQuanViewModels.Add(sqModel);
             }
-            return new APISuccessedResult<List<SiQuanViewModel>>(siQuanViewModels); 
+            return new APISuccessedResult<List<SiQuanViewModel>>(siQuanViewModels);
         }
 
         public async Task<APIResult<List<SiQuanViewModel>>> GetAllWithoutPaging()
         {
             List<SiQuanViewModel> listsqvm = new List<SiQuanViewModel>();
             var query = _context.SiQuans;
-            foreach(var data in query)
+            foreach (var data in query)
             {
                 var siquanvm = new SiQuanViewModel()
                 {
@@ -275,16 +275,16 @@ namespace QLSQ.Application.Catalog.SiQuans
             var query = from sq in _context.SiQuans
                         join qlcv in _context.QLChucVus
                         on sq.IDSQ equals qlcv.IDSQ
-                       
+
                         join cv in _context.ChucVus
                         on qlcv.IDCV equals cv.IDCV
                         join hspccv in _context.HeSoPhuCapTheoChucVus
-                        on cv.IDCV equals hspccv.IDCV          
-                        where sq.HoTen.StartsWith(preconfix) && !_context.QLLuongs.Any(x=>x.IDSQ == sq.IDSQ)
+                        on cv.IDCV equals hspccv.IDCV
+                        where sq.HoTen.StartsWith(preconfix) && !_context.QLLuongs.Any(x => x.IDSQ == sq.IDSQ)
                         select new SiQuanInQLLuongViewModel
-                        { 
+                        {
                             IDSQ = sq.IDSQ,
-                            HoTen = sq.HoTen,                   
+                            HoTen = sq.HoTen,
                             IDCV = qlcv.IDCV,
                             TenCV = cv.TenCV,
                             IDHeSoPhuCapCV = hspccv.IDHeSoPhuCapCV,
@@ -352,6 +352,24 @@ namespace QLSQ.Application.Catalog.SiQuans
                 listsqvm.Add(siquanvm);
             }
             return new APISuccessedResult<List<SiQuanViewModel>>(listsqvm);
+        }
+
+        public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLQuanHamAutocomplete(string prefix)
+        {
+            var query = from sq in _context.SiQuans
+                        where !_context.QLQuanHams.Any(x => x.IDSQ == sq.IDSQ) && sq.HoTen.StartsWith(prefix)
+                        select sq;
+            var list = new List<SiQuanViewModel>();
+            foreach (var data in query)
+            {
+                var sq = new SiQuanViewModel()
+                {
+                    IDSQ = data.IDSQ,
+                    HoTen = data.HoTen
+                };
+                list.Add(sq);
+            }
+            return new APISuccessedResult<List<SiQuanViewModel>>(list);
         }
     }
 }

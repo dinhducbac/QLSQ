@@ -18,6 +18,19 @@ namespace QLSQ.Application.Catalog.QLQuanHam
             _context = context;
         }
 
+        public async Task<APIResult<bool>> Create(QLQuanHamCreateRequest request)
+        {
+            var qlqh = new QLSQ.Data.Entities.QLQuanHam()
+            {
+                IDSQ = request.IDSQ,
+                IDQH = request.IDQH,
+                IDHeSoLuongTheoQH = request.IDHeSoLuongQH
+            };
+            _context.QLQuanHams.Add(qlqh);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<QLQuanHamDetailsModel>> Details(int IDQLQH)
         {
             var query = await (from qlqh in _context.QLQuanHams

@@ -39,7 +39,6 @@ namespace QLSQ.AdminApp.Controllers
         public ActionResult SetViewBag(bool check)
         {
             ViewBag.CheckName = check;
-            var test = ViewBag.CheckName;
             return  Json(ViewBag.CheckName);
         }
         [HttpGet]

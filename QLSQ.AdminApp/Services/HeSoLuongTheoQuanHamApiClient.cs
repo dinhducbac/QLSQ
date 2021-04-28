@@ -15,8 +15,8 @@ namespace QLSQ.AdminApp.Services
     public class HeSoLuongTheoQuanHamApiClient : IHeSoLuongTheoQuanHamApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private IConfiguration _configuration;
-        private IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public HeSoLuongTheoQuanHamApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor)
         {
@@ -103,6 +103,19 @@ namespace QLSQ.AdminApp.Services
             var body = await reponse.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<APISuccessedResult<PageResult<HeSoLuongTheoQuanHamViewModel>>>(body);
             return user;
+        }
+
+        public async Task<APIResult<List<HeSoLuongTheoQuanHamViewModel>>> GetHeSoLuongTheoQHByIDQH(int IDQH)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/HeSoLuongTheoQuanHams/{IDQH}/gethesoluongtheoqhbyidqh");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<HeSoLuongTheoQuanHamViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<HeSoLuongTheoQuanHamViewModel>>>(body);
         }
     }
 }
