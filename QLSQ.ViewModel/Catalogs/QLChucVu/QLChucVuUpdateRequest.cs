@@ -16,14 +16,15 @@ namespace QLSQ.ViewModel.Catalogs.QLChucVu
         [Display(Name = "ID sĩ quan")]
         public int IDSQ { get; set; }
         [Display(Name = "Tên sĩ quan")]
-        public string HoTen { get; set; }
-        [Display(Name = "ID quân hàm")]
-        public int IDQH { get; set; }
+        public string HoTen { get; set; }  
         [Display(Name = "ID bộ phận")]
         public int IDBP { get; set; }
         [Display(Name = "ID chức vụ")]
         public int IDCV { get; set; }
-        public List<QuanHamViewModel> quanHamViewModels { get; set; }
+        [Display(Name ="Ngày nhận")]
+        public DateTime NgayNhan { get; set; }
+        [Display(Name ="Hệ số phụ cấp")]
+        public float HeSoPhuCap { get; set; }
         public List<BoPhanViewModel> boPhanViewModels { get; set; }
         public List<ChucVuViewModel> chucVuViewModels { get; set; }
     }

@@ -10,6 +10,5 @@ namespace QLSQ.ViewModel.Catalogs.QLChucVu
         public string keyword { get; set; }
         public List<int> IDSQ { get; set; }
         public List<int> IDCV { get; set; }
-        public List<int> IDQH { get; set; }
     }
 }

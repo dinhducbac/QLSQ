@@ -8,10 +8,9 @@ namespace QLSQ.ViewModel.Catalogs.QLChucVu
     {
         public int IDQLCV { get; set; }
         public int IDSQ { get; set; }
-        public string HoTenSQ { get; set; }
-        public int IDQH { get; set; }
-        public string TenQH { get; set; }
+        public string HoTenSQ { get; set; } 
         public int IDCV { get; set; }
         public  string TenCV { get; set; }
+        public DateTime NgayNhan { get; set; }
     }
 }
