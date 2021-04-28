@@ -44,11 +44,6 @@
                                         <span asp-validation-for="HoTen" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <label asp-for="IDQH" class="control-label"></label>
-                                        <select asp-for="IDQH" class="form-control" asp-items="@(new SelectList(Model.quanHamViewModels,"IDQH","TenQH"))"></select>
-                                        <span asp-validation-for="IDQH" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group">
                                         <label asp-for="IDBP" class="control-label"></label>
                                         <select id="IDBP" asp-for="IDBP" class="form-control" asp-items="@(new SelectList(Model.boPhanViewModels,"IDBP","TenBP"))"></select>
                                         <span asp-validation-for="IDBP" class="text-danger"></span>
@@ -57,6 +52,16 @@
                                         <label asp-for="IDCV" class="control-label"></label>
                                         <select id="IDCV" asp-for="IDCV" class="form-control" asp-items="@(new SelectList(Model.chucVuViewModels,"IDCV","TenCV"))"></select>
                                         <span asp-validation-for="IDCV" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NgayNhan" class="control-label"></label>
+                                        <input asp-for="NgayNhan" class="form-control" />
+                                        <span asp-validation-for="NgayNhan" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="HeSoPhuCap" class="control-label"></label>
+                                        <input asp-for="HeSoPhuCap" class="form-control" readonly />
+                                        <span asp-validation-for="HeSoPhuCap" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" value="Save" class="btn btn-primary" />

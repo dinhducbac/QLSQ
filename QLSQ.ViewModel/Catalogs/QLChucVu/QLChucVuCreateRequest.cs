@@ -16,6 +16,7 @@ namespace QLSQ.ViewModel.Catalogs.QLChucVu
         public int IDBP { get; set; }
         [Display(Name = "ID chức vụ")]
         public int IDCV { get; set; }
+        [Display(Name = "Ngày nhận")]
         public DateTime NgayNhan { get; set; }
 
 

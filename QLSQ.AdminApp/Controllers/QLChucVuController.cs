@@ -38,7 +38,7 @@ namespace QLSQ.AdminApp.Controllers
             if (TempData["result"] != null)
             {
                 ViewBag.Success = true;
-                ViewBag.SuccessMessage = ViewData["result"];
+                ViewBag.SuccessMessage = TempData["result"];
             }
             return View(result.ResultObj);
         }
@@ -104,15 +104,13 @@ namespace QLSQ.AdminApp.Controllers
                 IDQLCV = result.ResultObj.IDQLCV,
                 IDSQ = result.ResultObj.IDSQ,
                 HoTen = result.ResultObj.HoTen,
-                IDQH = result.ResultObj.IDQH,
                 IDBP = result.ResultObj.IDBP,
                 IDCV = result.ResultObj.IDCV,
-                quanHamViewModels = new List<ViewModel.Catalogs.QuanHam.QuanHamViewModel>(),
+                NgayNhan = result.ResultObj.NgayNhan,
+                HeSoPhuCap = result.ResultObj.HeSoPhuCap,
                 boPhanViewModels = new List<ViewModel.Catalogs.BoPhan.BoPhanViewModel>(),
                 chucVuViewModels = new List<ViewModel.Catalogs.ChucVu.ChucVuViewModel>()
             };
-            var getlListQuanHam = await _quanHamApiClient.GetAllWithoutPaging();
-            qlcvUpdateRequest.quanHamViewModels = getlListQuanHam.ResultObj;
             var getListBoPhan = await _boPhanApiClient.GetAllWithNotPaging();
             qlcvUpdateRequest.boPhanViewModels = getListBoPhan.ResultObj;
             var getLiChucVu = await _chucVuApiClient.GetChucVuWithIDBP(qlcvUpdateRequest.IDBP);
@@ -139,8 +137,6 @@ namespace QLSQ.AdminApp.Controllers
                 IDQLCV = qlcvDetailsViewModel.ResultObj.IDQLCV,
                 IDSQ = qlcvDetailsViewModel.ResultObj.IDSQ,
                 HoTen = qlcvDetailsViewModel.ResultObj.HoTen,
-                IDQH = qlcvDetailsViewModel.ResultObj.IDQH,
-                TenQH = qlcvDetailsViewModel.ResultObj.TenQH,
                 IDBP = qlcvDetailsViewModel.ResultObj.IDBP,
                 TenBP = qlcvDetailsViewModel.ResultObj.TenBP,
                 IDCV = qlcvDetailsViewModel.ResultObj.IDCV,
