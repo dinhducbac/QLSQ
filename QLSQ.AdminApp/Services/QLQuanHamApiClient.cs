@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace QLSQ.AdminApp.Services
@@ -23,6 +24,19 @@ namespace QLSQ.AdminApp.Services
             _configuration = configuration;
             _httpClientFactory = httpClientFactory;
             _httpContextAccessor = httpContextAccessor;
+        }
+
+        public async Task<APIResult<bool>> Create(QLQuanHamCreateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"/api/QLQuanHams/create", httpContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
         public async Task<APIResult<QLQuanHamDetailsModel>> Details(int IDQLQH)

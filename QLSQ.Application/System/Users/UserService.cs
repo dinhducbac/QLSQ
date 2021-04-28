@@ -16,7 +16,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace QLSQ.Application.System.Users
 {
@@ -24,15 +23,13 @@ namespace QLSQ.Application.System.Users
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly RoleManager<AppRole> _roleManager;
         private readonly QL_SiQuanDBContext _context;
         private readonly IConfiguration _config;
         public UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager, 
-            RoleManager<AppRole> roleManager, IConfiguration configuration,QL_SiQuanDBContext context)
+             IConfiguration configuration,QL_SiQuanDBContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
             _config = configuration;
             _context = context;
         }
@@ -99,7 +96,7 @@ namespace QLSQ.Application.System.Users
             user.Email = request.Email;
             user.PasswordHash = request.Password;
             user.PhoneNumber = request.PhoneNumber;
-            var result = await _userManager.UpdateAsync(user);
+            await _userManager.UpdateAsync(user);
             return new APISuccessedResult<string>("Cập nhật thành công!");
         }
 
