@@ -56,6 +56,15 @@ namespace QLSQ.Application.Catalog.QLQuanHam
 
         }
 
+        public async Task<APIResult<bool>> Edit(int IDQLQH, QLQuanHamUpdateRequest request)
+        {
+            var qlqh = await _context.QLQuanHams.FirstOrDefaultAsync(x => x.IDQLQH == IDQLQH);
+            qlqh.IDQH = request.IDQH;
+            qlqh.IDHeSoLuongTheoQH = request.IDHeSoLuongQH;
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<PageResult<QLQuanHamViewModel>>> GetAllWithPaging(GetQLQuanHamPagingRequest request)
         {
             var query = from qlqh in _context.QLQuanHams

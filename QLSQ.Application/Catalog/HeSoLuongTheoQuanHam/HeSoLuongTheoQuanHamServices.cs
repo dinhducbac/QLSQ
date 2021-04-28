@@ -117,6 +117,18 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
             return new APISuccessedResult<PageResult<HeSoLuongTheoQuanHamViewModel>>(pageresult); 
         }
 
+        public async Task<APIResult<HeSoLuongTheoQuanHamViewModel>> GetHeSoLuongTheoQHByIDHeSoLuongQH(int IDHeSoLuongQH)
+        {
+            var hslqhvm = await (from hslqh in _context.HeSoLuongTheoQuanHams
+                                 where hslqh.IDHeSoLuongQH == IDHeSoLuongQH
+                                 select new HeSoLuongTheoQuanHamViewModel()
+                                 {
+                                     IDHeSoLuongQH = hslqh.IDHeSoLuongQH,
+                                     HeSoLuong = hslqh.HeSoLuong
+                                 }).FirstOrDefaultAsync();
+            return new APISuccessedResult<HeSoLuongTheoQuanHamViewModel>(hslqhvm);
+        }
+
         public async Task<APIResult<List<HeSoLuongTheoQuanHamViewModel>>> GetHeSoLuongTheoQHByIDQH(int IDQH)
         {
             var query = await (from hslqh in _context.HeSoLuongTheoQuanHams

@@ -40,11 +40,21 @@ namespace QLSQ.BackEndAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("create")]
-        public async Task<IActionResult> Create(QLQuanHamCreateRequest request)
+        public async Task<IActionResult> Create([FromBody]QLQuanHamCreateRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _qLQuanHamServices.Create(request);
+            if (result.ResultObj == true)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpPut("{IDQLQH}/edit")]
+        public async Task<IActionResult> Edit(int IDQLQH,[FromBody] QLQuanHamUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _qLQuanHamServices.Edit(IDQLQH, request);
             if (result.ResultObj == true)
                 return Ok(result);
             return BadRequest(result);

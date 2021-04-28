@@ -66,14 +66,22 @@ namespace QLSQ.AdminApp.Controllers
             return Json(result.ResultObj);
         }
         [HttpGet]
+        public async Task<JsonResult> GetHeSoLuongTheoQHByIDHeSoLuongQH(int IDHeSoLuongQH)
+        {
+            var result = await _heSoLuongTheoQuanHamApiClient.GetHeSoLuongTheoQHByIDHeSoLuongQH(IDHeSoLuongQH);
+            return Json(result.ResultObj);
+        }
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             if (!ModelState.IsValid)
                 return View(ModelState);
+
             var qlqhCreateRequest = new QLQuanHamCreateRequest()
             {
                 quanHamViewModels = new List<ViewModel.Catalogs.QuanHam.QuanHamViewModel>(),
-                heSoLuongTheoQuanHamViewModels = new List<ViewModel.Catalogs.HeSoLuongTheoQuanHam.HeSoLuongTheoQuanHamViewModel>()
+                heSoLuongTheoQuanHamViewModels = new List<ViewModel.Catalogs.HeSoLuongTheoQuanHam.HeSoLuongTheoQuanHamViewModel>(),
+                HeSoLuong = (await _heSoLuongTheoQuanHamApiClient.GetHeSoLuongTheoQHByIDHeSoLuongQH(1)).ResultObj.HeSoLuong
             };
             var getlistqh = await _quanHamApiClient.GetAllWithoutPaging();
             qlqhCreateRequest.quanHamViewModels = getlistqh.ResultObj;
@@ -88,6 +96,40 @@ namespace QLSQ.AdminApp.Controllers
             if (result.IsSuccessed)
             {
                 TempData["result"] = "Tạo quân hàm cho sĩ quan thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int IDQLQH)
+        {
+            if (!ModelState.IsValid)
+                return View(ModelState);
+            var qlqhViewModel = await _qLQuanHamApiClient.Details(IDQLQH);
+            var qlqhUpdateRequest = new QLQuanHamUpdateRequest()
+            {
+                IDQLQH = qlqhViewModel.ResultObj.IDQLQH,
+                IDSQ = qlqhViewModel.ResultObj.IDSQ,
+                HoTen = qlqhViewModel.ResultObj.HoTen,
+                IDQH = qlqhViewModel.ResultObj.IDQH,
+                IDHeSoLuongQH = qlqhViewModel.ResultObj.IDHeSoLuongQH,
+                HeSoLuong = qlqhViewModel.ResultObj.HeSoLuong,
+                quanHamViewModels = new List<ViewModel.Catalogs.QuanHam.QuanHamViewModel>(),
+                heSoLuongTheoQuanHamViewModels = new List<ViewModel.Catalogs.HeSoLuongTheoQuanHam.HeSoLuongTheoQuanHamViewModel>()
+            };
+            var qhvm = await _quanHamApiClient.GetAllWithoutPaging();
+            qlqhUpdateRequest.quanHamViewModels = qhvm.ResultObj;
+            var hslqhvm = await _heSoLuongTheoQuanHamApiClient.GetHeSoLuongTheoQHByIDQH(qlqhUpdateRequest.IDQH);
+            qlqhUpdateRequest.heSoLuongTheoQuanHamViewModels = hslqhvm.ResultObj;
+            return View(qlqhUpdateRequest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(QLQuanHamUpdateRequest request)
+        {
+            var result = await _qLQuanHamApiClient.Edit(request.IDQLQH, request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa quân hàm của sĩ quan thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");

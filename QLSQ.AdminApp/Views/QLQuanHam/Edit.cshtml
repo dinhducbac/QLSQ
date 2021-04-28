@@ -1,7 +1,7 @@
-﻿@model QLSQ.ViewModel.Catalogs.QLQuanHam.QLQuanHamCreateRequest
+﻿@model QLSQ.ViewModel.Catalogs.QLQuanHam.QLQuanHamUpdateRequest
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-12">
-                <h1 class="m-0 text-dark">Tạo quân hàm</h1>
+                <h1 class="m-0 text-dark">Chỉnh sửa thông tin quân hàm của sĩ quan</h1>
             </div><!-- /.col -->
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
@@ -20,23 +20,28 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tạo User</h3>
+                        <h3 class="card-title">DataTable with minimal features & hover style</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <form asp-action="Create">
+                                <form asp-action="Edit">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
-                                        <label asp-for="HoTen" class="control-label"></label>
-                                        <input asp-for="HoTen" id="autocomplete" class="form-control" />
-                                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                                        <label asp-for="IDQLQH" class="control-label"></label>
+                                        <input asp-for="IDQLQH" readonly class="form-control" />
+                                        <span asp-validation-for="IDQLQH" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="IDSQ" class="control-label"></label>
-                                        <input asp-for="IDSQ" id="IDSQ" class="form-control" readonly />
+                                        <input asp-for="IDSQ" readonly class="form-control" />
                                         <span asp-validation-for="IDSQ" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="HoTen" class="control-label"></label>
+                                        <input asp-for="HoTen" readonly class="form-control" />
+                                        <span asp-validation-for="HoTen" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="IDQH" class="control-label"></label>
@@ -50,11 +55,11 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="HeSoLuong" class="control-label"></label>
-                                        <input asp-for="HeSoLuong" id="HeSoLuong" class="form-control" readonly />
+                                        <input asp-for="HeSoLuong" id="HeSoLuong" readonly class="form-control" />
                                         <span asp-validation-for="HeSoLuong" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
-                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                        <input type="submit" value="Save" class="btn btn-primary" />
                                     </div>
                                 </form>
                             </div>
@@ -92,6 +97,7 @@
                         $.each(result, function (i, item) {
                             $("#IDHeSoLuongQH").append('<option value="' + item.value + '"> ' + item.text + ' </option>');
                         });
+                  
                         $.ajax({
                             url: "/QLQuanHam/GetHeSoLuongTheoQHByIDHeSoLuongQH",
                             type: "Get",
@@ -106,13 +112,14 @@
                                 alert("ERROR");
                             }
                         });
+                        
                     },
                     error: function () {
                         alert("Something went wrong");
                     }
                 });
             });
-            $("#IDHeSoLuongQH").change(function () {
+            $("#IDHeSoLuongQH").change( function () {
                 $.ajax({
                     url: "/QLQuanHam/GetHeSoLuongTheoQHByIDHeSoLuongQH",
                     type: "Get",
@@ -130,40 +137,5 @@
             });
         });
     </script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js" type="text/javascript"></script>
-    <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/themes/blitzer/jquery-ui.css"
-          rel="Stylesheet" type="text/css" />
-    <script type="text/javascript">
-        $(function () {
-            $("#autocomplete").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: '/QLQuanHam/GetListSiQuanNotInQLQuanHamAutocomplete/',
-                        data: { "prefix": request.term },
-                        type: "GET",
-                        dataType: "json",
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                return { label: item.hoTen, value: item.hoTen, idsq: item.idsq };
-                            }))
-                        },
-                        error: function (response) {
-                            alert(response.responseText);
-                        },
-                        failure: function (response) {
-                            alert(response.responseText);
-                        }
-                    });
-                },
-                select: function (e, i) {
-                    $("#IDSQ").val(i.item.idsq);
-                    //alert($("#IDSQ").val);
-                },
-                minLength: 1
-            });
-        });
-    </script>
 }
-
 
