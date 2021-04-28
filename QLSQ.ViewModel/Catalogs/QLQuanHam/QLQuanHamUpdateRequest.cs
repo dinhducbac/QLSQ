@@ -7,13 +7,15 @@ using System.Text;
 
 namespace QLSQ.ViewModel.Catalogs.QLQuanHam
 {
-    public class QLQuanHamCreateRequest
+    public class QLQuanHamUpdateRequest
     {
-        [Display(Name ="Họ tên sĩ quan")]
-        public string HoTen { get; set; }
+        [Display(Name ="ID quản lý quân hàm của sĩ quan")]
+        public int IDQLQH { get; set; }
         [Display(Name = "ID sĩ quan")]
         public int IDSQ { get; set; }
-        [Display(Name = "Quân Hàm")]
+        [Display(Name ="Họ tên sĩ quan")]
+        public string HoTen { get; set; }
+        [Display(Name = "Quân hàm")]
         public int IDQH { get; set; }
         [Display(Name = "Tên hệ số lương")]
         public int IDHeSoLuongQH { get; set; }

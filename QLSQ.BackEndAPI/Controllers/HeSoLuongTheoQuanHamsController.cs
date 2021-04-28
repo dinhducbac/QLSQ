@@ -80,5 +80,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("{IDHeSoLuongQH}/gethesoluongtheoqhbyidhesoluongqh")]
+        public async Task<IActionResult> GetHeSoLuongTheoQHByIDHeSoLuongQH(int IDHeSoLuongQH)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _heSoLuongTheoQuanHamServices.GetHeSoLuongTheoQHByIDHeSoLuongQH(IDHeSoLuongQH);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
