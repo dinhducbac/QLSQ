@@ -115,6 +115,19 @@ namespace QLSQ.Application.Catalog.HeSoLuongTheoQuanHam
                 Items = data
             };
             return new APISuccessedResult<PageResult<HeSoLuongTheoQuanHamViewModel>>(pageresult); 
-        } 
+        }
+
+        public async Task<APIResult<List<HeSoLuongTheoQuanHamViewModel>>> GetHeSoLuongTheoQHByIDQH(int IDQH)
+        {
+            var query = await (from hslqh in _context.HeSoLuongTheoQuanHams
+                              where hslqh.IDQH == IDQH
+                              select new HeSoLuongTheoQuanHamViewModel()
+                              {
+                                  IDHeSoLuongQH = hslqh.IDHeSoLuongQH,
+                                  TenHeSoLuongQH = hslqh.TenHeSoLuongQH,
+                                  HeSoLuong = hslqh.HeSoLuong
+                              }).ToListAsync();
+            return new APISuccessedResult<List<HeSoLuongTheoQuanHamViewModel>>(query);
+        }
     }
 }

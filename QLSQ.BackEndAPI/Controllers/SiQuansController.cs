@@ -126,6 +126,16 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(listsq);
             return BadRequest(listsq);
         }
+        [HttpGet("getlistsiquannotinqlquanhamautocomplete")]
+        public async Task<IActionResult> GetListSiQuanNotInQLQuanHamAutocomplete(string prefix)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var listsq = await _manageSiQuanServices.GetListSiQuanNotInQLQuanHamAutocomplete(prefix);
+            if (listsq.IsSuccessed)
+                return Ok(listsq);
+            return BadRequest(listsq);
+        }
         [HttpGet("getlistsiquannotinqlchucvuautocomplete")]
         public async Task<IActionResult> GetListSiQuanNotInQLChucVuAutocomplete(string prefix)
         {

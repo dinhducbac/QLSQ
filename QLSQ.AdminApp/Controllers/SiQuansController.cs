@@ -65,7 +65,7 @@ namespace QLSQ.AdminApp.Controllers
             if (!ModelState.IsValid)
                 return View(ModelState);
             var result = await _siQuanApiClient.Create(request);
-            if (result.ResultObj != null)
+            if (result.ResultObj != 0)
             {
                 TempData["result"] = "Tạo sĩ quan thành công!";
                 return RedirectToAction("Index");

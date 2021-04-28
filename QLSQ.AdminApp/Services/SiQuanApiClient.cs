@@ -16,8 +16,8 @@ namespace QLSQ.AdminApp.Services
     public class SiQuanApiClient : ISiQuanApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private IConfiguration _configuration;
-        private IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public SiQuanApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor)
         {
@@ -100,7 +100,6 @@ namespace QLSQ.AdminApp.Services
 
         public async Task<APIResult<SiQuanViewModel>> GetByID(int IDSQ)
         {
-            var test = IDSQ;
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
             var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
@@ -158,6 +157,19 @@ namespace QLSQ.AdminApp.Services
             if (reponse.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<APISuccessedResult<List<SiQuanViewModel>>>(body);
             return JsonConvert.DeserializeObject<APIErrorResult<List<SiQuanViewModel>>>(body); 
+        }
+
+        public  async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLQuanHamAutocomplete(string prefix)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/SiQuans/getlistsiquannotinqlquanhamautocomplete?prefix={prefix}");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<SiQuanViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<SiQuanViewModel>>>(body);
         }
 
         public async Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien()

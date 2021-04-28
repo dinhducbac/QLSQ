@@ -19,5 +19,6 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<List<SiQuanInQLLuongViewModel>>> GetListSiQuanAutocomplete(string preconfix);
         public Task<APIResult<List<SiQuanViewModel>>> GetFullListSiQuanAutocomplete(string preconfix);
         public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix);
+        public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLQuanHamAutocomplete(string prefix);
     }
 }
