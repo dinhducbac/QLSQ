@@ -18,6 +18,8 @@ namespace QLSQ.ViewModel.Catalogs.QLChucVu
         public int IDCV { get; set; }
         [Display(Name = "Ngày nhận")]
         public DateTime NgayNhan { get; set; }
+        [Display(Name ="Hệ số phụ cấp")]
+        public float HeSoPhuCap { get; set; }
 
 
         public List<QuanHamViewModel> quanHamViewModels { get; set; }
