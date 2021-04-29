@@ -44,6 +44,7 @@ namespace QLSQ.AdminApp.Controllers
             }
             return View(result);
         }
+
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -65,7 +66,6 @@ namespace QLSQ.AdminApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(HeSoPhuCapTheoChucVuCreateRequest request)
         {
-            var test = request.IDCV;
             if (!ModelState.IsValid)
                 return View(ModelState);
             var result = await _heSoPhuCapTheoChucVuApiClient.Create(request);
@@ -78,10 +78,9 @@ namespace QLSQ.AdminApp.Controllers
         }
         [HttpGet]
         public async  Task<IActionResult> getCV(int IDBP)
-        {
-            List<ChucVuViewModel> list = new List<ChucVuViewModel>();
+        {       
             var getListCV = await _chucVuApiClient.GetChucVuWithIDBP(IDBP);
-            list = getListCV.ResultObj;
+            var list = getListCV.ResultObj;
             return Json(new SelectList(list, "IDCV", "TenCV"));
         }
 
@@ -155,6 +154,11 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
-
+        [HttpGet]
+        public async Task<JsonResult> GetHeSoPhuCapByIDCV(int IDCV)
+        {
+            var result = await _heSoPhuCapTheoChucVuApiClient.GetHeSoPhuCapByIDCV(IDCV);
+            return Json(result.ResultObj);
+        }
     }
 }

@@ -108,5 +108,17 @@ namespace QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu
             };
             return new APISuccessedResult<PageResult<HeSoPhuCapTheoChucVuViewModel>>(pageResult);
         }
+
+        public async Task<APIResult<HeSoPhuCapTheoChucVuViewModel>> GetHeSoPhuCapByIDCV(int IDCV)
+        {
+            var query = await (from hspccv in _context.HeSoPhuCapTheoChucVus
+                         where hspccv.IDCV == IDCV
+                         select new HeSoPhuCapTheoChucVuViewModel()
+                         {
+                             IDHeSoPhuCapCV = hspccv.IDHeSoPhuCapCV,
+                             HeSoPhuCap = hspccv.HeSoPhuCap
+                         }).FirstOrDefaultAsync();
+            return new APISuccessedResult<HeSoPhuCapTheoChucVuViewModel>(query);
+        }
     }
 }

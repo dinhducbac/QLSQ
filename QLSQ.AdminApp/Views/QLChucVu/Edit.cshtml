@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <form asp-action="Edit">
+                                <form asp-action="Edit" onsubmit="return StopSubmit(event)">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label asp-for="IDQLCV" class="control-label"></label>
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="HeSoPhuCap" class="control-label"></label>
-                                        <input asp-for="HeSoPhuCap" class="form-control" readonly />
+                                        <input asp-for="HeSoPhuCap" id="HeSoPhuCap" class="form-control" readonly />
                                         <span asp-validation-for="HeSoPhuCap" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -88,6 +88,8 @@
 
     <script>
         $(document).ready(function () {
+            var idbp = $("#IDBP").val();
+            var idcv = $("#IDCV").val();
             $("#IDBP").on("change", function () {
                 $list = $("#IDCV");
                 $.ajax({
@@ -102,12 +104,50 @@
                         $.each(result, function (i, item) {
                             $("#IDCV").append('<option value="' + item.value + '"> ' + item.text + ' </option>');
                         });
+                        $.ajax({
+                            url: "/QLChucVu/GetHeSoPhuCapByIDCV",
+                            data: { IDCV: $("#IDCV").val() },
+                            type: "Get",
+                            dataType: "Json",
+                            traditional: true,
+                            success: function (data) {
+                                $("#HeSoPhuCap").val(data.heSoPhuCap);
+                            },
+                            error: function (data) {
+                                alert("Chức vụ này chưa có hệ số phụ cấp!");
+                                $("#HeSoPhuCap").val(0);
+                            }
+                        });
                     },
                     error: function () {
                         alert("Something went wrong");
                     }
                 });
             });
+            $("#IDCV").on("change", function () {
+                $.ajax({
+                    url: "/QLChucVu/GetHeSoPhuCapByIDCV",
+                    type: "Get",
+                    dataType: "Json",
+                    data: { IDCV: $("#IDCV").val() },
+                    traditional: true,
+                    success: function (data) {
+                        $("#HeSoPhuCap").val(data.heSoPhuCap);
+                    },
+                    error: function (data) {
+                        alert("Chức vụ này chưa có hệ số phụ cấp!");
+                        $("#HeSoPhuCap").val(0);
+                    }
+                });
+            });         
         });
+        function StopSubmit(e) {
+            if ($("#HeSoPhuCap").val() == 0) {
+                alert("Bạn phải chọn chức vụ có phụ cấp!!");
+                e.preventDefault();
+                return false;
+            }
+            return true;
+        }
     </script>
 }
