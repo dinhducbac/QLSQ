@@ -72,6 +72,16 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("{IDCV}/gethesophucapbyidcv")]
+        public async Task<IActionResult> GetHeSoPhuCapByIDCV(int IDCV)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _heSoPhuCapTheoChucVuServices.GetHeSoPhuCapByIDCV(IDCV);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
 
     }
 }
