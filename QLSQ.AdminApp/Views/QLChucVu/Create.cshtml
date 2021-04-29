@@ -27,7 +27,7 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <form asp-action="Create">
+                                <form asp-action="Create" onsubmit="return StopSubmit(event)">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label class="control-label">Tên sĩ quan</label>
@@ -54,6 +54,11 @@
                                         <span asp-validation-for="NgayNhan" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
+                                        <label asp-for="HeSoPhuCap" class="control-label"></label>
+                                        <input asp-for="HeSoPhuCap" id="HeSoPhuCap" class="form-control" value="" />
+                                        <span asp-validation-for="HeSoPhuCap" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
                                         <input type="submit" value="Create" class="btn btn-primary" />
                                     </div>
                                 </form>
@@ -78,6 +83,23 @@
 
     <script>
         $(document).ready(function () {
+            var hspc;
+            $(function () {
+                $.ajax({
+                    url: "/QLChucVu/GetHeSoPhuCapByIDCV",
+                    data: { IDCV: $("#IDCV").val() },
+                    type: "Get",
+                    dataType: "Json",
+                    traditional: true,
+                    success: function (data) {
+                        $("#HeSoPhuCap").val(data.heSoPhuCap);
+                    },
+                    error: function (data) {
+                        //alert("Chức vụ này chưa có hệ số phụ cấp!");
+                        $("#HeSoPhuCap").val(0);
+                    }
+                });
+            });
             $("#IDBP").on("change", function () {
                 $list = $("#IDCV");
                 $.ajax({
@@ -92,12 +114,42 @@
                         $.each(result, function (i, item) {
                             $("#IDCV").append('<option value="' + item.value + '"> ' + item.text + ' </option>');
                         });
+                        $.ajax({
+                            url: "/QLChucVu/GetHeSoPhuCapByIDCV",
+                            data: { IDCV: $("#IDCV").val() },
+                            type: "Get",
+                            dataType: "Json",
+                            traditional: true,
+                            success: function (data) {
+                                $("#HeSoPhuCap").val(data.heSoPhuCap);
+                            },
+                            error: function (data) {
+                                alert("Chức vụ này chưa có hệ số phụ cấp!");
+                                $("#HeSoPhuCap").val(0);
+                            }
+                        });
                     },
                     error: function () {
                         alert("Something went wrong");
                     }
                 });
             });
+            $("#IDCV").on("change", function () {
+                $.ajax({
+                    url: "/QLChucVu/GetHeSoPhuCapByIDCV",
+                    type: "Get",
+                    dataType: "Json",
+                    data: { IDCV: $("#IDCV").val() },
+                    traditional: true,
+                    success: function (data) {
+                        $("#HeSoPhuCap").val(data.heSoPhuCap);
+                    },
+                    error: function (data) {
+                        alert("Chức vụ này chưa có hệ số phụ cấp!");
+                        $("#HeSoPhuCap").val(0);
+                    }
+                });
+            });         
         });
     </script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.0.min.js" type="text/javascript"></script>
@@ -133,5 +185,18 @@
                 minLength: 1
             });
         });
+        function StopSubmit(e) {
+            if ($("#HeSoPhuCap").val() == 0) {
+                alert("Bạn phải chọn chức vụ có phụ cấp!!");
+                e.preventDefault();
+                return false;
+            }
+            if ($("#autocomplete").val() == "") {
+                alert("Bạn phải chọn tên sĩ quan! Nếu không có thì không có sĩ quan cần thêm!");
+                e.preventDefault();
+                return false;
+            }
+            return true;
+        }
     </script>
 }
