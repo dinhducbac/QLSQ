@@ -24,7 +24,9 @@ namespace QLSQ.Application.Catalog.QLLuong
         {
             var qll = new QLSQ.Data.Entities.QLLuong()
             {
-                IDSQ = request.IDSQ,             
+                IDSQ = request.IDSQ,
+                IDQLQH = request.IDQLQH,
+                IDQLCV = request.IDQLCV,
                 IDLuongCB = request.IDLuongCB,
             };
             _context.QLLuongs.Add(qll);
@@ -42,18 +44,38 @@ namespace QLSQ.Application.Catalog.QLLuong
 
         public async Task<APIResult<QLLuongDetailsViewModel>> Details(int IDLuong)
         {
-            var query = await (from qll in _context.QLLuongs
-                        join sq in _context.SiQuans
-                        on qll.IDSQ equals sq.IDSQ                                                         
-                        join lcb in _context.LuongCoBans
-                        on qll.IDLuongCB equals lcb.IDLuongCB
-                        where qll.IDLuong == IDLuong
-                        select new QLLuongDetailsViewModel()
+            var query = await (from sq in _context.SiQuans
+                               join qlluong in _context.QLLuongs
+                                  on sq.IDSQ equals qlluong.IDSQ
+                               join lcb in _context.LuongCoBans
+                                  on qlluong.IDLuongCB equals lcb.IDLuongCB
+                               join qlqh in _context.QLQuanHams
+                                   on qlluong.IDQLQH equals qlqh.IDQLQH
+                               join hsl in _context.HeSoLuongTheoQuanHams
+                                   on qlqh.IDHeSoLuongTheoQH equals hsl.IDHeSoLuongQH
+                               join qh in _context.QuanHams
+                                   on qlqh.IDQH equals qh.IDQH
+                               join qlcv in _context.QLChucVus
+                                   on qlluong.IDQLCV equals qlcv.IDQLCV
+                               join cv in _context.ChucVus
+                                   on qlcv.IDCV equals cv.IDCV
+                               join hspc in _context.HeSoPhuCapTheoChucVus
+                                   on cv.IDCV equals hspc.IDCV
+                                   where qlluong.IDLuong == IDLuong 
+                               select new QLLuongDetailsViewModel()
                         {
-                            IDLuong = qll.IDLuong,
+                            IDLuong = qlluong.IDLuong,
                             HoTen = sq.HoTen,
-                            IDSQ = qll.IDSQ,                     
-                            IDLuongCB = qll.IDLuongCB,
+                            IDSQ = qlluong.IDSQ,
+                            IDQH = qlqh.IDQH,
+                            TenQH = qh.TenQH,
+                            IDHeSoLuongQH = qlqh.IDHeSoLuongTheoQH,
+                            HeSoLuongQH = hsl.HeSoLuong,
+                            IDCV = qlcv.IDCV,
+                            TenCV = cv.TenCV,
+                            IDHeSoPhuCapCV = hspc.IDHeSoPhuCapCV,
+                            HeSoPhuCapCV = hspc.HeSoPhuCap,
+                            IDLuongCB = qlluong.IDLuongCB,
                             LuongCB = lcb.LuongCB
                         }).FirstOrDefaultAsync();
             var qllDetailsViewModel = new QLLuongDetailsViewModel()
@@ -81,15 +103,28 @@ namespace QLSQ.Application.Catalog.QLLuong
         {
             var query = (from sq in _context.SiQuans
                          join qlluong in _context.QLLuongs
-                            on sq.IDSQ equals qlluong.IDSQ                    
+                            on sq.IDSQ equals qlluong.IDSQ
                          join lcb in _context.LuongCoBans
                             on qlluong.IDLuongCB equals lcb.IDLuongCB
+                         join qlqh in _context.QLQuanHams
+                             on qlluong.IDQLQH equals qlqh.IDQLQH
+                         join hsl in _context.HeSoLuongTheoQuanHams
+                             on qlqh.IDHeSoLuongTheoQH equals hsl.IDHeSoLuongQH
+                         join qlcv in _context.QLChucVus
+                             on qlluong.IDQLCV equals qlcv.IDQLCV
+                         join cv in _context.ChucVus
+                             on qlcv.IDCV equals cv.IDCV
+                         join hspc in _context.HeSoPhuCapTheoChucVus
+                             on cv.IDCV equals hspc.IDCV
                          select new QLLuongViewModel
                          {
                              IDLuong = qlluong.IDLuong,
                              IDSQ = qlluong.IDSQ,
-                             HoTen = sq.HoTen,                          
-                             LuongCB = lcb.LuongCB                           
+                             HoTen = sq.HoTen,
+                             HeSoLuong = hsl.HeSoLuong,
+                             HeSoPhuCap = hspc.HeSoPhuCap,
+                             LuongCB = lcb.LuongCB,
+                             Luong = Convert.ToUInt64(hsl.HeSoLuong * lcb.LuongCB + hspc.HeSoPhuCap * lcb.LuongCB)
                          });
             if (!string.IsNullOrEmpty(request.keyword))
             {

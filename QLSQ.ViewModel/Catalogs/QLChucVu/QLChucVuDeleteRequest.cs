@@ -13,10 +13,6 @@ namespace QLSQ.ViewModel.Catalogs.QLChucVu
         public int IDSQ { get; set; }
         [Display(Name = "Tên sĩ quan")]
         public string HoTen { get; set; }
-        [Display(Name = "ID quân hàm")]
-        public int IDQH { get; set; }
-        [Display(Name = "Tên quân hàm")]
-        public string TenQH { get; set; }
         [Display(Name = "ID bộ phận")]
         public int IDBP { get; set; }
         [Display(Name = "Tên bộ phận")]
@@ -25,5 +21,9 @@ namespace QLSQ.ViewModel.Catalogs.QLChucVu
         public int IDCV { get; set; }
         [Display(Name = "Tên chức vụ")]
         public string TenCV { get; set; }
+        [Display(Name = "Ngày nhận")]
+        public DateTime NgayNhan { get; set; }
+        [Display(Name = "Hệ số phụ cấp")]
+        public float HeSoPhuCap { get; set; }
     }
 }

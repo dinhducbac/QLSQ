@@ -11,14 +11,19 @@ namespace QLSQ.ViewModel.Catalogs.SiQuan
         public string HoTen { get; set; }
         [Display(Name = "ID sĩ quan")]
         public int IDSQ { get; set; }
+        [Display(Name = "ID quản lý quân hàm")]
+        public int IDQLQH { get; set; }
+
         [Display(Name = "ID quân hàm")]
-        public int IDQH {get;set;}
+        public int IDQH { get; set; }
         [Display(Name = "Tên quân hàm")]
         public string TenQH { get; set; }
         [Display(Name = " ID Hệ số lương")]
         public int IDHeSoLuongQH { get; set; }
-        [Display(Name ="Hệ số lương")]
+        [Display(Name = "Hệ số lương")]
         public float HeSoLuongQH { get; set; }
+        [Display(Name = "ID quản lý chức vụ")]
+        public int IDQLCV { get; set; }
         [Display(Name = "ID chức vụ")]
         public int IDCV { get; set; }
         [Display(Name = "Tên chức vụ")]

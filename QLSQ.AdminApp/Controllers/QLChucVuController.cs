@@ -139,7 +139,9 @@ namespace QLSQ.AdminApp.Controllers
                 IDBP = qlcvDetailsViewModel.ResultObj.IDBP,
                 TenBP = qlcvDetailsViewModel.ResultObj.TenBP,
                 IDCV = qlcvDetailsViewModel.ResultObj.IDCV,
-                TenCV = qlcvDetailsViewModel.ResultObj.TenCV
+                TenCV = qlcvDetailsViewModel.ResultObj.TenCV,
+                NgayNhan = qlcvDetailsViewModel.ResultObj.NgayNhan,
+                HeSoPhuCap = qlcvDetailsViewModel.ResultObj.HeSoPhuCap
             };
             return View(qlcvDeleteRequest);
         }
