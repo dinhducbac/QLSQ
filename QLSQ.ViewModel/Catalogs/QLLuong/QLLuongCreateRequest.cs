@@ -12,6 +12,9 @@ namespace QLSQ.ViewModel.Catalogs.QLLuong
         public string HoTen { get; set; }
         [Display(Name = "ID sĩ quan")]
         public int IDSQ { get; set; }
+        [Display(Name = "ID quản lý quân hàm")]
+        public int IDQLQH { get; set; }
+
         [Display(Name = "ID quân hàm")]
         public int IDQH { get; set; }
         [Display(Name = "Tên quân hàm")]
@@ -20,6 +23,8 @@ namespace QLSQ.ViewModel.Catalogs.QLLuong
         public int IDHeSoLuongQH { get; set; }
         [Display(Name = "Hệ số lương")]
         public float HeSoLuongQH { get; set; }
+        [Display(Name = "ID quản lý chức vụ")]
+        public int IDQLCV { get; set; }
         [Display(Name = "ID chức vụ")]
         public int IDCV { get; set; }
         [Display(Name = "Tên chức vụ")]
@@ -31,7 +36,7 @@ namespace QLSQ.ViewModel.Catalogs.QLLuong
         [Display(Name = "ID Lương cơ bản")]
         public int IDLuongCB { get; set; }
         [Display(Name = "Lương cơ bản")]
-        public float LuongCB { get; set; }
+        public ulong LuongCB { get; set; }
         [Display(Name = "Lương")]
         public ulong Luong { get; set; } 
     }

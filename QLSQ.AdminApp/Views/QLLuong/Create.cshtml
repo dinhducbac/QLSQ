@@ -26,12 +26,17 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <form asp-action="Create">
+                                <form asp-action="Create" onsubmit="return StopSubmit(event)">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label asp-for="HoTen" class="control-label"></label>
                                         <input id="autocomplete" asp-for="HoTen" class="form-control" />
                                         <span asp-validation-for="HoTen" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDQLQH" class="control-label"></label>
+                                        <input asp-for="IDQLQH" id="IDQLQH" readonly class="form-control" />
+                                        <span asp-validation-for="IDQLQH" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="IDSQ" class="control-label"></label>
@@ -57,6 +62,11 @@
                                         <label asp-for="HeSoLuongQH" class="control-label"></label>
                                         <input asp-for="HeSoLuongQH" readonly id="HeSoLuongQH" class="form-control" />
                                         <span asp-validation-for="HeSoLuongQH" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="IDQLCV" class="control-label"></label>
+                                        <input asp-for="IDQLCV" id="IDQLCV" readonly class="form-control" />
+                                        <span asp-validation-for="IDQLCV" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="IDCV" class="control-label"></label>
@@ -132,15 +142,21 @@
                         type: "GET",
                         dataType: "json",
                         success: function (data) {
-                            response($.map(data, function (item) {
-                                return {
-                                    label: item.hoTen, value: item.hoTen, idsq: item.idsq, idqh: item.idqh,
-                                    tenQH: item.tenQH, idHeSoLuongQH: item.idHeSoLuongQH, heSoLuongQH: item.heSoLuongQH,
-                                    idcv: item.idcv, tenCV: item.tenCV, idHeSoPhuCapCV: item.idHeSoPhuCapCV,
-                                    heSoPhuCapCV: item.heSoPhuCapCV, luongCB: item.luongCB, luong: item.luong,
-                                    idLuongCB: item.idLuongCB
-                                };
-                            }))
+                            
+                            if (data.length == 0) {
+                                alert("Có vẻ như sĩ quan này đã có trong quản lý lương! Nếu không có vui lòng kiểm tra trong quản lý quân hàm và quản lý cúc vụ của sĩ quan!");
+                            }
+                            else {
+                                response($.map(data, function (item) {
+                                    return {
+                                        label: item.hoTen, value: item.hoTen, idsq: item.idsq, idqlqh: item.idqlqh, idqh: item.idqh,
+                                        tenQH: item.tenQH, idHeSoLuongQH: item.idHeSoLuongQH, heSoLuongQH: item.heSoLuongQH,
+                                        idqlcv: item.idqlcv, idcv: item.idcv, tenCV: item.tenCV, idHeSoPhuCapCV: item.idHeSoPhuCapCV,
+                                        heSoPhuCapCV: item.heSoPhuCapCV, luongCB: item.luongCB, luong: item.luong,
+                                        idLuongCB: item.idLuongCB
+                                    };
+                                }))
+                            }            
                         },
                         error: function (response) {
                             alert(response.responseText);
@@ -152,10 +168,12 @@
                 },
                 select: function (e, i) {
                     $("#IDSQ").val(i.item.idsq);
+                    $("#IDQLQH").val(i.item.idqlqh);
                     $("#IDQH").val(i.item.idqh);
                     $("#TenQH").val(i.item.tenQH);
                     $("#IDHeSoLuongQH").val(i.item.idHeSoLuongQH);
                     $("#HeSoLuongQH").val(i.item.heSoLuongQH);
+                    $("#IDQLCV").val(i.item.idqlcv);
                     $("#IDCV").val(i.item.idcv);
                     $("#TenCV").val(i.item.tenCV);
                     $("#IDHeSoPhuCapCV").val(i.item.idHeSoPhuCapCV);
@@ -168,6 +186,9 @@
                 minLength: 1
             });
         });
+        function StopSubmit(e) {
+            return true;
+        }
     </script>
 }
 
