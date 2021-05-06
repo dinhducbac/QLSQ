@@ -10,8 +10,8 @@ using QLSQ.Data.EF;
 namespace QLSQ.Data.Migrations
 {
     [DbContext(typeof(QL_SiQuanDBContext))]
-    [Migration("20210423095105_fix-database")]
-    partial class fixdatabase
+    [Migration("20210506020805_Fix-Database")]
+    partial class FixDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -175,7 +175,7 @@ namespace QLSQ.Data.Migrations
                         new
                         {
                             Id = new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"),
-                            ConcurrencyStamp = "8cbb05c0-14dd-46d6-84a8-b8cfba564d88",
+                            ConcurrencyStamp = "a99d5eff-27be-48a0-9617-7a3ec20edf6f",
                             Mota = "Administrator Role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -183,7 +183,7 @@ namespace QLSQ.Data.Migrations
                         new
                         {
                             Id = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"),
-                            ConcurrencyStamp = "4eb90a1b-c1df-4601-952a-51a9d793f7de",
+                            ConcurrencyStamp = "ee5e7b01-35f0-4282-87e9-235081019ff5",
                             Mota = "Si Quan Role",
                             Name = "Si Quan",
                             NormalizedName = "Si Quan"
@@ -247,13 +247,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "357be042-2591-4da8-9c56-d308b468db5d",
+                            ConcurrencyStamp = "3bf754db-8e3f-43ea-92b1-7b598666bd9b",
                             Email = "dinhducbac1998@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "dinhducbac1998@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAsSYYglT+DLci3rwWLq3pzbS+9B/N940KufqbZG5e5aEhA4PY44W589DnQaZQK8cw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGypdIdcwvbtDrbpPmVz7+XjAI5hH5odQzTQtqTBmmdbITOeIg5/2uxBgsvWLdujqw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -263,13 +263,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fc3eaa98-5116-4c3a-be7d-ffeb36920e24",
+                            ConcurrencyStamp = "9b51db08-5c6a-47e7-9c4d-bff6bf1a49be",
                             Email = "lethihien@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "lethihien@gmail.com",
                             NormalizedUserName = "lethihien",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOzGF3zJg3PbxB4zsDwV+safGFXPqh4E0Z9AkxdRUJcJ7omQ4q7itI6BkMRQK+59wQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENSV4Wm0kBuN+OoDQChKcIn8nkxNJ73dH2cV8YBqKO35ypAhZoqh8bCVEZ+Idvj0TQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -279,13 +279,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "73dc526b-412f-493e-bee9-dc92aa8e8eaa",
+                            ConcurrencyStamp = "3092cdac-bd44-4c01-8e86-16d47d007758",
                             Email = "dovantuan@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "dovantuan@gmail.com",
                             NormalizedUserName = "dovantuan",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGvUPkGpWFP14eZl8GeDQdUmF1JMkjooVKjZ3rdYparyFV/glow2+fZHem7FZdhLqQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHtJAanG8fgl0RKId2By5PVjmyOUFVApPdI438HyTKsTfuf+kzKCKE7gH1L/1mBoxw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -295,13 +295,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a6d8d226-6c4e-493e-8440-3484236db0f7",
+                            ConcurrencyStamp = "285410c1-b62e-449d-bf46-a668b2fec273",
                             Email = "lethigiang@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "lethigiang@gmail.com",
                             NormalizedUserName = "lethigiang",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIYG0Zn6VWZvMGbR5JlhhcQfc7Ppmo7MNLPfXUa969/G3O0KE2Dprhvx6NO2Z8k6wA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGEtET46LQcEM2W0hbT0IyUI9XVTy/wuXiDJlQwPHUkbKnlOHBcQJSrbt10S8tpvyA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -311,13 +311,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7ec2b2a8-f07f-42fc-8b2c-7c3c2d58d95e",
+                            ConcurrencyStamp = "2e43d903-0896-45af-8bbf-3a9a4c17ef02",
                             Email = "nguyenvanhoan@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "nguyenvanhoan@gmail.com",
                             NormalizedUserName = "nguyenvanhoan",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMsdh34DBwKb3ThclesXcpbX5lR2Cn8bnBY9/p8Q0lB4oJoNDMn7DM4+cXH4mdWBkg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGnqBqnBHFZa4k/yNbwHxP+YGUklfd6fMomoBhzVIcP9qxtcel8SjvQKgDdP4wbSLQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -327,13 +327,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "17c80d4f-1d56-41a7-ba72-29e80147e99f",
+                            ConcurrencyStamp = "fa591040-e815-4a17-bef4-14f6330f206c",
                             Email = "vuvancanh@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "vuvancanh@gmail.com",
                             NormalizedUserName = "vuvancanh",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJXkHAWdeATWZ48EFTF9uTJWlInB17gIvw03X+VgV2M1t4mWiSPtUl7Uf/Nukj4JCA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELAk/t+sgpn9MQU5hyqH50ohH9HDlDsd/Jex6vPWMT5kyJA0UYqJp839QBuZGAU+Ag==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -695,6 +695,75 @@ namespace QLSQ.Data.Migrations
                             IDLuongCB = 1,
                             LuongCB = 1429000m
                         });
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.New", b =>
+                {
+                    b.Property<int>("NewID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("NewContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NewCount")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
+
+                    b.Property<DateTime>("NewDatePost")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2021, 5, 6, 9, 8, 3, 872, DateTimeKind.Local).AddTicks(6263));
+
+                    b.Property<string>("NewName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NewID");
+
+                    b.ToTable("New");
+
+                    b.HasData(
+                        new
+                        {
+                            NewID = 1,
+                            NewContent = "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.",
+                            NewCount = 1,
+                            NewDatePost = new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified),
+                            NewName = "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”"
+                        });
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.NewImage", b =>
+                {
+                    b.Property<int>("NewImageID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("DateCreated")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2021, 5, 6, 9, 8, 3, 876, DateTimeKind.Local).AddTicks(6878));
+
+                    b.Property<long>("FileSize")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NewID")
+                        .HasColumnType("int");
+
+                    b.HasKey("NewImageID");
+
+                    b.HasIndex("NewID");
+
+                    b.ToTable("NewImage");
                 });
 
             modelBuilder.Entity("QLSQ.Data.Entities.QLChucVu", b =>
@@ -1484,6 +1553,17 @@ namespace QLSQ.Data.Migrations
                     b.Navigation("ChucVu");
                 });
 
+            modelBuilder.Entity("QLSQ.Data.Entities.NewImage", b =>
+                {
+                    b.HasOne("QLSQ.Data.Entities.New", "New")
+                        .WithMany("NewImages")
+                        .HasForeignKey("NewID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("New");
+                });
+
             modelBuilder.Entity("QLSQ.Data.Entities.QLChucVu", b =>
                 {
                     b.HasOne("QLSQ.Data.Entities.ChucVu", "ChucVu")
@@ -1678,6 +1758,11 @@ namespace QLSQ.Data.Migrations
             modelBuilder.Entity("QLSQ.Data.Entities.LuongCoBan", b =>
                 {
                     b.Navigation("QLLuongs");
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.New", b =>
+                {
+                    b.Navigation("NewImages");
                 });
 
             modelBuilder.Entity("QLSQ.Data.Entities.QLChucVu", b =>
