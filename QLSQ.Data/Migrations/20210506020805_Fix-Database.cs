@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QLSQ.Data.Migrations
 {
-    public partial class fixdatabase : Migration
+    public partial class FixDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -71,6 +71,22 @@ namespace QLSQ.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LuongCoBan", x => x.IDLuongCB);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "New",
+                columns: table => new
+                {
+                    NewID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NewName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NewContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NewDatePost = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 5, 6, 9, 8, 3, 872, DateTimeKind.Local).AddTicks(6263)),
+                    NewCount = table.Column<int>(type: "int", nullable: false, defaultValue: 0)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_New", x => x.NewID);
                 });
 
             migrationBuilder.CreateTable(
@@ -197,6 +213,28 @@ namespace QLSQ.Data.Migrations
                         column: x => x.IDBP,
                         principalTable: "BoPhan",
                         principalColumn: "IDBP",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NewImage",
+                columns: table => new
+                {
+                    NewImageID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NewID = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 5, 6, 9, 8, 3, 876, DateTimeKind.Local).AddTicks(6878)),
+                    FileSize = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NewImage", x => x.NewImageID);
+                    table.ForeignKey(
+                        name: "FK_NewImage_New_NewID",
+                        column: x => x.NewID,
+                        principalTable: "New",
+                        principalColumn: "NewID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -508,8 +546,8 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Mota", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "8cbb05c0-14dd-46d6-84a8-b8cfba564d88", "Administrator Role", "admin", "admin" },
-                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "4eb90a1b-c1df-4601-952a-51a9d793f7de", "Si Quan Role", "Si Quan", "Si Quan" }
+                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "a99d5eff-27be-48a0-9617-7a3ec20edf6f", "Administrator Role", "admin", "admin" },
+                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "ee5e7b01-35f0-4282-87e9-235081019ff5", "Si Quan Role", "Si Quan", "Si Quan" }
                 });
 
             migrationBuilder.InsertData(
@@ -517,12 +555,12 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "73dc526b-412f-493e-bee9-dc92aa8e8eaa", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEGvUPkGpWFP14eZl8GeDQdUmF1JMkjooVKjZ3rdYparyFV/glow2+fZHem7FZdhLqQ==", null, false, "", false, "dovantuan" },
-                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "17c80d4f-1d56-41a7-ba72-29e80147e99f", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAEJXkHAWdeATWZ48EFTF9uTJWlInB17gIvw03X+VgV2M1t4mWiSPtUl7Uf/Nukj4JCA==", null, false, "", false, "vuvancanh" },
-                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "357be042-2591-4da8-9c56-d308b468db5d", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAEAsSYYglT+DLci3rwWLq3pzbS+9B/N940KufqbZG5e5aEhA4PY44W589DnQaZQK8cw==", null, false, "", false, "admin" },
-                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "fc3eaa98-5116-4c3a-be7d-ffeb36920e24", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAEOzGF3zJg3PbxB4zsDwV+safGFXPqh4E0Z9AkxdRUJcJ7omQ4q7itI6BkMRQK+59wQ==", null, false, "", false, "lethihien" },
-                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "7ec2b2a8-f07f-42fc-8b2c-7c3c2d58d95e", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEMsdh34DBwKb3ThclesXcpbX5lR2Cn8bnBY9/p8Q0lB4oJoNDMn7DM4+cXH4mdWBkg==", null, false, "", false, "nguyenvanhoan" },
-                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "a6d8d226-6c4e-493e-8440-3484236db0f7", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEIYG0Zn6VWZvMGbR5JlhhcQfc7Ppmo7MNLPfXUa969/G3O0KE2Dprhvx6NO2Z8k6wA==", null, false, "", false, "lethigiang" }
+                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "285410c1-b62e-449d-bf46-a668b2fec273", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEGEtET46LQcEM2W0hbT0IyUI9XVTy/wuXiDJlQwPHUkbKnlOHBcQJSrbt10S8tpvyA==", null, false, "", false, "lethigiang" },
+                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "fa591040-e815-4a17-bef4-14f6330f206c", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAELAk/t+sgpn9MQU5hyqH50ohH9HDlDsd/Jex6vPWMT5kyJA0UYqJp839QBuZGAU+Ag==", null, false, "", false, "vuvancanh" },
+                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "3bf754db-8e3f-43ea-92b1-7b598666bd9b", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAEGypdIdcwvbtDrbpPmVz7+XjAI5hH5odQzTQtqTBmmdbITOeIg5/2uxBgsvWLdujqw==", null, false, "", false, "admin" },
+                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "9b51db08-5c6a-47e7-9c4d-bff6bf1a49be", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAENSV4Wm0kBuN+OoDQChKcIn8nkxNJ73dH2cV8YBqKO35ypAhZoqh8bCVEZ+Idvj0TQ==", null, false, "", false, "lethihien" },
+                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "3092cdac-bd44-4c01-8e86-16d47d007758", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEHtJAanG8fgl0RKId2By5PVjmyOUFVApPdI438HyTKsTfuf+kzKCKE7gH1L/1mBoxw==", null, false, "", false, "dovantuan" },
+                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "2e43d903-0896-45af-8bbf-3a9a4c17ef02", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEGnqBqnBHFZa4k/yNbwHxP+YGUklfd6fMomoBhzVIcP9qxtcel8SjvQKgDdP4wbSLQ==", null, false, "", false, "nguyenvanhoan" }
                 });
 
             migrationBuilder.InsertData(
@@ -532,9 +570,9 @@ namespace QLSQ.Data.Migrations
                 {
                     { 5, "Đơn vị" },
                     { 4, "Khoa" },
-                    { 3, "Trợ lý" },
+                    { 2, "Phòng" },
                     { 1, "Ban giám hiệu" },
-                    { 2, "Phòng" }
+                    { 3, "Trợ lý" }
                 });
 
             migrationBuilder.InsertData(
@@ -543,14 +581,19 @@ namespace QLSQ.Data.Migrations
                 values: new object[] { 1, 1429000m });
 
             migrationBuilder.InsertData(
+                table: "New",
+                columns: new[] { "NewID", "NewContent", "NewCount", "NewDatePost", "NewName" },
+                values: new object[] { 1, "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.", 1, new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified), "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”" });
+
+            migrationBuilder.InsertData(
                 table: "QuanHam",
                 columns: new[] { "IDQH", "TenQH" },
                 values: new object[,]
                 {
                     { 6, "Trung Tá" },
                     { 7, "Thượng Tá" },
-                    { 5, "Thiếu Tá" },
                     { 8, "Đại tá" },
+                    { 5, "Thiếu Tá" },
                     { 9, "Thiếu Tướng" },
                     { 10, "Trung Tướng" },
                     { 4, "Đại Úy" },
@@ -734,6 +777,11 @@ namespace QLSQ.Data.Migrations
                 column: "IDCV");
 
             migrationBuilder.CreateIndex(
+                name: "IX_NewImage_NewID",
+                table: "NewImage",
+                column: "NewID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_QLChucVu_IDCV",
                 table: "QLChucVu",
                 column: "IDCV");
@@ -830,6 +878,9 @@ namespace QLSQ.Data.Migrations
                 name: "HeSoPhuCapTheoChucVu");
 
             migrationBuilder.DropTable(
+                name: "NewImage");
+
+            migrationBuilder.DropTable(
                 name: "QLCongTac");
 
             migrationBuilder.DropTable(
@@ -867,6 +918,9 @@ namespace QLSQ.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserToken");
+
+            migrationBuilder.DropTable(
+                name: "New");
 
             migrationBuilder.DropTable(
                 name: "LuongCoBan");
