@@ -16,12 +16,10 @@ namespace QLSQ.Application.Catalog.New
     {
         public readonly QL_SiQuanDBContext _context;
         public readonly INewImageServices _newImageServices;
-        //public readonly IManageSiQuanServices _manageSiQuanServices;
-        public NewServices(QL_SiQuanDBContext context,INewImageServices newImageServices, IManageSiQuanServices manageSiQuanServices)
+        public NewServices(QL_SiQuanDBContext context,INewImageServices newImageServices)
         {
             _context = context;
             _newImageServices = newImageServices;
-            //_manageSiQuanServices = manageSiQuanServices;
         }
 
         public async Task<APIResult<bool>> Create(NewCreateRequest request)
@@ -48,6 +46,15 @@ namespace QLSQ.Application.Catalog.New
             }
             _context.News.Add(news);
             await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
+        public async Task<APIResult<bool>> Delete(int NewID)
+        {
+            var news = await _context.News.FirstOrDefaultAsync(x => x.NewID == NewID);
+            _context.News.Remove(news);
+            await _context.SaveChangesAsync();
+            var deleteNewImage = await _newImageServices.DeleteNewImageByNewID(NewID);
             return new APISuccessedResult<bool>(true);
         }
 
@@ -79,9 +86,24 @@ namespace QLSQ.Application.Catalog.New
             if(request.FormFile != null)
             {
                 var newimage = await _context.NewImages.FirstOrDefaultAsync(x=>x.NewID == NewID);
-                newimage.DateCreated = DateTime.Now;
-                newimage.ImagePath = await _newImageServices.SaveFile(request.FormFile);
-                newimage.FileSize = request.FormFile.Length;
+                if(newimage != null)
+                {
+                    newimage.DateCreated = DateTime.Now;
+                    newimage.ImagePath = await _newImageServices.SaveFile(request.FormFile);
+                    newimage.FileSize = request.FormFile.Length;
+                }
+                else
+                {
+                    var newNewImage = new QLSQ.Data.Entities.NewImage()
+                    {
+                        NewID = NewID,
+                        ImagePath = await _newImageServices.SaveFile(request.FormFile),
+                        DateCreated = DateTime.Now,
+                        FileSize = request.FormFile.Length
+                    };
+                    _context.NewImages.Add(newNewImage);
+                    await _context.SaveChangesAsync();
+                }
             }
             await _context.SaveChangesAsync();
             return new APISuccessedResult<bool>(true);

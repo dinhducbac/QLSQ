@@ -12,5 +12,7 @@ namespace QLSQ.Application.Catalog.NewImage
     {
         public Task<string> SaveFile(IFormFile file);
         public Task<APIResult<string>> GetImagePathByNewID(int NewID);
+
+        public Task<APIResult<bool>> DeleteNewImageByNewID(int NewID);
     }
 }

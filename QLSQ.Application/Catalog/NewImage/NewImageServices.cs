@@ -24,6 +24,20 @@ namespace QLSQ.Application.Catalog.NewImage
             _context = context;
         }
 
+        public async Task<APIResult<bool>> DeleteNewImageByNewID(int NewID)
+        {
+            var query = from newimage in _context.NewImages
+                        where newimage.NewID == NewID
+                        select newimage;
+            foreach (var data in query)
+            {
+                _context.NewImages.Remove(data);
+                await _context.SaveChangesAsync();
+            }
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
+        }
+
         public async Task<APIResult<string>> GetImagePathByNewID(int NewID)
         {
             var imagepath = await (from newimage in _context.NewImages
