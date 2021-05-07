@@ -61,6 +61,7 @@ namespace QLSQ.AdminApp
             services.AddTransient<ISiQuanImageApiClient, SiQuanImageApiClient>();
             services.AddTransient<IQLQuanHamApiClient, QLQuanHamApiClient>();
             services.AddTransient<INewApiClient, NewApiClient>();
+            services.AddTransient<INewImageApiClient, NewImageApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
             var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT");
 #if DEBUG
