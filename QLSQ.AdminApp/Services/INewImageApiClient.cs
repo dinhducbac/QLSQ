@@ -11,5 +11,7 @@ namespace QLSQ.AdminApp.Services
     {
         public Task<APIResult<PageResult<NewImageViewModel>>> GetAllWithPaging(GetNewImagePagingRequest request);
         public Task<APIResult<bool>> Create(NewImageCreateRequest request);
+        public Task<APIResult<NewImageDetailsModel>> Details(int NewImageID);
+        public Task<APIResult<bool>> Edit(int NewImageID, NewImageUpdateRequest request);
     }
 }
