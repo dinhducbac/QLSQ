@@ -21,6 +21,8 @@ using QLSQ.Application.Catalog.ChucVu;
 using QLSQ.Application.Catalog.HeSoLuongTheoQuanHam;
 using QLSQ.Application.Catalog.HeSoPhuCapTHeoChucVu;
 using QLSQ.Application.Catalog.LuongCoBan;
+using QLSQ.Application.Catalog.New;
+using QLSQ.Application.Catalog.NewImage;
 using QLSQ.Application.Catalog.QLChucVu;
 using QLSQ.Application.Catalog.QLCongTac;
 using QLSQ.Application.Catalog.QLDangVien;
@@ -86,6 +88,9 @@ namespace QLSQ.BackEndAPI
             services.AddTransient<IQLGiaDinhSQServices, QLGiaDinhServices>();
             services.AddTransient<ISiQuanImageServices, SiQuanImageServices>();
             services.AddTransient<IQLQuanHamServices, QLQuanHamServices>();
+            services.AddTransient<INewImageStorageService, NewImageStorageServices>();
+            services.AddTransient<INewImageServices, NewImageServices>();
+            services.AddTransient<INewServices, NewServices>();
             services.AddTransient<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddTransient<SignInManager<AppUser>, SignInManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>, RoleManager<AppRole>>();
