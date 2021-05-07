@@ -47,6 +47,43 @@ namespace QLSQ.AdminApp.Services
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
+        public async Task<APIResult<NewImageDetailsModel>> Details(int NewImageID)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/NewImages/{NewImageID}/details");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<NewImageDetailsModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<NewImageDetailsModel>>(body);
+        }
+
+        public async Task<APIResult<bool>> Edit(int NewImageID, NewImageUpdateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var requestContent = new MultipartFormDataContent();
+            if(request.FormFile != null)
+            {
+                byte[] data;
+                using (var br = new BinaryReader(request.FormFile.OpenReadStream()))
+                {
+                    data = br.ReadBytes((int)request.FormFile.OpenReadStream().Length);
+                    ByteArrayContent bytes = new ByteArrayContent(data);
+                    requestContent.Add(bytes, "FormFile", request.FormFile.FileName);
+                }
+               
+            }
+            requestContent.Add(new StringContent(request.DateCreated.ToString()), "DateCreated");
+            var response = await client.PutAsync($"/api/NewImages/{NewImageID}/edit", requestContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
         public async Task<APIResult<PageResult<NewImageViewModel>>> GetAllWithPaging(GetNewImagePagingRequest request)
         {
             var client = _httpClientFactory.CreateClient();
