@@ -94,6 +94,32 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int NewID)
+        {
+            var result = await _newApiClient.Details(NewID);
+            var newsDeleteReaquest = new NewDeleteRequest()
+            {
+                NewID = result.ResultObj.NewID,
+                NewName = result.ResultObj.NewName,
+                ImagePath = result.ResultObj.ImagePath,
+                NewContent = result.ResultObj.NewContent,
+                NewDatePost = result.ResultObj.NewDatePost,
+                NewCount = result.ResultObj.NewCount
 
+            };
+            return View(newsDeleteReaquest);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(NewDeleteRequest request)
+        {
+            var result = await _newApiClient.Delete(request.NewID);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa tin tức thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }

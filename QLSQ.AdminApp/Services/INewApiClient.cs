@@ -13,5 +13,6 @@ namespace QLSQ.AdminApp.Services
         public Task<APIResult<bool>> Create(NewCreateRequest request);
         public Task<APIResult<NewDetailsViewModel>> Details(int NewID);
         public Task<APIResult<bool>> Edit(int NewID, NewUpdateRequest request);
+        public Task<APIResult<bool>> Delete(int NewID);
     }
 }
