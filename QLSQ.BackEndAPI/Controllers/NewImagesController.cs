@@ -39,5 +39,26 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("{NewImageID}/details")]
+        public async Task<IActionResult> Details(int NewImageID)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newImageServices.Details(NewImageID);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        } 
+        [HttpPut("{NewImageID}/edit")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Edit(int NewImageID,[FromForm]NewImageUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newImageServices.Edit(NewImageID,request);
+            if (result.IsSuccessed)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

@@ -57,6 +57,38 @@ namespace QLSQ.Application.Catalog.NewImage
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<NewImageDetailsModel>> Details(int NewImageID)
+        {
+            var newimageDetailsModel = await (from newimage in _context.NewImages
+                                              join news in _context.News
+                                              on newimage.NewID equals news.NewID
+                                              where newimage.NewImageID == NewImageID
+                                              select new NewImageDetailsModel() 
+                                              {
+                                                   NewImageID = NewImageID,
+                                                   NewID = newimage.NewID,
+                                                   NewName = news.NewName,
+                                                   ImagePath = newimage.ImagePath,
+                                                   DateCreated = newimage.DateCreated,
+                                                   FileSize = newimage.FileSize
+                                              }).FirstOrDefaultAsync();
+            return new APISuccessedResult<NewImageDetailsModel>(newimageDetailsModel);
+        }
+
+        public async Task<APIResult<bool>> Edit(int NewImageID, NewImageUpdateRequest request)
+        {
+            var newImage = await _context.NewImages.FirstOrDefaultAsync(x => x.NewImageID == NewImageID);
+            if(request.FormFile != null)
+            {
+                newImage.ImagePath = await this.SaveFile(request.FormFile);
+                newImage.DateCreated = request.DateCreated;
+                newImage.FileSize = request.FormFile.Length;
+                await _context.SaveChangesAsync();
+                return new APISuccessedResult<bool>(true);
+            }
+            return new APIErrorResult<bool>("Thất bại");
+        }
+
         public async Task<APIResult<PageResult<NewImageViewModel>>> GetAllWithPaging(GetNewImagePagingRequest request)
         {
             var query = from newimage in _context.NewImages

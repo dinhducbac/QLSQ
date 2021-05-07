@@ -60,5 +60,40 @@ namespace QLSQ.AdminApp.Controllers
             }
             return RedirectToAction("Error", "Home");
         }
+        [HttpGet]
+        public async Task<IActionResult> Details(int NewImageID)
+        {
+            var result = await _newImageApiClient.Details(NewImageID);
+            if (result.ResultObj != null)
+                return View(result.ResultObj);
+            return RedirectToAction("Error", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int NewImageID)
+        {
+            var result = await _newImageApiClient.Details(NewImageID);
+            var newImageUpdateRequest = new NewImageUpdateRequest()
+            {
+                NewImageID = result.ResultObj.NewImageID,
+                NewID = result.ResultObj.NewID,
+                NewName = result.ResultObj.NewName,
+                ImagePath = result.ResultObj.ImagePath,
+                DateCreated = result.ResultObj.DateCreated,
+                FileSize = result.ResultObj.FileSize
+            };
+            return View(newImageUpdateRequest);
+        }
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Edit([FromForm]NewImageUpdateRequest request)
+        {
+            var result = await _newImageApiClient.Edit(request.NewID,request);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Sửa ảnh tin tức thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
     }
 }
