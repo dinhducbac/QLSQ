@@ -70,5 +70,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("getlistnewautocomplete")]
+        public async Task<IActionResult> GetListNewAutoComplete(string prefix)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetListNewAutoComplete(prefix);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }
