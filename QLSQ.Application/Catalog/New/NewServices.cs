@@ -142,5 +142,18 @@ namespace QLSQ.Application.Catalog.New
             };
             return new APISuccessedResult<PageResult<NewViewModel>>(pageResult);
         }
+
+        public async Task<APIResult<List<NewViewModel>>> GetListNewAutoComplete(string prefix)
+        {
+            var query = await (from news in _context.News
+                              where news.NewName.Contains(prefix)
+                              select new NewViewModel() 
+                              {
+                                NewID = news.NewID,
+                                NewName = news.NewName
+                              }).ToListAsync();
+           
+            return new APISuccessedResult<List<NewViewModel>>(query);
+        }
     }
 }

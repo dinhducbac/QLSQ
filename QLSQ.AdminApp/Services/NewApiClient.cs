@@ -125,5 +125,18 @@ namespace QLSQ.AdminApp.Services
                 return JsonConvert.DeserializeObject<APISuccessedResult<PageResult<NewViewModel>>>(body);
             return JsonConvert.DeserializeObject<APIErrorResult<PageResult<NewViewModel>>>(body);
         }
+
+        public async Task<APIResult<List<NewViewModel>>> GetListNewAutoComplete(string prefix)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/getlistnewautocomplete?prefix={prefix}");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewViewModel>>>(body);
+        }
     }
 }
