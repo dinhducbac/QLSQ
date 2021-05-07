@@ -1,0 +1,116 @@
+﻿@model QLSQ.ViewModel.Catalogs.New.NewUpdateRequest
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Chỉnh sửa thông tin quân hàm</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with minimal features & hover style</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="NewID" class="control-label"></label>
+                                        <input asp-for="NewID" class="form-control"  readonly/>
+                                        <span asp-validation-for="NewID" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewName" class="control-label"></label>
+                                        <textarea asp-for="NewName" class="form-control" rows="3"></textarea>
+                                        <span asp-validation-for="NewName" class="text-danger"></span>
+                                    </div>
+                                        <div id="ShowImagePath" class="form-group">
+                                            <label asp-for="ImagePath" class="control-label"></label>
+                                            <input id="CheckImagePath" asp-for="ImagePath" type="hidden"/>
+                                            <img id="ImagePath" src="@Configuration["BaseAddress"]/new-image/@Model.ImagePath" width="350" height="350" />
+                                            <span asp-validation-for="ImagePath" class="text-danger"></span>
+                                        </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewContent" class="control-label"></label>
+                                        <textarea asp-for="NewContent" class="form-control" rows="5"></textarea>
+                                        <span asp-validation-for="NewContent" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewDatePost" class="control-label"></label>
+                                        <input asp-for="NewDatePost" class="form-control" />
+                                        <span asp-validation-for="NewDatePost" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewCount" class="control-label"></label>
+                                        <input asp-for="NewCount" class="form-control" />
+                                        <span asp-validation-for="NewCount" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="FormFile" class="control-label"></label>
+                                        <input type="file" asp-for="FormFile" class="form-control" onchange="readURL(this)"/>
+                                        <span asp-validation-for="FormFile" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Save" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+@section FileScripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($("#CheckImagePath").val() == "") {
+                $("#ShowImagePath").hide();
+            }
+        });
+        function readURL(input) {
+            var ext = input.files[0]['name'].substring(input.files[0]['name'].lastIndexOf('.') + 1).toLowerCase();
+            if (input.files && input.files[0] && (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg"))
+            {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    if (confirm("Bạn muốn thay đổi ảnh bằng ảnh vừa chọn?")) {
+                        var image = document.getElementById("ImagePath");
+                        image.src = e.target.result;
+                        $("#ShowImagePath").show();
+                    }
+                }
+                reader.readAsDataURL(input.files[0]);
+                }else {
+                    alert("Error");
+                }
+        }
+    </script>
+}
+
+
