@@ -9,10 +9,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-using QLSQ.AdminApp.Services;
 using QLSQ.ViewModel.System.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using QLSQ.ApiIntergration;
 
 namespace QLSQ.AdminApp
 {

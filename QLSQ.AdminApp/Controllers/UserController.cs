@@ -14,7 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.Ini;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
-using QLSQ.AdminApp.Services;
+using QLSQ.ApiIntergration;
 using QLSQ.ViewModel.Common;
 using QLSQ.ViewModel.System.Users;
 

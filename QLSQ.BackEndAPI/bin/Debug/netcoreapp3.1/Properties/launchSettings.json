@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:50263",
-      "sslPort": 44315
+      "applicationUrl": "http://localhost:64349",
+      "sslPort": 44308
     }
   },
   "profiles": {
@@ -15,11 +15,10 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "QLSQ.BackEndAPI": {
+    "QLSQ": {
       "commandName": "Project",
-        "launchBrowser": false,
-        "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:5001",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:5003",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
