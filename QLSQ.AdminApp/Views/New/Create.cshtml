@@ -4,75 +4,101 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-12">
-                    <h1 class="m-0 text-dark">Tạo quân hàm</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Tạo User</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <form asp-action="Create" enctype="multipart/form-data" method="post">
-                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                        <div class="form-group">
-                                            <label asp-for="NewName" class="control-label"></label>
-                                            <input asp-for="NewName" class="form-control" />
-                                            <span asp-validation-for="NewName" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label asp-for="NewContent" class="control-label"></label>
-                                            <input asp-for="NewContent" class="form-control" />
-                                            <span asp-validation-for="NewContent" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label asp-for="NewDatePost" class="control-label"></label>
-                                            <input asp-for="NewDatePost" class="form-control" />
-                                            <span asp-validation-for="NewDatePost" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label asp-for="NewCount" class="control-label"></label>
-                                            <input asp-for="NewCount" class="form-control" />
-                                            <span asp-validation-for="NewCount" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <label asp-for="FormFile" class="control-label"></label>
-                                            <input type="file" asp-for="FormFile" class="form-control" />
-                                            <span asp-validation-for="FormFile" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="submit" value="Create" class="btn btn-primary" />
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                            <div>
-                                <a asp-action="Index">Back to List</a>
-                            </div>
-                        </div>
-                        <!-- /.card-body -->
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#NewName'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#NewContent'), {
+                // toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+            })
+            .then(editor => {
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+    </script>
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-12">
+                <h1 class="m-0 text-dark">Tạo tin tức</h1>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Tạo tin tức</h3>
                     </div>
-                    <!-- /.card -->
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <form asp-action="Create" enctype="multipart/form-data" method="post">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="form-group">
+                                        <label asp-for="NewName" class="control-label"></label>
+                                        <textarea id="NewName" asp-for="NewName" class="form-control" rows="3"></textarea>
+                                        <span asp-validation-for="NewName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewContent" class="control-label"></label>
+                                        <textarea id="NewContent" asp-for="NewContent" class="form-control" rows="5"  ></textarea>
+                                        <span asp-validation-for="NewContent" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewDatePost" class="control-label"></label>
+                                        <input asp-for="NewDatePost" class="form-control" />
+                                        <span asp-validation-for="NewDatePost" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="NewCount" class="control-label"></label>
+                                        <input asp-for="NewCount" class="form-control" />
+                                        <span asp-validation-for="NewCount" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="FormFile" class="control-label"></label>
+                                        <input type="file" asp-for="FormFile" class="form-control" />
+                                        <span asp-validation-for="FormFile" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a asp-action="Index">Back to List</a>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.col -->
+                <!-- /.card -->
             </div>
-            <!-- /.row -->
+            <!-- /.col -->
         </div>
-        <!-- /.container-fluid -->
-    </section>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
 
 
