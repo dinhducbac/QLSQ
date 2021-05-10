@@ -40,7 +40,21 @@ namespace QLSQ.AdminApp.Services
                 ByteArrayContent bytes = new ByteArrayContent(data);
                 requestContent.Add(bytes, "FormFile", request.FormFile.FileName);
             }
+            requestContent.Add(new StringContent(request.NewID.ToString()), "NewID");
             var response = await client.PostAsync($"/api/NewImages/create", requestContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
+        }
+
+        public async Task<APIResult<bool>> Delete(int NewImageID)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.DeleteAsync($"/api/NewImages/{NewImageID}/delete");
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<APISuccessedResult<bool>>(body);
