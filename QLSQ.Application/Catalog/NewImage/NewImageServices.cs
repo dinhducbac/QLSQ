@@ -39,8 +39,15 @@ namespace QLSQ.Application.Catalog.NewImage
                 await _context.SaveChangesAsync();
                 return new APISuccessedResult<bool>(true);
             }
-            else
-                return new APIErrorResult<bool>("Thất bại");
+            return new APIErrorResult<bool>("Thất bại");
+        }
+
+        public async Task<APIResult<bool>> Delete(int NewImageID)
+        {
+            var newimage = await _context.NewImages.FirstOrDefaultAsync(x=>x.NewImageID ==  NewImageID);
+            _context.NewImages.Remove(newimage);
+            await _context.SaveChangesAsync();
+            return new APISuccessedResult<bool>(true);
         }
 
         public async Task<APIResult<bool>> DeleteNewImageByNewID(int NewID)
@@ -92,16 +99,20 @@ namespace QLSQ.Application.Catalog.NewImage
         public async Task<APIResult<PageResult<NewImageViewModel>>> GetAllWithPaging(GetNewImagePagingRequest request)
         {
             var query = from newimage in _context.NewImages
+                        join news in _context.News
+                        on newimage.NewID equals news.NewID
                         select new NewImageViewModel()
                         {
                             NewImageID = newimage.NewImageID,
                             NewID = newimage.NewID,
+                            NewName = news.NewName,
                             ImagePath = newimage.ImagePath,
                             DateCreated = newimage.DateCreated,
                             FileSize = newimage.FileSize
                         };
             if (!string.IsNullOrEmpty(request.keyword))
-                query = query.Where(x => x.NewImageID.ToString().Contains(request.keyword) || x.NewID.ToString().Contains(request.keyword));
+                query = query.Where(x => x.NewImageID.ToString().Contains(request.keyword) || x.NewID.ToString().Contains(request.keyword)
+                || x.NewName.Contains(request.keyword));
             var totalRow = await query.CountAsync();
             var data = await query.Skip((request.pageIndex - 1) * request.pageSize)
                 .Take(request.pageSize)
@@ -109,6 +120,7 @@ namespace QLSQ.Application.Catalog.NewImage
                 {
                     NewImageID = x.NewImageID,
                     NewID = x.NewID,
+                    NewName = x.NewName,
                     ImagePath = x.ImagePath,
                     DateCreated = x.DateCreated,
                     FileSize = x.FileSize

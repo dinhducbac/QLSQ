@@ -50,7 +50,7 @@ namespace QLSQ.AdminApp.Controllers
         }
         [HttpPost]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Create(NewImageCreateRequest request)
+        public async Task<IActionResult> Create([FromForm]NewImageCreateRequest request)
         {
             var result = await _newImageApiClient.Create(request);
             if (result.IsSuccessed)
@@ -87,10 +87,40 @@ namespace QLSQ.AdminApp.Controllers
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Edit([FromForm]NewImageUpdateRequest request)
         {
-            var result = await _newImageApiClient.Edit(request.NewID,request);
+            var result = await _newImageApiClient.Edit(request.NewImageID,request);
             if (result.IsSuccessed)
             {
                 TempData["result"] = "Sửa ảnh tin tức thành công!";
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Error", "Home");
+        }
+        [HttpGet]
+        public async Task<IActionResult> Delete(int NewImageID)
+        {
+            var result = await _newImageApiClient.Details(NewImageID);
+            if(result.ResultObj != null)
+            {
+                var newImageDeleteRequest = new NewImageDeleteRequest()
+                {
+                    NewImageID = result.ResultObj.NewImageID,
+                    NewID = result.ResultObj.NewID,
+                    NewName = result.ResultObj.NewName,
+                    ImagePath = result.ResultObj.ImagePath,
+                    DateCreated = result.ResultObj.DateCreated,
+                    FileSize = result.ResultObj.FileSize
+                };
+                return View(newImageDeleteRequest);
+            }
+            return RedirectToAction("Error", "Home");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(NewImageDeleteRequest request)
+        {
+            var result = await _newImageApiClient.Delete(request.NewImageID);
+            if (result.IsSuccessed)
+            {
+                TempData["result"] = "Xóa ảnh của tin tức thành công!";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Error", "Home");
