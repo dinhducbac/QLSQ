@@ -1,0 +1,14 @@
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\bin\Debug\netcoreapp3.1\QLSQ.ApiIntergration.deps.json
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\bin\Debug\netcoreapp3.1\QLSQ.ApiIntergration.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\bin\Debug\netcoreapp3.1\QLSQ.ViewModel.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\bin\Debug\netcoreapp3.1\QLSQ.ViewModel.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\obj\Debug\netcoreapp3.1\QLSQ.ApiIntergration.csprojAssemblyReference.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\obj\Debug\netcoreapp3.1\QLSQ.ApiIntergration.AssemblyInfoInputs.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\obj\Debug\netcoreapp3.1\QLSQ.ApiIntergration.AssemblyInfo.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\obj\Debug\netcoreapp3.1\QLSQ.ApiIntergration.csproj.CopyComplete
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\bin\Debug\netcoreapp3.1\QLSQ.Utilities.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\bin\Debug\netcoreapp3.1\QLSQ.Utilities.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\bin\Debug\netcoreapp3.1\QLSQ.ApiIntergration.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\obj\Debug\netcoreapp3.1\QLSQ.ApiIntergration.csproj.CoreCompileInputs.cache
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\obj\Debug\netcoreapp3.1\QLSQ.ApiIntergration.dll
+D:\Project\QL_SQ\QLSQ\QLSQ.ApiIntergration\obj\Debug\netcoreapp3.1\QLSQ.ApiIntergration.pdb

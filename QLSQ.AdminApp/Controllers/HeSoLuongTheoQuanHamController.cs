@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
-using QLSQ.AdminApp.Services;
+using QLSQ.ApiIntergration;
 using QLSQ.ViewModel.Catalogs.HeSoLuongTheoQuanHam;
 using QLSQ.ViewModel.Catalogs.QuanHam;
 

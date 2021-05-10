@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp;
-using QLSQ.AdminApp.Services;
+
+using QLSQ.ApiIntergration;
 using QLSQ.ViewModel.Catalogs.ChucVu;
 using QLSQ.ViewModel.Catalogs.HeSoPhuCapTheoChucVu;
 
