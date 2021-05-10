@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.Validators;
 using Microsoft.AspNetCore.Mvc;
-using QLSQ.AdminApp.Services;
+using QLSQ.ApiIntergration;
 using QLSQ.ViewModel.Catalogs.QLChucVu;
 
 namespace QLSQ.AdminApp.Controllers

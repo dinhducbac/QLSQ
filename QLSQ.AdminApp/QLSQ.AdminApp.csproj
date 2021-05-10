@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QLSQ.ApiIntergration\QLSQ.ApiIntergration.csproj" />
     <ProjectReference Include="..\QLSQ.ViewModel\QLSQ.ViewModel.csproj" />
   </ItemGroup>
 
