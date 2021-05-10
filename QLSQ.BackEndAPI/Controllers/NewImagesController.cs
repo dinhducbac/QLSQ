@@ -30,7 +30,7 @@ namespace QLSQ.BackEndAPI.Controllers
         }
         [HttpPost("create")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Create([FromForm] NewImageCreateRequest request)
+        public async Task<IActionResult> Create([FromForm]NewImageCreateRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -57,6 +57,16 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest(ModelState);
             var result = await _newImageServices.Edit(NewImageID,request);
             if (result.IsSuccessed)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpDelete("{NewImageID}/delete")]
+        public async Task<IActionResult> Delete(int NewImageID)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newImageServices.Delete(NewImageID);
+            if (result.ResultObj == true)
                 return Ok(result);
             return BadRequest(result);
         }

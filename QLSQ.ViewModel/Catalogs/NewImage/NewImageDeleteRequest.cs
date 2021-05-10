@@ -5,13 +5,13 @@ using System.Text;
 
 namespace QLSQ.ViewModel.Catalogs.NewImage
 {
-    public class NewImageViewModel
+    public class NewImageDeleteRequest
     {
         [Display(Name = "ID ảnh tin tức")]
         public int NewImageID { get; set; }
         [Display(Name = "ID tin tức")]
         public int NewID { get; set; }
-        [Display(Name ="Tiêu đề tin tức")]
+        [Display(Name = "Tiêu đề tin tức")]
         public string NewName { get; set; }
         [Display(Name = "Đường dẫn ảnh tin tức")]
         public string ImagePath { get; set; }
