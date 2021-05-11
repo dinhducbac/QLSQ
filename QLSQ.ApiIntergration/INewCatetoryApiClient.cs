@@ -15,5 +15,6 @@ namespace QLSQ.ApiIntergration
         public Task<APIResult<NewCatetoryViewModel>> Details(int NewCatetoryID);
         public Task<APIResult<bool>> Edit(int NewCatetoryID, NewCatetoryUpdateRequest request);
         public Task<APIResult<bool>> Delete(int NewCatetoryID);
+        public Task<APIResult<List<NewCatetoryViewModel>>> GetAllWithoutPaging();
     }
 }

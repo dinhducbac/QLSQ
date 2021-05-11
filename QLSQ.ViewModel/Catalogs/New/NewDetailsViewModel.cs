@@ -17,6 +17,10 @@ namespace QLSQ.ViewModel.Catalogs.New
         public string NewContent { get; set; }
         [Display(Name = "Ngày đăng tin tức")]
         public DateTime NewDatePost { get; set; }
+        [Display(Name = "ID loại tin tức")]
+        public int NewCatetoryID { get; set; }
+        [Display(Name = "Tên loại tin tức")]
+        public string NewCatetoryName { get; set; }
         [Display(Name = "Lượt xem tin tức")]
         public int NewCount { get; set; }
     }

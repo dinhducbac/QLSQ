@@ -29,7 +29,8 @@ namespace QLSQ.Application.Catalog.New
                 NewName = request.NewName,
                 NewContent = request.NewContent,
                 NewDatePost = DateTime.Now,
-                NewCount = request.NewCount
+                NewCount = request.NewCount,
+                NewCatetoryID = request.NewCatetoryID
             };
             if(request.FormFile != null)
             {
@@ -61,6 +62,8 @@ namespace QLSQ.Application.Catalog.New
         public async Task<APIResult<NewDetailsViewModel>> Details(int NewID)
         {         
             var newsDetail = await (from news in _context.News
+                                    join newcatetory in _context.NewCatetories
+                                    on news.NewCatetoryID equals newcatetory.NewCatetoryID
                                     where news.NewID == NewID
                                     select new NewDetailsViewModel() 
                                     {
@@ -68,7 +71,9 @@ namespace QLSQ.Application.Catalog.New
                                         NewName = news.NewName,
                                         NewContent = news.NewContent,
                                         NewDatePost = news.NewDatePost,
-                                        NewCount = news.NewCount
+                                        NewCount = news.NewCount,
+                                        NewCatetoryID = news.NewCatetoryID,
+                                        NewCatetoryName = newcatetory.NewCatetoryName
                                     }).FirstOrDefaultAsync();
             var imagePath = await _newImageServices.GetImagePathByNewID(NewID);
             if (imagePath.ResultObj != null)
@@ -83,6 +88,7 @@ namespace QLSQ.Application.Catalog.New
             news.NewContent = request.NewContent;
             news.NewDatePost = request.NewDatePost;
             news.NewCount = request.NewCount;
+            news.NewCatetoryID = request.NewCatetoryID;
             if(request.FormFile != null)
             {
                 var newimage = await _context.NewImages.FirstOrDefaultAsync(x=>x.NewID == NewID);

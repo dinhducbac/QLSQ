@@ -44,7 +44,7 @@ namespace QLSQ.ApiIntergration
             requestContent.Add(new StringContent(request.NewContent.ToString()), "NewContent");
             requestContent.Add(new StringContent(request.NewDatePost.ToString()), "NewDatePost");
             requestContent.Add(new StringContent(request.NewCount.ToString()), "NewCount");
-
+            requestContent.Add(new StringContent(request.NewCatetoryID.ToString()), "NewCatetoryID");
             //var json = JsonConvert.SerializeObject(request);
             //var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var reponse = await client.PostAsync($"/api/News/create", requestContent);
@@ -101,7 +101,7 @@ namespace QLSQ.ApiIntergration
             requestContent.Add(new StringContent(request.NewContent.ToString()), "NewContent");
             requestContent.Add(new StringContent(request.NewDatePost.ToString()), "NewDatePost");
             requestContent.Add(new StringContent(request.NewCount.ToString()), "NewCount");
-
+            requestContent.Add(new StringContent(request.NewCatetoryID.ToString()), "NewCatetoryID");
             //var json = JsonConvert.SerializeObject(request);
             //var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var reponse = await client.PutAsync($"/api/News/{NewID}/edit", requestContent);
