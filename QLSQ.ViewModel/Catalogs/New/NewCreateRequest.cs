@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using QLSQ.ViewModel.Catalogs.NewCatetory;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +9,8 @@ namespace QLSQ.ViewModel.Catalogs.New
 {
     public class NewCreateRequest
     {
+        [Display(Name = "Loại tin tức")]
+        public int NewCatetoryID { get; set; }
         [Display(Name = "Tiêu tin tức")]
         public string NewName { get; set; }
         [Display(Name = "Nội dung")]
@@ -16,6 +19,9 @@ namespace QLSQ.ViewModel.Catalogs.New
         public DateTime NewDatePost { get; set; }
         [Display(Name = "Lượt xem tin tức")]
         public int NewCount { get; set; }
+        [Display(Name = "Ảnh tin tức")]
         public IFormFile FormFile { get; set; }
+
+        public List<NewCatetoryViewModel> NewCatetoryViewModels { get; set; }
     }
 }

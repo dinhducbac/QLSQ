@@ -12,9 +12,11 @@ namespace QLSQ.AdminApp.Controllers
     public class NewController : Controller
     {
         public readonly INewApiClient _newApiClient;
-        public NewController(INewApiClient newApiClient)
+        public readonly INewCatetoryApiClient _newCatetoryApiClient;
+        public NewController(INewApiClient newApiClient,INewCatetoryApiClient newCatetoryApiClient)
         {
             _newApiClient = newApiClient;
+            _newCatetoryApiClient = newCatetoryApiClient;
         }
         public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 5)
         {
@@ -39,9 +41,14 @@ namespace QLSQ.AdminApp.Controllers
             return RedirectToAction("Error", "Home");
         }
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var result = await _newCatetoryApiClient.GetAllWithoutPaging();
+            var newCreateRequest = new NewCreateRequest()
+            {
+                NewCatetoryViewModels = result.ResultObj
+            };
+            return View(newCreateRequest);
         }
         [HttpPost]
         [Consumes("multipart/form-data")]
@@ -73,13 +80,16 @@ namespace QLSQ.AdminApp.Controllers
             if (!ModelState.IsValid)
                 return View(ModelState);
             var result = await _newApiClient.Details(NewID);
+            var listNewCatetory = await _newCatetoryApiClient.GetAllWithoutPaging();
             var newsUpdateRequest = new NewUpdateRequest()
             {
                 NewName = result.ResultObj.NewName,
                 NewContent = result.ResultObj.NewContent,
                 NewDatePost = result.ResultObj.NewDatePost,
                 NewCount = result.ResultObj.NewCount,
-                ImagePath = result.ResultObj.ImagePath
+                ImagePath = result.ResultObj.ImagePath,
+                NewCatetoryID = result.ResultObj.NewCatetoryID,
+                NewCatetoryViewModels = listNewCatetory.ResultObj
             };
             return View(newsUpdateRequest);
         }
@@ -106,8 +116,9 @@ namespace QLSQ.AdminApp.Controllers
                 ImagePath = result.ResultObj.ImagePath,
                 NewContent = result.ResultObj.NewContent,
                 NewDatePost = result.ResultObj.NewDatePost,
-                NewCount = result.ResultObj.NewCount
-
+                NewCount = result.ResultObj.NewCount,
+                NewCatetoryID = result.ResultObj.NewCatetoryID,
+                NewCatetoryName = result.ResultObj.NewCatetoryName
             };
             return View(newsDeleteReaquest);
         }
