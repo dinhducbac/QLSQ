@@ -15,9 +15,9 @@ namespace QLSQ.ApiIntergration
 {
     public class ChucVuApiClient : IChucVuApiClient
     {
-        private IHttpClientFactory _httpClientFactory;
-        private IConfiguration _configuration;
-        private IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public ChucVuApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration, IHttpContextAccessor httpContextAccessor)
         {
             _httpClientFactory = httpClientFactory;

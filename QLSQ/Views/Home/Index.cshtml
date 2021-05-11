@@ -1,8 +1,10 @@
-﻿@{
+﻿@model QLSQ.WebApp.Models.HomeViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="banner-top-thumb-wrap">
+<!--<div class="banner-top-thumb-wrap">
     <div class="d-lg-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-between  mb-3 mb-lg-0">
             <div>
@@ -43,94 +45,36 @@
             </h5>
         </div>
     </div>
-</div>
+</div>-->
 <div class="row">
     <div class="col-lg-8">
         <div class="owl-carousel owl-theme" id="main-banner-carousel">
-            <div class="item">
-                <div class="carousel-content-wrapper mb-2">
-                    <div class="carousel-content">
-                        <h1 class="font-weight-bold">
-                            If you wanted to get rich, how would you do it?
-                        </h1>
-                        <h5 class="font-weight-normal  m-0">
-                            Lorem Ipsum has been the industry's standard
-                        </h5>
-                        <p class="text-color m-0 pt-2 d-flex align-items-center">
-                            <span class="fs-10 mr-1">2 hours ago</span>
-                            <i class="mdi mdi-bookmark-outline mr-3"></i>
-                            <span class="fs-10 mr-1">126</span>
-                            <i class="mdi mdi-comment-outline"></i>
-                        </p>
-                    </div>
-                    <div class="carousel-image">
-                        <img src="/assets/images/dashboard/banner.jpg" alt="" />
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="carousel-content-wrapper mb-2">
-                    <div class="carousel-content">
-                        <h1 class="font-weight-bold">
-                            If you wanted to get rich, how would you do it?
-                        </h1>
-                        <h5 class="font-weight-normal  m-0">
-                            Lorem Ipsum has been the industry's standard
-                        </h5>
-                        <p class="text-color m-0 pt-2 d-flex align-items-center">
-                            <span class="fs-10 mr-1">2 hours ago</span>
-                            <i class="mdi mdi-bookmark-outline mr-3"></i>
-                            <span class="fs-10 mr-1">126</span>
-                            <i class="mdi mdi-comment-outline"></i>
-                        </p>
-                    </div>
-                    <div class="carousel-image">
-                        <img src="/assets/images/dashboard/banner_1.jpg" alt="" />
+            @foreach (var slides in Model.SlideViewModels)
+            {
+                <div class="item">
+                    <div class="carousel-content-wrapper mb-2">
+                        <div class="carousel-content">
+                            <!--<h1 class="font-weight-bold">
+
+                                @slides.SlideName
+                                </h1>
+                                <h5 class="font-weight-normal  m-0">
+                                    @slides.SlideContent
+                                </h5>
+                                <p class="text-color m-0 pt-2 d-flex align-items-center">
+                                    <span class="fs-10 mr-1">@slides.SlideTimePost</span>
+                                    <i class="mdi mdi-bookmark-outline mr-3"></i>
+                                </p>        -->
+                        </div>
+                        <a href="@slides.SlideUrl">
+                            <div class="carousel-image">
+                                <img src="@Configuration["BaseAddress"]/new-image/@slides.SlideImage" alt="" />
+                            </div>
+                        </a>
                     </div>
                 </div>
-            </div>
-            <div class="item">
-                <div class="carousel-content-wrapper mb-2">
-                    <div class="carousel-content">
-                        <h1 class="font-weight-bold">
-                            If you wanted to get rich, how would you do it?
-                        </h1>
-                        <h5 class="font-weight-normal  m-0">
-                            Lorem Ipsum has been the industry's standard
-                        </h5>
-                        <p class="text-color m-0 pt-2 d-flex align-items-center">
-                            <span class="fs-10 mr-1">2 hours ago</span>
-                            <i class="mdi mdi-bookmark-outline mr-3"></i>
-                            <span class="fs-10 mr-1">126</span>
-                            <i class="mdi mdi-comment-outline"></i>
-                        </p>
-                    </div>
-                    <div class="carousel-image">
-                        <img src="/assets/images/dashboard/banner_2.jpg" alt="" />
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="carousel-content-wrapper mb-2">
-                    <div class="carousel-content">
-                        <h1 class="font-weight-bold">
-                            If you wanted to get rich, how would you do it?
-                        </h1>
-                        <h5 class="font-weight-normal  m-0">
-                            Lorem Ipsum has been the industry's standard
-                        </h5>
-                        <p class="text-color m-0 pt-2 d-flex align-items-center">
-                            <span class="fs-10 mr-1">2 hours ago</span>
-                            <i class="mdi mdi-bookmark-outline mr-3"></i>
-                            <span class="fs-10 mr-1">126</span>
-                            <i class="mdi mdi-comment-outline"></i>
-                        </p>
-                    </div>
-                    <div class="carousel-image">
-                        <img src="/assets/images/dashboard/banner_3.jpg" alt="" />
-                    </div>
-                </div>
-            </div>
+            }
+
         </div>
     </div>
     <div class="col-lg-4">

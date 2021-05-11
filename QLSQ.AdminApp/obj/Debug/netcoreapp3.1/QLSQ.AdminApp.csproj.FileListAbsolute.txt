@@ -517,3 +517,8 @@ D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\QLSQ.ApiIntergration
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\QLSQ.Utilities.dll
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\QLSQ.ApiIntergration.pdb
 D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\bin\Debug\netcoreapp3.1\QLSQ.Utilities.pdb
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\NewCatetory\Index.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\NewCatetory\Create.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\NewCatetory\Details.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\NewCatetory\Edit.cshtml.g.cs
+D:\Project\QL_SQ\QLSQ\QLSQ.AdminApp\obj\Debug\netcoreapp3.1\Razor\Views\NewCatetory\Delete.cshtml.g.cs

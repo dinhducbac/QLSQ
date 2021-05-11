@@ -18,6 +18,8 @@ namespace QLSQ.Data.Configurations
             builder.Property(x => x.NewContent).IsRequired();
             builder.Property(x => x.NewDatePost).IsRequired().HasDefaultValue(DateTime.Now);
             builder.Property(x => x.NewCount).IsRequired().HasDefaultValue(0);
+            builder.Property(x => x.NewCatetoryID).IsRequired();
+            builder.HasOne(x => x.NewCatetory).WithMany(e => e.News).HasForeignKey(x => x.NewCatetoryID);
         }
     }
 }

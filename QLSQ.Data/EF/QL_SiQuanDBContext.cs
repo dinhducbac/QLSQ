@@ -37,6 +37,8 @@ namespace QLSQ.Data.EF
             modelBuilder.ApplyConfiguration(new QLQuanHamConfigurations());
             modelBuilder.ApplyConfiguration(new NewConfigurations());
             modelBuilder.ApplyConfiguration(new NewImageConfigurations());
+            modelBuilder.ApplyConfiguration(new SlideConfiguration());
+            modelBuilder.ApplyConfiguration(new NewCatetoryConfigurations());
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("UserClaim");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("UserRole").HasKey(x => new { x.UserId, x.RoleId });
             modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("UserLogin").HasKey(x => x.UserId);
@@ -69,6 +71,8 @@ namespace QLSQ.Data.EF
         public DbSet<QLQuanHam> QLQuanHams { get; set; }
         public DbSet<New> News { get; set; }
         public DbSet<NewImage> NewImages { get; set; }
+        public DbSet<Slide> Slides { get; set; }
+        public DbSet<NewCatetory> NewCatetories { get; set; }
         //public DbSet<AppUser> AppUsers { get; set; }
         //public DbSet<AppRole> AppRoles { get; set; }
     }

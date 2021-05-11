@@ -77,34 +77,40 @@
                                     <th>
                                         Lượt xem tin tức
                                     </th>
+                                    <th>
+                                        Loại tin tức
+                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model.Items)
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NewID)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NewName)
-                                        </td>
-                                        <td>
-                                            @item.NewContent.Substring(0, Math.Min(item.NewContent.Length, 100));
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NewDatePost)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.NewCount)
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Edit", "Edit", new { NewID = item.NewID }) |
-                                            @Html.ActionLink("Details", "Details", new { NewID = item.NewID }) |
-                                            @Html.ActionLink("Delete", "Delete", new { NewID = item.NewID })
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NewID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NewName)
+                                    </td>
+                                    <td>
+                                        @item.NewContent.Substring(0, Math.Min(item.NewContent.Length, 100));
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NewDatePost)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NewCount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NewCatetoryName)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", new { NewID = item.NewID }) |
+                                        @Html.ActionLink("Details", "Details", new { NewID = item.NewID }) |
+                                        @Html.ActionLink("Delete", "Delete", new { NewID = item.NewID })
+                                    </td>
+                                </tr>
                                 }
                             </tbody>
                         </table>

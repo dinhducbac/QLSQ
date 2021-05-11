@@ -14,8 +14,8 @@ namespace QLSQ.ApiIntergration
     public class RolesApiClient : IRolesApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private IConfiguration _configuration;
-        private IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public RolesApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor)
         {
