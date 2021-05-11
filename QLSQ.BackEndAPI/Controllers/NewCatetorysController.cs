@@ -68,5 +68,15 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("getallwithoutpaging")]
+        public async Task<IActionResult> GetAllWithoutPaging()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newCatetoryServices.GetAllWithoutPaging();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

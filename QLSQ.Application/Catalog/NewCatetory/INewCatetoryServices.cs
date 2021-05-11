@@ -10,6 +10,7 @@ namespace QLSQ.Application.Catalog.NewCatetory
     public interface INewCatetoryServices
     {
         public Task<APIResult<PageResult<NewCatetoryViewModel>>> GetAllWithPaging(GetNewCatetoryPagingRequest request);
+        public Task<APIResult<List<NewCatetoryViewModel>>> GetAllWithoutPaging();
         public Task<APIResult<bool>> Create(NewCatetoryCreateRequest request);
         public Task<APIResult<NewCatetoryViewModel>> Details(int NewCatetoryID);
         public Task<APIResult<bool>> Edit(int NewCatetoryID, NewCatetoryUpdateRequest request);

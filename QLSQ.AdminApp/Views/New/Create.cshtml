@@ -55,13 +55,18 @@
                                 <form asp-action="Create" enctype="multipart/form-data" method="post">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
+                                        <label asp-for="NewCatetoryID" class="control-label"></label>
+                                        <select asp-for="NewCatetoryID" class="form-control" asp-items="@(new SelectList(Model.NewCatetoryViewModels,"NewCatetoryID","NewCatetoryName"))"></select>
+                                        <span asp-validation-for="NewName" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
                                         <label asp-for="NewName" class="control-label"></label>
                                         <textarea id="NewName" asp-for="NewName" class="form-control" rows="3"></textarea>
                                         <span asp-validation-for="NewName" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="NewContent" class="control-label"></label>
-                                        <textarea id="NewContent" asp-for="NewContent" class="form-control" rows="5"  ></textarea>
+                                        <textarea id="NewContent" asp-for="NewContent" class="form-control" rows="5"></textarea>
                                         <span asp-validation-for="NewContent" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">

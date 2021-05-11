@@ -57,6 +57,17 @@ namespace QLSQ.Application.Catalog.NewCatetory
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<List<NewCatetoryViewModel>>> GetAllWithoutPaging()
+        {
+            var listNewCatetory = await (from newcatetory in _context.NewCatetories
+                                         select new NewCatetoryViewModel()
+                                         {
+                                             NewCatetoryID = newcatetory.NewCatetoryID,
+                                             NewCatetoryName = newcatetory.NewCatetoryName
+                                         }).ToListAsync();
+            return new APISuccessedResult<List<NewCatetoryViewModel>>(listNewCatetory);
+        }
+
         public async Task<APIResult<PageResult<NewCatetoryViewModel>>> GetAllWithPaging(GetNewCatetoryPagingRequest request)
         {
             var query = from newcatetory in _context.NewCatetories
