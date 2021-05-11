@@ -11,7 +11,8 @@ namespace QLSQ.Data.Entities
         public string NewContent { get; set; }
         public DateTime NewDatePost { get; set; }
         public int NewCount { get; set; }
-
+        public int NewCatetoryID { get; set; }
+        public NewCatetory NewCatetory { get; set; }
         public List<NewImage> NewImages { get; set; }
     }
 }

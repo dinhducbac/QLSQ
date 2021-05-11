@@ -112,13 +112,16 @@ namespace QLSQ.Application.Catalog.New
         public async Task<APIResult<PageResult<NewViewModel>>> GetAllWithPaging(GetNewPagingRequest request)
         {
             var query = from news in _context.News
+                        join newcatetory in _context.NewCatetories
+                        on news.NewCatetoryID equals newcatetory.NewCatetoryID
                         select new NewViewModel()
                         {
                             NewID = news.NewID,
                             NewName = news.NewName,
                             NewContent = news.NewContent,
                             NewDatePost = news.NewDatePost,
-                            NewCount = news.NewCount
+                            NewCount = news.NewCount,
+                            NewCatetoryName = newcatetory.NewCatetoryName
                         };
             if (!string.IsNullOrEmpty(request.keyword))
                 query = query.Where(x => x.NewName.Contains(request.keyword));
@@ -131,7 +134,8 @@ namespace QLSQ.Application.Catalog.New
                     NewName = x.NewName,
                     NewContent = x.NewContent,
                     NewDatePost = x.NewDatePost,
-                    NewCount = x.NewCount
+                    NewCount = x.NewCount,
+                    NewCatetoryName = x.NewCatetoryName
                 }).ToListAsync();
             var pageResult = new PageResult<NewViewModel>()
             {

@@ -126,7 +126,6 @@ namespace QLSQ.AdminApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(QLCongTacDeleteRequest request)
         {
-            var test = request.IDCT;
             if (!ModelState.IsValid)
                 return View(ModelState);
             var result = await _qLCongTacApiClient.Delete(request.IDCT);

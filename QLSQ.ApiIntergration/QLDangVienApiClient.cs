@@ -15,8 +15,8 @@ namespace QLSQ.ApiIntergration
     public class QLDangVienApiClient : IQLDangVienAPIClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private IConfiguration _configuration;
-        private IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public QLDangVienApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor)
         {

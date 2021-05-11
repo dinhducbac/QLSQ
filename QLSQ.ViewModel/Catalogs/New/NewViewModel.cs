@@ -9,7 +9,7 @@ namespace QLSQ.ViewModel.Catalogs.New
     {
         [Display(Name ="ID tin tức")]
         public int NewID { get; set; }
-        [Display(Name = "Tiêu tin tức")]
+        [Display(Name = "Tiêu đề tin tức")]
         public string NewName { get; set; }
         [Display(Name = "Nội dung")]
         public string NewContent { get; set; }
@@ -17,5 +17,7 @@ namespace QLSQ.ViewModel.Catalogs.New
         public DateTime NewDatePost { get; set; }
         [Display(Name = "Lượt xem tin tức")]
         public int NewCount { get; set; }
+        [Display(Name =" Thể loại")]
+        public string NewCatetoryName { get; set; }
     }
 }

@@ -122,7 +122,6 @@ namespace QLSQ.AdminApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(QLDangVienDeleteRequest request)
         {
-            var test = request.IDQLDV;
             var result = await _qLDangVienAPIClient.Delete(request.IDQLDV);
             if (result.IsSuccessed)
             {
