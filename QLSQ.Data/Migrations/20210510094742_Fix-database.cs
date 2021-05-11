@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace QLSQ.Data.Migrations
 {
-    public partial class FixDatabase : Migration
+    public partial class Fixdatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -74,19 +74,16 @@ namespace QLSQ.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "New",
+                name: "NewCatetory",
                 columns: table => new
                 {
-                    NewID = table.Column<int>(type: "int", nullable: false)
+                    NewCatetoryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NewName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NewContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NewDatePost = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 5, 6, 9, 8, 3, 872, DateTimeKind.Local).AddTicks(6263)),
-                    NewCount = table.Column<int>(type: "int", nullable: false, defaultValue: 0)
+                    NewCatetoryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_New", x => x.NewID);
+                    table.PrimaryKey("PK_NewCatetory", x => x.NewCatetoryID);
                 });
 
             migrationBuilder.CreateTable(
@@ -115,6 +112,23 @@ namespace QLSQ.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RoleClaim", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Slide",
+                columns: table => new
+                {
+                    SlideID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SlideUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SlideName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SlideContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SlideImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SlideTimePost = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Slide", x => x.SlideID);
                 });
 
             migrationBuilder.CreateTable(
@@ -217,24 +231,25 @@ namespace QLSQ.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "NewImage",
+                name: "New",
                 columns: table => new
                 {
-                    NewImageID = table.Column<int>(type: "int", nullable: false)
+                    NewID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NewID = table.Column<int>(type: "int", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 5, 6, 9, 8, 3, 876, DateTimeKind.Local).AddTicks(6878)),
-                    FileSize = table.Column<long>(type: "bigint", nullable: false)
+                    NewName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NewContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NewDatePost = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 5, 10, 16, 47, 41, 806, DateTimeKind.Local).AddTicks(5614)),
+                    NewCount = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    NewCatetoryID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_NewImage", x => x.NewImageID);
+                    table.PrimaryKey("PK_New", x => x.NewID);
                     table.ForeignKey(
-                        name: "FK_NewImage_New_NewID",
-                        column: x => x.NewID,
-                        principalTable: "New",
-                        principalColumn: "NewID",
+                        name: "FK_New_NewCatetory_NewCatetoryID",
+                        column: x => x.NewCatetoryID,
+                        principalTable: "NewCatetory",
+                        principalColumn: "NewCatetoryID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -469,6 +484,28 @@ namespace QLSQ.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "NewImage",
+                columns: table => new
+                {
+                    NewImageID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NewID = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2021, 5, 10, 16, 47, 41, 812, DateTimeKind.Local).AddTicks(7426)),
+                    FileSize = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NewImage", x => x.NewImageID);
+                    table.ForeignKey(
+                        name: "FK_NewImage_New_NewID",
+                        column: x => x.NewID,
+                        principalTable: "New",
+                        principalColumn: "NewID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "QLQuanHam",
                 columns: table => new
                 {
@@ -546,8 +583,8 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Mota", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "a99d5eff-27be-48a0-9617-7a3ec20edf6f", "Administrator Role", "admin", "admin" },
-                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "ee5e7b01-35f0-4282-87e9-235081019ff5", "Si Quan Role", "Si Quan", "Si Quan" }
+                    { new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"), "b77da22c-c857-421b-b63a-299a8a070d1d", "Administrator Role", "admin", "admin" },
+                    { new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"), "e2d46dca-7b99-4c96-9423-f41593205f30", "Si Quan Role", "Si Quan", "Si Quan" }
                 });
 
             migrationBuilder.InsertData(
@@ -555,12 +592,12 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "285410c1-b62e-449d-bf46-a668b2fec273", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEGEtET46LQcEM2W0hbT0IyUI9XVTy/wuXiDJlQwPHUkbKnlOHBcQJSrbt10S8tpvyA==", null, false, "", false, "lethigiang" },
-                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "fa591040-e815-4a17-bef4-14f6330f206c", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAELAk/t+sgpn9MQU5hyqH50ohH9HDlDsd/Jex6vPWMT5kyJA0UYqJp839QBuZGAU+Ag==", null, false, "", false, "vuvancanh" },
-                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "3bf754db-8e3f-43ea-92b1-7b598666bd9b", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAEGypdIdcwvbtDrbpPmVz7+XjAI5hH5odQzTQtqTBmmdbITOeIg5/2uxBgsvWLdujqw==", null, false, "", false, "admin" },
-                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "9b51db08-5c6a-47e7-9c4d-bff6bf1a49be", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAENSV4Wm0kBuN+OoDQChKcIn8nkxNJ73dH2cV8YBqKO35ypAhZoqh8bCVEZ+Idvj0TQ==", null, false, "", false, "lethihien" },
-                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "3092cdac-bd44-4c01-8e86-16d47d007758", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEHtJAanG8fgl0RKId2By5PVjmyOUFVApPdI438HyTKsTfuf+kzKCKE7gH1L/1mBoxw==", null, false, "", false, "dovantuan" },
-                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "2e43d903-0896-45af-8bbf-3a9a4c17ef02", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEGnqBqnBHFZa4k/yNbwHxP+YGUklfd6fMomoBhzVIcP9qxtcel8SjvQKgDdP4wbSLQ==", null, false, "", false, "nguyenvanhoan" }
+                    { new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"), 0, "fdc9dbe2-b024-4ad5-adc9-1029d38490d6", "dinhducbac1998@gmail.com", true, false, null, "dinhducbac1998@gmail.com", "admin", "AQAAAAEAACcQAAAAEKnRDwAjRkizAM/ZEa0LkVZkoYNcn3hkBONjVahmUKTjUsljZor7UCrCxUr8n0N4Vw==", null, false, "", false, "admin" },
+                    { new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"), 0, "f811ca96-2332-4f32-b052-04e7175310ab", "vuvancanh@gmail.com", true, false, null, "vuvancanh@gmail.com", "vuvancanh", "AQAAAAEAACcQAAAAEMcdEWQSu7uNwYgbRvjA67q32pc+8hP9Pps7W4ZQdsCz8+gTogrkG7edCkkzR/VfxQ==", null, false, "", false, "vuvancanh" },
+                    { new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"), 0, "257ca53d-1ab7-4913-90a9-bb1f0f2872cd", "nguyenvanhoan@gmail.com", true, false, null, "nguyenvanhoan@gmail.com", "nguyenvanhoan", "AQAAAAEAACcQAAAAEOF8xfw1yynHBSrOWe/EOtOUNb19nG1q50UjjLdiphOacZvZHcOdZ7LyGx9wtmGBng==", null, false, "", false, "nguyenvanhoan" },
+                    { new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"), 0, "891e0599-cac9-4ff5-8aaf-4a7dc035ff8b", "lethigiang@gmail.com", true, false, null, "lethigiang@gmail.com", "lethigiang", "AQAAAAEAACcQAAAAEK/mcAda06frKBup8J2DQVFrLclgTqzdUoVGmfcHB1Uwhipnl68cXV/1dtIXFrDrKg==", null, false, "", false, "lethigiang" },
+                    { new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"), 0, "0148017f-6b24-4d8b-a310-676bd7880065", "dovantuan@gmail.com", true, false, null, "dovantuan@gmail.com", "dovantuan", "AQAAAAEAACcQAAAAEPqOpzxpMuQutqCRm69AIl/lvuwFFYmE/+0MtBiP3IahHRHgbzOI9TM8iHDnvr9XQw==", null, false, "", false, "dovantuan" },
+                    { new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"), 0, "f6a1b36e-42c6-443d-8206-8617649fcc95", "lethihien@gmail.com", true, false, null, "lethihien@gmail.com", "lethihien", "AQAAAAEAACcQAAAAEAYLzJXGJtp9ihJKs2zmfpTfiARvjDmte52ot3dsWbCpgB5/nwLReQLz/FRSrEcmLQ==", null, false, "", false, "lethihien" }
                 });
 
             migrationBuilder.InsertData(
@@ -568,11 +605,11 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "IDBP", "TenBP" },
                 values: new object[,]
                 {
-                    { 5, "Đơn vị" },
-                    { 4, "Khoa" },
                     { 2, "Phòng" },
                     { 1, "Ban giám hiệu" },
-                    { 3, "Trợ lý" }
+                    { 3, "Trợ lý" },
+                    { 5, "Đơn vị" },
+                    { 4, "Khoa" }
                 });
 
             migrationBuilder.InsertData(
@@ -581,27 +618,45 @@ namespace QLSQ.Data.Migrations
                 values: new object[] { 1, 1429000m });
 
             migrationBuilder.InsertData(
-                table: "New",
-                columns: new[] { "NewID", "NewContent", "NewCount", "NewDatePost", "NewName" },
-                values: new object[] { 1, "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.", 1, new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified), "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”" });
+                table: "NewCatetory",
+                columns: new[] { "NewCatetoryID", "NewCatetoryName" },
+                values: new object[,]
+                {
+                    { 2, "Giáo dục QPAN" },
+                    { 3, "Khoa học và công nghệ" },
+                    { 4, "Tuyển sinh" },
+                    { 5, "Hội thảo - Hội nghị" },
+                    { 1, "Đào tạo" }
+                });
 
             migrationBuilder.InsertData(
                 table: "QuanHam",
                 columns: new[] { "IDQH", "TenQH" },
                 values: new object[,]
                 {
-                    { 6, "Trung Tá" },
-                    { 7, "Thượng Tá" },
-                    { 8, "Đại tá" },
-                    { 5, "Thiếu Tá" },
-                    { 9, "Thiếu Tướng" },
                     { 10, "Trung Tướng" },
-                    { 4, "Đại Úy" },
-                    { 3, "Thượng Úy" },
+                    { 9, "Thiếu Tướng" },
+                    { 11, "Thượng Tướng" },
                     { 12, "Đại Tướng" },
                     { 1, "Thiếu Úy" },
-                    { 11, "Thượng Tướng" },
-                    { 2, "Trung Úy" }
+                    { 2, "Trung Úy" },
+                    { 3, "Thượng Úy" },
+                    { 4, "Đại Úy" },
+                    { 5, "Thiếu Tá" },
+                    { 6, "Trung Tá" },
+                    { 7, "Thượng Tá" },
+                    { 8, "Đại tá" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Slide",
+                columns: new[] { "SlideID", "SlideContent", "SlideImage", "SlideName", "SlideTimePost", "SlideUrl" },
+                values: new object[,]
+                {
+                    { 1, "Thông tin tuyển sinh đại học quân sự 2021", "TuyenSinh2021.jpg", "Trường sĩ quan thông tin - Đại học thông tin liên lạc", new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "#" },
+                    { 2, "Thông tin tuyển sinh đại học quân sự 2021", "TuyenSinh2021.jpg", "Trường sĩ quan thông tin - Đại học thông tin liên lạc", new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "#" },
+                    { 4, "Khánh thành trung tâm CNTT-NN", "TuyenSinh2021.jpg", "Trường sĩ quan thông tin - Đại học thông tin liên lạc", new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "#" },
+                    { 3, "Thông tin tuyển sinh đại học quân sự 2021", "TuyenSinh2021.jpg", "Trường sĩ quan thông tin - Đại học thông tin liên lạc", new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "#" }
                 });
 
             migrationBuilder.InsertData(
@@ -622,19 +677,19 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "IDCV", "IDBP", "TenCV" },
                 values: new object[,]
                 {
-                    { 14, 4, "Chủ nhiệm bộ môn" },
+                    { 17, 5, "Tiểu đoàn trưởng" },
                     { 21, 5, "Trung đội trưởng" },
                     { 20, 5, "Phó đại đội trưởng" },
                     { 19, 5, "Đại đội trưởng" },
                     { 18, 5, "Phó tiểu đoàn trưởng" },
-                    { 17, 5, "Tiểu đoàn trưởng" },
                     { 16, 4, "Nhân viên" },
                     { 15, 4, "Giáo viên" },
+                    { 14, 4, "Chủ nhiệm bộ môn" },
                     { 13, 4, "Phó chủ nhiệm khoa" },
                     { 12, 4, "Chủ nhiệm khoa" },
-                    { 11, 3, "Chủ nhiệm chính trị" },
                     { 10, 3, "Chủ nhiệm kỹ thuật" },
                     { 9, 3, "Chủ nhiệm hậu cần" },
+                    { 11, 3, "Chủ nhiệm chính trị" },
                     { 7, 2, "Trưởng ban" },
                     { 6, 2, "Phó phòng" },
                     { 5, 2, "Trưởng phòng" },
@@ -650,18 +705,31 @@ namespace QLSQ.Data.Migrations
                 columns: new[] { "IDHeSoLuongQH", "HeSoLuong", "IDQH", "TenHeSoLuongQH" },
                 values: new object[,]
                 {
-                    { 5, 6f, 5, "Thiếu Tá" },
-                    { 6, 6.6f, 6, "Trung Tá" },
-                    { 7, 7.3f, 7, "Thượng Tá" },
-                    { 8, 8f, 8, "Đại Tá" },
-                    { 9, 8.6f, 9, "Thiếu Tướng" },
-                    { 10, 9.2f, 10, "Trung Tướng" },
+                    { 3, 5f, 3, "Thượng Úy" },
                     { 4, 5.4f, 4, "Đại Úy" },
-                    { 12, 10.4f, 12, "Đại Tướng" },
+                    { 5, 6f, 5, "Thiếu Tá" },
+                    { 10, 9.2f, 10, "Trung Tướng" },
+                    { 6, 6.6f, 6, "Trung Tá" },
+                    { 8, 8f, 8, "Đại Tá" },
+                    { 7, 7.3f, 7, "Thượng Tá" },
                     { 2, 4.6f, 2, "Trung Úy" },
+                    { 9, 8.6f, 9, "Thiếu Tướng" },
                     { 1, 4.2f, 1, "Thiếu Úy" },
-                    { 11, 9.8f, 11, "Thượng Tướng" },
-                    { 3, 5f, 3, "Thượng Úy" }
+                    { 12, 10.4f, 12, "Đại Tướng" },
+                    { 11, 9.8f, 11, "Thượng Tướng" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "New",
+                columns: new[] { "NewID", "NewCatetoryID", "NewContent", "NewCount", "NewDatePost", "NewName" },
+                values: new object[,]
+                {
+                    { 5, 3, "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.", 1, new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified), "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”" },
+                    { 4, 3, "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.", 1, new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified), "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”" },
+                    { 3, 3, "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.", 1, new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified), "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”" },
+                    { 2, 3, "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.", 1, new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified), "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”" },
+                    { 1, 3, "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.", 1, new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified), "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”" },
+                    { 6, 3, "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.", 1, new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified), "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”" }
                 });
 
             migrationBuilder.InsertData(
@@ -671,10 +739,18 @@ namespace QLSQ.Data.Migrations
                 {
                     { 5, "M", "Vũ Văn Cảnh", new DateTime(1984, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nghệ An", "0374123456", new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb") },
                     { 4, "M", "Nguyễn Văn Hoàn", new DateTime(1987, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nghệ An", "0374231456", new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba") },
-                    { 3, "F", "Lê Thị Giang", new DateTime(1985, 9, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nghệ An", "0373568745", new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee") },
-                    { 2, "M", "Đỗ Văn Tuấn", new DateTime(1985, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nghệ An", "0374561237", new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208") },
-                    { 1, "F", "Lê Thị Hiền", new DateTime(1985, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nghệ An", "0377526687", new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9") }
+                    { 3, "F", "Lê Thị Giang", new DateTime(1985, 9, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nghệ An", "0373568745", new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee") }
                 });
+
+            migrationBuilder.InsertData(
+                table: "SiQuan",
+                columns: new[] { "IDSQ", "GioiTinh", "HoTen", "NgaySinh", "QueQuan", "SDT", "UserId" },
+                values: new object[] { 2, "M", "Đỗ Văn Tuấn", new DateTime(1985, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nghệ An", "0374561237", new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208") });
+
+            migrationBuilder.InsertData(
+                table: "SiQuan",
+                columns: new[] { "IDSQ", "GioiTinh", "HoTen", "NgaySinh", "QueQuan", "SDT", "UserId" },
+                values: new object[] { 1, "F", "Lê Thị Hiền", new DateTime(1985, 1, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nghệ An", "0377526687", new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9") });
 
             migrationBuilder.InsertData(
                 table: "HeSoPhuCapTheoChucVu",
@@ -775,6 +851,11 @@ namespace QLSQ.Data.Migrations
                 name: "IX_HeSoPhuCapTheoChucVu_IDCV",
                 table: "HeSoPhuCapTheoChucVu",
                 column: "IDCV");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_New_NewCatetoryID",
+                table: "New",
+                column: "NewCatetoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_NewImage_NewID",
@@ -908,6 +989,9 @@ namespace QLSQ.Data.Migrations
                 name: "SiQuanImage");
 
             migrationBuilder.DropTable(
+                name: "Slide");
+
+            migrationBuilder.DropTable(
                 name: "UserClaim");
 
             migrationBuilder.DropTable(
@@ -930,6 +1014,9 @@ namespace QLSQ.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "QLQuanHam");
+
+            migrationBuilder.DropTable(
+                name: "NewCatetory");
 
             migrationBuilder.DropTable(
                 name: "ChucVu");

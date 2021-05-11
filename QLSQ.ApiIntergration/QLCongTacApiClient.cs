@@ -15,8 +15,8 @@ namespace QLSQ.ApiIntergration
     public class QLCongTacApiClient : IQLCongTacApiClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private IConfiguration _configuration;
-        private IHttpContextAccessor _httpContextAccessor;
+        private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public QLCongTacApiClient(IHttpClientFactory httpClientFactory, IConfiguration configuration,
             IHttpContextAccessor httpContextAccessor)
         {

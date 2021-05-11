@@ -10,8 +10,8 @@ using QLSQ.Data.EF;
 namespace QLSQ.Data.Migrations
 {
     [DbContext(typeof(QL_SiQuanDBContext))]
-    [Migration("20210506020805_Fix-Database")]
-    partial class FixDatabase
+    [Migration("20210510094742_Fix-database")]
+    partial class Fixdatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -175,7 +175,7 @@ namespace QLSQ.Data.Migrations
                         new
                         {
                             Id = new Guid("37fe170e-027e-4e7f-aba5-15743063aeb2"),
-                            ConcurrencyStamp = "a99d5eff-27be-48a0-9617-7a3ec20edf6f",
+                            ConcurrencyStamp = "b77da22c-c857-421b-b63a-299a8a070d1d",
                             Mota = "Administrator Role",
                             Name = "admin",
                             NormalizedName = "admin"
@@ -183,7 +183,7 @@ namespace QLSQ.Data.Migrations
                         new
                         {
                             Id = new Guid("42ff6f47-9edd-451f-bf03-db895dfcfff9"),
-                            ConcurrencyStamp = "ee5e7b01-35f0-4282-87e9-235081019ff5",
+                            ConcurrencyStamp = "e2d46dca-7b99-4c96-9423-f41593205f30",
                             Mota = "Si Quan Role",
                             Name = "Si Quan",
                             NormalizedName = "Si Quan"
@@ -247,13 +247,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("ef234b11-ccc7-45d3-ba16-5ebf721ee6c8"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3bf754db-8e3f-43ea-92b1-7b598666bd9b",
+                            ConcurrencyStamp = "fdc9dbe2-b024-4ad5-adc9-1029d38490d6",
                             Email = "dinhducbac1998@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "dinhducbac1998@gmail.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGypdIdcwvbtDrbpPmVz7+XjAI5hH5odQzTQtqTBmmdbITOeIg5/2uxBgsvWLdujqw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKnRDwAjRkizAM/ZEa0LkVZkoYNcn3hkBONjVahmUKTjUsljZor7UCrCxUr8n0N4Vw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -263,13 +263,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("9ece85c8-a453-4ffc-b5ab-bf7d4c3365f9"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9b51db08-5c6a-47e7-9c4d-bff6bf1a49be",
+                            ConcurrencyStamp = "f6a1b36e-42c6-443d-8206-8617649fcc95",
                             Email = "lethihien@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "lethihien@gmail.com",
                             NormalizedUserName = "lethihien",
-                            PasswordHash = "AQAAAAEAACcQAAAAENSV4Wm0kBuN+OoDQChKcIn8nkxNJ73dH2cV8YBqKO35ypAhZoqh8bCVEZ+Idvj0TQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAYLzJXGJtp9ihJKs2zmfpTfiARvjDmte52ot3dsWbCpgB5/nwLReQLz/FRSrEcmLQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -279,13 +279,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("78b61ff5-714b-4c2e-9566-6df4396b1208"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3092cdac-bd44-4c01-8e86-16d47d007758",
+                            ConcurrencyStamp = "0148017f-6b24-4d8b-a310-676bd7880065",
                             Email = "dovantuan@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "dovantuan@gmail.com",
                             NormalizedUserName = "dovantuan",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHtJAanG8fgl0RKId2By5PVjmyOUFVApPdI438HyTKsTfuf+kzKCKE7gH1L/1mBoxw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPqOpzxpMuQutqCRm69AIl/lvuwFFYmE/+0MtBiP3IahHRHgbzOI9TM8iHDnvr9XQw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -295,13 +295,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("4c39ee3b-0277-4b32-8173-261988cce2ee"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "285410c1-b62e-449d-bf46-a668b2fec273",
+                            ConcurrencyStamp = "891e0599-cac9-4ff5-8aaf-4a7dc035ff8b",
                             Email = "lethigiang@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "lethigiang@gmail.com",
                             NormalizedUserName = "lethigiang",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGEtET46LQcEM2W0hbT0IyUI9XVTy/wuXiDJlQwPHUkbKnlOHBcQJSrbt10S8tpvyA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK/mcAda06frKBup8J2DQVFrLclgTqzdUoVGmfcHB1Uwhipnl68cXV/1dtIXFrDrKg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -311,13 +311,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("2c31d31e-1520-48ee-9e62-2311829cf7ba"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2e43d903-0896-45af-8bbf-3a9a4c17ef02",
+                            ConcurrencyStamp = "257ca53d-1ab7-4913-90a9-bb1f0f2872cd",
                             Email = "nguyenvanhoan@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "nguyenvanhoan@gmail.com",
                             NormalizedUserName = "nguyenvanhoan",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGnqBqnBHFZa4k/yNbwHxP+YGUklfd6fMomoBhzVIcP9qxtcel8SjvQKgDdP4wbSLQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOF8xfw1yynHBSrOWe/EOtOUNb19nG1q50UjjLdiphOacZvZHcOdZ7LyGx9wtmGBng==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -327,13 +327,13 @@ namespace QLSQ.Data.Migrations
                         {
                             Id = new Guid("41a8e023-7c08-46bb-858c-5a3b219818cb"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "fa591040-e815-4a17-bef4-14f6330f206c",
+                            ConcurrencyStamp = "f811ca96-2332-4f32-b052-04e7175310ab",
                             Email = "vuvancanh@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "vuvancanh@gmail.com",
                             NormalizedUserName = "vuvancanh",
-                            PasswordHash = "AQAAAAEAACcQAAAAELAk/t+sgpn9MQU5hyqH50ohH9HDlDsd/Jex6vPWMT5kyJA0UYqJp839QBuZGAU+Ag==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMcdEWQSu7uNwYgbRvjA67q32pc+8hP9Pps7W4ZQdsCz8+gTogrkG7edCkkzR/VfxQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -704,6 +704,9 @@ namespace QLSQ.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("NewCatetoryID")
+                        .HasColumnType("int");
+
                     b.Property<string>("NewContent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -716,7 +719,7 @@ namespace QLSQ.Data.Migrations
                     b.Property<DateTime>("NewDatePost")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 5, 6, 9, 8, 3, 872, DateTimeKind.Local).AddTicks(6263));
+                        .HasDefaultValue(new DateTime(2021, 5, 10, 16, 47, 41, 806, DateTimeKind.Local).AddTicks(5614));
 
                     b.Property<string>("NewName")
                         .IsRequired()
@@ -724,16 +727,106 @@ namespace QLSQ.Data.Migrations
 
                     b.HasKey("NewID");
 
+                    b.HasIndex("NewCatetoryID");
+
                     b.ToTable("New");
 
                     b.HasData(
                         new
                         {
                             NewID = 1,
+                            NewCatetoryID = 3,
                             NewContent = "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.",
                             NewCount = 1,
                             NewDatePost = new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified),
                             NewName = "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”"
+                        },
+                        new
+                        {
+                            NewID = 2,
+                            NewCatetoryID = 3,
+                            NewContent = "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.",
+                            NewCount = 1,
+                            NewDatePost = new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified),
+                            NewName = "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”"
+                        },
+                        new
+                        {
+                            NewID = 3,
+                            NewCatetoryID = 3,
+                            NewContent = "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.",
+                            NewCount = 1,
+                            NewDatePost = new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified),
+                            NewName = "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”"
+                        },
+                        new
+                        {
+                            NewID = 4,
+                            NewCatetoryID = 3,
+                            NewContent = "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.",
+                            NewCount = 1,
+                            NewDatePost = new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified),
+                            NewName = "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”"
+                        },
+                        new
+                        {
+                            NewID = 5,
+                            NewCatetoryID = 3,
+                            NewContent = "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.",
+                            NewCount = 1,
+                            NewDatePost = new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified),
+                            NewName = "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”"
+                        },
+                        new
+                        {
+                            NewID = 6,
+                            NewCatetoryID = 3,
+                            NewContent = "Sáng 25/3/2021, tại giảng đường chuyên dùng A202, Khoa Công nghệ thông tin – Tác chiến không gian mạng tổ chức buổi báo cáo đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”. Đây là sản phẩm được nghiên cứu, xây dựng bởi nhóm tác giả bao gồm: Đại tá, ThS Nguyễn Thanh Hải, Chủ nhiệm khoa; Thiếu tá, ThS Nguyễn Văn Hoàn, giảng viên bộ môn Mạng máy tính; Đại uý, KS Hoàng Văn Long, giảng viên bộ môn Tác chiến không gian mạng. Buổi báo cáo là bước chuẩn bị quan trọng trước khi thực hiện báo cáo thông qua đề tài ở cấp Nhà trường. Tại buổi báo cáo, nhóm tác giả đã trình bày tóm tắt nội dung đề tài; nêu lên tính cấp thiết, mục tiêu, nhiệm vụ; phương pháp nghiên cứu, thực hiện cũng như những dự kiến bổ sung, phát triển tiếp theo của đề tài. Trong phần đóng góp ý kiến, các giảng viên đánh giá cao chất lượng, tính thiết thực của đề tài cũng như sự đầu tư thời gian, công sức của nhóm tác giả; bên cạnh đó, góp ý chỉnh sửa, bổ sung thêm một số nội dung để đề tài sát hợp hơn với nhiệm vụ đào tạo sĩ quan CH-TM Tác chiến không gian mạng. Buổi báo cáo đã phát huy được trí tuệ và kinh nghiệm tập thể, các ý kiến đóng góp đều tỉ mỉ và có tính xây dựng, góp phần hoàn thiện đề tài. Sau khi lắng nghe các ý kiến đóng góp, nhóm tác giả sẽ có đánh giá khách quan, toàn diện về những ưu điểm, kết quả đã đạt được; đồng thời, nhận ra các hạn chế, thiếu sót của đề tài; từ đó có hướng điều chỉnh, bổ sung nội dung để hoàn thiện đề tài, thực hiện phản biện chính thức trước Hội đồng khoa học Nhà trường theo đúng tiến độ quy định.",
+                            NewCount = 1,
+                            NewDatePost = new DateTime(2021, 3, 4, 10, 46, 0, 0, DateTimeKind.Unspecified),
+                            NewName = "Khoa Công nghệ thông tin – Tác chiến không gian mạng tiến hành thông qua đề tài: “Xây dựng kịch bản an toàn thông tin trên thiết bị tường lửa Fortigate”"
+                        });
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.NewCatetory", b =>
+                {
+                    b.Property<int>("NewCatetoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("NewCatetoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("NewCatetoryID");
+
+                    b.ToTable("NewCatetory");
+
+                    b.HasData(
+                        new
+                        {
+                            NewCatetoryID = 1,
+                            NewCatetoryName = "Đào tạo"
+                        },
+                        new
+                        {
+                            NewCatetoryID = 2,
+                            NewCatetoryName = "Giáo dục QPAN"
+                        },
+                        new
+                        {
+                            NewCatetoryID = 3,
+                            NewCatetoryName = "Khoa học và công nghệ"
+                        },
+                        new
+                        {
+                            NewCatetoryID = 4,
+                            NewCatetoryName = "Tuyển sinh"
+                        },
+                        new
+                        {
+                            NewCatetoryID = 5,
+                            NewCatetoryName = "Hội thảo - Hội nghị"
                         });
                 });
 
@@ -747,7 +840,7 @@ namespace QLSQ.Data.Migrations
                     b.Property<DateTime>("DateCreated")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 5, 6, 9, 8, 3, 876, DateTimeKind.Local).AddTicks(6878));
+                        .HasDefaultValue(new DateTime(2021, 5, 10, 16, 47, 41, 812, DateTimeKind.Local).AddTicks(7426));
 
                     b.Property<long>("FileSize")
                         .HasColumnType("bigint");
@@ -1520,6 +1613,75 @@ namespace QLSQ.Data.Migrations
                     b.ToTable("SiQuanImage");
                 });
 
+            modelBuilder.Entity("QLSQ.Data.Entities.Slide", b =>
+                {
+                    b.Property<int>("SlideID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("SlideContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlideImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlideName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("SlideTimePost")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SlideUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SlideID");
+
+                    b.ToTable("Slide");
+
+                    b.HasData(
+                        new
+                        {
+                            SlideID = 1,
+                            SlideContent = "Thông tin tuyển sinh đại học quân sự 2021",
+                            SlideImage = "TuyenSinh2021.jpg",
+                            SlideName = "Trường sĩ quan thông tin - Đại học thông tin liên lạc",
+                            SlideTimePost = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SlideUrl = "#"
+                        },
+                        new
+                        {
+                            SlideID = 2,
+                            SlideContent = "Thông tin tuyển sinh đại học quân sự 2021",
+                            SlideImage = "TuyenSinh2021.jpg",
+                            SlideName = "Trường sĩ quan thông tin - Đại học thông tin liên lạc",
+                            SlideTimePost = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SlideUrl = "#"
+                        },
+                        new
+                        {
+                            SlideID = 3,
+                            SlideContent = "Thông tin tuyển sinh đại học quân sự 2021",
+                            SlideImage = "TuyenSinh2021.jpg",
+                            SlideName = "Trường sĩ quan thông tin - Đại học thông tin liên lạc",
+                            SlideTimePost = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SlideUrl = "#"
+                        },
+                        new
+                        {
+                            SlideID = 4,
+                            SlideContent = "Khánh thành trung tâm CNTT-NN",
+                            SlideImage = "TuyenSinh2021.jpg",
+                            SlideName = "Trường sĩ quan thông tin - Đại học thông tin liên lạc",
+                            SlideTimePost = new DateTime(2021, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            SlideUrl = "#"
+                        });
+                });
+
             modelBuilder.Entity("QLSQ.Data.Entities.ChucVu", b =>
                 {
                     b.HasOne("QLSQ.Data.Entities.BoPhan", "BoPhan")
@@ -1551,6 +1713,17 @@ namespace QLSQ.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("ChucVu");
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.New", b =>
+                {
+                    b.HasOne("QLSQ.Data.Entities.NewCatetory", "NewCatetory")
+                        .WithMany("News")
+                        .HasForeignKey("NewCatetoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NewCatetory");
                 });
 
             modelBuilder.Entity("QLSQ.Data.Entities.NewImage", b =>
@@ -1763,6 +1936,11 @@ namespace QLSQ.Data.Migrations
             modelBuilder.Entity("QLSQ.Data.Entities.New", b =>
                 {
                     b.Navigation("NewImages");
+                });
+
+            modelBuilder.Entity("QLSQ.Data.Entities.NewCatetory", b =>
+                {
+                    b.Navigation("News");
                 });
 
             modelBuilder.Entity("QLSQ.Data.Entities.QLChucVu", b =>

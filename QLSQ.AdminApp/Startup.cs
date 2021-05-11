@@ -41,6 +41,7 @@ namespace QLSQ.AdminApp
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
             services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
+
             services.AddTransient<IUserApiClient, UserApiClient>();
             services.AddTransient<IRolesApiClient, RolesApiClient>();
             services.AddTransient<ISiQuanApiClient, SiQuanApiClient>();
@@ -62,6 +63,7 @@ namespace QLSQ.AdminApp
             services.AddTransient<IQLQuanHamApiClient, QLQuanHamApiClient>();
             services.AddTransient<INewApiClient, NewApiClient>();
             services.AddTransient<INewImageApiClient, NewImageApiClient>();
+            services.AddTransient<INewCatetoryApiClient, NewCatetoryApiClient>();
             IMvcBuilder builder = services.AddRazorPages();
             var enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT");
 #if DEBUG
