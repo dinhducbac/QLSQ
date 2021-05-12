@@ -15,5 +15,9 @@ namespace QLSQ.ApiIntergration
         public Task<APIResult<NewDetailsViewModel>> Details(int NewID);
         public Task<APIResult<bool>> Edit(int NewID, NewUpdateRequest request);
         public Task<APIResult<bool>> Delete(int NewID);
+        public Task<APIResult<List<NewDetailsViewModel>>> GetLastestNew();
+        public Task<APIResult<List<NewDetailsViewModel>>> GetMostViewNew();
+        public Task<APIResult<List<NewDetailsViewModel>>> GetKHCNNewInIndex();
+        public Task<APIResult<List<NewDetailsViewModel>>> GetTuyenSinhViewInIndex();
     }
 }

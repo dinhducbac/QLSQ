@@ -80,5 +80,45 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("getlastestnew")]
+        public async Task<IActionResult> GetLastestNew()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetLastestNew();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("getmostviewnew")]
+        public async Task<IActionResult> GetMostViewNew()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetMostViewNew();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("getkhcnnewinindex")]
+        public async Task<IActionResult> GetKHCNNewInIndex()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetKHCNNewInIndex();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("gettuyensinhnewinindex")]
+        public async Task<IActionResult> GetTuyenSinhNewInIndex()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetTuyenSinhNewInIndex();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

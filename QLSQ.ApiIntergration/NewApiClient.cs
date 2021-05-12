@@ -126,6 +126,32 @@ namespace QLSQ.ApiIntergration
             return JsonConvert.DeserializeObject<APIErrorResult<PageResult<NewViewModel>>>(body);
         }
 
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetKHCNNewInIndex()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/getkhcnnewinindex");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetLastestNew()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/getlastestnew");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
+        }
+
         public async Task<APIResult<List<NewViewModel>>> GetListNewAutoComplete(string prefix)
         {
             var client = _httpClientFactory.CreateClient();
@@ -137,6 +163,32 @@ namespace QLSQ.ApiIntergration
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<APISuccessedResult<List<NewViewModel>>>(body);
             return JsonConvert.DeserializeObject<APIErrorResult<List<NewViewModel>>>(body);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetMostViewNew()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/getmostviewnew");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetTuyenSinhViewInIndex()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/gettuyensinhnewinindex");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
         }
     }
 }
