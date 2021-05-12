@@ -32,6 +32,7 @@ namespace QLSQ
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ISlideApiClient, SlideApiClient>();
+            services.AddTransient<INewApiClient, NewApiClient>();
             services.AddControllersWithViews();
         }
 

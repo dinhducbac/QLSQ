@@ -15,18 +15,27 @@ namespace QLSQ.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         public readonly ISlideApiClient _slideApiClient;
-
-        public HomeController(ILogger<HomeController> logger, ISlideApiClient slideApiClient)
+        public readonly INewApiClient _newApiClient;
+        public HomeController(ILogger<HomeController> logger, ISlideApiClient slideApiClient, INewApiClient newApiClient)
         {
             _logger = logger;
             _slideApiClient = slideApiClient;
+            _newApiClient = newApiClient;
         }
 
         public async Task<IActionResult> Index()
         {
             var slides = await _slideApiClient.GetAllWithoutPaging();
+            var listLastestNew = await _newApiClient.GetLastestNew();
+            var listMostViewNew = await _newApiClient.GetMostViewNew();
+            var listKHCNNewInIndex = await _newApiClient.GetKHCNNewInIndex();
+            var listTuyenSinhNewInIndex = await _newApiClient.GetTuyenSinhViewInIndex();
             var homeViewModel = new HomeViewModel();
             homeViewModel.SlideViewModels = slides.ResultObj;
+            homeViewModel.LastestNews = listLastestNew.ResultObj;
+            homeViewModel.MostViewNews = listMostViewNew.ResultObj;
+            homeViewModel.KHCNNewInInDex = listKHCNNewInIndex.ResultObj;
+            homeViewModel.TuyenSinhNewInIndexs = listTuyenSinhNewInIndex.ResultObj;
             return View(homeViewModel);
         }
 

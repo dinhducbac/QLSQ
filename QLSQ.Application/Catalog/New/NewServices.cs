@@ -9,6 +9,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using QLSQ.Application.Catalog.NewImage;
 using QLSQ.Application.Catalog.SiQuans;
+using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace QLSQ.Application.Catalog.New
 {
@@ -153,6 +154,44 @@ namespace QLSQ.Application.Catalog.New
             return new APISuccessedResult<PageResult<NewViewModel>>(pageResult);
         }
 
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetKHCNNewInIndex()
+        {
+            var listKHCNNewInIndex = await (from news in _context.News
+                                            join newimage in _context.NewImages
+                                            on news.NewID equals newimage.NewID
+                                            join newcatetory in _context.NewCatetories
+                                            on news.NewCatetoryID equals newcatetory.NewCatetoryID
+                                            where news.NewCatetoryID == 3
+                                            orderby news.NewDatePost descending
+                                            select new NewDetailsViewModel()
+                                            {
+                                                NewID = news.NewID,
+                                                NewName = news.NewName,
+                                                NewContent = news.NewContent,
+                                                NewCatetoryName = newcatetory.NewCatetoryName,
+                                                ImagePath = newimage.ImagePath
+                                            }).Take(5).ToListAsync();
+            return new APISuccessedResult<List<NewDetailsViewModel>>(listKHCNNewInIndex);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetLastestNew()
+        {
+            var listLastestNew = await (from news in _context.News
+                                        join newimage in _context.NewImages
+                                        on news.NewID equals newimage.NewID
+                                        join newcatetory in _context.NewCatetories
+                                        on news.NewCatetoryID equals newcatetory.NewCatetoryID
+                                        orderby news.NewDatePost descending
+                                        select new NewDetailsViewModel()
+                                        {
+                                            NewID = news.NewID,
+                                            NewName = news.NewName,
+                                            ImagePath = newimage.ImagePath,
+                                            NewCatetoryName = newcatetory.NewCatetoryName
+                                        }).Take(6).ToListAsync();
+            return new APISuccessedResult<List<NewDetailsViewModel>>(listLastestNew);
+        }
+
         public async Task<APIResult<List<NewViewModel>>> GetListNewAutoComplete(string prefix)
         {
             var query = await (from news in _context.News
@@ -164,6 +203,40 @@ namespace QLSQ.Application.Catalog.New
                               }).ToListAsync();
            
             return new APISuccessedResult<List<NewViewModel>>(query);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetMostViewNew()
+        {
+            var mostViewNew = await (from news in _context.News
+                               join newcatetory in _context.NewCatetories
+                               on news.NewCatetoryID equals newcatetory.NewCatetoryID
+                               join newimage in _context.NewImages
+                               on news.NewID equals newimage.NewID
+                               orderby news.NewCount descending
+                               select new NewDetailsViewModel()
+                               {
+                                   NewID = news.NewID,
+                                   NewName = news.NewName,
+                                   NewContent = news.NewContent,
+                                   NewCatetoryName = newcatetory.NewCatetoryName,
+                                   ImagePath = newimage.ImagePath
+                               }).Take(4).ToListAsync();
+            return new APISuccessedResult<List<NewDetailsViewModel>>(mostViewNew);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetTuyenSinhNewInIndex()
+        {
+            var listTuyenSinhNew = await (from news in _context.News
+                                          where news.NewCatetoryID == 4
+                                          orderby news.NewDatePost descending
+                                          select new NewDetailsViewModel() 
+                                          {
+                                            NewID = news.NewID,
+                                            NewName = news.NewName,
+                                            NewDatePost = news.NewDatePost
+                                          }).Take(4).ToListAsync();
+            return new APISuccessedResult<List<NewDetailsViewModel>>(listTuyenSinhNew);
+
         }
     }
 }
