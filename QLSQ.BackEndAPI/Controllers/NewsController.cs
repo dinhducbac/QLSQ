@@ -51,11 +51,11 @@ namespace QLSQ.BackEndAPI.Controllers
         }
         [HttpPut("{NewID}/edit")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Edit(int NewID,[FromForm] NewUpdateRequest request)
+        public async Task<IActionResult> Edit(int NewID, [FromForm] NewUpdateRequest request)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var result = await _newServices.Edit(NewID,request);
+            var result = await _newServices.Edit(NewID, request);
             if (result.ResultObj == true)
                 return Ok(result);
             return BadRequest(result);
@@ -116,6 +116,36 @@ namespace QLSQ.BackEndAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var result = await _newServices.GetTuyenSinhNewInIndex();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("getlistkhcnnew")]
+        public async Task<IActionResult> GetListKHCNNew()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetListKHCNNew();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("{NewID}/detailnew")]
+        public async Task<IActionResult> DetailNew(int NewID)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.DetailNew(NewID);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("{NewCatetoryID}/getrelatednew")]
+        public async Task<IActionResult> GetRelatedNew(int NewCatetoryID)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetRelatedNew(NewCatetoryID);
             if (result.ResultObj != null)
                 return Ok(result);
             return BadRequest(result);

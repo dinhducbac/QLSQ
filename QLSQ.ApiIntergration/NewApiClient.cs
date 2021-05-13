@@ -69,6 +69,19 @@ namespace QLSQ.ApiIntergration
             return JsonConvert.DeserializeObject<APIErrorResult<bool>>(body);
         }
 
+        public async Task<APIResult<NewDetailsViewModel>> DetailNew(int NewID)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/{NewID}/detailnew");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<NewDetailsViewModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<NewDetailsViewModel>>(body);
+        }
+
         public async Task<APIResult<NewDetailsViewModel>> Details(int NewID)
         {
             var client = _httpClientFactory.CreateClient();
@@ -152,6 +165,19 @@ namespace QLSQ.ApiIntergration
             return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
         }
 
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetListKHCNNew()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/getlistkhcnnew");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
+        }
+
         public async Task<APIResult<List<NewViewModel>>> GetListNewAutoComplete(string prefix)
         {
             var client = _httpClientFactory.CreateClient();
@@ -172,6 +198,19 @@ namespace QLSQ.ApiIntergration
             var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
             var response = await client.GetAsync($"/api/News/getmostviewnew");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetRelatedNew(int NewCatetoryID)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/{NewCatetoryID}/getrelatednew");
             var body = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);

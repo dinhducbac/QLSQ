@@ -60,6 +60,27 @@ namespace QLSQ.Application.Catalog.New
             return new APISuccessedResult<bool>(true);
         }
 
+        public async Task<APIResult<NewDetailsViewModel>> DetailNew(int NewID)
+        {
+            var newDetailVM = await (from news in _context.News
+                                     join newcatetory in _context.NewCatetories
+                                     on news.NewCatetoryID equals newcatetory.NewCatetoryID
+                                     join newimage in _context.NewImages
+                                     on news.NewID equals newimage.NewID
+                                     where news.NewID == NewID
+                                     select new NewDetailsViewModel()
+                                     {
+                                         NewID = news.NewID,
+                                         NewCatetoryID = news.NewCatetoryID,
+                                         NewCatetoryName = newcatetory.NewCatetoryName,
+                                         NewDatePost = news.NewDatePost,
+                                         ImagePath = newimage.ImagePath,
+                                         NewName = news.NewName,
+                                         NewContent = news.NewContent
+                                     }).FirstOrDefaultAsync();
+            return new APISuccessedResult<NewDetailsViewModel>(newDetailVM);
+        }
+
         public async Task<APIResult<NewDetailsViewModel>> Details(int NewID)
         {         
             var newsDetail = await (from news in _context.News
@@ -192,6 +213,26 @@ namespace QLSQ.Application.Catalog.New
             return new APISuccessedResult<List<NewDetailsViewModel>>(listLastestNew);
         }
 
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetListKHCNNew()
+        {
+            var listKHCNNew = await (from news in _context.News
+                                     join newcatetory in _context.NewCatetories
+                                     on news.NewCatetoryID equals newcatetory.NewCatetoryID
+                                     join newimage in _context.NewImages
+                                     on news.NewID equals newimage.NewID
+                                     orderby news.NewDatePost descending
+                                     where news.NewCatetoryID == 3
+                                     select new NewDetailsViewModel()
+                                     {
+                                         NewID = news.NewID,
+                                         NewCatetoryName = newcatetory.NewCatetoryName,
+                                         NewName = news.NewName,
+                                         NewContent = news.NewContent,
+                                         ImagePath = newimage.ImagePath
+                                     }).ToListAsync();
+            return new APISuccessedResult<List<NewDetailsViewModel>>(listKHCNNew);
+        }
+
         public async Task<APIResult<List<NewViewModel>>> GetListNewAutoComplete(string prefix)
         {
             var query = await (from news in _context.News
@@ -222,6 +263,29 @@ namespace QLSQ.Application.Catalog.New
                                    ImagePath = newimage.ImagePath
                                }).Take(4).ToListAsync();
             return new APISuccessedResult<List<NewDetailsViewModel>>(mostViewNew);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetRelatedNew(int NewCatetoryID)
+        {
+            var listRelatedNew = await (from news in _context.News
+                                        join newimage in _context.NewImages
+                                        on news.NewID equals newimage.NewID
+                                        join newcatetory in _context.NewCatetories
+                                        on news.NewCatetoryID equals newcatetory.NewCatetoryID
+                                        where news.NewCatetoryID == NewCatetoryID
+                                        orderby news.NewDatePost descending
+                                        select new NewDetailsViewModel()
+                                        {
+                                            NewID = news.NewID,
+                                            NewCatetoryID = news.NewCatetoryID,
+                                            NewCatetoryName = newcatetory.NewCatetoryName,
+                                            ImagePath = newimage.ImagePath,
+                                            NewName = news.NewName,
+                                            NewContent = news.NewContent,
+                                            NewCount = news.NewCount,
+                                            NewDatePost = news.NewDatePost
+                                        }).Take(3).ToListAsync();
+            return new APISuccessedResult<List<NewDetailsViewModel>>(listRelatedNew);
         }
 
         public async Task<APIResult<List<NewDetailsViewModel>>> GetTuyenSinhNewInIndex()

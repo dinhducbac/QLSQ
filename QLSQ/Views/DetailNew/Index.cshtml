@@ -1,0 +1,83 @@
+﻿@model QLSQ.WebApp.Models.DetailNewViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div class="row">     
+        <div class="col-lg-9 col-sm-6 mb-5 mb-sm-2">
+            <div class="row">
+                <h2 class="col-lg-9 col-sm-6 font-weight-600 mt-3 mb-3">
+                    @Model.NewName
+                </h2>
+                <div class="col-lg-9 col-sm-6 mb-3 mt-3">
+                    <p class="fs-15 font-weight-normal mt-3">
+                        Ngày đăng: @Model.NewDatePost
+                    </p>
+                </div>            
+                <div class="col-lg-9 col-sm-6 position-relative image-hover mt-3 mb-3">
+                    <img src="@Configuration["BaseAddress"]/new-image/@Model.ImagePath"
+                         class="img-fluid"
+                         alt="world-news" />
+                </div>
+                <div class="col-lg-9 col-sm-6">
+                    <p class="fs-15 font-weight-normal mt-3">
+                        @Html.Raw(Model.NewContent)
+                    </p>
+                </div>
+                
+            </div>
+            <div class="row">
+                <div class="row col-lg-12 col-sm-6">
+                    <div class="col-lg-12 col-sm-6">
+                       <div class="d-flex position-relative float-left">
+                           <h3 class="section-title">Tin liên quan</h3>
+                       </div>
+                    </div>
+                </div>
+                <div class="row col-lg-12 col-sm-6">
+                    @foreach (var relatedNews in Model.ListRelatedNew)
+                    {
+                        <div class="col-lg-4 col-sm-6 grid-margin mb-5 mb-sm-1">
+                            <div class="position-relative image-hover">
+                                <img src="@Configuration["BaseAddress"]/new-image/@relatedNews.ImagePath"
+                                     class="img-fluid"
+                                     alt="" />
+                                <span class="thumb-title">@relatedNews.NewCatetoryName</span>
+                            </div>
+                            <h5 class="font-weight-bold mt-3">
+                                <a asp-controller="DetailNew" asp-action="Index" asp-route-NewID="@relatedNews.NewID" class="text-dark">@relatedNews.NewName</a>
+                            </h5>
+                            <p class="fs-15 font-weight-normal">
+                                @Html.Raw(relatedNews.NewContent.Substring(0, 55))
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-3 mb-5 mb-sm-2">
+            <div class="row">
+                <div class="col-sm-12 mt-3 mb-0">
+                    <div class="d-flex position-relative float-left">
+                        <h3 class="section-title">Xem nhiều nhất</h3>
+                    </div>
+                </div>
+                @foreach (var listmostviewnew in Model.ListMostViewNew)
+                {
+                    <div class="col-sm-12">
+                        <div class="border-bottom pt-1 pb-3">
+                            <h5 class="font-weight-600 mt-0 mb-0">
+                                <a asp-controller="DetailNew" asp-action="Index" asp-route-NewID="@listmostviewnew.NewID" class="font-weight-bold text-dark">@listmostviewnew.NewName</a>
+                            </h5>
+                            <p class="text-color m-0 d-flex align-items-center">
+                                <span class="fs-10 mr-1">@listmostviewnew.NewDatePost</span>
+                                <i class="mdi mdi-bookmark-outline mr-3"></i>
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+

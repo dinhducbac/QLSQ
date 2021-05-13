@@ -19,5 +19,8 @@ namespace QLSQ.ApiIntergration
         public Task<APIResult<List<NewDetailsViewModel>>> GetMostViewNew();
         public Task<APIResult<List<NewDetailsViewModel>>> GetKHCNNewInIndex();
         public Task<APIResult<List<NewDetailsViewModel>>> GetTuyenSinhViewInIndex();
+        public Task<APIResult<List<NewDetailsViewModel>>> GetListKHCNNew();
+        public Task<APIResult<NewDetailsViewModel>> DetailNew(int NewID);
+        public Task<APIResult<List<NewDetailsViewModel>>> GetRelatedNew(int NewCatetoryID);
     }
 }

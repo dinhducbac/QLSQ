@@ -21,5 +21,9 @@ namespace QLSQ.Application.Catalog.New
         public Task<APIResult<List<NewDetailsViewModel>>> GetMostViewNew();
         public Task<APIResult<List<NewDetailsViewModel>>> GetKHCNNewInIndex();
         public Task<APIResult<List<NewDetailsViewModel>>> GetTuyenSinhNewInIndex();
+        public Task<APIResult<List<NewDetailsViewModel>>> GetListKHCNNew();
+        public Task<APIResult<NewDetailsViewModel>> DetailNew(int NewID);
+        public Task<APIResult<List<NewDetailsViewModel>>> GetRelatedNew(int NewCatetoryID);
+
     }
 }

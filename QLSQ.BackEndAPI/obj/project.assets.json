@@ -3277,6 +3277,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.5",
           "QLSQ.ApiIntergration": "1.0.0"
         },
         "compile": {
