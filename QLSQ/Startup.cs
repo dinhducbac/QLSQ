@@ -62,6 +62,9 @@ namespace QLSQ
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "DetailNew",
+                    pattern:"{controller=DetailNew}/{action=Index}/{NewID?}");
             });
         }
     }
