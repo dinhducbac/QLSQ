@@ -41,10 +41,25 @@
                             </div>
                             <div class="d-flex">
                                 <ul class="navbar-right">
-                                    <li>
-                                        <a href="#">Đăng nhập</a>
-                                    </li>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li>
+                                            <a asp-controller="AppUser" asp-action="Profile" asp-route-UserName="@User.Identity.Name">Xin chào: @User.Identity.Name</a>
+                                        </li>
 
+                                        <form method="post" asp-controller="AppUser" asp-action="Logout">
+                                            <li>
+                                                <a href="#" onclick="$(this).closest('form').submit()">Logout</a>
+                                            </li>
+                                        </form>
+
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-controller="AppUser" asp-action="Login">Đăng nhập</a>
+                                        </li>
+                                    }
                                 </ul>
                                 <ul class="social-media">
                                     <li>
@@ -97,19 +112,19 @@
                                         <a class="nav-link" asp-action="Index" asp-controller="Home">Trang chủ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Đào tạo</a>
+                                        <a class="nav-link" asp-controller="DaoTaoNew" asp-action="Index">Đào tạo</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Giáo dục QPAN</a>
+                                        <a class="nav-link" asp-controller="GDQPANNew" asp-action="Index">Giáo dục QPAN</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" asp-action="Index" asp-controller="KHCNNew">Khoa học và công nghệ</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Tuyển sinh</a>
+                                        <a class="nav-link" asp-controller="TuyenSinhNew" asp-action="Index">Tuyển sinh</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Hội thảo - Hội nghị</a>
+                                        <a class="nav-link" asp-controller="HTHNNew" asp-action="Index">Hội thảo - Hội nghị</a>
                                     </li>
                                     <!--<li class="nav-item">
                                             <a class="nav-link" href="pages/art.html">Art</a>
@@ -171,18 +186,18 @@
                         </div>
                         <div class="col-sm-3 col-lg-3">
                             <ul class="footer-vertical-nav">
-                                <li class="menu-title"><a href="pages/world.html">THÔNG TIN</a></li>
-                                <li><a href="pages/sports.html">Tin khoa học công nghệ</a></li>
-                                <li><a href="pages/art.html">Tin tuyển sinh</a></li>
-                                <li><a href="#">Tin tức đào tạo</a></li>
-                                <li><a href="pages/real-estate.html">Tin tức giáo dục QPAN</a></li>
+                                <li class="menu-title font-weight-bold text-dark"> THÔNG TIN</li>
+                                <li><a asp-controller="KHCNNew" asp-action="Index">Tin khoa học công nghệ</a></li>
+                                <li><a asp-controller="TuyenSinhNew" asp-action="Index">Tin tuyển sinh</a></li>
+                                <li><a asp-controller="DaoTaoNew" asp-action="Index">Tin tức đào tạo</a></li>
+                                <li><a asp-controller="GDQPANNew" asp-action="Index">Tin tức giáo dục QPAN</a></li>
                             </ul>
                         </div>
                         <div class="col-sm-3 col-lg-3">
                             <ul class="footer-vertical-nav">
-                                <li class="menu-title"><a href="#">LIÊN KẾT NHANH</a></li>
-                                <li><a href="https://elearning.mitechcenter.vn/">E-Learning</a></li>
-                                <li><a href="http://thisinh.thithptquocgia.edu.vn/Account/Login">Tra cứu điểm tuyển sinh</a></li>
+                                <li class="menu-title font-weight-bold text-dark">LIÊN KẾT NHANH</li>
+                                <li><a href="https://elearning.mitechcenter.vn/" target="_blank">E-Learning</a></li>
+                                <li><a href="http://thisinh.thithptquocgia.edu.vn/Account/Login" target="_blank">Tra cứu điểm tuyển sinh</a></li>
                             </ul>
                         </div>
                     </div>
@@ -256,6 +271,7 @@
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <script src="/assets/js/demo.js"></script>
+    @RenderSection("Scripts", required: false)
     <!-- End custom js for this page-->
 </body>
 </html>

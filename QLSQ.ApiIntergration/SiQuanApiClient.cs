@@ -128,6 +128,19 @@ namespace QLSQ.ApiIntergration
             return JsonConvert.DeserializeObject<APIErrorResult<List<SiQuanViewModel>>>(body);
         }
 
+        public async Task<APIResult<InfoOfJobOfSiQuanViewModel>> GetInfoOfJobOfSiQuan(int IDSQ)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/SiQuans/{IDSQ}/getinfoofjobofsiquan");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<InfoOfJobOfSiQuanViewModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<InfoOfJobOfSiQuanViewModel>>(body);
+        }
+
         public async Task<APIResult<List<SiQuanInQLLuongViewModel>>> GetListSiQuanAutocomplete(string preconfix)
         {
             var client = _httpClientFactory.CreateClient();
@@ -170,6 +183,19 @@ namespace QLSQ.ApiIntergration
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<APISuccessedResult<List<SiQuanViewModel>>>(body);
             return JsonConvert.DeserializeObject<APIErrorResult<List<SiQuanViewModel>>>(body);
+        }
+
+        public async Task<APIResult<ProfileViewModel>> GetProfileByUserName(string UserName)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/SiQuans/{UserName}/getprofilebyusername");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<ProfileViewModel>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<ProfileViewModel>>(body);
         }
 
         public async Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien()

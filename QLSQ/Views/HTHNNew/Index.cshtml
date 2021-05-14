@@ -1,0 +1,30 @@
+﻿@model QLSQ.WebApp.Models.HTHNNewViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@{
+    ViewData["Title"] = "Index";
+}
+    <div class="row mt-5">
+        <div class="col-sm-12">
+            <h5 class="text-muted font-weight-medium mb-3">Hội thảo - hội nghị</h5>
+        </div>
+    </div>
+    <div class="row mb-4">
+        @foreach (var news in Model.ListHTHNNew)
+        {
+            <div class="col-sm-3  mb-5 mb-sm-2">
+                <div class="position-relative image-hover">
+                    <img src="@Configuration["BaseAddress"]/new-image/@news.ImagePath"
+                         class="img-fluid"
+                         alt="world-news" />
+                    <span class="thumb-title">@news.NewCatetoryName</span>
+                </div>
+                <h5 class="font-weight-600 mt-3">
+                    <a asp-controller="DetailNew" asp-action="Index" asp-route-NewID="@news.NewID" class="text-dark">@news.NewName</a>
+
+                </h5>
+                <p class="fs-15 font-weight-normal">
+                    @Html.Raw(news.NewContent.Substring(0, 50)) ...
+                </p>
+            </div>
+        }
+    </div>
