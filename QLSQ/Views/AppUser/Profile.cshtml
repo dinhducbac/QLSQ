@@ -1,0 +1,177 @@
+﻿@model QLSQ.WebApp.Models.ShowProfileViewModel
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@{
+    ViewData["Title"] = "Profile";
+}
+@section Scripts{
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/assets/css/profile.css"/>
+}
+<section>
+    <div class="container emp-profile">
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="@Configuration["BaseAddress"]/user-content/@Model.ProfileViewModel.ImagePath" alt="" />
+                        <div class="file btn btn-lg btn-primary">
+                            Change Photo
+                            <input type="file" name="file" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                        <h5>
+                            @Model.ProfileViewModel.HoTen
+                        </h5>
+                        <h6>
+                            Web Developer and Designer
+                        </h6>
+                        <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+                        <ul class="nav nav-tabs" style="position:absolute; bottom:0px" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Thông tin cá nhân</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Thông tin công việc</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p>WORK LINK</p>
+                        <a href="">Website Link</a><br />
+                        <a href="">Bootsnipp Profile</a><br />
+                        <a href="">Bootply Profile</a>
+                        <p>SKILLS</p>
+                        <a href="">Web Designer</a><br />
+                        <a href="">Web Developer</a><br />
+                        <a href="">WordPress</a><br />
+                        <a href="">WooCommerce</a><br />
+                        <a href="">PHP, .Net</a><br />
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>User Id</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.ProfileViewModel.UserID</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>UserName</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@User.Identity.Name</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>IDSQ</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.ProfileViewModel.IDSQ</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Ngày sinh</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.ProfileViewModel.NgaySinh</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Giới tính</label>
+                                </div>
+                                <div class="col-md-8">
+                                    @if (@Model.ProfileViewModel.GioiTinh == "F")
+                                    {
+                                        <p>Nữ</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Nam</p>
+                                    }
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Quê quán</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.ProfileViewModel.QueQuan</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Số điện thoại</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.ProfileViewModel.SDT</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Địa chỉ công tác</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.InfoOfJobOfSiQuanViewModel.DiaChiCT</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Quân hàm</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.InfoOfJobOfSiQuanViewModel.TenQH</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Bộ phận</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.InfoOfJobOfSiQuanViewModel.TenBP</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Chức vụ</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.InfoOfJobOfSiQuanViewModel.TenCV</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Lương</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <p>@Model.InfoOfJobOfSiQuanViewModel.Luong VNĐ</p>
+                                </div>
+                            </div>                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+

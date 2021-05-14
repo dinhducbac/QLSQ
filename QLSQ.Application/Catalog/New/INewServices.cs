@@ -24,6 +24,10 @@ namespace QLSQ.Application.Catalog.New
         public Task<APIResult<List<NewDetailsViewModel>>> GetListKHCNNew();
         public Task<APIResult<NewDetailsViewModel>> DetailNew(int NewID);
         public Task<APIResult<List<NewDetailsViewModel>>> GetRelatedNew(int NewCatetoryID);
+        public Task<APIResult<List<NewDetailsViewModel>>> GetListDaoTaoNew();
+        public Task<APIResult<List<NewDetailsViewModel>>> GetListGDQPANNew();
+        public Task<APIResult<List<NewDetailsViewModel>>> GetListTuyenSinhNew();
+        public Task<APIResult<List<NewDetailsViewModel>>> GetListHTHNNew();
 
     }
 }

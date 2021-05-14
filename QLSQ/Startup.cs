@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +27,11 @@ namespace QLSQ
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "/User/Login";
+                options.AccessDeniedPath = "/User/Forbidden";
+            });
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -33,6 +39,8 @@ namespace QLSQ
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ISlideApiClient, SlideApiClient>();
             services.AddTransient<INewApiClient, NewApiClient>();
+            services.AddTransient<IUserApiClient, UserApiClient>();
+            services.AddTransient<ISiQuanApiClient, SiQuanApiClient>();
             services.AddControllersWithViews();
         }
 
@@ -51,7 +59,7 @@ namespace QLSQ
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseAuthentication();
             app.UseRouting();
 
             app.UseAuthorization();
@@ -65,6 +73,9 @@ namespace QLSQ
                 endpoints.MapControllerRoute(
                     name: "DetailNew",
                     pattern:"{controller=DetailNew}/{action=Index}/{NewID?}");
+                endpoints.MapControllerRoute(
+                   name: "DetailNew",
+                   pattern: "{controller=AppUser}/{action=Profile}/{UserName?}");
             });
         }
     }

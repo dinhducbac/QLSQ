@@ -150,5 +150,47 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("getlistdaotaonew")]
+        public async Task<IActionResult> GetListDaoTaoNew()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetListDaoTaoNew();
+            if(result.ResultObj != null)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getlistgdqpanew")]
+        public async Task<IActionResult> GetListGDQPANNew()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetListGDQPANNew();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("getlisttuyensinhnew")]
+        public async Task<IActionResult> GetListTuyenSinhNew()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetListTuyenSinhNew();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("getlisththnnew")]
+        public async Task<IActionResult> GetListHTHNNew()
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _newServices.GetListHTHNNew();
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

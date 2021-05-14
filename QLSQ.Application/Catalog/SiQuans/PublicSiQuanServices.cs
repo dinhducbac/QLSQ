@@ -65,5 +65,63 @@ namespace QLSQ.Application.Catalog.SiQuan
             };
             return pageResult;
         }
+
+        public async Task<APIResult<InfoOfJobOfSiQuanViewModel>> GetInfoOfJobOfSiQuan(int IDSQ)
+        {
+            var infoOfJobSiQuanVM = await (from sq in _context.SiQuans
+                                           join qlct in _context.QLCongTacs
+                                           on sq.IDSQ equals qlct.IDSQ
+                                           join qlqh in _context.QLQuanHams
+                                           on sq.IDSQ equals qlqh.IDSQ
+                                           join qh in _context.QuanHams
+                                           on qlqh.IDQH equals qh.IDQH
+                                           join hslqh in _context.HeSoLuongTheoQuanHams
+                                           on qlqh.IDHeSoLuongTheoQH equals hslqh.IDHeSoLuongQH
+                                           join qlcv in _context.QLChucVus
+                                           on sq.IDSQ equals qlcv.IDSQ
+                                           join cv in _context.ChucVus
+                                           on qlcv.IDCV equals cv.IDCV
+                                           join bp in _context.BoPhans
+                                           on cv.IDBP equals bp.IDBP
+                                           join hspccv in _context.HeSoPhuCapTheoChucVus
+                                           on cv.IDCV equals hspccv.IDCV
+                                           join qll in _context.QLLuongs
+                                           on sq.IDSQ equals qll.IDSQ
+                                           join lcb in _context.LuongCoBans
+                                           on qll.IDLuongCB equals lcb.IDLuongCB
+                                           where sq.IDSQ == IDSQ && qlct.CongTacState == 1
+                                           select new InfoOfJobOfSiQuanViewModel()
+                                           {
+                                               DiaChiCT = qlct.DiaChiCT,
+                                               TenQH = qh.TenQH,
+                                               TenBP = bp.TenBP,
+                                               TenCV = cv.TenCV,
+                                               Luong = Convert.ToUInt64(hslqh.HeSoLuong * lcb.LuongCB +
+                                               hspccv.HeSoPhuCap * lcb.LuongCB)
+                                           }).FirstOrDefaultAsync();
+            return new APISuccessedResult<InfoOfJobOfSiQuanViewModel>(infoOfJobSiQuanVM);
+        }
+
+        public async Task<APIResult<ProfileViewModel>> GetProfileByUsername(string UserName)
+        {
+            var profileVM = await (from user in _context.Users
+                                   join sq in _context.SiQuans
+                                   on user.Id equals sq.UserId
+                                   where user.UserName == UserName
+                                   select new ProfileViewModel() 
+                                   {
+                                       UserID = user.Id,
+                                       IDSQ = sq.IDSQ,
+                                       HoTen = sq.HoTen,
+                                       NgaySinh = sq.NgaySinh,
+                                       GioiTinh = sq.GioiTinh,
+                                       QueQuan = sq.QueQuan,
+                                       SDT = sq.SDT
+                                   }).FirstOrDefaultAsync();
+            var sqImage = await _context.SiQuanImages.FirstOrDefaultAsync(x => x.IDSQ == profileVM.IDSQ);
+            if (sqImage != null)
+                profileVM.ImagePath = sqImage.ImagePath;
+            return new APISuccessedResult<ProfileViewModel>(profileVM);
+        }
     }
 }

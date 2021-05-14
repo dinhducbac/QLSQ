@@ -177,5 +177,25 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest();
             return Ok();
         }
+        [HttpGet("{UserName}/getprofilebyusername")]
+        public async Task<IActionResult> GetUserNameByUserName(string UserName)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _publicSiQuanServices.GetProfileByUsername(UserName);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
+        [HttpGet("{IDSQ}/getinfoofjobofsiquan")]
+        public async Task<IActionResult> GetInfoOfJobOfSiQuan(int IDSQ)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var result = await _publicSiQuanServices.GetInfoOfJobOfSiQuan(IDSQ);
+            if (result.ResultObj != null)
+                return Ok(result);
+            return BadRequest(result);
+        }
     }
 }

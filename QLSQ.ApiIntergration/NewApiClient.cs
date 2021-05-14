@@ -27,6 +27,7 @@ namespace QLSQ.ApiIntergration
 
         public async Task<APIResult<bool>> Create(NewCreateRequest request)
         {
+            var test = request.NewContent;
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
             var requestContent = new MultipartFormDataContent();
@@ -165,6 +166,45 @@ namespace QLSQ.ApiIntergration
             return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
         }
 
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetListDaoTaoNew()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/getlistdaotaonew");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetListGDQPANNew()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/getlistgdqpanew");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetListHTHNNew()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/getlisththnnew");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
+        }
+
         public async Task<APIResult<List<NewDetailsViewModel>>> GetListKHCNNew()
         {
             var client = _httpClientFactory.CreateClient();
@@ -189,6 +229,19 @@ namespace QLSQ.ApiIntergration
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<APISuccessedResult<List<NewViewModel>>>(body);
             return JsonConvert.DeserializeObject<APIErrorResult<List<NewViewModel>>>(body);
+        }
+
+        public async Task<APIResult<List<NewDetailsViewModel>>> GetListTuyenSinhNew()
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/News/getlisttuyensinhnew");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<NewDetailsViewModel>>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<List<NewDetailsViewModel>>>(body);
         }
 
         public async Task<APIResult<List<NewDetailsViewModel>>> GetMostViewNew()
