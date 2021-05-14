@@ -13,6 +13,9 @@ namespace QLSQ.Application.Catalog.SiQuan
     {
         public Task<PageResult<SiQuanViewModel>> GetAllBySiQuanId(GetPublicSiQuanPagingRequest request);
         public Task<List<SiQuanViewModel>> GetAll();
+
+        public Task<APIResult<ProfileViewModel>> GetProfileByUsername(string UserName);
+        public Task<APIResult<InfoOfJobOfSiQuanViewModel>> GetInfoOfJobOfSiQuan(int IDSQ);
     }
 }
 

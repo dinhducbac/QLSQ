@@ -31,5 +31,6 @@ namespace QLSQ.Application.Catalog.SiQuans
         public Task<APIResult<List<SiQuanViewModel>>> GetFullListSiQuanAutocomplete(string preconfix);
         public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix);
         public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLQuanHamAutocomplete(string prefix);
+        
     }
 }

@@ -7,20 +7,20 @@
     <div class="row">     
         <div class="col-lg-9 col-sm-6 mb-5 mb-sm-2">
             <div class="row">
-                <h2 class="col-lg-9 col-sm-6 font-weight-600 mt-3 mb-3">
+                <h2 class="col-lg-12 col-sm-6 font-weight-600 mt-3 mb-3">
                     @Model.NewName
                 </h2>
-                <div class="col-lg-9 col-sm-6 mb-3 mt-3">
+                <div class="col-lg-12 col-sm-6 mb-3 mt-3">
                     <p class="fs-15 font-weight-normal mt-3">
                         Ngày đăng: @Model.NewDatePost
                     </p>
                 </div>            
-                <div class="col-lg-9 col-sm-6 position-relative image-hover mt-3 mb-3">
+                <div class="col-lg-12 col-sm-6 position-relative image-hover mt-3 mb-3">
                     <img src="@Configuration["BaseAddress"]/new-image/@Model.ImagePath"
                          class="img-fluid"
                          alt="world-news" />
                 </div>
-                <div class="col-lg-9 col-sm-6">
+                <div class="col-lg-12 col-sm-6">
                     <p class="fs-15 font-weight-normal mt-3">
                         @Html.Raw(Model.NewContent)
                     </p>

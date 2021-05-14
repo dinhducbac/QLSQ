@@ -20,5 +20,7 @@ namespace QLSQ.ApiIntergration
         public Task<APIResult<List<SiQuanViewModel>>> GetFullListSiQuanAutocomplete(string preconfix);
         public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix);
         public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLQuanHamAutocomplete(string prefix);
+        public Task<APIResult<ProfileViewModel>> GetProfileByUserName(string UserName);
+        public Task<APIResult<InfoOfJobOfSiQuanViewModel>> GetInfoOfJobOfSiQuan(int IDSQ);
     }
 }
