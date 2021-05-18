@@ -30,7 +30,7 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label class="control-label">Username</label>
-                                        <input type="text" id="autocomplete" class="form-control" />
+                                        <input type="text" id="autocomplete" class="form-control" required />
                                         <span class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="HoTen" class="control-label"></label>
-                                        <input asp-for="HoTen" class="form-control" />
+                                        <input asp-for="HoTen" class="form-control" required />                                  
                                         <span asp-validation-for="HoTen" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -50,17 +50,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="GioiTinh" class="control-label"></label>
-                                        <input asp-for="GioiTinh" class="form-control" />
+                                        <select asp-for="GioiTinh" class="form-control">
+                                            <option value="F">Nữ</option>
+                                            <option value="M">Nam</option>
+                                        </select>
                                         <span asp-validation-for="GioiTinh" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="QueQuan" class="control-label"></label>
-                                        <input asp-for="QueQuan" class="form-control" />
+                                        <input asp-for="QueQuan" class="form-control" required/>
                                         <span asp-validation-for="QueQuan" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="SDT" class="control-label"></label>
-                                        <input asp-for="SDT" class="form-control" />
+                                        <input asp-for="SDT" class="form-control" required/>
                                         <span asp-validation-for="SDT" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">

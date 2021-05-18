@@ -22,6 +22,7 @@ namespace QLSQ.ViewModel.Catalogs.SiQuan
         public string QueQuan { get; set; }
         [Display(Name = "Số điện thoại")]
         public string SDT { get; set; }
+        [Display(Name = "Ảnh đại diện")]
         public IFormFile ThumbnailImage { get; set; }
 
         public List<UserViewModel> userViewModels { get; set; }

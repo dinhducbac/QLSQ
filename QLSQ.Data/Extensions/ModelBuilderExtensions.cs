@@ -626,7 +626,63 @@ namespace QL_SiQuan.Data.Extensions
                      ImagePath = "CDS0.jpeg",
                      DateCreated = DateTime.Parse("2021-05-11 15:28:27.1009599"),
                      FileSize = 82202
-                 }
+                 },
+                 new NewImage
+                 {
+                     NewImageID = 11,
+                     NewID = 11,
+                     ImagePath = "BK-CDS2.jpg",
+                     DateCreated = DateTime.Parse("2021-05-11 15:31:49.4477013"),
+                     FileSize = 1403280
+                 },
+                 new NewImage
+                 {
+                     NewImageID = 12,
+                     NewID = 12,
+                     ImagePath = "thuy4.jpg",
+                     DateCreated = DateTime.Parse("2021-05-11 15:31:49.4477013"),
+                     FileSize = 189385
+                 },
+                 new NewImage
+                 {
+                     NewImageID = 13,
+                     NewID = 13,
+                     ImagePath = "c4.jpg",
+                     DateCreated = DateTime.Parse("2021-05-11 15:38:33.1101120"),
+                     FileSize = 195371
+                 },
+                  new NewImage
+                  {
+                      NewImageID = 14,
+                      NewID = 14,
+                      ImagePath = "c71.jpg",
+                      DateCreated = DateTime.Parse("2021-05-11 15:41:12.6343404"),
+                      FileSize = 170579
+                  },
+                  new NewImage
+                  {
+                      NewImageID = 15,
+                      NewID = 15,
+                      ImagePath = "TuyenSinh2021.jpg",
+                      DateCreated = DateTime.Parse("2021-05-12 08:15:18.9817290"),
+                      FileSize = 420266
+                  },
+                  new NewImage
+                  {
+                      NewImageID = 16,
+                      NewID = 16,
+                      ImagePath = "DT_TiengNhat.jpg",
+                      DateCreated = DateTime.Parse("2021-05-13 10:12:17.4406818"),
+                      FileSize = 1199603
+                  },
+                  new NewImage
+                  {
+                      NewImageID = 17,
+                      NewID = 18,
+                      ImagePath = "BoardingPass_MyNameOnFutureMission.png",
+                      DateCreated = DateTime.Parse("2021-05-13 13:38:07.7399452"),
+                      FileSize = 967268
+                  }
             ); 
             modelBuilder.Entity<Slide>().HasData(
                 new Slide

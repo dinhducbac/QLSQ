@@ -26,31 +26,25 @@ namespace QLSQ.BackEndAPI.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Authencate([FromBody] LoginRequest request)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
             var resulttoken = await _userService.Authenticate(request);
-            string test = resulttoken.ResultObj;
-            if (string.IsNullOrEmpty(resulttoken.ResultObj))
-                return BadRequest(resulttoken.Message);
+            string test = resulttoken.Message;
+            //if (resulttoken.Message == "Error Role!")
+                //return NotFound();
             return Ok(resulttoken);
         }
         [HttpPost("createuser")]
         [AllowAnonymous]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+        {     
             var result = await _userService.CreateUser(request);
-            if (!result.IsSuccessed)
-                return BadRequest(result);
+            //if (!result.IsSuccessed)
+                //return BadRequest(result);
             return Ok(result);
         }
         //put http://localhost/api/user/id
         [HttpPut("{id}/update")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UpdateUserRequest request)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
             var result = await _userService.UpdateUser(id,request);
             if (!result.IsSuccessed)
                 return BadRequest(result);
