@@ -52,12 +52,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="ThoiGianBatDauCT" class="control-label"></label>
-                                        <input asp-for="ThoiGianBatDauCT" class="form-control" />
+                                        <input id="ThoiGianBatDauCT" asp-for="ThoiGianBatDauCT" class="form-control" type="date"/>
                                         <span asp-validation-for="ThoiGianBatDauCT" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="ThoiGianKetThucCT" class="control-label"></label>
-                                        <input asp-for="ThoiGianKetThucCT" class="form-control" />
+                                        <input asp-for="ThoiGianKetThucCT" id="ThoiGianKetThucCT" class="form-control" type="date"/>
                                         <span asp-validation-for="ThoiGianKetThucCT" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -89,6 +89,35 @@
     </div>
     <!-- /.container-fluid -->
 </section>
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            var timeBD = $("#ThoiGianBatDauCT").val();
+            var timeKT = $("#ThoiGianKetThucCT").val();
+            $("#ThoiGianBatDauCT").change(function () {
+                var getDateBD = new Date($("#ThoiGianBatDauCT").val());
+                var getDateKT = new Date($("#ThoiGianKetThucCT").val());
+
+                if (getDateBD > getDateKT) {
+                    setTimeout(function () {
+                        alert("Ngày bắt đầu phải nhỏ hơn ngày kết thúc");
+                        $("#ThoiGianBatDauCT").val(timeBD);
+                    }, 500);
+                }
+            });
+            $("#ThoiGianKetThucCT").change(function () {
+                var getDateBD = new Date($("#ThoiGianBatDauCT").val());
+                var getDateKT = new Date($("#ThoiGianKetThucCT").val());
+                if (getDateKT < getDateBD) {
+                    setTimeout(function () {
+                        alert("Ngày kết thúc phải lớn hơn ngày bắt đầu");
+                        $("#ThoiGianKetThucCT").val(timeKT);
+                    }, 500);
+                }
+            });
+        });
+    </script>
+}
 
 
 

@@ -8,6 +8,8 @@ namespace QLSQ.ViewModel.Catalogs.QLCongTac
 {
     public class QLCongTacCreateRequest
     {
+        [Display(Name ="Họ tên sĩ quan")]
+        public string HoTen { get; set; }
         [Display(Name = "ID sĩ quan")]
         public int IDSQ { get; set; }
         [Display(Name = "Địa chỉ công tác")]
@@ -18,7 +20,6 @@ namespace QLSQ.ViewModel.Catalogs.QLCongTac
         public DateTime ThoiGianKetThucCT { get; set; }
         [Display(Name = "Trạng thái công tác")]
         public int CongTacState { get; set; }
-        public List<SiQuanViewModel> siQuanViewModels { get; set; }
 
     }
 }

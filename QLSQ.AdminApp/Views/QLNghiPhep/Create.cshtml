@@ -20,7 +20,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Tạo User</h3>
+                        <h3 class="card-title">Tạo nghỉ phép</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -30,7 +30,7 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label asp-for="HoTen" class="control-label"></label>
-                                        <input type="text" id="autocomplete" asp-for="HoTen" class="form-control" />
+                                        <input type="text" id="autocomplete" asp-for="HoTen" class="form-control" required />
                                         <span asp-validation-for="HoTen" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -40,12 +40,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="ThoiGianBDNP" class="control-label"></label>
-                                        <input asp-for="ThoiGianBDNP" class="form-control" />
+                                        <input id="ThoiGianBDNP" asp-for="ThoiGianBDNP" class="form-control" type="date"  value="@DateTime.Now"/>
                                         <span asp-validation-for="ThoiGianBDNP" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="ThoiGianKTNP" class="control-label"></label>
-                                        <input asp-for="ThoiGianKTNP" class="form-control" />
+                                        <input id="ThoiGianKTNP" asp-for="ThoiGianKTNP" class="form-control" type="date" value="@DateTime.Now" />
                                         <span asp-validation-for="ThoiGianKTNP" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">

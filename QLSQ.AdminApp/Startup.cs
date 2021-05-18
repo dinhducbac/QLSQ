@@ -33,7 +33,8 @@ namespace QLSQ.AdminApp
                     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>())
                     .AddFluentValidation(fv=>fv.RegisterValidatorsFromAssemblyContaining<CreateUserRequestValidator>())
                     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateUserRequestValidator>())
-                    .AddFluentValidation(fv=>fv.RegisterValidatorsFromAssemblyContaining<SiQuanCreateRequest>());
+                    .AddFluentValidation(fv=>fv.RegisterValidatorsFromAssemblyContaining<SiQuanCreateRequestValidator>())
+                    .AddFluentValidation(fv=>fv.RegisterValidatorsFromAssemblyContaining<SiQuanUpdateRequestValidator>());
             services.AddHttpClient();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {

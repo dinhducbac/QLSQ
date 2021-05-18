@@ -28,7 +28,7 @@
 
                         <div class="row">
                             <div class="col-md-4">
-                                <form asp-action="Edit" onsubmit="return CheckNameBeforeSubmit(event)">
+                                <form asp-action="Edit">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label asp-for="IDHeSoLuongQH" class="control-label"></label>
@@ -48,7 +48,6 @@
                                     <div class="form-group">
                                         <label asp-for="TenHeSoLuongQH" class="control-label"></label>
                                         <input asp-for="TenHeSoLuongQH" id="TenHeSoLuongQH" class="form-control" />
-                                        <input type="button" id="CheckName" class="btn btn-primary" value="Kiểm tra tên"/>
                                         <span asp-validation-for="TenHeSoLuongQH" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
@@ -77,44 +76,6 @@
     </div>
     <!-- /.container-fluid -->
 </section>
-@section Script{
-    <script type="text/javascript">
-        var CheckHSLName = false;
-        $("#CheckName").click(function () {
-            $(function () {
-                $(document).ready(function CheckName() {
-                    $.ajax({
-                        url: '/HeSoLuongTheoQuanHam/CheckNameHeSoLuongInCreate',
-                        data: { "name": $("#TenHeSoLuongQH").val() },
-                        type: 'POST',
-                        dataType: 'Json',
-                        success: function (data) {
-                            CheckHSLName = false;
-                            alert("Trùng tên");
-                        },
-                        error: function (data) {
-                            CheckHSLName = true;
-                            alert("Không trùng tên!");
-                        },
-                        failure: function (data) {
-                            CheckHSLName = true;
-                            alert("Không trùng tên!!!");
-                        }
-                    });
-
-                })
-            });
-        });
-        function CheckNameBeforeSubmit(e) {
-            if (CheckHSLName == false) {
-                alert("Bạn phải kiểm tra tên hợp lệ không trùng trước khi sửa");
-                e.preventDefault();
-                return false;
-            }
-        }
-    </script>
-}
-
 
 
 

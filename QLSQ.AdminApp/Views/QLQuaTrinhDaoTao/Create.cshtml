@@ -51,12 +51,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="ThoiGianBDDT" class="control-label"></label>
-                                        <input asp-for="ThoiGianBDDT" id="ThoiGianBDDT" class="form-control" />
+                                        <input asp-for="ThoiGianBDDT" id="ThoiGianBDDT" class="form-control" type="date" value="@DateTime.Now" data-date-format="dd-mm-yyyy" />
                                         <span asp-validation-for="ThoiGianBDDT" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="ThoiGianKTDT" class="control-label"></label>
-                                        <input asp-for="ThoiGianKTDT" id="ThoiGianKTDT" class="form-control" />
+                                        <input asp-for="ThoiGianKTDT" id="ThoiGianKTDT" class="form-control" type="date" value="@DateTime.Now" data-date-format="dd-mm-yyyy" />
                                         <span asp-validation-for="ThoiGianKTDT" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
