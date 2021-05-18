@@ -63,10 +63,6 @@ namespace QLSQ.BackEndAPI.Controllers
         [HttpPut("{IDSQ}/update")]
         public async Task<IActionResult> Update(int IDSQ, [FromBody]SiQuanUpdateRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             var result = await _manageSiQuanServices.Update(IDSQ, request);
             if (!result.IsSuccessed)
                 return BadRequest();
@@ -81,12 +77,12 @@ namespace QLSQ.BackEndAPI.Controllers
                 return BadRequest(result);
             return Ok(result);
         }
-        [HttpGet("getnotinqldv")]
-        public async Task<IActionResult> GetSiQuanNotInQLDangVien()
+        [HttpGet("getlistsiquannotinqldangvienautocpmplete")]
+        public async Task<IActionResult> GetListSiQuanNotInQLDangVienAutoComplete(string prefix)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var listSq = await _manageSiQuanServices.GetSiQuanNotInQLDangVien();
+            var listSq = await _manageSiQuanServices.GetListSiQuanNotInQLDangVienAutoComplete(prefix);
             if (listSq.IsSuccessed)
                 return Ok(listSq);
             return BadRequest(listSq);

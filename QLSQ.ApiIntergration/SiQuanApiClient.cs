@@ -198,13 +198,13 @@ namespace QLSQ.ApiIntergration
             return JsonConvert.DeserializeObject<APIErrorResult<ProfileViewModel>>(body);
         }
 
-        public async Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien()
+        public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLDangVienAutoComplete(string prefix)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
             var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
-            var reponse = await client.GetAsync($"/api/SiQuans/getnotinqldv");
+            var reponse = await client.GetAsync($"/api/SiQuans/getlistsiquannotinqldangvienautocpmplete?prefix={prefix}");
             var body = await reponse.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<APIResult<List<SiQuanViewModel>>>(body);
             return user;

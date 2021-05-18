@@ -23,6 +23,12 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        @if (ViewBag.HSL == false)
+                        {
+                            <div id="msgAlert" class="alert alert-success" role="alert">
+                                @ViewBag.Message;
+                            </div>
+                        }
                         <div class="row">
                             <div class="col-md-4">
                                 <form asp-action="Create" onsubmit="return CheckNameBeforeSubmit(event);">
@@ -96,6 +102,9 @@
                 })
             });
         });
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000);
         function CheckNameBeforeSubmit(e) {
             if (CheckHSLName == false) {
                 alert("Bạn phải kiểm tra tên hợp lệ không trùng trước khi thêm");
@@ -103,6 +112,7 @@
                 return false;
             }       
         }
+        
     </script>
 }
 

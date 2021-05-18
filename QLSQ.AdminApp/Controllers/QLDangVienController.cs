@@ -39,15 +39,16 @@ namespace QLSQ.AdminApp.Controllers
             return View(result.ResultObj);
         }
         [HttpGet]
+        public async Task<JsonResult> GetListSiQuanNotInQLDangVienAutoComplete(string prefix)
+        {
+            var result = await _siQuanApiClient.GetListSiQuanNotInQLDangVienAutoComplete(prefix);
+            var test = result.ResultObj;
+            return Json(result.ResultObj);
+        }
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var qldvCreateRequest = new QLDangVienCreateRequest()
-            {
-                siQuanViewModels = new List<SiQuanViewModel>()
-            };
-            var getsq = await _siQuanApiClient.GetSiQuanNotInQLDangVien();
-            var sqlist = getsq.ResultObj;
-            qldvCreateRequest.siQuanViewModels = sqlist;
+            var qldvCreateRequest = new QLDangVienCreateRequest();
             return View(qldvCreateRequest);
         }
         [HttpPost]

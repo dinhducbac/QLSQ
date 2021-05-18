@@ -108,7 +108,7 @@ namespace QLSQ.AdminApp.Controllers
         public async Task<IActionResult> Edit(SiQuanUpdateRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return View();
             var result = await _siQuanApiClient.Update(request.IDSQ, request);
             if(result.IsSuccessed)
             {
