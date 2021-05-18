@@ -3,6 +3,7 @@
 @{
     Layout = null;
 }
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -10,7 +11,8 @@
 
 <!doctype html>
 <html lang="en">
-@**@<head>
+@**@
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,9 +30,9 @@
 
     <title>Login</title>
 </head>
-    <body>
+<body>
 
-        @*<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+    @*<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="#">Laravel</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,53 +53,70 @@
             </div>
         </nav>*@
 
-        <main class="login-form">
-            <div class="cotainer">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header">Login</div>
-                                <div class="card-body">
-                                    <form asp-action="Login" asp-controller="User" method="post">
-                                        <div class="form-group row">
-                                            <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
-                                            <div class="col-md-6">
-                                                <input asp-for="UserName" type="text" id="username" class="form-control" name="username" required autofocus>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                            <div class="col-md-6">
-                                                <input asp-for="Password" type="password" id="password" class="form-control" name="password" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-md-6 offset-md-4">
-                                                <div class="checkbox">
-                                                    <label>
-                                                        <input asp-for="RememberMe" type="checkbox" name="remember"> Remember Me
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
-                                                Login
-                                            </button>
-                                            <a href="#" class="btn btn-link">
-                                                Forgot Your Password?
-                                            </a>
-                                        </div>
-                                    </form>
-                                </div>
+    <main class="login-form">
+        <div class="cotainer">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <section>
+                        @if (ViewBag.Success == false)
+                        {
+                            <div id="msgAlert" class="alert alert-success" role="alert">
+                                @ViewBag.Message;
                             </div>
+                        }
+                    </section>
+                    <div class="card">
+                        <div class="card-header">Login</div>
+                        <div class="card-body">
+                            <form asp-action="Login" asp-controller="User" method="post">
+                                <div class="form-group row">
+                                    <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                                    <div class="col-md-6">
+                                        <input asp-for="UserName" type="text" id="username" class="form-control" name="username" required autofocus>
+                                        <span id="UserNameValidation" style="color:red" asp-validation-for="UserName"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                                    <div class="col-md-6">
+                                        <input asp-for="Password" type="password" id="password" class="form-control" name="password" required>
+                                        <span id="PasswordValidation" style="color:red" asp-validation-for="Password"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-6 offset-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input asp-for="RememberMe" type="checkbox" name="remember"> Remember Me
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Login
+                                    </button>
+                                    <a href="#" class="btn btn-link">
+                                        Forgot Your Password?
+                                    </a>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-    </body>
+        </div>
+        </div>
+    </main>
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+            $("#PasswordValidation").fadeOut("slow");
+        }, 2000);
+    </script>
+</body>
 </html>
+

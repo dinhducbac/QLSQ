@@ -60,8 +60,21 @@ namespace QLSQ.AdminApp.Controllers
         public async Task<IActionResult> Login(LoginRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return View();
             var token = await _userApiClient.Authentication(request);
+            var test = token.ResultObj;
+            if(token.ResultObj == "Error Role!")
+            {
+                ViewBag.Success = false;
+                ViewBag.Message = "Bạn phải đăng nhập bằng tài khoản quản trị!";
+                return View();
+            }
+            if (token.ResultObj == null)
+            {
+                ViewBag.Success = false;
+                ViewBag.Message = "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu!";
+                return View();
+            }            
             var userPricipal = this.ValidateToken(token.ResultObj);
             var authProperties = new AuthenticationProperties
             {
@@ -89,7 +102,7 @@ namespace QLSQ.AdminApp.Controllers
        
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
-        {
+        {          
             var result = await _userApiClient.DetailUser(id);
             if (result.IsSuccessed)
             {
@@ -119,7 +132,7 @@ namespace QLSQ.AdminApp.Controllers
         public async Task<IActionResult> Edit(UpdateUserRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return View();
             var result = await _userApiClient.UpdateUser(request.ID, request);
             if (result.IsSuccessed)
             {
@@ -134,7 +147,7 @@ namespace QLSQ.AdminApp.Controllers
         public async Task<IActionResult> CreateUser(CreateUserRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return View();
             var result = await _userApiClient.CreateUser(request);
             if (result.ResultObj.Equals("Tạo tài khoản thành công!"))
             {

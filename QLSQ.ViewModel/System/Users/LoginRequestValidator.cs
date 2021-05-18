@@ -11,8 +11,8 @@ namespace QLSQ.ViewModel.System.Users
         public LoginRequestValidator()
         {
             RuleFor(x => x.UserName).NotEmpty().WithMessage("Bạn phải nhập Username");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Bạn phải nhập Password")
-                .MinimumLength(6).WithMessage("Mật khẩu phải trên 6 kí tự");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Bạn phải nhập Password");
+            RuleFor(x => x.Password).MinimumLength(6).WithMessage("Mật khẩu phải trên 6 kí tự");
         }
     }
 }

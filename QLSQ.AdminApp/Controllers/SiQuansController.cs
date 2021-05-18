@@ -63,7 +63,7 @@ namespace QLSQ.AdminApp.Controllers
         public async Task<IActionResult> Create([FromForm]SiQuanCreateRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+                return View();
             var result = await _siQuanApiClient.Create(request);
             if (result.ResultObj != 0)
             {
