@@ -43,7 +43,12 @@ namespace QLSQ.Application.System.Users
             {
                  return new APIErrorResult<string>("Bạn nhập sai mật khẩu! Đăng nhập thất bại");
             }
-            var role = _userManager.GetRolesAsync(user);
+            var role = await _userManager.GetRolesAsync(user);
+            var roleName = role[0].ToString();
+            if(roleName != "admin")
+            {
+                return new APISuccessedResult<string>("Error Role!");
+            }
             var claims = new[]
             {
                 new Claim(ClaimTypes.Email, user.Email),
@@ -94,7 +99,7 @@ namespace QLSQ.Application.System.Users
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
             user.Email = request.Email;
-            user.PasswordHash = request.Password;
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.PasswordConfirm);
             user.PhoneNumber = request.PhoneNumber;
             await _userManager.UpdateAsync(user);
             return new APISuccessedResult<string>("Cập nhật thành công!");
@@ -166,8 +171,8 @@ namespace QLSQ.Application.System.Users
                 Username = user.UserName,
                 Password = user.PasswordHash,
                 PhoneNumber = user.PhoneNumber
-
             };
+           
             return new APISuccessedResult<UserViewModel>(uservm);
         }
 

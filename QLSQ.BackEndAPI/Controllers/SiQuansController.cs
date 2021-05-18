@@ -53,10 +53,6 @@ namespace QLSQ.BackEndAPI.Controllers
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm]SiQuanCreateRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
             var siquanId = await _manageSiQuanServices.Create(request);
             if (siquanId.ResultObj == 0)
                 return BadRequest(siquanId);

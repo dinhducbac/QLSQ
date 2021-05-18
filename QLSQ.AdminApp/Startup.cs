@@ -13,6 +13,7 @@ using QLSQ.ViewModel.System.Users;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using QLSQ.ApiIntergration;
+using QLSQ.ViewModel.Catalogs.SiQuan;
 
 namespace QLSQ.AdminApp
 {
@@ -29,12 +30,15 @@ namespace QLSQ.AdminApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews()
-                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>());
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>())
+                    .AddFluentValidation(fv=>fv.RegisterValidatorsFromAssemblyContaining<CreateUserRequestValidator>())
+                    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<UpdateUserRequestValidator>())
+                    .AddFluentValidation(fv=>fv.RegisterValidatorsFromAssemblyContaining<SiQuanCreateRequest>());
             services.AddHttpClient();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
                 options.LoginPath = "/User/Login";
-                options.AccessDeniedPath = "/User/Forbidden";
+                options.AccessDeniedPath = "/User/Login";
             });
             services.AddSession(options =>
             {

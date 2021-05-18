@@ -9,8 +9,10 @@ namespace QLSQ.ViewModel.Catalogs.SiQuan
 {
     public class SiQuanUpdateRequest
     {
-        [Display(Name ="ID")]
+        [Display(Name ="ID sĩ quan")]
         public int IDSQ { get; set; }
+        [Display(Name ="UserName")]
+        public string UserName { get; set; }
         [Display(Name ="ID tài khoản")]
         public Guid UserId { get; set; }
         [Display(Name ="Họ và tên")]
