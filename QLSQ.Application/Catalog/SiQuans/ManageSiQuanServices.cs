@@ -235,11 +235,12 @@ namespace QLSQ.Application.Catalog.SiQuans
             return new APISuccessedResult<SiQuanViewModel>(siquanmd);
         }
 
-        public async Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien()
+        public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLDangVienAutoComplete(string prefix)
         {
             List<SiQuanViewModel> siQuanViewModels = new List<SiQuanViewModel>();
             var query = from sq in _context.SiQuans
                         where !_context.QLDangViens.Any(qldv => (qldv.IDSQ == sq.IDSQ))
+                        && sq.HoTen.Contains(prefix)
                         select sq;
             foreach (var data in query)
             {
@@ -285,7 +286,7 @@ namespace QLSQ.Application.Catalog.SiQuans
                              on qlcv.IDCV equals cv.IDCV
                          join hspc in _context.HeSoPhuCapTheoChucVus
                              on cv.IDCV equals hspc.IDCV
-                         where sq.HoTen.StartsWith(preconfix) && !_context.QLLuongs.Any(x => x.IDSQ == sq.IDSQ)
+                         where sq.HoTen.Contains(preconfix) && !_context.QLLuongs.Any(x => x.IDSQ == sq.IDSQ)
                          select new SiQuanInQLLuongViewModel
                         {
                             IDSQ = sq.IDSQ,
@@ -331,7 +332,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLChucVuAutocomplete(string prefix)
         {
             var query = from sq in _context.SiQuans
-                        where !_context.QLChucVus.Any(x => x.IDSQ == sq.IDSQ) && sq.HoTen.StartsWith(prefix)
+                        where !_context.QLChucVus.Any(x => x.IDSQ == sq.IDSQ) && sq.HoTen.Contains(prefix)
                         select sq;
             var list = new List<SiQuanViewModel>();
             foreach (var data in query)
@@ -350,7 +351,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         {
             List<SiQuanViewModel> listsqvm = new List<SiQuanViewModel>();
             var query = from sq in _context.SiQuans
-                        where sq.HoTen.StartsWith(preconfix)
+                        where sq.HoTen.Contains(preconfix)
                         select new SiQuanViewModel()
                         {
                             IDSQ = sq.IDSQ,
@@ -371,7 +372,7 @@ namespace QLSQ.Application.Catalog.SiQuans
         public async Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLQuanHamAutocomplete(string prefix)
         {
             var query = from sq in _context.SiQuans
-                        where !_context.QLQuanHams.Any(x => x.IDSQ == sq.IDSQ) && sq.HoTen.StartsWith(prefix)
+                        where !_context.QLQuanHams.Any(x => x.IDSQ == sq.IDSQ) && sq.HoTen.Contains(prefix)
                         select sq;
             var list = new List<SiQuanViewModel>();
             foreach (var data in query)

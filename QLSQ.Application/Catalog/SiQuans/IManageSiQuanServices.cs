@@ -21,7 +21,7 @@ namespace QLSQ.Application.Catalog.SiQuans
 
         public Task<APIResult<PageResult<SiQuanViewModel>>> GetAllPaging(GetManageSiQuanPagingRequest request);
         public Task<APIResult<List<SiQuanViewModel>>> GetAllWithoutPaging();
-        public Task<APIResult<List<SiQuanViewModel>>> GetSiQuanNotInQLDangVien();
+        public Task<APIResult<List<SiQuanViewModel>>> GetListSiQuanNotInQLDangVienAutoComplete(string prefix);
         public Task<int> AddImages(int SiQuanID, SiQuanImageCreateRequest request);
         public Task<int> RemoveImages(int ImageID);
         public Task<int> UpdateImages(int ImageID, SiQuanImageUpdateRequest request);

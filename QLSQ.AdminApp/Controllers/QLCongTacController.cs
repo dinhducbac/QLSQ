@@ -35,19 +35,16 @@ namespace QLSQ.AdminApp.Controllers
             return View(result.ResultObj);
         }
         [HttpGet]
+        public async Task<JsonResult> GetFullListSiQuanAutocomplete(string preconfix)
+        {
+            var result = await _siQuanApiClient.GetFullListSiQuanAutocomplete(preconfix);
+            return Json(result.ResultObj);
+        }
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var qlctCreateRequest = new QLCongTacCreateRequest()
-            {
-                siQuanViewModels = new List<ViewModel.Catalogs.SiQuan.SiQuanViewModel>()
-            };
-            var listsq = await _siQuanApiClient.GetAllWithoutPaging();
-            if (listsq.IsSuccessed)
-            {
-                qlctCreateRequest.siQuanViewModels = listsq.ResultObj;
-                return View(qlctCreateRequest);
-            }
-            return View(listsq);
+            var qlctCreateRequest = new QLCongTacCreateRequest();
+            return View(qlctCreateRequest);
         }
         [HttpPost]
         public async Task<IActionResult> Create(QLCongTacCreateRequest request)

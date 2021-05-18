@@ -58,7 +58,18 @@ namespace QLSQ.AdminApp.Controllers
         public async Task<IActionResult> Create(HeSoLuongTheoQuanHamCreateRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+            {
+                ViewBag.HSL = false;
+                ViewBag.Message = "Hệ số lương phải là chữ số!";
+                var createRequest = new HeSoLuongTheoQuanHamCreateRequest()
+                {
+                    quanHamViewModels = new List<QuanHamViewModel>()
+                };
+                var getqh = await _quanHamApiClient.GetAllWithoutPaging();
+                var qh = getqh.ResultObj;
+                createRequest.quanHamViewModels = qh.ToList();
+                return View(createRequest);
+            }          
             var result = await _heSoLuongTheoQuanHamApiClient.Create(request);
             if (result.IsSuccessed)
             {
@@ -117,7 +128,9 @@ namespace QLSQ.AdminApp.Controllers
         public async Task<IActionResult> Edit(HeSoLuongTheoQuanHamUpdateRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
+            {
+                return View();
+            }        
             var result = await _heSoLuongTheoQuanHamApiClient.Edit(request.IDHeSoLuongQH, request);
             if (result.IsSuccessed)
             {

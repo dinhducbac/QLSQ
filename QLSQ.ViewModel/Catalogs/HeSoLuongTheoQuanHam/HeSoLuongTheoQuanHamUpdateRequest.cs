@@ -16,6 +16,7 @@ namespace QLSQ.ViewModel.Catalogs.HeSoLuongTheoQuanHam
         [Display(Name = "Tên hệ số lương quân hàm")]
         public string TenHeSoLuongQH { get; set; }
         [Display(Name = "Hệ số lương")]
+        [DataType(DataType.Currency, ErrorMessage = "Hệ số lương phải là chữ số")]
         public float HeSoLuong { get; set; }
     }
 }
