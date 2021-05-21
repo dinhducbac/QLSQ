@@ -245,5 +245,36 @@ namespace QLSQ.Application.System.Users
             }
             return new APISuccessedResult<List<UserViewModel>>(listuser);
         }
+
+        public async Task<APIResult<string>> AuthenticateForWebApp(LoginRequest request)
+        {
+            var user = await _userManager.FindByNameAsync(request.UserName);
+            if (user == null)
+                return new APIErrorResult<string>("Bạn nhập sai tên username");
+            var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
+            if (!result.Succeeded)
+            {
+                return new APIErrorResult<string>("Bạn nhập sai mật khẩu! Đăng nhập thất bại");
+            }
+            var role = await _userManager.GetRolesAsync(user);
+            var roleName = role[0].ToString();
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.SerialNumber, user.Id.ToString()),
+                new Claim(ClaimTypes.Role, string.Join(";",role))
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var token = new JwtSecurityToken(_config["Token:Issuer"],
+                _config["Token:Issuer"],
+                claims,
+                expires: DateTime.Now.AddHours(3),
+                signingCredentials: creds);
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            return new APISuccessedResult<string>(tokenString);
+        }
     }
 }

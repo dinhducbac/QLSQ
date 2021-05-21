@@ -6,6 +6,13 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
+@section Scripts{
+    <script type="text/javascript">
+        setTimeout(function () {
+            $("#msgAlert").fadeOut("slow");
+        }, 2000 )
+    </script>
+}
 <!doctype html>
 <html lang="en">
 @**@
@@ -30,6 +37,14 @@
                     <div class="card">
                         <div class="card-header">Login</div>
                         <div class="card-body">
+                            <section>
+                                @if (ViewBag.Login == false)
+                                {
+                                    <div id="msgAlert" class="alert alert-success" role="alert">
+                                        @ViewBag.LoginMessage
+                                    </div>
+                                }
+                            </section>                     
                             <form asp-action="Login" asp-controller="AppUser" method="post">
                                 <div class="form-group row">
                                     <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
@@ -42,6 +57,7 @@
                                     <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
                                     <div class="col-md-6">
                                         <input asp-for="Password" type="password" id="password" class="form-control" name="password" required>
+                                        <span asp-validation-for="Password" class="alert-danger"></span>
                                     </div>
                                 </div>
 

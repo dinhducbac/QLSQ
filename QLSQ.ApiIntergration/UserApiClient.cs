@@ -41,8 +41,7 @@ namespace QLSQ.ApiIntergration
 
             }
             var session = await reponse.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<APIErrorResult<string>>(session);
-            ;
+            return JsonConvert.DeserializeObject<APIErrorResult<string>>(session);         
         }
 
         public async Task<APIResult<string>> CreateUser(CreateUserRequest request)
@@ -172,6 +171,19 @@ namespace QLSQ.ApiIntergration
             if (response.IsSuccessStatusCode)
                 return JsonConvert.DeserializeObject<APISuccessedResult<List<UserViewModel>>>(body);
             return JsonConvert.DeserializeObject<APIErrorResult<List<UserViewModel>>>(body);
+        }
+
+        public async Task<APIResult<string>> AuthenticateForWebApp(LoginRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var json = JsonConvert.SerializeObject(request);
+            var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync($"/api/User/authenticateforwebapp",httpContent);
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<string>>(body);
+            return JsonConvert.DeserializeObject<APIErrorResult<string>>(body);
         }
     }
 }

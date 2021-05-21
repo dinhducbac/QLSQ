@@ -505,6 +505,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[9.5.1, )"
+            },
             "Microsoft.IdentityModel.Logging": {
               "target": "Package",
               "version": "[6.8.0, )"

@@ -11,6 +11,7 @@ namespace QLSQ.ApiIntergration
     public interface IUserApiClient
     {
         public Task<APIResult<string>> Authentication(LoginRequest request);
+        public Task<APIResult<string>> AuthenticateForWebApp(LoginRequest request); 
         public Task<APIResult<string>> CreateUser(CreateUserRequest request);
         public Task<APIResult<string>> UpdateUser(Guid ID, UpdateUserRequest request);
         public Task<APIResult<string>> DeleteUser(Guid ID);

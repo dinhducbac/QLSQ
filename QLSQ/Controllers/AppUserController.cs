@@ -40,8 +40,14 @@ namespace QLSQ.WebApp.Controllers
         public async Task<IActionResult> Login( LoginRequest request)
         {
             if (!ModelState.IsValid)
-                return View(ModelState);
-            var token = await _userApiClient.Authentication(request);
+                return View();
+            var token = await _userApiClient.AuthenticateForWebApp(request);
+            if(token.ResultObj == null)
+            {
+                ViewBag.Login = false;
+                ViewBag.LoginMessage = "Bạn đã đăng nhập sai tài khoản hoặc mật khẩu!";
+                return View();
+            }
             var userPricipal = this.ValidateToken(token.ResultObj);
             var authProperties = new AuthenticationProperties
             {
