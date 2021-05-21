@@ -90,7 +90,7 @@ namespace QLSQ.ApiIntergration
             client.BaseAddress = new Uri(_configuration["BaseAddress"]);
             var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
-            var reponse = await client.GetAsync($"/api/ChucVus/paging?pageIndex={request.pageIndex}&pageSize={request.pageSize}&keyword={request.keword}");
+            var reponse = await client.GetAsync($"/api/ChucVus/paging?pageIndex={request.pageIndex}&pageSize={request.pageSize}&keyword={request.keyword}");
             var body = await reponse.Content.ReadAsStringAsync();
             var chucvu = JsonConvert.DeserializeObject<APISuccessedResult<PageResult<ChucVuViewModel>>>(body);
             return chucvu;
@@ -108,6 +108,19 @@ namespace QLSQ.ApiIntergration
             {
                 return JsonConvert.DeserializeObject<APISuccessedResult<List<ChucVuViewModel>>>(body);
             }
+            return JsonConvert.DeserializeObject<APIErrorResult<List<ChucVuViewModel>>>(body);
+        }
+
+        public async Task<APIResult<List<ChucVuViewModel>>> GetListChucVuByIDBPNotInHSPC(int IDBP)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            var session = _httpContextAccessor.HttpContext.Session.GetString("Token");
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", session);
+            var response = await client.GetAsync($"/api/ChucVus/{IDBP}/getlistchucvubyidbpnotinhspc");
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<APISuccessedResult<List<ChucVuViewModel>>>(body);
             return JsonConvert.DeserializeObject<APIErrorResult<List<ChucVuViewModel>>>(body);
         }
     }
