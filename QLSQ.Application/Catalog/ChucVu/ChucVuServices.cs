@@ -81,9 +81,9 @@ namespace QLSQ.Application.Catalog.ChucVu
                             IDCV = cv.IDCV,
                             TenCV = cv.TenCV
                         };
-            if (!string.IsNullOrEmpty(request.keword))
+            if (!string.IsNullOrEmpty(request.keyword))
             {
-                query = query.Where(x => x.TenBP.Contains(request.keword) || x.TenCV.Contains(request.keword));
+                query = query.Where(x => x.TenBP.Contains(request.keyword) || x.TenCV.Contains(request.keyword));
             }
             var totalRow = await query.CountAsync();
             var data = await query.Skip((request.pageIndex - 1) * request.pageSize)
@@ -120,6 +120,19 @@ namespace QLSQ.Application.Catalog.ChucVu
                 list.Add(cvvm);
             }
             return new APISuccessedResult<List<ChucVuViewModel>>(list);
+        }
+
+        public async Task<APIResult<List<ChucVuViewModel>>> GetListChucVuByIDBPNotInHSPC(int IDBP)
+        {
+            var listCV = await (from cv in _context.ChucVus
+                                where !_context.HeSoPhuCapTheoChucVus.Any(x=>x.IDCV == cv.IDCV)
+                                    && cv.IDBP == IDBP
+                                select new ChucVuViewModel() 
+                                {
+                                    IDCV = cv.IDCV,
+                                    TenCV = cv.TenCV
+                                }).ToListAsync();
+            return new APISuccessedResult<List<ChucVuViewModel>>(listCV);
         }
     }
 }

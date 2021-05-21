@@ -80,5 +80,11 @@ namespace QLSQ.BackEndAPI.Controllers
                 return Ok(result);
             return BadRequest(result);
         }
+        [HttpGet("{IDBP}/getlistchucvubyidbpnotinhspc")]
+        public async Task<IActionResult> GetListChucVuByIDBPNotInHSPC(int IDBP)
+        {
+            var result = await _chucVuServices.GetListChucVuByIDBPNotInHSPC(IDBP);
+            return Ok(result);
+        }
     }
 }

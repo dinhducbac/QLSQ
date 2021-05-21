@@ -31,7 +31,7 @@
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="form-group">
                                         <label class="control-label">Tên sĩ quan</label>
-                                        <input id="autocomplete" type="text" class="form-control" />
+                                        <input id="autocomplete" type="text" class="form-control" required/>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="IDSQ" class="control-label"></label>
@@ -55,7 +55,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="HeSoPhuCap" class="control-label"></label>
-                                        <input asp-for="HeSoPhuCap" id="HeSoPhuCap" class="form-control" value="" />
+                                        <input asp-for="HeSoPhuCap" id="HeSoPhuCap" class="form-control" value="" required />
                                         <span asp-validation-for="HeSoPhuCap" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">

@@ -7,7 +7,7 @@ namespace QLSQ.ViewModel.Catalogs.ChucVu
 {
     public class GetChucVuPagingRequest : PagingRequestBase
     {
-        public string keword { get; set; }
+        public string keyword { get; set; }
         public List<int> IDBP { get; set; }
     }
 }
