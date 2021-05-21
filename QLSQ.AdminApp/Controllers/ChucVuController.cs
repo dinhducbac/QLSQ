@@ -22,7 +22,7 @@ namespace QLSQ.AdminApp.Controllers
         {
             var pagingRequest = new GetChucVuPagingRequest()
             {
-                keword = keyword,
+                keyword = keyword,
                 pageIndex = pageIndex,
                 pageSize = pageSize
             };

@@ -59,7 +59,7 @@ namespace QLSQ.AdminApp.Controllers
             var getListBP = await _boPhanApiClient.GetAllWithNotPaging();
             var listBP = getListBP.ResultObj;
             hspcCreateRequest.boPhanViewModels = listBP;
-            var getListCV = await _chucVuApiClient.GetChucVuWithIDBP(1);
+            var getListCV = await _chucVuApiClient.GetListChucVuByIDBPNotInHSPC(1);
             var listCV = getListCV.ResultObj;
             hspcCreateRequest.chucVuViewModels = listCV;
             return View(hspcCreateRequest);
@@ -84,7 +84,13 @@ namespace QLSQ.AdminApp.Controllers
             var list = getListCV.ResultObj;
             return Json(new SelectList(list, "IDCV", "TenCV"));
         }
-
+        [HttpGet]
+        public async Task<IActionResult> GetListChucVuByIDBPNotInHSPC(int IDBP)
+        {
+            var getListCV = await _chucVuApiClient.GetListChucVuByIDBPNotInHSPC(IDBP);
+            var list = getListCV.ResultObj;
+            return Json(new SelectList(list, "IDCV", "TenCV"));
+        }
         [HttpGet]
         public async Task<IActionResult> Details(int IDHeSoPhuCapCV)
         {

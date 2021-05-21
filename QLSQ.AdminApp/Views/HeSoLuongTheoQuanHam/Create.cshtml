@@ -40,13 +40,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="TenHeSoLuongQH" class="control-label"></label>
-                                        <input asp-for="TenHeSoLuongQH" value="Thiếu Úy" id="TenHeSoLuongQH" class="form-control" />
+                                        <input asp-for="TenHeSoLuongQH" value="Thiếu Úy" id="TenHeSoLuongQH" class="form-control" required />
                                         <input type="button" id="CheckName" class="btn btn-primary" value="Kiểm tra tên" />
                                         <span asp-validation-for="TenHeSoLuongQH" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
                                         <label asp-for="HeSoLuong" class="control-label"></label>
-                                        <input asp-for="HeSoLuong" class="form-control" />
+                                        <input asp-for="HeSoLuong" class="form-control"required />
                                         <span asp-validation-for="HeSoLuong" class="text-danger"></span>
                                     </div>
                                     <div class="form-group">
