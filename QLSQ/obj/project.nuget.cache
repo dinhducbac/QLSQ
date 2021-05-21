@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "606y5h8GmDlW9vniglwFtUwdvI1rjnGov7AQoJSeMi5sDJuyr9z2Ingui8Gv7p+2i+e5c8vAXJiGdzXyPNE3oQ==",
+  "dgSpecHash": "+t8ThzDAQJn3OloL1dMdRoB7suEfIaxJS36SlfsPWDlcfCjcZ5ult/iPnPbRqNXvUNVlmnhKch5Pd3MOkEbGTA==",
   "success": true,
   "projectFilePath": "D:\\Project\\QL_SQ\\QLSQ\\QLSQ\\QLSQ.WebApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation\\9.5.1\\fluentvalidation.9.5.1.nupkg.sha512",
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.5.1\\fluentvalidation.aspnetcore.9.5.1.nupkg.sha512",
+    "C:\\Users\\dinhducbac\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\9.5.1\\fluentvalidation.dependencyinjectionextensions.9.5.1.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.http\\2.2.2\\microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
     "C:\\Users\\dinhducbac\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.2.0\\microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",

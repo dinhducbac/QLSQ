@@ -32,6 +32,12 @@ namespace QLSQ.BackEndAPI.Controllers
                 //return NotFound();
             return Ok(resulttoken);
         }
+        [HttpPost("authenticateforwebapp")]
+        public async Task<IActionResult> AuthenticateForWebApp([FromBody] LoginRequest request)
+        {
+            var resulttoken = await _userService.AuthenticateForWebApp(request);
+            return Ok(resulttoken);
+        }
         [HttpPost("createuser")]
         [AllowAnonymous]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)

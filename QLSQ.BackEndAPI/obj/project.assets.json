@@ -3275,6 +3275,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
+          "FluentValidation.AspNetCore": "9.5.1",
           "Microsoft.IdentityModel.Logging": "6.8.0",
           "Microsoft.IdentityModel.Tokens": "6.8.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.5",

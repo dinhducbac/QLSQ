@@ -11,6 +11,7 @@ namespace QLSQ.Application.System.Users
     public interface IUserService
     {
         Task<APIResult<string>> Authenticate(LoginRequest request);
+        Task<APIResult<string>> AuthenticateForWebApp(LoginRequest request);
         Task<APIResult<string>> CreateUser(CreateUserRequest request);
         Task<APIResult<PageResult<UserViewModel>>> GetUserPaging(GetUserPagingRequest request);
         Task<APIResult<string>> UpdateUser(Guid Id,UpdateUserRequest request);
